@@ -159,6 +159,7 @@ interface Metric {
   value: number | string
   format?: 'number' | 'currency' | 'percentage' | 'text'
   icon: string
+  type?: string
   change?: {
     type: 'positive' | 'negative' | 'neutral'
     text: string
@@ -188,9 +189,9 @@ interface Distribution {
 }
 
 interface ActivityItem {
-  id: string
-  title: string
-  description: string
+  id?: string | number
+  title?: string
+  description?: string
   amount?: string
   timestamp?: string
   status?: string

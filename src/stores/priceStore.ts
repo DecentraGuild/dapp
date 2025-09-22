@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref, computed, readonly } from 'vue'
 
 // Simple price list type - just ticker and price
 type PriceList = Record<string, number>

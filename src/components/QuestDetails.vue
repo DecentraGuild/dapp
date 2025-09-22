@@ -85,46 +85,15 @@
       </div>
 
       <!-- Rewards -->
-      <div v-if="quest.rewards" class="quest-details__rewards">
+      <div v-if="quest.rewards && quest.rewards.length > 0" class="quest-details__rewards">
         <h3>Rewards</h3>
         <div class="quest-details__rewards-grid">
-          <div v-if="quest.rewards.tokens" class="quest-details__reward-section">
-            <h4>Tokens</h4>
-            <div class="quest-details__reward-items">
-              <div v-if="quest.rewards.tokens.token1" class="quest-details__reward-item">
-                <Icon icon="game-icons:coins" />
-                <span>{{ quest.rewards.tokens.token1 }} Token1</span>
-              </div>
-              <div v-if="quest.rewards.tokens.token2" class="quest-details__reward-item">
-                <Icon icon="game-icons:coins" />
-                <span>{{ quest.rewards.tokens.token2 }} Token2</span>
-              </div>
-            </div>
-          </div>
-          <div v-if="quest.rewards.badges && quest.rewards.badges.length > 0" class="quest-details__reward-section">
-            <h4>Badges</h4>
-            <div class="quest-details__reward-items">
-              <div v-for="(badge, index) in quest.rewards.badges" :key="index" class="quest-details__reward-item">
-                <Icon icon="game-icons:medal" />
-                <span>{{ badge }}</span>
-              </div>
-            </div>
-          </div>
-          <div v-if="quest.rewards.nfts && quest.rewards.nfts.length > 0" class="quest-details__reward-section">
-            <h4>NFTs</h4>
-            <div class="quest-details__reward-items">
-              <div v-for="(nft, index) in quest.rewards.nfts" :key="index" class="quest-details__reward-item">
-                <Icon icon="game-icons:gem" />
-                <span>{{ nft }}</span>
-              </div>
-            </div>
-          </div>
-          <div v-if="quest.rewards.experience" class="quest-details__reward-section">
-            <h4>Experience</h4>
+          <div v-for="reward in quest.rewards" :key="reward.type" class="quest-details__reward-section">
+            <h4>{{ reward.type.charAt(0).toUpperCase() + reward.type.slice(1) }}</h4>
             <div class="quest-details__reward-items">
               <div class="quest-details__reward-item">
-                <Icon icon="game-icons:level-up" />
-                <span>{{ quest.rewards.experience }} XP</span>
+                <Icon :icon="getRewardIcon(reward.type)" />
+                <span>{{ getRewardText(reward) }}</span>
               </div>
             </div>
           </div>
@@ -305,6 +274,37 @@ const applicationDate = (dateString: string) => {
 
 const verificationDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString()
+}
+
+// Helper methods for reward display
+const getRewardIcon = (type: string): string => {
+  switch (type) {
+    case 'token':
+      return 'game-icons:coins'
+    case 'badge':
+      return 'game-icons:medal'
+    case 'nft':
+      return 'game-icons:gem'
+    case 'recognition':
+      return 'game-icons:star'
+    default:
+      return 'game-icons:gift'
+  }
+}
+
+const getRewardText = (reward: any): string => {
+  switch (reward.type) {
+    case 'token':
+      return `${reward.amount || 0} ${reward.tokenID || 'Token'}`
+    case 'badge':
+      return reward.badgeID || 'Badge'
+    case 'nft':
+      return reward.nftID || 'NFT'
+    case 'recognition':
+      return 'Recognition'
+    default:
+      return reward.type
+  }
 }
 </script>
 

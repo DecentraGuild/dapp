@@ -19,7 +19,7 @@ import { Icon } from '@iconify/vue'
 import { useSkinTheme } from '../../composables/useSkinTheme'
 
 interface Props {
-  variant?: 'primary' | 'secondary' | 'accent' | 'outline' | 'ghost' | 'danger'
+  variant?: 'primary' | 'secondary' | 'accent' | 'outline' | 'ghost' | 'danger' | 'success' | 'warning'
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   icon?: string
   loading?: boolean

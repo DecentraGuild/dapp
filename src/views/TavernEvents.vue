@@ -164,8 +164,8 @@
                       <div v-if="event.prizes && event.prizes.length > 0" class="detail-section">
                         <h4 class="detail-title">Prizes</h4>
                         <div class="prizes-grid">
-                          <div v-for="prize in event.prizes" :key="prize.position || prize" class="prize-item">
-                            <span class="prize-description">{{ prize.description || prize }}</span>
+                          <div v-for="(prize, index) in event.prizes" :key="index" class="prize-item">
+                            <span class="prize-description">{{ prize.description || prize.reward }}</span>
                           </div>
                         </div>
                       </div>
@@ -292,6 +292,12 @@ interface Event {
   createdBy: string
   createdAt: string
   isActive: boolean
+  agenda?: string[]
+  requirements?: string[]
+  rewards?: string[]
+  prizes?: Array<{ position?: string; reward: string; description?: string }>
+  activities?: string[]
+  marked?: string[]
 }
 
 const upcomingEvents = ref<Event[]>([])
@@ -451,7 +457,7 @@ const toggleSignup = (event: Event) => {
   
   if (isUserSignedUp(targetEvent)) {
     // Remove user from signup
-    targetEvent.marked = targetEvent.marked.filter(user => user !== currentUser.value)
+    targetEvent.marked = targetEvent.marked.filter((user: string) => user !== currentUser.value)
   } else {
     // Add user to signup
     if (targetEvent.marked.length < targetEvent.maxParticipants) {

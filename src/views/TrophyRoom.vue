@@ -307,7 +307,7 @@ const loadAllAchievements = async () => {
                 tokenReward: achievement.levels[0]?.tokenReward || 0,
                 mintable: achievement.levels[0]?.mintable || false,
                 completed: memberLevel === 'Common' && memberCompleted,
-                completedAt: memberLevel === 'Common' && memberCompleted ? memberStatus?.completedAt : undefined
+                completedAt: memberLevel === 'Common' && memberCompleted ? memberStatus?.completedAt || undefined : undefined
               },
               Epic: {
                 requirement: achievement.levels[1]?.requirement || '',
@@ -315,7 +315,7 @@ const loadAllAchievements = async () => {
                 tokenReward: achievement.levels[1]?.tokenReward || 0,
                 mintable: achievement.levels[1]?.mintable || false,
                 completed: memberLevel === 'Epic' && memberCompleted,
-                completedAt: memberLevel === 'Epic' && memberCompleted ? memberStatus?.completedAt : undefined
+                completedAt: memberLevel === 'Epic' && memberCompleted ? memberStatus?.completedAt || undefined : undefined
               },
               Legendary: {
                 requirement: achievement.levels[2]?.requirement || '',
@@ -323,7 +323,7 @@ const loadAllAchievements = async () => {
                 tokenReward: achievement.levels[2]?.tokenReward || 0,
                 mintable: achievement.levels[2]?.mintable || false,
                 completed: memberLevel === 'Legendary' && memberCompleted,
-                completedAt: memberLevel === 'Legendary' && memberCompleted ? memberStatus?.completedAt : undefined
+                completedAt: memberLevel === 'Legendary' && memberCompleted ? memberStatus?.completedAt || undefined : undefined
               }
             },
             currentLevel: memberLevel,

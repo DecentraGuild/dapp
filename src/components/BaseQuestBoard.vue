@@ -129,7 +129,7 @@ const statusItems = computed((): SidebarItem[] => {
     icon: item.icon,
     title: item.name.toUpperCase(),
     active: selectedStatus.value === item.id,
-    badge: questStore.questStats[item.id] || 0
+    badge: (questStore.questStats as any)[item.id] || 0
   }))
 })
 
@@ -167,8 +167,8 @@ watch(() => route.path, updateTabFromRoute, { immediate: true })
 
 // Methods
 const handleStatusClick = (item: SidebarItem) => {
-  selectedStatus.value = item.id
-  questStore.setStatusFilter(item.id)
+  selectedStatus.value = item.id!
+  questStore.setStatusFilter(item.id!)
   // Reset selected quest when switching status
   selectedQuest.value = null
 }

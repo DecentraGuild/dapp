@@ -39,8 +39,8 @@
         <div class="item-title">
           <Icon v-if="getItemIcon(item)" :icon="getItemIcon(item)" class="item-icon" />
           <span>{{ getItemTitle(item) }}</span>
-          <span v-if="getItemStatus(item)" :class="['item-status', `status-${getItemStatus(item).type}`]">
-            {{ getItemStatus(item).text }}
+          <span v-if="getItemStatus(item)" :class="['item-status', `status-${getItemStatus(item)?.type}`]">
+            {{ getItemStatus(item)?.text }}
           </span>
         </div>
       </template>
@@ -50,7 +50,7 @@
           <div class="item-description">{{ getItemDescription(item) }}</div>
           <div class="item-meta">
             <span v-if="getItemReward(item)" class="item-reward">{{ getItemReward(item) }}</span>
-            <span v-if="getItemTimestamp(item)" class="item-timestamp">{{ formatTimestamp(getItemTimestamp(item)) }}</span>
+            <span v-if="getItemTimestamp(item)" class="item-timestamp">{{ formatTimestamp(getItemTimestamp(item)!) }}</span>
           </div>
         </div>
       </template>
@@ -81,7 +81,7 @@ interface TimeFilter {
 }
 
 interface PersonalObservatoryItem {
-  id: string
+  id?: string | number
   [key: string]: any
 }
 
