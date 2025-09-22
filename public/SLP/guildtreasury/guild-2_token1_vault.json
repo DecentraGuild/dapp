@@ -1,0 +1,16 @@
+{
+  "vaultID": "g2_token1_vault",
+  "guildID": "guild-2",
+  "name": "Shadow Sun Coin Backing Vault",
+  "description": "Vault holding backing assets for g2-token1 (SSC) token",
+  "type": "token1_vault",
+  "tokenID": "g2-token1",
+  "multisigWalletID": "0x8888888888888888888888888888888888888888",
+  "requiredSignatures": 2,
+  "signers": [
+    "g2_diana_founder",
+    "g2_charlie_council"
+  ],
+  "createdAt": "2024-01-10T00:00:00Z",
+  "isActive": true
+}

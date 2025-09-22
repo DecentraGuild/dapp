@@ -1,0 +1,22 @@
+{
+  "voteID": "g1_vote_004",
+  "daoID": "g1_dao_token1",
+  "votetype": "token-1",
+  "guildID": "guild-1",
+  "title": "CCC Staking Rewards Adjustment",
+  "description": "Proposal to increase staking rewards for CCC holders from 5% to 8% annually to incentivize long-term holding and reduce circulating supply",
+  "proposer": "g1_charlie_officer",
+  "status": "cancelled",
+  "votingStarts": "2024-01-10T16:45:00Z",
+  "votingEnds": "2024-01-17T16:45:00Z",
+  "completedAt": "2024-01-12T11:20:00Z",
+  "result": "cancelled",
+  "quorum": 1000,
+  "currentVotes": 0,
+  "yesVotes": 0,
+  "noVotes": 0,
+  "abstainVotes": 0,
+  "voters": [],
+  "isActive": false,
+  "cancellationReason": "Proposal withdrawn due to technical concerns with smart contract implementation"
+}

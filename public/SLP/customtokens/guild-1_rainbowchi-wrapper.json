@@ -1,0 +1,24 @@
+{
+  "wrapperID": "g1-rainbowchi-wrapper",
+  "guildID": "guild-1",
+  "name": "Rainbow Chi Token Wrapper",
+  "symbol": "RAINBOWCHI-WRAP",
+  "description": "Tokenized version of Rainbow Chi ship. Collect 12000 tokens to redeem for a full ship",
+  "image": "Rainbow_Chi_Showroom.png",
+  "type": "tokenised",
+  "decimals": 0,
+  "circulatingSupply": 150,
+  "exchangeRatio": [1, 150], 
+  "vaultBalance": 2,
+  "redemptionAsset": "resource-rainbowchi",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "backingAsset": {
+    "resourceID": "resource-rainbowchi",
+    "name": "Rainbow Chi",
+    "image": "Rainbow_Chi_Showroom.png",
+    "type": "ship",
+    "rarity": "epic"
+  }
+}

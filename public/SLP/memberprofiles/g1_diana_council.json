@@ -1,0 +1,15 @@
+{
+  "memberID": "g1_diana_council",
+  "walletAddress": "3xJ3H4V8K8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q",
+  "guild": "guild-1",
+  "role": "g1-r4",
+  "username": "Diana",
+  "avatar": "avatar4.png",
+  "email": "diana@example.com",
+  "notification": [true, true, true],
+  "lastActive": "2024-01-15T16:45:00Z",
+  "joinedAt": "2024-01-04T00:00:00Z",
+  "isActive": true,
+  "contributionScore": 950,
+  "bio": "Council member dedicated to governance and strategic decisions. I believe in transparency and community-driven development. Let's shape the future together!"
+}

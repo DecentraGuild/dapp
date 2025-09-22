@@ -1,0 +1,16 @@
+{
+  "vaultID": "g2_guild_vault",
+  "guildID": "guild-2",
+  "name": "Shadow Sun Order Vault",
+  "description": "Main treasury vault holding all crypto assets of the Shadow Sun Order",
+  "type": "guild_vault",
+  "multisigWalletID": "0x2222222222222222222222222222222222222222",
+  "requiredSignatures": 3,
+  "signers": [
+    "g2_diana_founder",
+    "g2_charlie_council",
+    "g2_bob_officer"
+  ],
+  "createdAt": "2024-01-10T00:00:00Z",
+  "isActive": true
+}

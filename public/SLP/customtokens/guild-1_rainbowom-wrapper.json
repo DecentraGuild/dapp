@@ -1,0 +1,24 @@
+{
+  "wrapperID": "g1-rainbowom-wrapper",
+  "guildID": "guild-1",
+  "name": "Rainbow Om Token Wrapper",
+  "symbol": "RAINBOWOM-WRAP",
+  "description": "Tokenized version of Rainbow Om ship. Collect 15000 tokens to redeem for a full ship",
+  "image": "Rainbow_Om_Showroom.png",
+  "type": "tokenised",
+  "decimals": 0,
+  "circulatingSupply": 100,
+  "exchangeRatio": [1, 200], 
+  "vaultBalance": 1,
+  "redemptionAsset": "resource-rainbowom",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0xffffffffffffffffffffffffffffffffffffffff",
+  "backingAsset": {
+    "resourceID": "resource-rainbowom",
+    "name": "Rainbow Om",
+    "image": "Rainbow_Om_Showroom.png",
+    "type": "ship",
+    "rarity": "legendary"
+  }
+}

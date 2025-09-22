@@ -1,0 +1,15 @@
+{
+  "memberID": "g2_charlie_council",
+  "walletAddress": "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU",
+  "guild": "guild-2",
+  "role": "g2-r4",
+  "username": "Charlie",
+  "avatar": "avatar3.png",
+  "email": "charlie@example.com",
+  "notification": [true, true, true],
+  "lastActive": "2024-01-15T14:20:00Z",
+  "joinedAt": "2024-01-03T00:00:00Z",
+  "isActive": true,
+  "contributionScore": 800,
+  "bio": "Council member of Guild 2, specializing in strategic planning and member relations. I believe in collaborative decision-making and community empowerment."
+}

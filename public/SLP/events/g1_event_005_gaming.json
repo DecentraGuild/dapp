@@ -1,0 +1,24 @@
+{
+  "eventID": "g1_event_005",
+  "guildID": "guild-1",
+  "title": "PvP Arena Championship",
+  "description": "Competitive PvP tournament with skill-based matchmaking",
+  "date": "2025-09-21 20:00:00",
+  "status": "upcoming",
+  "eventType": "gaming",
+  "minRole": "g1-r2",
+  "maxParticipants": 32,
+  "entryFee": 50,
+  "tokenID": "g1-token1",
+  "format": "Single elimination",
+  "prizes": [
+    "Winner: 1000 CCC + Special title",
+    "Top 4: 500 CCC each",
+    "Participation: 100 CCC"
+  ],
+  "marked": ["g1_charlie_officer", "g1_bob_member"],
+  "attended": [],
+  "createdBy": "g1_charlie_officer",
+  "createdAt": "2025-09-16 11:20:00",
+  "isActive": true
+}

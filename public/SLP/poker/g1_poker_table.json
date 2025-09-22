@@ -1,0 +1,22 @@
+{
+  "tableID": "g1_poker_table",
+  "guildID": "guild-1",
+  "name": "Cyber Castle Poker Room",
+  "description": "Practice poker on this table only for Cyber Castle Guild members",
+  "smallBlind": 10,
+  "bigBlind": 20,
+  "minEntry": 200,
+  "maxEntry": 2000,
+  "tokenID": "g1-token1",
+  "themeImage": "poker.png",
+  "maxPlayers": 8,
+  "gameType": "Texas Hold'em",
+  "isActive": true,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "settings": {
+    "allowSpectators": true,
+    "autoStart": true,
+    "timeLimit": 30,
+    "showdownDelay": 5
+  }
+}

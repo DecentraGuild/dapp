@@ -1,0 +1,18 @@
+{
+  "resourceID": "resource-vzusopod",
+  "name": "Vzus Opod",
+  "symbol": "VZUSOPOD",
+  "description": "Organic technology ship with biological weaponry and adaptive systems",
+  "image": "vzus opod png.png",
+  "type": "spaceship",
+  "rarity": "legendary",
+  "circulatingSupply": 80,
+  "maxSupply": 300,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "contractAddress": "0x3333333333333333333333333333333333333333",
+  "blockchain": "Solana",
+  "decimals": 0,
+  "category": "Star Atlas Spaceship"
+}

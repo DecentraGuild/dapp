@@ -1,0 +1,87 @@
+{
+  "achievementSystem": {
+    "version": "1.0.0",
+    "description": "Guild Achievement System with 5 categories and 3 levels each",
+    "lastUpdated": "2024-12-19",
+    "totalCategories": 5,
+    "totalAchievements": 26,
+    "levels": ["Common", "Epic", "Legendary"],
+    "commonColor":"#10B981",
+    "epicColor":"#F59E0B",
+    "legendaryColor":"#EF4444",
+    "levelIcons": {
+      "Common": "trophy",
+      "Epic": "crown",
+      "Legendary": "star"
+    }
+  },
+  "categories": [
+    {
+      "id": "game",
+      "name": "Game",
+      "description": "Achievements related to gaming activities, raids, and in-game accomplishments",
+      "file": "game_achievements.json",
+      "achievementCount": 5,
+      "icon": "game-icons:gamepad"
+    },
+    {
+      "id": "guild",
+      "name": "Guild",
+      "description": "Achievements related to guild management, organization, and community building",
+      "file": "guild_achievements.json",
+      "achievementCount": 5,
+      "icon": "game-icons:castle"
+    },
+    {
+      "id": "social",
+      "name": "Social",
+      "description": "Achievements related to social interactions, community participation, and networking",
+      "file": "social_achievements.json",
+      "achievementCount": 5,
+      "icon": "game-icons:chat-bubble"
+    },
+    {
+      "id": "trading",
+      "name": "Trading",
+      "description": "Achievements related to trading activities, commerce, and economic participation",
+      "file": "trading_achievements.json",
+      "achievementCount": 5,
+      "icon": "game-icons:shopping-cart"
+    },
+    {
+      "id": "special",
+      "name": "Special",
+      "description": "Special achievements for unique accomplishments, seasonal events, and rare milestones",
+      "file": "special_achievements.json",
+      "achievementCount": 6,
+      "icon": "game-icons:transportation-rings"
+    }
+  ],
+  "rewardSystem": {
+    "contributionPoints": {
+      "description": "Points earned for guild contribution tracking",
+      "commonRange": "30-200",
+      "epicRange": "100-500",
+      "legendaryRange": "250-2000"
+    },
+    "tokenRewards": {
+      "description": "Token rewards for achievement completion",
+      "commonRange": "15-100",
+      "epicRange": "50-250",
+      "legendaryRange": "125-1000"
+    },
+    "mintableNfts": {
+      "description": "NFTs that can be minted at the foundry when legendary level is reached",
+      "totalMintable": 26,
+      "mintingLocation": "Foundry"
+    }
+  },
+  "achievementStats": {
+    "totalCommonAchievements": 26,
+    "totalEpicAchievements": 26,
+    "totalLegendaryAchievements": 26,
+    "totalPossibleContributionPoints": 15000,
+    "totalPossibleTokenRewards": 7500,
+    "totalMintableNfts": 26
+  }
+}

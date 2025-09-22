@@ -1,0 +1,207 @@
+{
+    "guildId": "guild-1",
+    "guildName": "Cyber Castle Guild",
+    "lastUpdated": "2025-09-22T10:30:00Z",
+    "timeFilters": {
+      "last5Days": "2025-09-17T00:00:00Z",
+      "last7Days": "2025-09-15T00:00:00Z", 
+      "last30Days": "2025-08-23T00:00:00Z"
+    },
+    "guildProfile": {
+      "description": "An elite guild focused on medieval-futuristic gameplay with cyber enhancements",
+      "theme": "castle_cyber",
+      "message": "Raiding Oni Sunday morning boys! we can keep them busy all day!",
+      "settings": {
+        "allowPublicViewing": true,
+        "requireApprovalForJoin": true,
+        "maxMembers": 100,
+        "autoAssignRole": "g1-r1"
+      },
+      "roles": {
+        "prospect": "guild1_r1",
+        "member": "guild1_r2", 
+        "officer": "guild1_r3",
+        "council": "guild1_r4",
+        "founder": "guild1_r5"
+      },
+      "daos": {
+        "token1": "g1_dao_token1",
+        "token2": "g1_dao_token2",
+        "totalvote": "g1_dao_totalvote"
+      },
+      "token2Allocation": {
+        "guild_vault": 30,
+        "token1_vault": 10,
+        "token2_vault": 60
+      }
+    },
+    "questSummary": {
+      "totalQuests": 15,
+      "completedQuests": 12,
+      "inProgressQuests": 3,
+      "totalParticipants": 87,
+      "averageParticipantsPerQuest": 5.8,
+      "totalXPRewarded": 45000,
+      "totalTokensRewarded": 12500,
+      "questTypes": {
+        "ingame": 8,
+        "guild": 7
+      },
+      "difficultyDistribution": {
+        "easy": 3,
+        "uncommon": 5,
+        "rare": 4,
+        "epic": 2,
+        "legendary": 1
+      },
+      "completionRate": 80,
+      "guildSpecificQuests": {
+        "cyberDragonDefeats": 8,
+        "castleRaids": 12,
+        "medievalFuturisticChallenges": 15
+      },
+      "last30Days": {
+        "newQuests": 5,
+        "completedQuests": 8,
+        "activeParticipants": 45
+      }
+    },
+    "goalsSummary": {
+      "totalGoals": 5,
+      "completedGoals": 2,
+      "inProgressGoals": 3,
+      "overallProgress": 68,
+      "goalsByType": {
+        "membership": 1,
+        "questing": 2,
+        "economic": 1,
+        "social": 1
+      },
+      "deadlinesThisMonth": 2,
+      "averageCompletionTime": "45 days",
+      "last30Days": {
+        "goalsCompleted": 1,
+        "goalsStarted": 1,
+        "progressMade": 15
+      }
+    },
+    "eventsSummary": {
+      "totalEvents": 12,
+      "eventsThisMonth": 8,
+      "totalParticipants": 456,
+      "averageParticipantsPerEvent": 38,
+      "eventsByType": {
+        "poker_tournament": 4,
+        "raid": 3,
+        "meeting": 3,
+        "gaming": 1,
+        "chill_session": 1
+      },
+      "attendanceRate": 78,
+      "totalRewardsDistributed": 25000,
+      "mostPopularEvent": "Cyber Castle Poker Championship",
+      "guildThemedEvents": {
+        "cyberCastleTournaments": 4,
+        "dragonLairRaids": 3,
+        "medievalFuturisticGaming": 5
+      },
+      "last30Days": {
+        "eventsHosted": 8,
+        "totalAttendance": 304,
+        "newEventTypes": 2
+      }
+    },
+    "foundrySummary": {
+      "totalMintingOperations": 28,
+      "totalParticipants": 156,
+      "totalTokensMinted": 125000,
+      "totalResourcesMinted": 45,
+      "totalCost": 1250,
+      "totalRefunds": 180,
+      "netCost": 1070,
+      "operationsByType": {
+        "token_mint": 15,
+        "resource_mint": 8,
+        "token_burn": 3,
+        "resource_burn": 2
+      },
+      "mostPopularToken": "g1_dao_token1",
+      "mostPopularResource": "resource-pearcer6",
+      "last30Days": {
+        "operations": 12,
+        "participants": 67,
+        "tokensMinted": 45000,
+        "resourcesMinted": 18
+      }
+    },
+    "minigameSummary": {
+      "totalGamesPlayed": 45,
+      "totalPlayers": 234,
+      "totalWinnings": 12500,
+      "gamesByType": {
+        "poker_tournament": 8,
+        "tavern_dice": 12,
+        "raffle": 6,
+        "gaming": 19
+      },
+      "averagePlayersPerGame": 5.2,
+      "averageWinningsPerGame": 278,
+      "mostActivePlayer": "g1_eve_founder",
+      "mostPopularGame": "Tavern Dice",
+      "last30Days": {
+        "gamesPlayed": 18,
+        "players": 89,
+        "winnings": 4800
+      }
+    },
+    "votingSummary": {
+      "totalProposals": 8,
+      "proposalsPassed": 5,
+      "proposalsRejected": 3,
+      "totalVotes": 298,
+      "averageParticipationRate": 84,
+      "proposalsByType": {
+        "governance": 3,
+        "economic": 2,
+        "social": 2,
+        "technical": 1
+      },
+      "mostControversialProposal": "Weekly Event Schedule Change",
+      "highestParticipationRate": 95,
+      "last30Days": {
+        "proposals": 3,
+        "votes": 115,
+        "participationRate": 87
+      }
+    
+    },
+    "guildOverview": {
+      "totalMembers": 87,
+      "activeMembers": 65,
+      "memberGrowth": 12,
+      "totalXP": 125000,
+      "totalTokens": 250000,
+      "guildLevel": 15,
+      "reputation": 850,
+      "maxMembers": 100,
+      "memberCapacity": 87,
+      "roleDistribution": {
+        "prospect": 15,
+        "member": 45,
+        "officer": 18,
+        "council": 7,
+        "founder": 2
+      },
+      "daoParticipation": {
+        "g1_dao_token1": 78,
+        "g1_dao_token2": 65,
+        "g1_dao_totalvote": 82
+      },
+      "last30Days": {
+        "newMembers": 8,
+        "xpGained": 25000,
+        "tokensEarned": 45000,
+        "activityScore": 92
+      }
+    }
+  }

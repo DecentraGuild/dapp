@@ -1,0 +1,18 @@
+{
+  "orderID": "g1_g2p_0004",
+  "guildID": "guild-1",
+  "role": "g1-r1",
+  "type": "sell",
+  "amountOffered": 10,
+  "resourceIDOffered": "resource-pearcer6",
+  "tokenImageOffered": "/SLP/resources/pearcer6.jpg",
+  "amountAsked": 200,
+  "tokenIDAsked": "resource-sol",
+  "tokenImageAsked": "/SLP/resources/logo-solana.png",
+  "status": "active",
+  "created": "2024-01-22T08:00:00Z",
+  "creator": "g1_alice_prospect",
+  "expiresAt": "2024-02-22T23:59:59Z",
+  "isActive": true,
+  "description": "Small Pearcer 6 sale from prospect member"
+}

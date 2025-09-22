@@ -1,0 +1,16 @@
+{
+  "tokenID": "g2-token1",
+  "guildID": "guild-2",
+  "name": "Shadow Sun Gold",
+  "symbol": "SSG",
+  "description": "The premium currency of Shadow Sun Order, representing wealth and prestige",
+  "image": "https://api.dicebear.com/7.x/shapes/svg?seed=shadowgold",
+  "decimals": 18,
+  "circulatingSupply": 50000,
+  "assetbacking": "ATLAS",
+  "exchangeRatio": [1, 200],
+  "vaultHolding":10000000, 
+  "createdAt": "2024-01-10T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0x3333333333333333333333333333333333333333"
+}

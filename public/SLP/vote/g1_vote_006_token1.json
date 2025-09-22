@@ -1,0 +1,24 @@
+{
+  "voteID": "g1_vote_006",
+  "daoID": "g1_dao_token1",
+  "votetype": "token-1",
+  "guildID": "guild-1",
+  "title": "CCC Token Burn Mechanism",
+  "description": "Proposal to implement a quarterly token burn mechanism for Cyber Castle Coins to maintain token scarcity and value. This would burn 2% of circulating supply every quarter.",
+  "proposer": "g1_charlie_officer",
+  "status": "active",
+  "votingStarts": "2024-01-22T10:00:00Z",
+  "votingEnds": "2024-01-29T10:00:00Z",
+  "quorum": 1000,
+  "currentVotes": 750,
+  "yesVotes": 600,
+  "noVotes": 120,
+  "abstainVotes": 30,
+  "voters": [
+    "g1_eve_founder",
+    "g1_diana_council",
+    "g1_charlie_officer",
+    "g1_bob_member"
+  ],
+  "isActive": true
+}

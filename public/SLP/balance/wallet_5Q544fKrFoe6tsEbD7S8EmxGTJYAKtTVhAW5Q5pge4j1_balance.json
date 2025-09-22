@@ -1,0 +1,17 @@
+{
+  "walletID": "5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1",
+  "owner": "Bob",
+  "guilds": ["guild-1", "guild-2"],
+  "balances": {
+    "sol": 89.2,
+    "usdc": 1800,
+    "wbtc": 0.05,
+    "atlas": 3200,
+    "polis": 300,
+    "g1-token1": 1800,
+    "g1-token2": 75,
+    "g2-token1": 2200,
+    "g2-token2": 40
+  },
+  "lastUpdated": "2024-01-20T12:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "orderID": "g2_g2p_0005",
+  "guildID": "guild-2",
+  "role": "g2-r5",
+  "type": "sell",
+  "amountOffered": 500,
+  "resourceIDOffered": "resource-nitro",
+  "tokenImageOffered": "/SLP/resources/nitro.png",
+  "amountAsked": 10000,
+  "tokenIDAsked": "resource-usdc",
+  "tokenImageAsked": "/SLP/resources/logo-usdc.png",
+  "status": "active",
+  "created": "2024-01-20T16:45:00Z",
+  "creator": "g2_diana_founder",
+  "expiresAt": "2024-02-20T23:59:59Z",
+  "isActive": true,
+  "description": "Founder's premium Cyber Nitro offering"
+}

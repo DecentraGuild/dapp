@@ -1,0 +1,16 @@
+{
+  "vaultID": "guild-1_guild_vault",
+  "guildID": "guild-1",
+  "name": "Cyber Castle Guild Vault",
+  "description": "Main treasury vault holding all crypto assets of the guild",
+  "type": "guild_vault",
+  "multisigWalletID": "0x1111111111111111111111111111111111111111",
+  "requiredSignatures": 3,
+  "signers": [
+    "g1_eve_founder",
+    "g1_diana_council",
+    "g1_charlie_officer"
+  ],
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true
+}

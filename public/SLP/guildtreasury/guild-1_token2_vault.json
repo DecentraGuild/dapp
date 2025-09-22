@@ -1,0 +1,16 @@
+{
+  "vaultID": "guild-1_token2_vault",
+  "guildID": "guild-1",
+  "name": "Castle Gem Staking Vault",
+  "description": "Vault holding staking and backing assets for guild-1-token2 (CGM) token",
+  "type": "token2_vault",
+  "tokenID": "guild-1-token2",
+  "multisigWalletID": "0x3333333333333333333333333333333333333333",
+  "requiredSignatures": 2,
+  "signers": [
+    "g1_eve_founder",
+    "g1_diana_council"
+  ],
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true
+}

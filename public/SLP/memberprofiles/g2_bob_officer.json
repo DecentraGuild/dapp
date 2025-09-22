@@ -1,0 +1,15 @@
+{
+  "memberID": "g2_bob_officer",
+  "walletAddress": "5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1",
+  "guild": "guild-2",
+  "role": "g2-r3",
+  "username": "Bob",
+  "avatar": "avatar2.png",
+  "email": "bob@example.com",
+  "notification": [true, true, true],
+  "lastActive": "2024-01-15T10:30:00Z",
+  "joinedAt": "2024-01-02T00:00:00Z",
+  "isActive": true,
+  "contributionScore": 600,
+  "bio": "Officer in Guild 2, focused on community management and event coordination. I love bringing people together and creating memorable experiences."
+}

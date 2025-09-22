@@ -1,0 +1,26 @@
+{
+  "guildID": "guild-1",
+  "raffleId": "guild-1-r005",
+  "title": "Anniversary Celebration Prize",
+  "description": "Special anniversary raffle with massive token rewards for our loyal members",
+  "status": "finished",
+  "ticketstotal": 200,
+  "ticketsprice": 100,
+  "ticketpaymentcurrency": "g1-token1",
+  "rewardtokenid": "resource-pearcer6",
+  "rewardamount": 5000,
+  "ticketsoldwallets": [
+    "0x1111111111111111111111111111111111111111",
+    "0x2222222222222222222222222222222222222222",
+    "0x3333333333333333333333333333333333333333",
+    "0x4444444444444444444444444444444444444444",
+    "0x5555555555555555555555555555555555555555",
+    "0x6666666666666666666666666666666666666666",
+    "0x7777777777777777777777777777777777777777",
+    "0x8888888888888888888888888888888888888888"
+  ],
+  "winner": "0x3333333333333333333333333333333333333333",
+  "createdby": "g1_eve_founder",
+  "createdon": "2024-01-01T12:00:00Z",
+  "imagepath": "/SLP/resources/pearcer6.jpg"
+}

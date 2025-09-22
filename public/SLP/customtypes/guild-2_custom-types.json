@@ -1,0 +1,30 @@
+{
+  "guildID": "guild-2",
+  "guildName": "Shadow Sun Order",
+  "customTypes": [
+    {
+      "typeID": "tokenised",
+      "name": "Tokenised",
+      "description": "Convert physical assets into tradeable tokens with fractional ownership",
+      "icon": "mdi:token",
+      "image": "tokenised_assets.png",
+      "isActive": true
+    },
+    {
+      "typeID": "fleet",
+      "name": "Fleet",
+      "description": "Manage and trade fleet assets with tokenized ownership and governance",
+      "icon": "mdi:ship-wheel",
+      "image": "fleet_management.png",
+      "isActive": true
+    },
+    {
+      "typeID": "borrow",
+      "name": "Borrow",
+      "description": "Participate in decentralized lending with collateralized token assets",
+      "icon": "mdi:bank",
+      "image": "lending_pool.png",
+      "isActive": true
+    }
+  ]
+}

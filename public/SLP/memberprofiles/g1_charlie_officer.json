@@ -1,0 +1,15 @@
+{
+  "memberID": "g1_charlie_officer",
+  "walletAddress": "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU",
+  "guild": "guild-1",
+  "role": "g1-r3",
+  "username": "Charlie",
+  "avatar": "avatar3.png",
+  "email": "charlie@example.com",
+  "notification": [true, true, true],
+  "lastActive": "2024-01-15T14:20:00Z",
+  "joinedAt": "2024-01-03T00:00:00Z",
+  "isActive": true,
+  "contributionScore": 750,
+  "bio": "Guild officer with a passion for organization and leadership. I help coordinate events and ensure our community runs smoothly. Always here to help!"
+}

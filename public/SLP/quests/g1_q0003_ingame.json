@@ -1,0 +1,53 @@
+{
+  "questID": "g1_q0003",
+  "guildID": "guild-1",
+  "title": "PvP Tournament Champion",
+  "description": "Represent the guild in the weekly PvP tournament and secure a top 3 position.",
+  "type": "ingame",
+  "status": "assigned",
+  "phase": "assign",
+  "role": "guild1_r2",
+  "roleRequirement": "member",
+  "goal": "Achieve top 3 position in the weekly PvP tournament",
+  "requirements": [
+    "Minimum level 30",
+    "Complete 'Tournament Registration'",
+    "Equip best available gear"
+  ],
+  "gear": [
+    "Legendary Cyber Armor",
+    "Master Sword +5",
+    "Speed Boots"
+  ],
+  "guildSupplies": [
+    "Legendary Cyber Armor",
+    "Master Sword +5"
+  ],
+  "rewards": {
+    "tokens": {
+      "token1": 1000,
+      "token2": 200
+    },
+    "badges": ["tournament_champion"],
+    "nfts": ["champion_crown"],
+    "experience": 5000
+  },
+  "contributors": [],
+  "assignedTo": "member_002",
+  "creator": "guild1_council",
+  "created": "2024-01-13T16:00:00Z",
+  "deadline": "2024-01-20T20:00:00Z",
+  "completedAt": null,
+  "isActive": true,
+  "applications": [
+    {
+      "memberID": "member_002",
+      "memberName": "ArenaMaster",
+      "appliedAt": "2024-01-13T17:30:00Z",
+      "message": "I've been training for this tournament. Ready to bring glory to our guild!",
+      "status": "approved"
+    }
+  ],
+  "verification": null,
+  "rewards": []
+}

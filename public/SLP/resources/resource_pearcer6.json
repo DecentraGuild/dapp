@@ -1,0 +1,18 @@
+{
+  "resourceID": "resource-pearcer6",
+  "name": "Pearcer 6",
+  "symbol": "PEARCER6",
+  "description": "Advanced combat spaceship with precision targeting and high damage capabilities",
+  "image": "pearcer6.jpg",
+  "type": "spaceship",
+  "rarity": "legendary",
+  "circulatingSupply": 100,
+  "maxSupply": 500,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "contractAddress": "0x8888888888888888888888888888888888888888",
+  "blockchain": "Solana",
+  "decimals": 0,
+  "category": "Star Atlas Spaceship"
+}

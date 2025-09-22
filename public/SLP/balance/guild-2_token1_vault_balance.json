@@ -1,0 +1,11 @@
+{
+  "walletID": "0x8888888888888888888888888888888888888888",
+  "vaultID": "g2_token1_vault",
+  "guildID": "guild-2",
+  "tokens": {
+    "atlas": 35000,
+    "usdc": 18000,
+    "g2-token1": 0
+  },
+  "lastUpdated": "2024-01-20T12:00:00Z"
+}

@@ -1,0 +1,94 @@
+{
+  "collectionID": "collection-achievements",
+  "guildID": "guild-1",
+  "name": "Cyber Castle Achievements",
+  "symbol": "CCA",
+  "description": "Achievement badges earned through quests, tournaments, and guild activities in Cyber Castle",
+  "image": "achievement_badge.png",
+  "type": "achievement",
+  "rarity": "uncommon",
+  "totalSupply": 5000,
+  "mintedSupply": 0,
+  "maxPerWallet": 50,
+  "mintPrice": 0,
+  "mintCurrency": "g1-token1",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": false,
+  "contractAddress": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "traits": [
+    {
+      "trait_type": "Category",
+      "values": ["Quest", "Tournament", "Social", "Leadership", "Innovation"]
+    },
+    {
+      "trait_type": "Tier",
+      "values": ["Bronze", "Silver", "Gold", "Platinum", "Diamond"]
+    },
+    {
+      "trait_type": "Activity",
+      "values": ["First Quest", "Tournament Winner", "Guild Leader", "Code Master", "Community Builder"]
+    },
+    {
+      "trait_type": "Rarity",
+      "values": ["Common", "Uncommon", "Rare", "Epic", "Legendary"]
+    }
+  ],
+  "sampleNFTs": [
+    {
+      "tokenId": 1,
+      "name": "First Quest Badge",
+      "image": "achievement (1).png",
+      "traits": {
+        "Category": "Quest",
+        "Tier": "Bronze",
+        "Activity": "First Quest",
+        "Rarity": "Common"
+      }
+    },
+    {
+      "tokenId": 2,
+      "name": "Tournament Champion",
+      "image": "achievement (2).png",
+      "traits": {
+        "Category": "Tournament",
+        "Tier": "Gold",
+        "Activity": "Tournament Winner",
+        "Rarity": "Rare"
+      }
+    },
+    {
+      "tokenId": 3,
+      "name": "Guild Leadership",
+      "image": "achievement (3).png",
+      "traits": {
+        "Category": "Leadership",
+        "Tier": "Platinum",
+        "Activity": "Guild Leader",
+        "Rarity": "Epic"
+      }
+    },
+    {
+      "tokenId": 4,
+      "name": "Code Master",
+      "image": "achievement (4).png",
+      "traits": {
+        "Category": "Innovation",
+        "Tier": "Diamond",
+        "Activity": "Code Master",
+        "Rarity": "Legendary"
+      }
+    },
+    {
+      "tokenId": 5,
+      "name": "Community Builder",
+      "image": "achievement (5).png",
+      "traits": {
+        "Category": "Social",
+        "Tier": "Silver",
+        "Activity": "Community Builder",
+        "Rarity": "Uncommon"
+      }
+    }
+  ]
+}

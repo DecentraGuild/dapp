@@ -1,0 +1,19 @@
+{
+  "voteID": "g1_vote_001",
+  "daoID": "g1_dao_token1",
+  "votetype": "token-1",
+  "guildID": "guild-1",
+  "title": "Increase CCC Token Supply",
+  "description": "Proposal to increase the circulating supply of Cyber Castle Coins by 1 million tokens to fund new guild initiatives and member rewards",
+  "proposer": "g1_diana_council",
+  "status": "active",
+  "votingStarts": "2024-01-20T14:00:00Z",
+  "votingEnds": "2024-01-27T14:00:00Z",
+  "quorum": 1000,
+  "currentVotes": 0,
+  "yesVotes": 0,
+  "noVotes": 0,
+  "abstainVotes": 0,
+  "voters": [],
+  "isActive": true
+}

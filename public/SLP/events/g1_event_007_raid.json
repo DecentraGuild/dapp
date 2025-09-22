@@ -1,0 +1,27 @@
+{
+  "eventID": "g1_event_007",
+  "guildID": "guild-1",
+  "title": "Mystic Forest Expedition",
+  "description": "Dangerous expedition into the Mystic Forest to discover ancient artifacts",
+  "date": "2025-09-23 21:00:00",
+  "status": "upcoming",
+  "eventType": "raid",
+  "minRole": "g1-r2",
+  "maxParticipants": 8,
+  "entryFee": 0,
+  "requirements": [
+    "Level 15+ required",
+    "Forest survival gear",
+    "Team of 4+ recommended"
+  ],
+  "rewards": [
+    "Ancient artifacts",
+    "Rare crafting materials",
+    "Forest exploration points"
+  ],
+  "marked": ["g1_diana_council", "g1_charlie_officer", "g1_bob_member"],
+  "attended": [],
+  "createdBy": "g1_diana_council",
+  "createdAt": "2025-09-18 10:30:00",
+  "isActive": true
+}

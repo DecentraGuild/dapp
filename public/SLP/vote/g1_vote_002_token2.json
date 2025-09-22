@@ -1,0 +1,19 @@
+{
+  "voteID": "g1_vote_002",
+  "daoID": "g1_dao_token2",
+  "votetype": "token-2",
+  "guildID": "guild-1",
+  "title": "Castle Gem Burn Event",
+  "description": "Proposal to burn 10,000 Castle Gems to increase scarcity and value, creating deflationary pressure and potentially increasing token value",
+  "proposer": "g1_eve_founder",
+  "status": "active",
+  "votingStarts": "2024-01-18T10:30:00Z",
+  "votingEnds": "2024-01-23T10:30:00Z",
+  "quorum": 50,
+  "currentVotes": 0,
+  "yesVotes": 0,
+  "noVotes": 0,
+  "abstainVotes": 0,
+  "voters": [],
+  "isActive": true
+}

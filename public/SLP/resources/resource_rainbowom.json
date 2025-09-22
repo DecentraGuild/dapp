@@ -1,0 +1,18 @@
+{
+  "resourceID": "resource-rainbowom",
+  "name": "Rainbow Om",
+  "symbol": "RAINBOWOM",
+  "description": "Ultimate mystical vessel with cosmic energy mastery and reality manipulation",
+  "image": "Rainbow_Om_Showroom.png",
+  "type": "spaceship",
+  "rarity": "legendary",
+  "circulatingSupply": 50,
+  "maxSupply": 200,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "contractAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "blockchain": "Solana",
+  "decimals": 0,
+  "category": "Star Atlas Spaceship"
+}

@@ -1,0 +1,15 @@
+{
+  "memberID": "g2_diana_founder",
+  "walletAddress": "3xJ3H4V8K8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q",
+  "guild": "guild-2",
+  "role": "g2-r5",
+  "username": "Diana",
+  "avatar": "avatar4.png",
+  "email": "diana@example.com",
+  "notification": [true, true, true],
+  "lastActive": "2024-01-15T16:45:00Z",
+  "joinedAt": "2024-01-04T00:00:00Z",
+  "isActive": true,
+  "contributionScore": 1100,
+  "bio": "Founder of Guild 2 with a vision for innovation and excellence. I'm dedicated to creating an inclusive and thriving community for all members."
+}

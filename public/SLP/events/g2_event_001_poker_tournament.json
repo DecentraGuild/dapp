@@ -1,0 +1,76 @@
+{
+  "eventID": "g2_event_001",
+  "guildID": "guild-2",
+  "title": "Neon District Poker Championship",
+  "description": "High-stakes poker tournament in the Neon District",
+  "eventType": "poker_tournament",
+  "status": "upcoming",
+  "date": "2025-09-20T19:00:00Z",
+  "startingTime": "2025-09-20T20:00:00Z",
+  "lateRegTime": "2025-09-20T20:20:00Z",
+  "entryFee": 150,
+  "entryCurrency": "g2-token1",
+  "startChips": 15000,
+  "earlyBirdChips": 3000,
+  "pricePercent": 90,
+  "bountyPercent": 5,
+  "rakePercent": 5,
+  "blindsTime": 20,
+  "bonusRewards": [
+    {
+      "type": "early_bird",
+      "description": "Early registration bonus",
+      "chips": 3000
+    },
+    {
+      "type": "knockout_bonus",
+      "description": "Knockout bonus",
+      "chips": 2000
+    }
+  ],
+  "leaderboard": [
+    {
+      "memberID": "g2_frank_leader",
+      "entryTime": "2025-09-15T14:00:00Z",
+      "chips": 18000,
+      "position": null,
+      "eliminated": false,
+      "eliminationTime": null
+    },
+    {
+      "memberID": "g2_grace_admin",
+      "entryTime": "2025-09-15T14:05:00Z",
+      "chips": 18000,
+      "position": null,
+      "eliminated": false,
+      "eliminationTime": null
+    }
+  ],
+  "minRole": "g2-r2",
+  "maxParticipants": 20,
+  "prizes": [
+    {
+      "position": 1,
+      "resourceID": "resource-cybercore",
+      "amount": 1,
+      "description": "1st Place: Cyber Core Processor"
+    },
+    {
+      "position": 2,
+      "resourceID": "resource-neonjet",
+      "amount": 1,
+      "description": "2nd Place: Neon Jet Vehicle"
+    },
+    {
+      "position": 3,
+      "resourceID": "resource-quantum",
+      "amount": 5,
+      "description": "3rd Place: 5 Quantum Crystals"
+    }
+  ],
+  "marked": ["g2_frank_leader", "g2_grace_admin"],
+  "attended": [],
+  "createdBy": "g2_frank_leader",
+  "createdAt": "2025-09-15T14:00:00Z",
+  "isActive": true
+}

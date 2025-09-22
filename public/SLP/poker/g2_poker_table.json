@@ -1,0 +1,22 @@
+{
+  "tableID": "g2_poker_table",
+  "guildID": "guild-2",
+  "name": "Shadow Sun Elite Poker Lounge",
+  "description": "Premium poker experience for Shadow Sun Order members",
+  "smallBlind": 50,
+  "bigBlind": 100,
+  "minEntry": 1000,
+  "maxEntry": 10000,
+  "tokenID": "g2-token1",
+  "themeImage": "poker.png",
+  "maxPlayers": 6,
+  "gameType": "Texas Hold'em",
+  "isActive": true,
+  "createdAt": "2024-01-10T00:00:00Z",
+  "settings": {
+    "allowSpectators": false,
+    "autoStart": true,
+    "timeLimit": 45,
+    "showdownDelay": 8
+  }
+}

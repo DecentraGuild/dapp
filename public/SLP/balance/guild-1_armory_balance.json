@@ -1,0 +1,18 @@
+{
+  "walletID": "0x5555555555555555555555555555555555555555",
+  "armoryID": "guild-1_armory",
+  "guildID": "guild-1",
+  "tokens": {
+    "maxhog": 25,
+    "opaljet": 8,
+    "pearcer6": 3,
+    "nitro": 1000
+  },
+  "nfts": {
+    "Crew Rare": 15,
+    "Crew Epic": 5,
+    "Crew Legendary": 2,
+    "Crew Common": 750
+  },
+  "lastUpdated": "2024-01-20T12:00:00Z"
+}

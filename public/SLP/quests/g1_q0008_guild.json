@@ -1,0 +1,50 @@
+{
+  "questID": "g1_q0008",
+  "guildID": "guild-1",
+  "title": "Recruit New Members",
+  "description": "Help grow the guild by recruiting active and dedicated new members who align with our values.",
+  "type": "guild",
+  "status": "pending",
+  "phase": "apply",
+  "role": "guild1_r2",
+  "roleRequirement": "member",
+  "goal": "Successfully recruit 3 new active members who remain active for at least 2 weeks",
+  "requirements": [
+    "Member role or higher",
+    "Complete recruitment training",
+    "Follow guild recruitment guidelines"
+  ],
+  "gear": [],
+  "guildSupplies": [
+    "Recruitment Guidelines",
+    "Guild Brochure",
+    "Member Application Forms"
+  ],
+  "rewards": {
+    "tokens": {
+      "token1": 600,
+      "token2": 150
+    },
+    "badges": ["recruiter"],
+    "nfts": ["recruiter_medal"],
+    "experience": 3000
+  },
+  "contributors": [],
+  "assignedTo": null,
+  "creator": "guild1_officer",
+  "created": "2024-01-14T15:30:00Z",
+  "deadline": "2024-01-28T23:59:59Z",
+  "completedAt": null,
+  "isActive": true,
+  "applications": [
+    {
+      "memberID": "member_007",
+      "memberName": "GuildBuilder",
+      "appliedAt": "2024-01-15T10:45:00Z",
+      "message": "I have connections in several gaming communities and can help bring quality members to our guild.",
+      "status": "pending"
+    }
+  ],
+  "verification": null,
+  "rewards": []
+}

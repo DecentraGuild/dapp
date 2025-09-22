@@ -1,0 +1,24 @@
+{
+  "eventID": "g1_event_010",
+  "guildID": "guild-1",
+  "title": "Guild vs Guild Tournament",
+  "description": "Competitive tournament against other guilds for prestige and resources",
+  "date": "2025-09-26 20:00:00",
+  "status": "upcoming",
+  "eventType": "gaming",
+  "minRole": "g1-r3",
+  "maxParticipants": 16,
+  "entryFee": 100,
+  "tokenID": "g1-token1",
+  "format": "Team vs Team",
+  "prizes": [
+    "Victory: 2000 CCC + Guild prestige",
+    "Participation: 200 CCC",
+    "Special guild titles for winners"
+  ],
+  "marked": ["g1_eve_founder", "g1_diana_council", "g1_charlie_officer"],
+  "attended": [],
+  "createdBy": "g1_eve_founder",
+  "createdAt": "2025-09-21 16:30:00",
+  "isActive": true
+}

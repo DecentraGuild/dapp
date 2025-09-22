@@ -1,0 +1,156 @@
+{
+  "category": "Social",
+  "description": "Achievements related to social interactions, community participation, and networking",
+  "achievements": [
+    {
+      "id": "social_001",
+      "title": "Meeting Attendee",
+      "description": "Participate in guild meetings and social gatherings",
+      "icon": "game-icons:meeple-circle",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Attend 5 guild meetings",
+          "contributionPoints": 40,
+          "tokenReward": 20,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Attend 20 guild meetings and actively participate",
+          "contributionPoints": 120,
+          "tokenReward": 60,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Attend 50 guild meetings and lead 5 discussion sessions",
+          "contributionPoints": 300,
+          "tokenReward": 150,
+          "mintable": true,
+          "nftTitle": "Community Voice"
+        }
+      ]
+    },
+    {
+      "id": "social_002",
+      "title": "Poker Tournament Player",
+      "description": "Participate in guild poker tournaments",
+      "icon": "game-icons:card-ace-spades",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Join 3 poker tournaments",
+          "contributionPoints": 30,
+          "tokenReward": 15,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Join 10 poker tournaments and reach final table 3 times",
+          "contributionPoints": 100,
+          "tokenReward": 50,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Join 25 poker tournaments and win 5 tournaments",
+          "contributionPoints": 250,
+          "tokenReward": 125,
+          "mintable": true,
+          "nftTitle": "Poker Champion"
+        }
+      ]
+    },
+    {
+      "id": "social_003",
+      "title": "Community Helper",
+      "description": "Help other guild members and contribute to community support",
+      "icon": "game-icons:healing",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Help 10 guild members with questions or tasks",
+          "contributionPoints": 50,
+          "tokenReward": 25,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Help 50 guild members and mentor 3 new members",
+          "contributionPoints": 150,
+          "tokenReward": 75,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Help 100 guild members and become a recognized mentor",
+          "contributionPoints": 400,
+          "tokenReward": 200,
+          "mintable": true,
+          "nftTitle": "Guild Mentor"
+        }
+      ]
+    },
+    {
+      "id": "social_004",
+      "title": "Event Participant",
+      "description": "Actively participate in various guild events and activities",
+      "icon": "game-icons:calendar",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Participate in 8 different guild events",
+          "contributionPoints": 60,
+          "tokenReward": 30,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Participate in 25 different guild events",
+          "contributionPoints": 180,
+          "tokenReward": 90,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Participate in 50 different events and organize 5 of them",
+          "contributionPoints": 450,
+          "tokenReward": 225,
+          "mintable": true,
+          "nftTitle": "Event Enthusiast"
+        }
+      ]
+    },
+    {
+      "id": "social_005",
+      "title": "Social Media Ambassador",
+      "description": "Promote the guild on social media platforms",
+      "icon": "game-icons:two-shadows",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Share 10 guild-related posts on social media",
+          "contributionPoints": 40,
+          "tokenReward": 20,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Share 50 guild-related posts and gain 100+ likes total",
+          "contributionPoints": 120,
+          "tokenReward": 60,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Share 100 guild-related posts and become a social media influencer for the guild",
+          "contributionPoints": 300,
+          "tokenReward": 150,
+          "mintable": true,
+          "nftTitle": "Social Media Star"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "voteID": "g1_vote_009",
+  "daoID": "g1_dao_token1",
+  "votetype": "token-1",
+  "guildID": "guild-1",
+  "title": "CCC Governance Token Migration",
+  "description": "Proposal to migrate CCC tokens to a new smart contract with enhanced security features and gas optimization. This requires all token holders to migrate within 30 days.",
+  "proposer": "g1_diana_council",
+  "status": "completed",
+  "votingStarts": "2024-01-10T09:00:00Z",
+  "votingEnds": "2024-01-17T09:00:00Z",
+  "completedAt": "2024-01-17T09:00:00Z",
+  "result": "passed",
+  "quorum": 1000,
+  "currentVotes": 1200,
+  "yesVotes": 950,
+  "noVotes": 200,
+  "abstainVotes": 50,
+  "voters": [
+    "g1_eve_founder",
+    "g1_diana_council",
+    "g1_charlie_officer",
+    "g1_bob_member",
+    "g1_alice_prospect"
+  ],
+  "isActive": false
+}

@@ -1,0 +1,24 @@
+{
+  "wrapperID": "g1-tufafeist-wrapper",
+  "guildID": "guild-1",
+  "name": "Tufa Feist Token Wrapper",
+  "symbol": "TUFAFEIST-WRAP",
+  "description": "Supply Tufa Feist for a fleet and keep track with it through representation token",
+  "image": "tufa feist png WIP .png",
+  "type": "fleet",
+  "decimals": 0,
+  "circulatingSupply": 5000,
+  "exchangeRatio": [1, 2500], 
+  "vaultBalance": 4,
+  "redemptionAsset": "resource-tufafeist",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0x1111111111111111111111111111111111111111",
+  "backingAsset": {
+    "resourceID": "resource-tufafeist",
+    "name": "Tufa Feist",
+    "image": "tufa feist png WIP .png",
+    "type": "ship",
+    "rarity": "common"
+  }
+}

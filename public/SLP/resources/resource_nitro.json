@@ -1,0 +1,18 @@
+{
+  "resourceID": "resource-nitro",
+  "name": "Cyber Nitro",
+  "symbol": "NITRO",
+  "description": "High-performance spaceship with enhanced speed and maneuverability",
+  "image": "nitro.png",
+  "type": "spaceship",
+  "rarity": "rare",
+  "circulatingSupply": 50000,
+  "maxSupply": 100000,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "contractAddress": "0x5555555555555555555555555555555555555555",
+  "blockchain": "Solana",
+  "decimals": 0,
+  "category": "Star Atlas Spaceship"
+}

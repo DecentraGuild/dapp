@@ -1,0 +1,94 @@
+{
+  "collectionID": "collection-avatar",
+  "guildID": "guild-1",
+  "name": "Cyber Castle Avatars",
+  "symbol": "CCA",
+  "description": "Exclusive avatar collection for Cyber Castle Guild members, featuring unique digital identities",
+  "image": "avatar1.png",
+  "type": "avatar",
+  "rarity": "common",
+  "totalSupply": 1000,
+  "mintedSupply": 0,
+  "maxPerWallet": 5,
+  "mintPrice": 100,
+  "mintCurrency": "g1-token1",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": false,
+  "contractAddress": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "traits": [
+    {
+      "trait_type": "Background",
+      "values": ["Cyber City", "Neon Grid", "Digital Void", "Holographic"]
+    },
+    {
+      "trait_type": "Character",
+      "values": ["Cyber Warrior", "Data Mage", "Code Ninja", "AI Guardian"]
+    },
+    {
+      "trait_type": "Accessory",
+      "values": ["Neon Glasses", "Holographic Crown", "Data Visor", "Cyber Wings"]
+    },
+    {
+      "trait_type": "Rarity",
+      "values": ["Common", "Uncommon", "Rare", "Epic", "Legendary"]
+    }
+  ],
+  "sampleNFTs": [
+    {
+      "tokenId": 1,
+      "name": "Cyber Warrior #001",
+      "image": "avatar1.png",
+      "traits": {
+        "Background": "Cyber City",
+        "Character": "Cyber Warrior",
+        "Accessory": "Neon Glasses",
+        "Rarity": "Common"
+      }
+    },
+    {
+      "tokenId": 2,
+      "name": "Data Mage #002",
+      "image": "avatar2.png",
+      "traits": {
+        "Background": "Neon Grid",
+        "Character": "Data Mage",
+        "Accessory": "Holographic Crown",
+        "Rarity": "Uncommon"
+      }
+    },
+    {
+      "tokenId": 3,
+      "name": "Code Ninja #003",
+      "image": "avatar3.png",
+      "traits": {
+        "Background": "Digital Void",
+        "Character": "Code Ninja",
+        "Accessory": "Data Visor",
+        "Rarity": "Rare"
+      }
+    },
+    {
+      "tokenId": 4,
+      "name": "AI Guardian #004",
+      "image": "avatar4.png",
+      "traits": {
+        "Background": "Holographic",
+        "Character": "AI Guardian",
+        "Accessory": "Cyber Wings",
+        "Rarity": "Epic"
+      }
+    },
+    {
+      "tokenId": 5,
+      "name": "Legendary Warrior #005",
+      "image": "avatar5.png",
+      "traits": {
+        "Background": "Cyber City",
+        "Character": "Cyber Warrior",
+        "Accessory": "Cyber Wings",
+        "Rarity": "Legendary"
+      }
+    }
+  ]
+}

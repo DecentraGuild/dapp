@@ -1,0 +1,42 @@
+{
+  "questID": "g1_q0013",
+  "guildID": "guild-1",
+  "title": "Mentor New Recruits",
+  "description": "Take new guild members under your wing and help them learn the ropes of guild life and gameplay strategies.",
+  "type": "guild",
+  "status": "new",
+  "phase": "create",
+  "role": "guild1_r2",
+  "roleRequirement": "member",
+  "goal": "Successfully mentor 3 new recruits for at least 2 weeks each",
+  "requirements": [
+    "Member role or higher",
+    "Complete mentorship training",
+    "Good standing with guild leadership"
+  ],
+  "gear": [],
+  "guildSupplies": [
+    "Mentorship Guide",
+    "New Member Checklist",
+    "Progress Tracking Sheet"
+  ],
+  "rewards": {
+    "tokens": {
+      "token1": 600,
+      "token2": 150
+    },
+    "badges": ["mentor"],
+    "nfts": ["mentor_medal"],
+    "experience": 3000
+  },
+  "contributors": [],
+  "assignedTo": null,
+  "creator": "guild1_officer",
+  "created": "2024-01-16T12:00:00Z",
+  "deadline": "2024-02-15T23:59:59Z",
+  "completedAt": null,
+  "isActive": true,
+  "applications": [],
+  "verification": null,
+  "rewards": []
+}

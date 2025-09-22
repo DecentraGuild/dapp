@@ -1,0 +1,23 @@
+{
+  "voteID": "g1_vote_007",
+  "daoID": "g1_dao_token2",
+  "votetype": "token-2",
+  "guildID": "guild-1",
+  "title": "CGM Staking Rewards Increase",
+  "description": "Proposal to increase Castle Gem staking rewards from 5% to 8% APY to incentivize long-term holding and participation in guild activities.",
+  "proposer": "g1_diana_council",
+  "status": "active",
+  "votingStarts": "2024-01-21T15:00:00Z",
+  "votingEnds": "2024-01-26T15:00:00Z",
+  "quorum": 50,
+  "currentVotes": 35,
+  "yesVotes": 28,
+  "noVotes": 5,
+  "abstainVotes": 2,
+  "voters": [
+    "g1_eve_founder",
+    "g1_diana_council",
+    "g1_charlie_officer"
+  ],
+  "isActive": true
+}

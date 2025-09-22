@@ -1,0 +1,22 @@
+[
+  {
+    "address": "9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+    "name": "Alice"
+  },
+  {
+    "address": "5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1", 
+    "name": "Bob"
+  },
+  {
+    "address": "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU",
+    "name": "Charlie"
+  },
+  {
+    "address": "3xJ3H4V8K8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q",
+    "name": "Diana"
+  },
+  {
+    "address": "8xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU",
+    "name": "Eve"
+  }
+]

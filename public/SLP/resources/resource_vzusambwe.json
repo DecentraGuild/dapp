@@ -1,0 +1,18 @@
+{
+  "resourceID": "resource-vzusambwe",
+  "name": "Vzus Ambwe",
+  "symbol": "VZUSAMBWE",
+  "description": "Ancient alien technology ship with mysterious powers and unique design",
+  "image": "VZUS  ambwe.png",
+  "type": "spaceship",
+  "rarity": "legendary",
+  "circulatingSupply": 40,
+  "maxSupply": 150,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "contractAddress": "0x1111111111111111111111111111111111111112",
+  "blockchain": "Solana",
+  "decimals": 0,
+  "category": "Star Atlas Spaceship"
+}

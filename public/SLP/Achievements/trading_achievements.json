@@ -1,0 +1,156 @@
+{
+  "category": "Trading",
+  "description": "Achievements related to trading activities, commerce, and economic participation",
+  "achievements": [
+    {
+      "id": "trading_001",
+      "title": "Guild Shop Customer",
+      "description": "Purchase resources and items from the guild shop",
+      "icon": "game-icons:trade",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Purchase 100 resources from the guild shop",
+          "contributionPoints": 50,
+          "tokenReward": 25,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Purchase 500 resources from the guild shop",
+          "contributionPoints": 150,
+          "tokenReward": 75,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Purchase 2000 resources and become a VIP customer",
+          "contributionPoints": 400,
+          "tokenReward": 200,
+          "mintable": true,
+          "nftTitle": "Guild Shop VIP"
+        }
+      ]
+    },
+    {
+      "id": "trading_002",
+      "title": "Resource Supplier",
+      "description": "Supply resources to the guild shop for other members",
+      "icon": "game-icons:fertilizer-bag",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Supply 200 resources to the guild shop",
+          "contributionPoints": 60,
+          "tokenReward": 30,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Supply 1000 resources to the guild shop",
+          "contributionPoints": 180,
+          "tokenReward": 90,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Supply 5000 resources and become a trusted supplier",
+          "contributionPoints": 450,
+          "tokenReward": 225,
+          "mintable": true,
+          "nftTitle": "Master Supplier"
+        }
+      ]
+    },
+    {
+      "id": "trading_003",
+      "title": "Equipment Guardian",
+      "description": "Safely return equipment without damage or loss",
+      "icon": "game-icons:return-arrow",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Return equipment safely 10 times",
+          "contributionPoints": 40,
+          "tokenReward": 20,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Return equipment safely 50 times",
+          "contributionPoints": 120,
+          "tokenReward": 60,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Return equipment safely 100 times with perfect record",
+          "contributionPoints": 300,
+          "tokenReward": 150,
+          "mintable": true,
+          "nftTitle": "Equipment Guardian"
+        }
+      ]
+    },
+    {
+      "id": "trading_004",
+      "title": "Market Trader",
+      "description": "Engage in trading activities and market transactions",
+      "icon": "game-icons:buy-card",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Complete 25 trading transactions",
+          "contributionPoints": 70,
+          "tokenReward": 35,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Complete 100 trading transactions with profit",
+          "contributionPoints": 200,
+          "tokenReward": 100,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Complete 500 trading transactions and achieve 50% profit margin",
+          "contributionPoints": 500,
+          "tokenReward": 250,
+          "mintable": true,
+          "nftTitle": "Trading Master"
+        }
+      ]
+    },
+    {
+      "id": "trading_005",
+      "title": "Auction House Expert",
+      "description": "Participate in and succeed at guild auctions",
+      "icon": "game-icons:black-hand-shield",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Participate in 5 guild auctions",
+          "contributionPoints": 30,
+          "tokenReward": 15,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Participate in 20 guild auctions and win 5",
+          "contributionPoints": 100,
+          "tokenReward": 50,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Participate in 50 guild auctions and win 20 with highest bids",
+          "contributionPoints": 250,
+          "tokenReward": 125,
+          "mintable": true,
+          "nftTitle": "Auction Champion"
+        }
+      ]
+    }
+  ]
+}

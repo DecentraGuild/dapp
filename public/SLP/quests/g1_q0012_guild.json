@@ -1,0 +1,42 @@
+{
+  "questID": "g1_q0012",
+  "guildID": "guild-1",
+  "title": "Guild Treasury Audit",
+  "description": "Conduct a comprehensive audit of the guild treasury to ensure all funds are properly accounted for and identify optimization opportunities.",
+  "type": "guild",
+  "status": "new",
+  "phase": "create",
+  "role": "guild1_r3",
+  "roleRequirement": "officer",
+  "goal": "Complete a full treasury audit and provide detailed financial report",
+  "requirements": [
+    "Officer role or higher",
+    "Complete accounting training",
+    "Access to treasury records"
+  ],
+  "gear": [],
+  "guildSupplies": [
+    "Treasury Access Codes",
+    "Financial Spreadsheet Template",
+    "Audit Checklist"
+  ],
+  "rewards": {
+    "tokens": {
+      "token1": 800,
+      "token2": 200
+    },
+    "badges": ["treasury_auditor"],
+    "nfts": ["auditor_badge"],
+    "experience": 4000
+  },
+  "contributors": [],
+  "assignedTo": null,
+  "creator": "guild1_council",
+  "created": "2024-01-16T11:15:00Z",
+  "deadline": "2024-01-25T23:59:59Z",
+  "completedAt": null,
+  "isActive": true,
+  "applications": [],
+  "verification": null,
+  "rewards": []
+}

@@ -1,0 +1,208 @@
+{
+    "memberId": "g1_alice_prospect",
+    "memberName": "Alice",
+    "guildId": "guild-1",
+    "lastUpdated": "2025-09-22T10:30:00Z",
+    "timeFilters": {
+      "last5Days": "2025-09-17T00:00:00Z",
+      "last7Days": "2025-09-15T00:00:00Z", 
+      "last30Days": "2025-08-23T00:00:00Z"
+    },
+    "latestQuests": [
+      {
+        "id": "g1_q0001",
+        "title": "Defeat the Cyber Dragon",
+        "type": "ingame",
+        "status": "completed",
+        "completedAt": "2025-09-21T09:15:00Z",
+        "reward": "2500 XP + 500 g1-token1 + 100 g1-token2",
+        "difficulty": "epic"
+      },
+      {
+        "id": "g1_q0007", 
+        "title": "Guild Treasury Management",
+        "type": "guild",
+        "status": "in_progress",
+        "progress": 60,
+        "reward": "1500 XP + 300 g1-token1 + Guild Badge",
+        "difficulty": "rare"
+      },
+      {
+        "id": "g1_q0002",
+        "title": "Castle Ruins Exploration",
+        "type": "ingame",
+        "status": "completed",
+        "completedAt": "2025-09-20T16:45:00Z",
+        "reward": "1200 XP + 200 g1-token1",
+        "difficulty": "uncommon"
+      }
+    ],
+    "foundryActivity": [
+      {
+        "id": "f_personal_001",
+        "type": "token_mint",
+        "tokenName": "g1-token1",
+        "amount": 1000,
+        "timestamp": "2025-09-21T08:30:00Z",
+        "status": "completed",
+        "cost": "5 SOL"
+      },
+      {
+        "id": "f_personal_002",
+        "type": "resource_mint",
+        "resourceName": "resource-pearcer6",
+        "timestamp": "2025-09-20T14:20:00Z",
+        "status": "completed",
+        "cost": "2 SOL"
+      },
+      {
+        "id": "f_personal_003",
+        "type": "token_burn",
+        "tokenName": "g1-token2",
+        "amount": 500,
+        "timestamp": "2025-09-19T11:10:00Z",
+        "status": "completed",
+        "refund": "2.5 SOL"
+      }
+    ],
+    "trophyAchievements": [
+      {
+        "id": "t_personal_001",
+        "title": "Dragon Slayer",
+        "description": "Defeated the Cyber Dragon",
+        "unlockedAt": "2025-09-21T09:15:00Z",
+        "rarity": "epic",
+        "xpReward": 500
+      },
+      {
+        "id": "t_personal_002",
+        "title": "Guild Contributor",
+        "description": "Participated in 15 guild events",
+        "unlockedAt": "2025-09-18T18:30:00Z",
+        "rarity": "rare",
+        "xpReward": 300
+      },
+      {
+        "id": "t_personal_003",
+        "title": "Resource Collector",
+        "description": "Minted 5 different resources",
+        "unlockedAt": "2025-09-16T15:45:00Z",
+        "rarity": "uncommon",
+        "xpReward": 200
+      }
+    ],
+    "eventParticipation": [
+      {
+        "id": "g1_event_001",
+        "title": "Cyber Castle Poker Championship",
+        "type": "poker_tournament",
+        "participatedAt": "2025-09-17T19:00:00Z",
+        "result": "3rd place",
+        "reward": "100 g1-token1 + resource-maxhog"
+      },
+      {
+        "id": "g1_event_003",
+        "title": "Guild Assembly Meeting",
+        "type": "meeting",
+        "participatedAt": "2025-09-15T19:00:00Z",
+        "result": "attended",
+        "reward": "25 XP"
+      },
+      {
+        "id": "g1_event_002",
+        "title": "Dragon's Lair Raid",
+        "type": "raid",
+        "participatedAt": "2025-09-18T20:00:00Z",
+        "result": "victory",
+        "reward": "150 g1-token1 + resource-pearcer6"
+      }
+    ],
+    "minigameActivity": [
+      {
+        "id": "m_personal_001",
+        "game": "Tavern Dice",
+        "playedAt": "2025-09-21T10:00:00Z",
+        "score": 1250,
+        "result": "win",
+        "reward": "50 g1-token1"
+      },
+      {
+        "id": "m_personal_002",
+        "game": "Poker Tournament",
+        "playedAt": "2025-09-17T19:00:00Z",
+        "score": 850,
+        "result": "win",
+        "reward": "75 g1-token1"
+      },
+      {
+        "id": "m_personal_003",
+        "game": "Golden Token Bonanza",
+        "playedAt": "2025-09-19T15:45:00Z",
+        "score": 0,
+        "result": "lose",
+        "reward": "0"
+      }
+    ],
+    "votingActivity": [
+      {
+        "id": "v_personal_001",
+        "proposal": "New Guild Token Design",
+        "votedAt": "2025-09-21T12:00:00Z",
+        "vote": "yes",
+        "proposalStatus": "passed"
+      },
+      {
+        "id": "v_personal_002",
+        "proposal": "Weekly Event Schedule Change",
+        "votedAt": "2025-09-19T14:30:00Z",
+        "vote": "no",
+        "proposalStatus": "rejected"
+      },
+      {
+        "id": "v_personal_003",
+        "proposal": "New Guild Rules",
+        "votedAt": "2025-09-17T16:15:00Z",
+        "vote": "yes",
+        "proposalStatus": "passed"
+      }
+    ],
+    "tokenActivity": [
+      {
+        "id": "token_personal_001",
+        "action": "mint",
+        "tokenName": "g1-token1",
+        "amount": 1000,
+        "timestamp": "2025-09-21T08:30:00Z",
+        "cost": "5 SOL",
+        "status": "completed"
+      },
+      {
+        "id": "token_personal_002",
+        "action": "burn",
+        "tokenName": "g1-token2",
+        "amount": 500,
+        "timestamp": "2025-09-19T11:10:00Z",
+        "refund": "2.5 SOL",
+        "status": "completed"
+      },
+      {
+        "id": "token_personal_003",
+        "action": "transfer",
+        "tokenName": "g1-token1",
+        "amount": 100,
+        "timestamp": "2025-09-18T09:20:00Z",
+        "recipient": "Guild Treasury",
+        "status": "completed"
+      }
+    ],
+    "summary": {
+      "totalXP": 4250,
+      "totalGuildTokens": 1250,
+      "questsCompleted": 8,
+      "eventsAttended": 6,
+      "trophiesEarned": 3,
+      "votesCast": 3,
+      "tokensMinted": 2,
+      "tokensBurned": 1
+    }
+  }

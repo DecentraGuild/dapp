@@ -1,0 +1,25 @@
+{
+  "voteID": "g1_vote_010",
+  "daoID": "g1_dao_token2",
+  "votetype": "token-2",
+  "guildID": "guild-1",
+  "title": "CGM Utility Token Features",
+  "description": "Proposal to add new utility features to Castle Gem tokens including voting power multipliers, exclusive access to guild events, and special in-game bonuses.",
+  "proposer": "g1_charlie_officer",
+  "status": "completed",
+  "votingStarts": "2024-01-08T14:00:00Z",
+  "votingEnds": "2024-01-13T14:00:00Z",
+  "completedAt": "2024-01-13T14:00:00Z",
+  "result": "rejected",
+  "quorum": 50,
+  "currentVotes": 45,
+  "yesVotes": 18,
+  "noVotes": 25,
+  "abstainVotes": 2,
+  "voters": [
+    "g1_eve_founder",
+    "g1_diana_council",
+    "g1_charlie_officer"
+  ],
+  "isActive": false
+}

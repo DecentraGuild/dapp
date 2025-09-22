@@ -1,0 +1,18 @@
+{
+  "orderID": "g1_g2p_0001",
+  "guildID": "guild-1",
+  "role": "g1-r2",
+  "type": "buy",
+  "amountOffered": 1000,
+  "tokenIDOffered": "resource-atlas",
+  "tokenImageOffered": "/SLP/resources/logo-atlas.png",
+  "amountAsked": 50,
+  "resourceIDAsked": "resource-nitro",
+  "tokenImageAsked": "/SLP/resources/nitro.png",
+  "status": "active",
+  "created": "2024-01-20T14:30:00Z",
+  "creator": "g1_bob_member",
+  "expiresAt": "2024-02-20T23:59:59Z",
+  "isActive": true,
+  "description": "Buying Cyber Nitro with Cyber Castle Coins"
+}

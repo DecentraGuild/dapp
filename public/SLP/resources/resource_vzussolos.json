@@ -1,0 +1,18 @@
+{
+  "resourceID": "resource-vzussolos",
+  "name": "Vzus Solos",
+  "symbol": "VZUSSOLOS",
+  "description": "Solo pilot vessel with advanced AI systems and autonomous capabilities",
+  "image": "Vzus solos.png",
+  "type": "spaceship",
+  "rarity": "epic",
+  "circulatingSupply": 120,
+  "maxSupply": 500,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "contractAddress": "0x4444444444444444444444444444444444444444",
+  "blockchain": "Solana",
+  "decimals": 0,
+  "category": "Star Atlas Spaceship"
+}

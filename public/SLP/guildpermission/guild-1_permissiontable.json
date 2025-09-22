@@ -1,0 +1,63 @@
+{
+  "roles": [
+    {
+      "id": "g1-r1",
+      "name": "Prospect",
+      "emblem": "star-outline",
+      "color": "#6B7280",
+      "description": "New members awaiting full access",
+      "level": 1,
+      "requirements": [
+        "Communication established"
+      ]
+    },
+    {
+      "id": "g1-r2",
+      "name": "Member",
+      "emblem": "user",
+      "color": "#3B82F6",
+      "description": "Full guild members with basic permissions",
+      "level": 2,
+      "requirements": [
+        "Complete Member profile",
+        "100 token-1 earned",
+        "1 raid joined"
+      ]
+    },
+    {
+      "id": "g1-r3",
+      "name": "Officer",
+      "emblem": "shield",
+      "color": "#10B981",
+      "description": "Guild officers with management permissions",
+      "level": 3,
+      "requirements": [
+        "1000 token-1 earned",
+        "10 raids joined"
+      ]
+    },
+    {
+      "id": "g1-r4",
+      "name": "Council",
+      "emblem": "crown",
+      "color": "#F59E0B",
+      "description": "Guild council members with treasury access",
+      "level": 4,
+      "requirements": [
+        "500 token-1 earned",
+        "500 token-2 minted"
+      ]
+    },
+    {
+      "id": "g1-r5",
+      "name": "Founder",
+      "emblem": "star",
+      "color": "#EF4444",
+      "description": "Guild founders with full permissions",
+      "level": 5,
+      "requirements": [
+        "Doxxed during setup"
+      ]
+    }
+  ]
+}

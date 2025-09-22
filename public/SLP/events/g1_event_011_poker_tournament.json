@@ -1,0 +1,64 @@
+{
+  "eventID": "g1_event_011",
+  "guildID": "guild-1",
+  "title": "Monthly High Roller Tournament",
+  "description": "Monthly high-stakes poker tournament for experienced players",
+  "eventType": "poker_tournament",
+  "status": "upcoming",
+  "date": "2025-09-30T19:00:00Z",
+  "startingTime": "2025-09-30T18:00:00Z",
+  "lateRegTime": "2025-09-30T18:30:00Z",
+  "entryFee": 500,
+  "entryCurrency": "g1-token1",
+  "startChips": 50000,
+  "earlyBirdChips": 10000,
+  "pricePercent": 88,
+  "bountyPercent": 7,
+  "rakePercent": 5,
+  "blindsTime": 25,
+  "bonusRewards": [
+    {
+      "type": "early_bird",
+      "description": "Early registration bonus",
+      "chips": 10000
+    },
+    {
+      "type": "vip_bonus",
+      "description": "VIP member bonus",
+      "chips": 5000
+    },
+    {
+      "type": "final_table",
+      "description": "Final table bonus",
+      "chips": 15000
+    }
+  ],
+  "leaderboard": [],
+  "minRole": "g1-r3",
+  "maxParticipants": 8,
+  "prizes": [
+    {
+      "position": 1,
+      "resourceID": "resource-legendary_weapon",
+      "amount": 1,
+      "description": "1st Place: Legendary Weapon Set"
+    },
+    {
+      "position": 2,
+      "resourceID": "resource-rare_vehicle",
+      "amount": 1,
+      "description": "2nd Place: Rare Vehicle"
+    },
+    {
+      "position": 3,
+      "resourceID": "resource-epic_companion",
+      "amount": 1,
+      "description": "3rd Place: Epic Companion"
+    }
+  ],
+  "marked": [],
+  "attended": [],
+  "createdBy": "g1_eve_founder",
+  "createdAt": "2025-09-20T10:00:00Z",
+  "isActive": true
+}

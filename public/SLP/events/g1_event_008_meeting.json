@@ -1,0 +1,23 @@
+{
+  "eventID": "g1_event_008",
+  "guildID": "guild-1",
+  "title": "Treasury Review Meeting",
+  "description": "Council meeting to review guild finances and resource allocation",
+  "date": "2025-09-24 17:00:00",
+  "status": "upcoming",
+  "eventType": "meeting",
+  "minRole": "g1-r4",
+  "maxParticipants": 10,
+  "entryFee": 0,
+  "agenda": [
+    "Treasury balance review",
+    "Resource allocation planning",
+    "Member contribution analysis",
+    "Budget for upcoming events"
+  ],
+  "marked": ["g1_eve_founder", "g1_diana_council"],
+  "attended": [],
+  "createdBy": "g1_eve_founder",
+  "createdAt": "2025-09-19 14:15:00",
+  "isActive": true
+}

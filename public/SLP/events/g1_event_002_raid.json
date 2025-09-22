@@ -1,0 +1,27 @@
+{
+  "eventID": "g1_event_002",
+  "guildID": "guild-1",
+  "title": "Dragon's Lair Raid",
+  "description": "Epic raid against the ancient dragon to claim legendary treasures",
+  "date": "2025-09-18 20:00:00",
+  "status": "upcoming",
+  "eventType": "raid",
+  "minRole": "g1-r2",
+  "maxParticipants": 12,
+  "entryFee": 0,
+  "requirements": [
+    "Level 20+ required",
+    "Epic gear recommended",
+    "Team coordination essential"
+  ],
+  "rewards": [
+    "Legendary weapons",
+    "Rare crafting materials",
+    "Guild reputation points"
+  ],
+  "marked": ["g1_charlie_officer", "g1_bob_member", "g1_alice_prospect"],
+  "attended": [],
+  "createdBy": "g1_charlie_officer",
+  "createdAt": "2025-09-13 14:30:00",
+  "isActive": true
+}

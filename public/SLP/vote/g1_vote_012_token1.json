@@ -1,0 +1,25 @@
+{
+  "voteID": "g1_vote_012",
+  "daoID": "g1_dao_token1",
+  "votetype": "token-1",
+  "guildID": "guild-1",
+  "title": "CCC Token Airdrop to New Members",
+  "description": "Proposal to airdrop 100 CCC tokens to each new guild member upon joining, funded from the guild treasury. This would help onboard new members and increase token distribution.",
+  "proposer": "g1_bob_member",
+  "status": "cancelled",
+  "votingStarts": "2024-01-18T16:00:00Z",
+  "votingEnds": "2024-01-25T16:00:00Z",
+  "completedAt": "2024-01-20T10:00:00Z",
+  "result": "cancelled",
+  "quorum": 1000,
+  "currentVotes": 200,
+  "yesVotes": 150,
+  "noVotes": 40,
+  "abstainVotes": 10,
+  "voters": [
+    "g1_bob_member",
+    "g1_alice_prospect"
+  ],
+  "isActive": false,
+  "cancellationReason": "Proposer withdrew due to treasury concerns raised by council members"
+}

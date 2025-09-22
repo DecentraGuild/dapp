@@ -1,0 +1,96 @@
+{
+  "tokenID": "g2-contribution",
+  "guildID": "guild-2",
+  "name": "Shadow Sun Contribution Score",
+  "symbol": "SSCS",
+  "description": "Contribution score token for Shadow Sun Order members, earned through participation, quests, and guild activities",
+  "image": "https://api.dicebear.com/7.x/shapes/svg?seed=shadowcontribution",
+  "decimals": 0,
+  "circulatingSupply": 0,
+  "assetbacking": null,
+  "exchangeRatio": null,
+  "createdAt": "2024-01-10T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0x5555555555555555555555555555555555555555",
+  "tokenType": "contribution_score",
+  "earningActions": [
+    {
+      "action": "quest_completion",
+      "points": 10,
+      "description": "Complete a guild quest"
+    },
+    {
+      "action": "daily_participation",
+      "points": 5,
+      "description": "Daily guild participation"
+    },
+    {
+      "action": "tournament_participation",
+      "points": 15,
+      "description": "Participate in guild tournaments"
+    },
+    {
+      "action": "tournament_win",
+      "points": 50,
+      "description": "Win a guild tournament"
+    },
+    {
+      "action": "community_help",
+      "points": 8,
+      "description": "Help other guild members"
+    },
+    {
+      "action": "event_attendance",
+      "points": 12,
+      "description": "Attend guild events"
+    },
+    {
+      "action": "leadership_role",
+      "points": 25,
+      "description": "Take on leadership responsibilities"
+    },
+    {
+      "action": "innovation_contribution",
+      "points": 20,
+      "description": "Contribute innovative ideas or solutions"
+    }
+  ],
+  "levelThresholds": [
+    {
+      "level": 1,
+      "requiredPoints": 0,
+      "title": "Initiate",
+      "benefits": ["Basic guild access", "Quest participation"]
+    },
+    {
+      "level": 2,
+      "requiredPoints": 100,
+      "title": "Apprentice",
+      "benefits": ["Enhanced quest rewards", "Tournament participation"]
+    },
+    {
+      "level": 3,
+      "requiredPoints": 300,
+      "title": "Member",
+      "benefits": ["Voting rights", "Event organization"]
+    },
+    {
+      "level": 4,
+      "requiredPoints": 600,
+      "title": "Veteran",
+      "benefits": ["Mentorship opportunities", "Advanced quests"]
+    },
+    {
+      "level": 5,
+      "requiredPoints": 1000,
+      "title": "Elite",
+      "benefits": ["Leadership roles", "Exclusive events"]
+    },
+    {
+      "level": 6,
+      "requiredPoints": 1500,
+      "title": "Champion",
+      "benefits": ["Guild governance", "Special privileges"]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "wrapperID": "g1-pearcex4-wrapper",
+  "guildID": "guild-1",
+  "name": "Pearce X4 Token Wrapper",
+  "symbol": "PEARCEX4-WRAP",
+  "description": "Deposit dGuild tokens and use the Pearce X4, return Pearce X4 safe and take back your deposit",
+  "image": "Pearce X4_Thumbnail.png",
+  "type": "collateral",
+  "decimals": 0,
+  "circulatingSupply": 3000,
+  "exchangeRatio": [1, 1500], 
+  "vaultBalance": 2,
+  "redemptionAsset": "resource-pearcex4",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "backingAsset": {
+    "resourceID": "resource-pearcex4",
+    "name": "Pearce X4",
+    "image": "Pearce X4_Thumbnail.png",
+    "type": "weapon",
+    "rarity": "epic"
+  }
+}

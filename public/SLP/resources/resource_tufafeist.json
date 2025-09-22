@@ -1,0 +1,18 @@
+{
+  "resourceID": "resource-tufafeist",
+  "name": "Tufa Feist",
+  "symbol": "TUFAFEIST",
+  "description": "Agile scout ship with exceptional speed and reconnaissance capabilities",
+  "image": "tufa feist png WIP .png",
+  "type": "spaceship",
+  "rarity": "uncommon",
+  "circulatingSupply": 500,
+  "maxSupply": 2000,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "contractAddress": "0xffffffffffffffffffffffffffffffffffffffff",
+  "blockchain": "Solana",
+  "decimals": 0,
+  "category": "Star Atlas Spaceship"
+}

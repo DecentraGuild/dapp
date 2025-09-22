@@ -1,0 +1,39 @@
+{
+  "voteID": "g1_vote_011",
+  "daoID": "g1_dao_totalvote",
+  "votetype": "combined",
+  "guildID": "guild-1",
+  "title": "Guild Treasury Investment Strategy",
+  "description": "Proposal to invest 25% of guild treasury (200,000 CCC and 10,000 CGM) into DeFi protocols for yield generation, with profits distributed to active members quarterly.",
+  "proposer": "g1_eve_founder",
+  "status": "completed",
+  "votingStarts": "2024-01-05T11:00:00Z",
+  "votingEnds": "2024-01-15T11:00:00Z",
+  "completedAt": "2024-01-15T11:00:00Z",
+  "result": "passed",
+  "quorum": 2000,
+  "currentVotes": 2400,
+  "yesVotes": 1800,
+  "noVotes": 500,
+  "abstainVotes": 100,
+  "voters": [
+    "g1_eve_founder",
+    "g1_diana_council",
+    "g1_charlie_officer",
+    "g1_bob_member",
+    "g1_alice_prospect"
+  ],
+  "isActive": false,
+  "token1Weight": 0.6,
+  "token2Weight": 0.4,
+  "token1Results": {
+    "yesVotes": 1080,
+    "noVotes": 300,
+    "abstainVotes": 60
+  },
+  "token2Results": {
+    "yesVotes": 720,
+    "noVotes": 200,
+    "abstainVotes": 40
+  }
+}

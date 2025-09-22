@@ -1,0 +1,39 @@
+{
+  "id": "guild-2",
+  "name": "Shadow Sun Order",
+  "description": "A premium guild focused on luxury and golden opportunities",
+  "logo": "https://api.dicebear.com/7.x/shapes/svg?seed=shadowgold",
+  "theme": "shadow_sun",
+  "message": "Keep up the good work, we leading on the leaderboards!",
+  "settings": {
+    "allowPublicViewing": false,
+    "requireApprovalForJoin": true,
+    "maxMembers": 500,
+    "autoAssignRole": "g2-r1",
+    "notificationSettings": {
+      "email": true,
+      "push": true,
+      "inApp": true,
+      "frequency": "daily"
+    }
+  },
+  "roles": {
+    "prospect": "guild2_r1",
+    "member": "guild2_r2",
+    "officer": "guild2_r3", 
+    "council": "guild2_r4",
+    "founder": "guild2_r5"
+  },
+  "daos": {
+    "token1": "g2_dao_token1",
+    "token2": "g2_dao_token2",
+    "totalvote": "g2_dao_totalvote"
+  },
+  "token2Allocation": {
+    "guild_vault": 50,
+    "token1_vault": 20,
+    "token2_vault": 30
+  },
+  "createdAt": "2025-01-10T00:00:00Z",
+  "updatedAt": "2025-01-15T00:00:00Z"
+}

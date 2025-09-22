@@ -1,0 +1,17 @@
+{
+  "tokenID": "g2-token2",
+  "guildID": "guild-2",
+  "name": "Sun Diamond",
+  "symbol": "SUN",
+  "description": "Exclusive diamond tokens for the most prestigious members of the order",
+  "image": "https://api.dicebear.com/7.x/shapes/svg?seed=sundiamond",
+  "decimals": 18,
+  "circulatingSupply": 10000,
+  "maxSupply": 25000,
+  "vaultHolding":11000,
+  "assetbacking": "POLIS",
+  "exchangeRatio": [1, 1.1], 
+  "createdAt": "2024-01-10T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0x4444444444444444444444444444444444444444"
+}

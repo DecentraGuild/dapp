@@ -1,0 +1,81 @@
+{
+  "eventID": "g2_event_002",
+  "guildID": "guild-2",
+  "title": "Weekly Neon Poker (Past)",
+  "description": "Completed weekly poker tournament in Neon District",
+  "eventType": "poker_tournament",
+  "status": "completed",
+  "date": "2025-09-15T19:00:00Z",
+  "startingTime": "2025-09-15T20:00:00Z",
+  "lateRegTime": "2025-09-15T20:15:00Z",
+  "entryFee": 50,
+  "entryCurrency": "g2-token1",
+  "startChips": 8000,
+  "earlyBirdChips": 1500,
+  "pricePercent": 82,
+  "bountyPercent": 13,
+  "rakePercent": 5,
+  "blindsTime": 12,
+  "bonusRewards": [
+    {
+      "type": "early_bird",
+      "description": "Early registration bonus",
+      "chips": 1500
+    }
+  ],
+  "leaderboard": [
+    {
+      "memberID": "g2_henry_member",
+      "entryTime": "2025-09-10T15:00:00Z",
+      "chips": 25000,
+      "position": 1,
+      "eliminated": false,
+      "eliminationTime": null
+    },
+    {
+      "memberID": "g2_grace_admin",
+      "entryTime": "2025-09-10T15:05:00Z",
+      "chips": 12000,
+      "position": 2,
+      "eliminated": false,
+      "eliminationTime": null
+    },
+    {
+      "memberID": "g2_ivan_member",
+      "entryTime": "2025-09-10T15:10:00Z",
+      "chips": 0,
+      "position": 3,
+      "eliminated": true,
+      "eliminationTime": "2025-09-15T21:30:00Z"
+    },
+    {
+      "memberID": "g2_julia_member",
+      "entryTime": "2025-09-10T15:15:00Z",
+      "chips": 0,
+      "position": 4,
+      "eliminated": true,
+      "eliminationTime": "2025-09-15T21:15:00Z"
+    }
+  ],
+  "minRole": "g2-r1",
+  "maxParticipants": 16,
+  "prizes": [
+    {
+      "position": 1,
+      "resourceID": "resource-neoncore",
+      "amount": 1,
+      "description": "1st Place: Neon Core Processor"
+    },
+    {
+      "position": 2,
+      "resourceID": "resource-cyberfuel",
+      "amount": 20,
+      "description": "2nd Place: 20 Cyber Fuel"
+    }
+  ],
+  "marked": ["g2_henry_member", "g2_grace_admin"],
+  "attended": ["g2_henry_member", "g2_grace_admin", "g2_ivan_member", "g2_julia_member"],
+  "createdBy": "g2_grace_admin",
+  "createdAt": "2025-09-10T15:00:00Z",
+  "isActive": false
+}

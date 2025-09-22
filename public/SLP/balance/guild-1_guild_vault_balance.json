@@ -1,0 +1,19 @@
+{
+  "walletID": "0x1111111111111111111111111111111111111111",
+  "vaultID": "guild-1_guild_vault",
+  "guildID": "guild-1",
+  "tokens": {
+    "sol": 2500.5,
+    "usdc": 50000,
+    "wbtc": 2.5,
+    "atlas": 100000,
+    "polis": 0
+  },
+  "nfts": {
+    "Crew Rare": 5,
+    "Crew Epic": 5,
+    "Crew Legendary": 2,
+    "Crew Common": 7
+  },
+  "lastUpdated": "2024-01-20T12:00:00Z"
+}

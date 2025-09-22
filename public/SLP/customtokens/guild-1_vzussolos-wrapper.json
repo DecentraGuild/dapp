@@ -1,0 +1,24 @@
+{
+  "wrapperID": "g1-vzussolos-wrapper",
+  "guildID": "guild-1",
+  "name": "VZUS Solos Token Wrapper",
+  "symbol": "VZUSSOLOS-WRAP",
+  "description": "Supply VZUS Solos for a fleet and keep track with it through representation token",
+  "image": "Vzus solos.png",
+  "type": "fleet",
+  "decimals": 0,
+  "circulatingSupply": 18000,
+  "exchangeRatio": [1, 9000], 
+  "vaultBalance": 12,
+  "redemptionAsset": "resource-vzussolos",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0x5555555555555555555555555555555555555555",
+  "backingAsset": {
+    "resourceID": "resource-vzussolos",
+    "name": "VZUS Solos",
+    "image": "Vzus solos.png",
+    "type": "ship",
+    "rarity": "legendary"
+  }
+}

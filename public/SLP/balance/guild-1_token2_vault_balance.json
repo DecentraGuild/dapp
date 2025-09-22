@@ -1,0 +1,10 @@
+{
+  "walletID": "0x3333333333333333333333333333333333333333",
+  "vaultID": "guild-1_token2_vault",
+  "guildID": "guild-1",
+  "tokens": {
+    "polis": 10000,
+    "guild-1-token2": 75000
+  },
+  "lastUpdated": "2024-01-20T12:00:00Z"
+}

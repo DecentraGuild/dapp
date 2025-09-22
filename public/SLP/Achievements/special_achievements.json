@@ -1,0 +1,186 @@
+{
+  "category": "Special",
+  "description": "Special achievements for unique accomplishments, seasonal events, and rare milestones",
+  "achievements": [
+    {
+      "id": "special_001",
+      "title": "Tournament Champion",
+      "description": "Win major guild tournaments and competitions",
+      "icon": "game-icons:diamond-trophy",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Win 1 guild tournament",
+          "contributionPoints": 200,
+          "tokenReward": 100,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Win 3 different guild tournaments",
+          "contributionPoints": 500,
+          "tokenReward": 250,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Win 5 different tournaments including the Grand Championship",
+          "contributionPoints": 1000,
+          "tokenReward": 500,
+          "mintable": true,
+          "nftTitle": "Grand Champion"
+        }
+      ]
+    },
+    {
+      "id": "special_002",
+      "title": "Christmas 2025 Veteran",
+      "description": "Be present and active during the special Christmas 2025 event",
+      "icon": "game-icons:snowman",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Participate in Christmas 2025 event",
+          "contributionPoints": 100,
+          "tokenReward": 50,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Complete all Christmas 2025 special quests",
+          "contributionPoints": 300,
+          "tokenReward": 150,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Be among the top 10 participants in Christmas 2025 event",
+          "contributionPoints": 600,
+          "tokenReward": 300,
+          "mintable": true,
+          "nftTitle": "Christmas Legend 2025"
+        }
+      ]
+    },
+    {
+      "id": "special_003",
+      "title": "Founder's Circle",
+      "description": "Be among the founding members of the guild",
+      "icon": "game-icons:circuitry",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Be a founding member of the guild",
+          "contributionPoints": 500,
+          "tokenReward": 250,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Be a founding member and contribute to guild's first year",
+          "contributionPoints": 1000,
+          "tokenReward": 500,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Be a founding member and help guild reach 1000 members",
+          "contributionPoints": 2000,
+          "tokenReward": 1000,
+          "mintable": true,
+          "nftTitle": "Guild Founder"
+        }
+      ]
+    },
+    {
+      "id": "special_004",
+      "title": "Perfect Attendance",
+      "description": "Maintain perfect attendance for extended periods",
+      "icon": "game-icons:winged-shield",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "30 days of perfect attendance",
+          "contributionPoints": 150,
+          "tokenReward": 75,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "90 days of perfect attendance",
+          "contributionPoints": 400,
+          "tokenReward": 200,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "365 days of perfect attendance",
+          "contributionPoints": 1000,
+          "tokenReward": 500,
+          "mintable": true,
+          "nftTitle": "Perfect Member"
+        }
+      ]
+    },
+    {
+      "id": "special_005",
+      "title": "Guild Legend",
+      "description": "Achieve legendary status through exceptional contributions",
+      "icon": "game-icons:flexible-star",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Earn 5000 total contribution points",
+          "contributionPoints": 300,
+          "tokenReward": 150,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Earn 15000 total contribution points",
+          "contributionPoints": 600,
+          "tokenReward": 300,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Earn 50000 total contribution points and be recognized by all members",
+          "contributionPoints": 1500,
+          "tokenReward": 750,
+          "mintable": true,
+          "nftTitle": "Guild Legend"
+        }
+      ]
+    },
+    {
+      "id": "special_006",
+      "title": "Beta Tester",
+      "description": "Participate in testing new features and providing feedback",
+      "icon": "game-icons:test-tube-held",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Test 3 new features and provide feedback",
+          "contributionPoints": 80,
+          "tokenReward": 40,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Test 10 new features and provide detailed feedback",
+          "contributionPoints": 200,
+          "tokenReward": 100,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Test 25 new features and become a trusted beta tester",
+          "contributionPoints": 500,
+          "tokenReward": 250,
+          "mintable": true,
+          "nftTitle": "Beta Master"
+        }
+      ]
+    }
+  ]
+}

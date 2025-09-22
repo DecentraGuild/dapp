@@ -1,0 +1,18 @@
+{
+  "orderID": "g2_g2p_0002",
+  "guildID": "guild-2",
+  "role": "g2-r3",
+  "type": "buy",
+  "amountOffered": 3000,
+  "tokenIDOffered": "resource-atlas",
+  "tokenImageOffered": "/SLP/resources/logo-atlas.png",
+  "amountAsked": 150,
+  "resourceIDAsked": "resource-opaljet",
+  "tokenImageAsked": "/SLP/resources/Opaljet.jpg",
+  "status": "active",
+  "created": "2024-01-17T10:45:00Z",
+  "creator": "g2_bob_officer",
+  "expiresAt": "2024-02-17T23:59:59Z",
+  "isActive": true,
+  "description": "Buying Opal Jet with Shadow Sun Gold"
+}

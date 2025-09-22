@@ -1,0 +1,15 @@
+{
+  "memberID": "g2_eve_prospect",
+  "walletAddress": "8xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU",
+  "guild": "guild-2",
+  "role": "g2-r1",
+  "username": "Eve",
+  "avatar": "avatar5.png",
+  "email": "eve@example.com",
+  "notification": [true, true, true],
+  "lastActive": "2024-01-15T18:00:00Z",
+  "joinedAt": "2024-01-05T00:00:00Z",
+  "isActive": true,
+  "contributionScore": 100,
+  "bio": "New prospect member excited to join Guild 2! I'm eager to contribute and learn from this amazing community. Looking forward to the journey ahead!"
+}

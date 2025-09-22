@@ -1,0 +1,39 @@
+{
+  "id": "guild-1",
+  "name": "Cyber Castle Guild",
+  "description": "An elite guild focused on medieval-futuristic gameplay with cyber enhancements",
+  "logo": "https://api.dicebear.com/7.x/shapes/svg?seed=cybercastle",
+  "theme": "castle_cyber",
+  "message": "Raiding Oni Sunday morning boys! we can keep them busy all day!",
+  "settings": {
+    "allowPublicViewing": true,
+    "requireApprovalForJoin": true,
+    "maxMembers": 100,
+    "autoAssignRole": "g1-r1",
+    "notificationSettings": {
+      "email": true,
+      "push": true,
+      "inApp": true,
+      "frequency": "immediate"
+    }
+  },
+  "roles": {
+    "prospect": "guild1_r1",
+    "member": "guild1_r2", 
+    "officer": "guild1_r3",
+    "council": "guild1_r4",
+    "founder": "guild1_r5"
+  },
+  "daos": {
+    "token1": "g1_dao_token1",
+    "token2": "g1_dao_token2",
+    "totalvote": "g1_dao_totalvote"
+  },
+  "token2Allocation": {
+    "guild_vault": 30,
+    "token1_vault": 10,
+    "token2_vault": 60
+  },
+  "createdAt": "2024-01-01T00:00:00Z",
+  "updatedAt": "2024-01-15T00:00:00Z"
+}

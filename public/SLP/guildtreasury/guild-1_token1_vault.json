@@ -1,0 +1,16 @@
+{
+  "vaultID": "guild-1_token1_vault",
+  "guildID": "guild-1",
+  "name": "Cyber Castle Coin Backing Vault",
+  "description": "Vault holding backing assets for guild-1-token1 (CCC) token",
+  "type": "token1_vault",
+  "tokenID": "guild-1-token1",
+  "multisigWalletID": "0x2222222222222222222222222222222222222222",
+  "requiredSignatures": 2,
+  "signers": [
+    "g1_eve_founder",
+    "g1_diana_council"
+  ],
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true
+}

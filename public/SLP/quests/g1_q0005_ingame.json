@@ -1,0 +1,66 @@
+{
+  "questID": "g1_q0005",
+  "guildID": "guild-1",
+  "title": "Master the Cyber Arts",
+  "description": "Complete the advanced cyber arts training program to unlock new abilities.",
+  "type": "ingame",
+  "status": "rewarded",
+  "phase": "reward",
+  "role": "guild1_r2",
+  "roleRequirement": "member",
+  "goal": "Complete all 10 levels of the Cyber Arts training program",
+  "requirements": [
+    "Minimum level 25",
+    "Complete 'Basic Cyber Training'",
+    "Pass all skill tests"
+  ],
+  "gear": [
+    "Training Manual",
+    "Cyber Focus Crystal",
+    "Practice Weapons"
+  ],
+  "guildSupplies": [
+    "Training Manual",
+    "Cyber Focus Crystal",
+    "Practice Weapons"
+  ],
+  "rewards": {
+    "tokens": {
+      "token1": 800,
+      "token2": 150
+    },
+    "badges": ["cyber_master"],
+    "nfts": ["master_certificate"],
+    "experience": 4000
+  },
+  "contributors": [],
+  "assignedTo": "member_004",
+  "creator": "guild1_officer",
+  "created": "2024-01-10T12:00:00Z",
+  "deadline": "2024-01-17T23:59:59Z",
+  "completedAt": "2024-01-15T16:45:00Z",
+  "isActive": true,
+  "applications": [],
+  "verification": {
+    "verifiedBy": "guild1_officer",
+    "verifiedAt": "2024-01-15T17:00:00Z",
+    "notes": "Exceptional performance in all training modules. Ready for advanced missions.",
+    "quality": "excellent",
+    "approved": true
+  },
+  "rewards": [
+    {
+      "type": "token",
+      "amount": 800,
+      "tokenID": "token1",
+      "distributedAt": "2024-01-15T17:30:00Z",
+      "distributedBy": "guild1_officer"
+    },
+    {
+      "type": "badge",
+      "badgeID": "cyber_master",
+      "distributedAt": "2024-01-15T17:30:00Z",
+      "distributedBy": "guild1_officer"
+    }
+  ]
+}

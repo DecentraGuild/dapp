@@ -1,0 +1,15 @@
+{
+  "memberID": "g1_eve_founder",
+  "walletAddress": "8xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU",
+  "guild": "guild-1",
+  "role": "g1-r5",
+  "username": "Eve",
+  "avatar": "avatar5.png",
+  "email": "eve@example.com",
+  "notification": [true, true, true],
+  "lastActive": "2024-01-15T18:00:00Z",
+  "joinedAt": "2024-01-05T00:00:00Z",
+  "isActive": true,
+  "contributionScore": 1200,
+  "bio": "Founder and visionary leader of our guild. I'm passionate about building strong communities and creating meaningful experiences for all members."
+}

@@ -1,0 +1,21 @@
+{
+  "voteID": "g1_vote_003",
+  "daoID": "g1_dao_totalvote",
+  "votetype": "combined",
+  "guildID": "guild-1",
+  "title": "Guild Treasury Allocation",
+  "description": "Proposal to allocate 50,000 CCC and 1,000 CGM from treasury for upcoming events and rewards",
+  "proposer": "g1_eve_founder",
+  "status": "active",
+  "votingStarts": "2024-01-15T09:00:00Z",
+  "votingEnds": "2024-01-25T09:00:00Z",
+  "quorum": 2000,
+  "currentVotes": 0,
+  "yesVotes": 0,
+  "noVotes": 0,
+  "abstainVotes": 0,
+  "voters": [],
+  "isActive": true,
+  "token1Weight": 0.6,
+  "token2Weight": 0.4
+}

@@ -1,0 +1,63 @@
+{
+  "id": "castle_cyber",
+  "name": "Castle Cyber",
+  "description": "A medieval-futuristic fusion with grey stone and neon cyan accents",
+  "images": [
+    "/SLP/skin/skin_castle_medieval.png"
+  ],
+  "svgFile": "/SLP/skin/skin_castle_.svg",
+  "shapeCoordinates": {
+    "imageSize": {
+      "width": 2936.7213,
+      "height": 1765.5806
+    }
+  },
+  "headers": [
+    "Dashboard", "Community Hub", "Guild Profile", "Member Profile",
+    "DAO", "Command Centre", "Multisig", "Management", "Compliance",
+    "Vaults", "Vault 1", "Vault 2", "Vault 3", "Vault 4",
+    "Foundry", "NFT", "Wrapper", "Token 1", "Token 2", "Custom Token",
+    "Armory", "G2P",
+    "Quest Board", "In-Game Quest", "Guild Quest",
+    "Tavern", "Event", "Raffle", "Poker", "Dice",
+    "Observatory", "Analytics", "Stats", "Tax",
+    "Gatekeeping", "Roles",
+    "Date"
+  ],
+  "icons": [
+    "game-icons:chart", "game-icons:castle", "game-icons:castle", "game-icons:person",
+    "game-icons:two-coins", "game-icons:organigram", "game-icons:padlock", "game-icons:gavel", "game-icons:scales",
+    "game-icons:bank", "game-icons:bank", "game-icons:coins", "game-icons:two-coins", "game-icons:two-coins",
+    "game-icons:foundry", "game-icons:person", "game-icons:abstract-050", "game-icons:two-coins", "game-icons:two-coins", "game-icons:crown-coin",
+    "game-icons:armory", "game-icons:buy-card",
+    "game-icons:target-dummy", "game-icons:target-dummy", "game-icons:heart-tower",
+    "game-icons:castle", "game-icons:party-popper", "game-icons:lottery", "game-icons:cards", "game-icons:dice",
+    "game-icons:chart", "game-icons:chart", "game-icons:chart", "game-icons:take-my-money",
+    "game-icons:bank", "game-icons:organigram",
+    "game-icons:calendar"
+  ],
+  "primaryColor": ["rgba(45, 55, 72, 0.3)", "rgba(74, 85, 104, 0.45)", "rgba(113, 128, 150, 0.6)"],
+  "secondaryColor": ["rgba(0, 255, 255, 0.9)", "rgba(0, 230, 230, 0.5)", "rgba(0, 204, 204, 0.2)"],
+  "textColor": ["rgba(229, 231, 235, 1)", "rgba(156, 163, 175, 1)", "rgba(107, 114, 128, 1)"],
+  "backgroundColor": "rgba(0, 0, 0, 1)",
+  "emergencyColor": "#ef4444",
+  "borderRadius": {
+    "sm": "4px",
+    "md": "6px", 
+    "lg": "8px",
+    "xl": "12px"
+  },
+  "borderWidth": {
+    "thin": "1px",
+    "medium": "2px",
+    "thick": "3px"
+  },
+  "metadata": {
+    "rarity": "legendary",
+    "creator": "0x1234...5678",
+    "mintedAt": "2024-01-15",
+    "version": "1.0.0",
+    "category": "medieval-cyber",
+    "tags": ["castle", "cyber", "medieval", "futuristic"]
+  }
+}

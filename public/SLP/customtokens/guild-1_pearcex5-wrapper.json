@@ -1,0 +1,24 @@
+{
+  "wrapperID": "g1-pearcex5-wrapper",
+  "guildID": "guild-1",
+  "name": "Pearce X5 Token Wrapper",
+  "symbol": "PEARCEX5-WRAP",
+  "description": "Deposit dGuild tokens and use the Pearce X5, return Pearce X5 safe and take back your deposit",
+  "image": "PEARCE X5 PNG.png",
+  "type": "collateral",
+  "decimals": 0,
+  "circulatingSupply": 2000,
+  "exchangeRatio": [1, 1000], 
+  "vaultBalance": 1,
+  "redemptionAsset": "resource-pearcex5",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "backingAsset": {
+    "resourceID": "resource-pearcex5",
+    "name": "Pearce X5",
+    "image": "PEARCE X5 PNG.png",
+    "type": "weapon",
+    "rarity": "legendary"
+  }
+}

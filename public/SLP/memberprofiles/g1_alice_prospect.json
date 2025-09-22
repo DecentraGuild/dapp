@@ -1,0 +1,15 @@
+{
+  "memberID": "g1_alice_prospect",
+  "walletAddress": "9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+  "guild": "guild-1",
+  "role": "g1-r1",
+  "username": "Alice",
+  "avatar": "avatar1.png",
+  "email": "alice@example.com",
+  "notification": [true, true, true],
+  "lastActive": "2024-01-15T12:00:00Z",
+  "joinedAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contributionScore": 150,
+  "bio": "Passionate gamer and community builder. Always ready for the next adventure! I love exploring new worlds and helping fellow guild members."
+}

@@ -1,0 +1,94 @@
+{
+  "collectionID": "collection-tournamentreward",
+  "guildID": "guild-1",
+  "name": "Cyber Castle Tournament Rewards",
+  "symbol": "CCTR",
+  "description": "Exclusive tournament reward NFTs for top performers in Cyber Castle competitions",
+  "image": "tournament_trophy.png",
+  "type": "trophy",
+  "rarity": "rare",
+  "totalSupply": 100,
+  "mintedSupply": 0,
+  "maxPerWallet": 3,
+  "mintPrice": 0,
+  "mintCurrency": "g1-token1",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": false,
+  "contractAddress": "0xcccccccccccccccccccccccccccccccccccccccc",
+  "traits": [
+    {
+      "trait_type": "Tournament",
+      "values": ["Poker Championship", "Raid Master", "Gaming Tournament", "Code Challenge", "Strategy Battle"]
+    },
+    {
+      "trait_type": "Placement",
+      "values": ["1st Place", "2nd Place", "3rd Place", "Top 10", "Participation"]
+    },
+    {
+      "trait_type": "Season",
+      "values": ["Season 1", "Season 2", "Season 3", "Championship", "Special Event"]
+    },
+    {
+      "trait_type": "Rarity",
+      "values": ["Rare", "Epic", "Legendary", "Mythic"]
+    }
+  ],
+  "sampleNFTs": [
+    {
+      "tokenId": 1,
+      "name": "Poker Championship Winner",
+      "image": "Trophy (1).png",
+      "traits": {
+        "Tournament": "Poker Championship",
+        "Placement": "1st Place",
+        "Season": "Season 1",
+        "Rarity": "Legendary"
+      }
+    },
+    {
+      "tokenId": 2,
+      "name": "Raid Master Runner-up",
+      "image": "Trophy (2).png",
+      "traits": {
+        "Tournament": "Raid Master",
+        "Placement": "2nd Place",
+        "Season": "Season 1",
+        "Rarity": "Epic"
+      }
+    },
+    {
+      "tokenId": 3,
+      "name": "Gaming Tournament Bronze",
+      "image": "Trophy (3).png",
+      "traits": {
+        "Tournament": "Gaming Tournament",
+        "Placement": "3rd Place",
+        "Season": "Season 2",
+        "Rarity": "Rare"
+      }
+    },
+    {
+      "tokenId": 4,
+      "name": "Code Challenge Top 10",
+      "image": "Trophy (4).png",
+      "traits": {
+        "Tournament": "Code Challenge",
+        "Placement": "Top 10",
+        "Season": "Championship",
+        "Rarity": "Rare"
+      }
+    },
+    {
+      "tokenId": 5,
+      "name": "Strategy Battle Champion",
+      "image": "Trophy (5).png",
+      "traits": {
+        "Tournament": "Strategy Battle",
+        "Placement": "1st Place",
+        "Season": "Special Event",
+        "Rarity": "Mythic"
+      }
+    }
+  ]
+}

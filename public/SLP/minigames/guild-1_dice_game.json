@@ -1,0 +1,21 @@
+{
+  "gameID": "guild-1_dice_game",
+  "guildID": "guild-1",
+  "name": "Cyber Castle Dice Challenge",
+  "description": "Roll the dice and test your luck! Guess the right number and win 5x your bet.",
+  "gameType": "dice_roll",
+  "tokenID": "g1-token1",
+  "minBet": 10,
+  "maxBet": 500,
+  "multiplier": 5,
+  "dailyFreeSpins": 3,
+  "isActive": true,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "settings": {
+    "diceCount": 1,
+    "maxNumber": 6,
+    "minNumber": 1,
+    "animationDuration": 2000,
+    "cooldownTime": 1000
+  }
+}

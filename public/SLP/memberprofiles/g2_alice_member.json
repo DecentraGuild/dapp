@@ -1,0 +1,15 @@
+{
+  "memberID": "g2_alice_member",
+  "walletAddress": "9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+  "guild": "guild-2",
+  "role": "g2-r2",
+  "username": "Alice",
+  "avatar": "avatar1.png",
+  "email": "alice@example.com",
+  "notification": [true, true, true],
+  "lastActive": "2024-01-15T12:00:00Z",
+  "joinedAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contributionScore": 300,
+  "bio": "Active member of Guild 2. I enjoy participating in events and contributing to our community. Always looking to learn and grow!"
+}

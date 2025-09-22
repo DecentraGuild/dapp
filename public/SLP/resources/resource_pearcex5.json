@@ -1,0 +1,18 @@
+{
+  "resourceID": "resource-pearcex5",
+  "name": "Pearce X5",
+  "symbol": "PEARCEX5",
+  "description": "Elite combat vessel with enhanced maneuverability and advanced weapon systems",
+  "image": "PEARCE X5 PNG.png",
+  "type": "spaceship",
+  "rarity": "rare",
+  "circulatingSupply": 200,
+  "maxSupply": 800,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "contractAddress": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "blockchain": "Solana",
+  "decimals": 0,
+  "category": "Star Atlas Spaceship"
+}

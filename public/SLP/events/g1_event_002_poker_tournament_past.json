@@ -1,0 +1,73 @@
+{
+  "eventID": "g1_event_002",
+  "guildID": "guild-1",
+  "title": "Weekly Poker Night (Past)",
+  "description": "Regular weekly poker tournament with resource prizes",
+  "eventType": "poker_tournament",
+  "status": "completed",
+  "date": "2025-09-10T19:00:00Z",
+  "startingTime": "2025-09-10T19:00:00Z",
+  "lateRegTime": "2025-09-10T19:15:00Z",
+  "entryFee": 25,
+  "entryCurrency": "g1-token1",
+  "startChips": 5000,
+  "earlyBirdChips": 1000,
+  "pricePercent": 80,
+  "bountyPercent": 15,
+  "rakePercent": 5,
+  "blindsTime": 10,
+  "bonusRewards": [
+    {
+      "type": "early_bird",
+      "description": "Early registration bonus",
+      "chips": 1000
+    }
+  ],
+  "leaderboard": [
+    {
+      "memberID": "g1_charlie_officer",
+      "entryTime": "2025-09-05T13:00:00Z",
+      "chips": 15000,
+      "position": 1,
+      "eliminated": false,
+      "eliminationTime": null
+    },
+    {
+      "memberID": "g1_bob_member",
+      "entryTime": "2025-09-05T13:05:00Z",
+      "chips": 8000,
+      "position": 2,
+      "eliminated": false,
+      "eliminationTime": null
+    },
+    {
+      "memberID": "g1_alice_prospect",
+      "entryTime": "2025-09-05T13:10:00Z",
+      "chips": 0,
+      "position": 3,
+      "eliminated": true,
+      "eliminationTime": "2025-09-10T20:45:00Z"
+    }
+  ],
+  "minRole": "g1-r1",
+  "maxParticipants": 12,
+  "prizes": [
+    {
+      "position": 1,
+      "resourceID": "resource-maxhog",
+      "amount": 1,
+      "description": "1st Place: Max Hog Companion"
+    },
+    {
+      "position": 2,
+      "resourceID": "resource-nitro",
+      "amount": 10,
+      "description": "2nd Place: 10 Cyber Nitro"
+    }
+  ],
+  "marked": ["g1_bob_member", "g1_alice_prospect"],
+  "attended": ["g1_bob_member", "g1_alice_prospect", "g1_charlie_officer"],
+  "createdBy": "g1_bob_member",
+  "createdAt": "2025-09-05T13:00:00Z",
+  "isActive": false
+}

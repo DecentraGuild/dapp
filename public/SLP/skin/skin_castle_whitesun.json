@@ -1,0 +1,63 @@
+{
+  "id": "white_sun",
+  "name": "White & Sun",
+  "description": "A light theme with golden sunshine highlights for premium guilds",
+  "images": [
+    "/SLP/skin/skin_castle_whitesun.png"
+  ],
+  "svgFile": "/SLP/skin/skin_castle_.svg",
+  "shapeCoordinates": {
+    "imageSize": {
+      "width": 2936.7213,
+      "height": 1765.5806
+    }
+  },
+  "headers": [
+    "Dashboard", "Community Hub", "Guild Profile", "Member Profile",
+    "DAO", "Command Centre", "Multisig", "Management", "Compliance",
+    "Vaults", "Vault 1", "Vault 2", "Vault 3", "Vault 4",
+    "Foundry", "NFT", "Wrapper", "Token 1", "Token 2", "Custom Token",
+    "Armory", "G2P",
+    "Quest Board", "In-Game Quest", "Guild Quest",
+    "Tavern", "Event", "Raffle", "Poker", "Dice",
+    "Observatory", "Analytics", "Stats", "Tax",
+    "Gatekeeping", "Roles",
+    "Date"
+  ],
+  "icons": [
+    "game-icons:chart", "game-icons:castle", "game-icons:castle", "game-icons:person",
+    "game-icons:two-coins", "game-icons:organigram", "game-icons:padlock", "game-icons:gavel", "game-icons:scales",
+    "game-icons:bank", "game-icons:bank", "game-icons:coins", "game-icons:two-coins", "game-icons:two-coins",
+    "game-icons:foundry", "game-icons:person", "game-icons:abstract-050", "game-icons:two-coins", "game-icons:two-coins", "game-icons:crown-coin",
+    "game-icons:armory", "game-icons:buy-card",
+    "game-icons:target-dummy", "game-icons:target-dummy", "game-icons:heart-tower",
+    "game-icons:castle", "game-icons:party-popper", "game-icons:lottery", "game-icons:cards", "game-icons:dice",
+    "game-icons:chart", "game-icons:chart", "game-icons:chart", "game-icons:take-my-money",
+    "game-icons:bank", "game-icons:organigram",
+    "game-icons:calendar"
+  ],
+  "primaryColor": ["rgba(209, 213, 219, 0.95)", "rgba(156, 163, 175, 1)", "rgba(107, 114, 128, 0.8)"],
+  "secondaryColor": ["rgba(204, 85, 0, 1)", "rgba(230, 126, 34, 0.9)", "rgba(255, 140, 0, 0.6)"],
+  "textColor": ["rgba(31, 41, 55, 1)", "rgba(75, 85, 99, 1)", "rgba(107, 114, 128, 1)"],
+  "backgroundColor": "rgba(209, 213, 219, 1)",
+  "emergencyColor": "#ef4444",
+  "borderRadius": {
+    "sm": "4px",
+    "md": "6px",
+    "lg": "8px",
+    "xl": "12px"
+  },
+  "borderWidth": {
+    "thin": "2px",
+    "medium": "5px",
+    "thick": "8px"
+  },
+  "metadata": {
+    "rarity": "epic",
+    "creator": "0x8765...4321",
+    "mintedAt": "2024-01-20",
+    "version": "1.0.0",
+    "category": "light-luxury",
+    "tags": ["white", "sun", "light", "luxury", "gold", "orange"]
+  }
+}

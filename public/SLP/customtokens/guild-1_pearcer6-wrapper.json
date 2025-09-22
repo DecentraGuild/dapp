@@ -1,0 +1,24 @@
+{
+  "wrapperID": "g1-pearcer6-wrapper",
+  "guildID": "guild-1",
+  "name": "Pearcer R6 Token Wrapper",
+  "symbol": "PEARCER6-WRAP",
+  "description": "Deposit dGuild tokens and use the Pearcer R6, return Pearcer R6 safe and take back your deposit",
+  "image": "Pearce_R6_mark_1v1.png",
+  "type": "collateral",
+  "decimals": 0,
+  "circulatingSupply": 5000,
+  "exchangeRatio": [1, 2500], 
+  "vaultBalance": 2,
+  "redemptionAsset": "resource-pearcer6",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0xdddddddddddddddddddddddddddddddddddddddd",
+  "backingAsset": {
+    "resourceID": "resource-pearcer6",
+    "name": "Pearcer 6",
+    "image": "Pearce_R6_mark_1v1.png",
+    "type": "weapon",
+    "rarity": "legendary"
+  }
+}

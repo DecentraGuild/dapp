@@ -1,0 +1,23 @@
+{
+  "eventID": "g1_event_004",
+  "guildID": "guild-1",
+  "title": "Guild Strategy Meeting (Past)",
+  "description": "Monthly strategy meeting to discuss guild direction and upcoming events",
+  "date": "2025-09-05T18:00:00Z",
+  "status": "completed",
+  "eventType": "meeting",
+  "minRole": "g1-r2",
+  "maxParticipants": 20,
+  "entryFee": 0,
+  "agenda": [
+    "Guild performance review",
+    "Upcoming event planning",
+    "Member feedback session",
+    "Resource allocation discussion"
+  ],
+  "marked": ["g1_eve_founder", "g1_diana_council", "g1_charlie_officer"],
+  "attended": ["g1_eve_founder", "g1_diana_council", "g1_charlie_officer", "g1_bob_member"],
+  "createdBy": "g1_eve_founder",
+  "createdAt": "2025-09-01T16:00:00Z",
+  "isActive": false
+}

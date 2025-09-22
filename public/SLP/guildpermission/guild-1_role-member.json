@@ -1,0 +1,18 @@
+{
+  "roleId": "g1-r2",
+  "roleName": "Member",
+  "permissions": {
+    "gatekeeping": { "view": true, "use": false, "manage": false, "edit": false, "all": false },
+    "community-hub": { "view": true, "use": true, "manage": false, "edit": false, "all": false },
+    "quest-board": { "view": true, "use": true, "manage": false, "edit": false, "all": false },
+    "dao-voting": { "view": true, "use": true, "manage": false, "edit": false, "all": false },
+    "vaults": { "view": true, "use": false, "manage": false, "edit": false, "all": false },
+    "foundry": { "view": true, "use": false, "manage": false, "edit": false, "all": false },
+    "tavern": { "view": true, "use": true, "manage": false, "edit": false, "all": false },
+    "armory": { "view": true, "use": false, "manage": false, "edit": false, "all": false },
+    "trophy-room": { "view": true, "use": true, "manage": false, "edit": false, "all": false },
+    "observatory": { "view": true, "use": false, "manage": false, "edit": false, "all": false },
+    "command-center": { "view": false, "use": false, "manage": false, "edit": false, "all": false },
+    "integrations": { "view": true, "use": false, "manage": false, "edit": false, "all": false }
+  }
+}

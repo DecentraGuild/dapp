@@ -1,0 +1,17 @@
+{
+  "tokenID": "g1-token2",
+  "guildID": "guild-1",
+  "name": "Castle Gem",
+  "symbol": "CGM",
+  "description": "Rare gem tokens used for special guild events and premium features",
+  "image": "https://api.dicebear.com/7.x/shapes/svg?seed=castlegem",
+  "decimals": 18,
+  "circulatingSupply": 50000,
+  "maxSupply": 100000,
+  "vaultHolding":55000,
+  "assetbacking": "POLIS",
+  "exchangeRatio": [1, 1.1], 
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0x2222222222222222222222222222222222222222"
+}

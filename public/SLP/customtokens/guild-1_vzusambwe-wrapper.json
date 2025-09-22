@@ -1,0 +1,24 @@
+{
+  "wrapperID": "g1-vzusambwe-wrapper",
+  "guildID": "guild-1",
+  "name": "VZUS Ambwe Token Wrapper",
+  "symbol": "VZUSAMBWE-WRAP",
+  "description": "Supply VZUS Ambwe for a fleet and keep track with it through representation token",
+  "image": "VZUS  ambwe.png",
+  "type": "fleet",
+  "decimals": 0,
+  "circulatingSupply": 8000,
+  "exchangeRatio": [1, 4000], 
+  "vaultBalance": 6,
+  "redemptionAsset": "resource-vzusambwe",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0x2222222222222222222222222222222222222222",
+  "backingAsset": {
+    "resourceID": "resource-vzusambwe",
+    "name": "VZUS Ambwe",
+    "image": "VZUS  ambwe.png",
+    "type": "ship",
+    "rarity": "uncommon"
+  }
+}

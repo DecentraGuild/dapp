@@ -1,0 +1,72 @@
+{
+  "questID": "g1_q0006",
+  "guildID": "guild-1",
+  "title": "Defend the Castle Gates",
+  "description": "Successfully defend the castle gates from enemy siege for 24 hours.",
+  "type": "ingame",
+  "status": "completed",
+  "phase": "complete",
+  "role": "guild1_r2",
+  "roleRequirement": "member",
+  "goal": "Defend castle gates for 24 consecutive hours without breach",
+  "requirements": [
+    "Minimum level 28",
+    "Work in shifts with other members",
+    "Maintain defensive positions"
+  ],
+  "gear": [
+    "Defensive Armor",
+    "Guardian Shield",
+    "Alert Horn"
+  ],
+  "guildSupplies": [
+    "Defensive Armor",
+    "Guardian Shield",
+    "Alert Horn"
+  ],
+  "rewards": {
+    "tokens": {
+      "token1": 1200,
+      "token2": 300
+    },
+    "badges": ["castle_guardian"],
+    "nfts": ["guardian_medal"],
+    "experience": 6000
+  },
+  "contributors": ["member_001", "member_002", "member_003", "member_004", "member_005", "member_006"],
+  "assignedTo": "member_005",
+  "creator": "guild1_council",
+  "created": "2024-01-08T06:00:00Z",
+  "deadline": "2024-01-15T06:00:00Z",
+  "completedAt": "2024-01-15T06:00:00Z",
+  "isActive": false,
+  "applications": [],
+  "verification": {
+    "verifiedBy": "guild1_founder",
+    "verifiedAt": "2024-01-15T06:30:00Z",
+    "notes": "Outstanding defense! Castle gates held strong for the full 24 hours. Enemy forces were completely repelled.",
+    "quality": "excellent",
+    "approved": true
+  },
+  "rewards": [
+    {
+      "type": "token",
+      "amount": 1200,
+      "tokenID": "token1",
+      "distributedAt": "2024-01-15T07:00:00Z",
+      "distributedBy": "guild1_founder"
+    },
+    {
+      "type": "badge",
+      "badgeID": "castle_guardian",
+      "distributedAt": "2024-01-15T07:00:00Z",
+      "distributedBy": "guild1_founder"
+    },
+    {
+      "type": "nft",
+      "nftID": "guardian_medal",
+      "distributedAt": "2024-01-15T07:00:00Z",
+      "distributedBy": "guild1_founder"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "eventID": "g1_event_003",
+  "guildID": "guild-1",
+  "title": "Ancient Ruins Exploration (Past)",
+  "description": "Exploration of ancient ruins to discover hidden treasures",
+  "date": "2025-09-08T21:00:00Z",
+  "status": "completed",
+  "eventType": "raid",
+  "minRole": "g1-r2",
+  "maxParticipants": 8,
+  "entryFee": 0,
+  "requirements": [
+    "Level 12+ required",
+    "Exploration gear",
+    "Team of 3+ recommended"
+  ],
+  "rewards": [
+    "Ancient artifacts",
+    "Rare crafting materials",
+    "Exploration points"
+  ],
+  "marked": ["g1_diana_council", "g1_charlie_officer"],
+  "attended": ["g1_diana_council", "g1_charlie_officer", "g1_bob_member"],
+  "createdBy": "g1_diana_council",
+  "createdAt": "2025-09-03T10:30:00Z",
+  "isActive": false
+}

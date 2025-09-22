@@ -1,0 +1,18 @@
+{
+  "resourceID": "resource-vzusballad",
+  "name": "Vzus Ballad",
+  "symbol": "VZUSBALLAD",
+  "description": "Harmonious vessel with sonic weaponry and musical energy systems",
+  "image": "VZUS  ballad.png",
+  "type": "spaceship",
+  "rarity": "legendary",
+  "circulatingSupply": 60,
+  "maxSupply": 250,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "contractAddress": "0x2222222222222222222222222222222222222222",
+  "blockchain": "Solana",
+  "decimals": 0,
+  "category": "Star Atlas Spaceship"
+}

@@ -1,0 +1,19 @@
+{
+  "resourceID": "resource-sol",
+  "name": "Solana",
+  "symbol": "SOL",
+  "description": "Native token of the Solana blockchain, used for transaction fees and staking",
+  "image": "/SLP/resources/logo-solana.png",
+  "type": "cryptocurrency",
+  "rarity": "common",
+  "blockchain": "Solana",
+  "decimals": 9,
+  "circulatingSupply": 500000000,
+  "maxSupply": 500000000,
+  "createdAt": "2020-03-16T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "demoPrice": 200.001,
+  "Pricetoken": "resource-usdc",
+  "contractAddress": "So11111111111111111111111111111111111111112"
+}

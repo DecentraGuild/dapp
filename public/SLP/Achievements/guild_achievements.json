@@ -1,0 +1,156 @@
+{
+  "category": "Guild",
+  "description": "Achievements related to guild management, organization, and community building",
+  "achievements": [
+    {
+      "id": "guild_001",
+      "title": "Event Organizer",
+      "description": "Organize and host guild events",
+      "icon": "game-icons:calendar",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Organize 1 successful guild event",
+          "contributionPoints": 100,
+          "tokenReward": 50,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Organize 5 successful guild events",
+          "contributionPoints": 300,
+          "tokenReward": 150,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Organize 10 successful events including 3 major tournaments",
+          "contributionPoints": 750,
+          "tokenReward": 375,
+          "mintable": true,
+          "nftTitle": "Master Event Coordinator"
+        }
+      ]
+    },
+    {
+      "id": "guild_002",
+      "title": "NFT Artist",
+      "description": "Create artwork and images for guild NFTs",
+      "icon": "game-icons:techno-heart",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Create 3 NFT images for the guild",
+          "contributionPoints": 80,
+          "tokenReward": 40,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Create 10 NFT images including 2 animated pieces",
+          "contributionPoints": 250,
+          "tokenReward": 125,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Create 25 NFT images including a complete collection series",
+          "contributionPoints": 600,
+          "tokenReward": 300,
+          "mintable": true,
+          "nftTitle": "Guild Master Artist"
+        }
+      ]
+    },
+    {
+      "id": "guild_003",
+      "title": "Emblem Designer",
+      "description": "Design guild emblems and symbols",
+      "icon": "game-icons:scroll-quill",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Design 2 guild emblems",
+          "contributionPoints": 60,
+          "tokenReward": 30,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Design 5 guild emblems including animated versions",
+          "contributionPoints": 180,
+          "tokenReward": 90,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Design 10 guild emblems and create the official guild crest",
+          "contributionPoints": 450,
+          "tokenReward": 225,
+          "mintable": true,
+          "nftTitle": "Heraldic Master"
+        }
+      ]
+    },
+    {
+      "id": "guild_004",
+      "title": "Discord Moderator",
+      "description": "Help moderate and manage the guild Discord server",
+      "icon": "game-icons:gears",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Serve as moderator for 1 month",
+          "contributionPoints": 120,
+          "tokenReward": 60,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Serve as moderator for 3 months with excellent performance",
+          "contributionPoints": 350,
+          "tokenReward": 175,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Serve as head moderator for 6 months and train new mods",
+          "contributionPoints": 800,
+          "tokenReward": 400,
+          "mintable": true,
+          "nftTitle": "Community Guardian"
+        }
+      ]
+    },
+    {
+      "id": "guild_005",
+      "title": "Guild Builder",
+      "description": "Contribute to guild infrastructure and development",
+      "icon": "game-icons:thor-hammer",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Contribute 1000 resources to guild development",
+          "contributionPoints": 90,
+          "tokenReward": 45,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Contribute 5000 resources and help build 2 guild facilities",
+          "contributionPoints": 280,
+          "tokenReward": 140,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Contribute 15000 resources and lead construction of the guild hall",
+          "contributionPoints": 700,
+          "tokenReward": 350,
+          "mintable": true,
+          "nftTitle": "Master Architect"
+        }
+      ]
+    }
+  ]
+}

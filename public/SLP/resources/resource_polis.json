@@ -1,0 +1,19 @@
+{
+  "resourceID": "resource-polis",
+  "name": "Star Atlas POLIS",
+  "symbol": "POLIS",
+  "description": "Governance token of the Star Atlas metaverse, used for DAO voting and staking",
+  "image": "/SLP/resources/logo-polis.png",
+  "type": "governance_token",
+  "rarity": "rare",
+  "blockchain": "Solana",
+  "decimals": 9,
+  "circulatingSupply": 3600000000,
+  "maxSupply": 3600000000,
+  "createdAt": "2021-09-09T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "demoPrice": 0.101,
+  "Pricetoken": "resource-usdc",
+  "contractAddress": "poLisWXnNRwC6oBu1vHiuKQzFjGL4XDSu4g9qjz9qV9"
+}

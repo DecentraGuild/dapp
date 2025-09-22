@@ -1,0 +1,50 @@
+{
+  "questID": "g1_q0009",
+  "guildID": "guild-1",
+  "title": "Organize Guild Event",
+  "description": "Plan and execute a successful guild event that brings members together and strengthens community bonds.",
+  "type": "guild",
+  "status": "assigned",
+  "phase": "assign",
+  "role": "guild1_r3",
+  "roleRequirement": "officer",
+  "goal": "Organize and execute a guild event with at least 15 participants",
+  "requirements": [
+    "Officer role or higher",
+    "Submit event proposal for approval",
+    "Coordinate with other officers"
+  ],
+  "gear": [],
+  "guildSupplies": [
+    "Event Planning Template",
+    "Communication Tools",
+    "Reward Pool Access"
+  ],
+  "rewards": {
+    "tokens": {
+      "token1": 800,
+      "token2": 200
+    },
+    "badges": ["event_organizer"],
+    "nfts": ["organizer_crown"],
+    "experience": 4000
+  },
+  "contributors": [],
+  "assignedTo": "member_008",
+  "creator": "guild1_council",
+  "created": "2024-01-13T09:00:00Z",
+  "deadline": "2024-01-27T18:00:00Z",
+  "completedAt": null,
+  "isActive": true,
+  "applications": [
+    {
+      "memberID": "member_008",
+      "memberName": "EventMaster",
+      "appliedAt": "2024-01-13T10:15:00Z",
+      "message": "I have experience organizing gaming events and can create an engaging activity for our members.",
+      "status": "approved"
+    }
+  ],
+  "verification": null,
+  "rewards": []
+}

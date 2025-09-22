@@ -1,0 +1,18 @@
+{
+  "resourceID": "resource-opaljet",
+  "name": "Opal Jet",
+  "symbol": "OPALJET",
+  "description": "Luxury spaceship with premium features and exclusive design",
+  "image": "Opaljet.jpg",
+  "type": "spaceship",
+  "rarity": "legendary",
+  "circulatingSupply": 500,
+  "maxSupply": 2000,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "contractAddress": "0x7777777777777777777777777777777777777777",
+  "blockchain": "Solana",
+  "decimals": 0,
+  "category": "Star Atlas Spaceship"
+}

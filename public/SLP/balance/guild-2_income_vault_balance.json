@@ -1,0 +1,11 @@
+{
+  "walletID": "0x7777777777777777777777777777777777777777",
+  "vaultID": "g2_income_vault",
+  "guildID": "guild-2",
+  "tokens": {
+    "sol": 120.5,
+    "usdc": 3500,
+    "atlas": 3500
+  },
+  "lastUpdated": "2024-01-20T12:00:00Z"
+}

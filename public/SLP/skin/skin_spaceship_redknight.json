@@ -1,0 +1,63 @@
+{
+  "id": "spaceship_redknight",
+  "name": "Spaceship Red Knight",
+  "description": "A futuristic spaceship design with dark grey hull and red accent lighting",
+  "images": [
+    "/SLP/skin/skin_spaceship_redknight.png"
+  ],
+  "svgFile": "/SLP/skin/skin_spaceship_.svg",
+  "shapeCoordinates": {
+    "imageSize": {
+      "width": 3413.3301,
+      "height": 1946.67
+    }
+  },
+  "headers": [
+    "Dashboard", "Community Hub", "Guild Profile", "Member Profile",
+    "DAO", "Command Centre", "Multisig", "Management", "Compliance",
+    "Vaults", "Vault 1", "Vault 2", "Vault 3", "Vault 4",
+    "Foundry", "NFT", "Wrapper", "Token 1", "Token 2", "Custom Token",
+    "Armory", "G2P",
+    "Quest Board", "In-Game Quest", "Guild Quest",
+    "Tavern", "Event", "Raffle", "Poker", "Dice",
+    "Observatory", "Analytics", "Stats", "Tax",
+    "Gatekeeping", "Roles",
+    "Date"
+  ],
+  "icons": [
+    "game-icons:chart", "game-icons:space-suit", "game-icons:space-suit", "game-icons:person",
+    "game-icons:two-coins", "game-icons:organigram", "game-icons:padlock", "game-icons:gavel", "game-icons:scales",
+    "game-icons:bank", "game-icons:bank", "game-icons:coins", "game-icons:two-coins", "game-icons:two-coins",
+    "game-icons:foundry", "game-icons:person", "game-icons:abstract-050", "game-icons:two-coins", "game-icons:two-coins", "game-icons:crown-coin",
+    "game-icons:armory", "game-icons:buy-card",
+    "game-icons:target-dummy", "game-icons:target-dummy", "game-icons:heart-tower",
+    "game-icons:space-suit", "game-icons:party-popper", "game-icons:lottery", "game-icons:cards", "game-icons:dice",
+    "game-icons:chart", "game-icons:chart", "game-icons:chart", "game-icons:take-my-money",
+    "game-icons:bank", "game-icons:organigram",
+    "game-icons:calendar"
+  ],
+  "primaryColor": ["rgba(45, 45, 45, 0.3)", "rgba(60, 60, 60, 0.45)", "rgba(80, 80, 80, 0.6)"],
+  "secondaryColor": ["rgba(220, 38, 38, 0.9)", "rgba(185, 28, 28, 0.5)", "rgba(153, 27, 27, 0.2)"],
+  "textColor": ["rgba(229, 231, 235, 1)", "rgba(156, 163, 175, 1)", "rgba(107, 114, 128, 1)"],
+  "backgroundColor": "rgba(0, 0, 0, 1)",
+  "emergencyColor": "#ef4444",
+  "borderRadius": {
+    "sm": "4px",
+    "md": "6px", 
+    "lg": "8px",
+    "xl": "12px"
+  },
+  "borderWidth": {
+    "thin": "1px",
+    "medium": "2px",
+    "thick": "3px"
+  },
+  "metadata": {
+    "rarity": "legendary",
+    "creator": "0x1234...5678",
+    "mintedAt": "2024-01-15",
+    "version": "1.0.0",
+    "category": "spaceship-futuristic",
+    "tags": ["spaceship", "futuristic", "red", "knight", "space"]
+  }
+}

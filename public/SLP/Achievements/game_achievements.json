@@ -1,0 +1,156 @@
+{
+  "category": "Game",
+  "description": "Achievements related to gaming activities, raids, and in-game accomplishments",
+  "achievements": [
+    {
+      "id": "game_001",
+      "title": "Planet Deliverer",
+      "description": "Deliver resources to planets across the galaxy",
+      "icon": "rocket",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Deliver 10 resources to Planet Alpha",
+          "contributionPoints": 50,
+          "tokenReward": 25,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Deliver 50 resources to 3 different planets",
+          "contributionPoints": 150,
+          "tokenReward": 75,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Deliver 100 resources to all 5 planets in the system",
+          "contributionPoints": 500,
+          "tokenReward": 250,
+          "mintable": true,
+          "nftTitle": "Master Planet Deliverer"
+        }
+      ]
+    },
+    {
+      "id": "game_002",
+      "title": "Dragon Mountain Raider",
+      "description": "Conquer the legendary Dragon Mountain",
+      "icon": "game-icons:double-dragon",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Complete 1 successful raid on Dragon Mountain",
+          "contributionPoints": 100,
+          "tokenReward": 50,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Complete 5 successful raids on Dragon Mountain",
+          "contributionPoints": 300,
+          "tokenReward": 150,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Complete 10 successful raids and defeat the Ancient Dragon",
+          "contributionPoints": 750,
+          "tokenReward": 375,
+          "mintable": true,
+          "nftTitle": "Dragon Slayer"
+        }
+      ]
+    },
+    {
+      "id": "game_003",
+      "title": "Grim Reaper Hunter",
+      "description": "Hunt down the fearsome Grim Reapers",
+      "icon": "game-icons:alien-skull",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Slay 10 Grim Reapers",
+          "contributionPoints": 75,
+          "tokenReward": 35,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Slay 50 Grim Reapers",
+          "contributionPoints": 250,
+          "tokenReward": 125,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Slay 100 Grim Reapers and defeat the Death Lord",
+          "contributionPoints": 600,
+          "tokenReward": 300,
+          "mintable": true,
+          "nftTitle": "Death's Bane"
+        }
+      ]
+    },
+    {
+      "id": "game_004",
+      "title": "Quest Master",
+      "description": "Complete various quests and missions",
+      "icon": "game-icons:planet-conquest",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Complete 25 quests",
+          "contributionPoints": 60,
+          "tokenReward": 30,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Complete 100 quests",
+          "contributionPoints": 200,
+          "tokenReward": 100,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Complete 250 quests including all epic storylines",
+          "contributionPoints": 500,
+          "tokenReward": 250,
+          "mintable": true,
+          "nftTitle": "Legendary Quest Master"
+        }
+      ]
+    },
+    {
+      "id": "game_005",
+      "title": "Boss Destroyer",
+      "description": "Defeat powerful bosses across the realm",
+      "icon": "game-icons:skull-shield",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Defeat 5 different bosses",
+          "contributionPoints": 80,
+          "tokenReward": 40,
+          "mintable": false
+        },
+        {
+          "level": "Epic",
+          "requirement": "Defeat 15 different bosses",
+          "contributionPoints": 220,
+          "tokenReward": 110,
+          "mintable": false
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Defeat all 30 bosses including the World Ender",
+          "contributionPoints": 600,
+          "tokenReward": 300,
+          "mintable": true,
+          "nftTitle": "Ultimate Boss Slayer"
+        }
+      ]
+    }
+  ]
+}

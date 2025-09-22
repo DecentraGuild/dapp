@@ -1,0 +1,45 @@
+{
+  "questID": "g1_q0001",
+  "guildID": "guild-1",
+  "title": "Defeat the Cyber Dragon",
+  "description": "A massive cyber-enhanced dragon has been spotted near the castle. Defeat it to prove your worth and earn valuable rewards.",
+  "type": "ingame",
+  "status": "new",
+  "phase": "create",
+  "role": "guild1_r2",
+  "roleRequirement": "member",
+  "goal": "Defeat the Cyber Dragon boss in the Castle Ruins dungeon",
+  "requirements": [
+    "Minimum level 25",
+    "Complete 'Castle Ruins Access' quest",
+    "Equip cyber-enhanced weapons"
+  ],
+  "gear": [
+    "Cyber Sword +3",
+    "Shield of Energy",
+    "Health Potions x10"
+  ],
+  "guildSupplies": [
+    "Cyber Sword +3",
+    "Shield of Energy"
+  ],
+  "rewards": {
+    "tokens": {
+      "token1": 500,
+      "token2": 100
+    },
+    "badges": ["dragon_slayer"],
+    "nfts": ["cyber_dragon_scale"],
+    "experience": 2500
+  },
+  "contributors": [],
+  "assignedTo": null,
+  "creator": "guild1_founder",
+  "created": "2024-01-15T10:00:00Z",
+  "deadline": "2024-01-22T23:59:59Z",
+  "completedAt": null,
+  "isActive": true,
+  "applications": [],
+  "verification": null,
+  "rewards": []
+}

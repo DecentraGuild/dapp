@@ -1,0 +1,16 @@
+{
+  "rooms": [
+    { "id": "gatekeeping", "name": "Gatekeeping" },
+    { "id": "community-hub", "name": "Community Hub" },
+    { "id": "quest-board", "name": "Quest Board" },
+    { "id": "dao-voting", "name": "DAO Voting" },
+    { "id": "vaults", "name": "Vaults" },
+    { "id": "foundry", "name": "Foundry" },
+    { "id": "tavern", "name": "Tavern" },
+    { "id": "armory", "name": "Armory" },
+    { "id": "trophy-room", "name": "Trophy Room" },
+    { "id": "observatory", "name": "Observatory" },
+    { "id": "command-center", "name": "Command Center" },
+    { "id": "integrations", "name": "Integrations" }
+  ]
+}

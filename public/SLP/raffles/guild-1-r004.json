@@ -1,0 +1,17 @@
+{
+  "guildID": "guild-1",
+  "raffleId": "guild-1-r004",
+  "title": "Golden Token Bonanza",
+  "description": "Win 1000 premium guild tokens in this exclusive raffle event",
+  "status": "concept",
+  "ticketstotal": 500,
+  "ticketsprice": 25,
+  "ticketpaymentcurrency": "g1-token1",
+  "rewardtokenid": "resource-pearcer6",
+  "rewardamount": 1000,
+  "ticketsoldwallets": [],
+  "winner": null,
+  "createdby": "g1_alice_admin",
+  "createdon": "2024-01-20T14:30:00Z",
+  "imagepath": "/SLP/resources/pearcer6.jpg"
+}

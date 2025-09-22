@@ -1,0 +1,17 @@
+{
+  "walletID": "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU",
+  "owner": "Charlie",
+  "guilds": ["guild-1"],
+  "balances": {
+    "sol": 45.8,
+    "usdc": 950,
+    "wbtc": 0.02,
+    "atlas": 1800,
+    "polis": 150,
+    "g1-token1": 1200,
+    "g1-token2": 50,
+    "g2-token1": 0,
+    "g2-token2": 0
+  },
+  "lastUpdated": "2024-01-20T12:00:00Z"
+}

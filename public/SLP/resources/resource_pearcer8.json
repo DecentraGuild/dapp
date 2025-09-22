@@ -1,0 +1,18 @@
+{
+  "resourceID": "resource-pearcer8",
+  "name": "Pearce R8",
+  "symbol": "PEARCER8",
+  "description": "Legendary capital ship with massive firepower and defensive capabilities",
+  "image": "Pearce_R8 PNG FINAL.png",
+  "type": "spaceship",
+  "rarity": "epic",
+  "circulatingSupply": 100,
+  "maxSupply": 400,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "contractAddress": "0xcccccccccccccccccccccccccccccccccccccccc",
+  "blockchain": "Solana",
+  "decimals": 0,
+  "category": "Star Atlas Spaceship"
+}

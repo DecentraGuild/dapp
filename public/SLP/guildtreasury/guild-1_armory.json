@@ -1,0 +1,15 @@
+{
+  "armoryID": "guild-1_armory",
+  "guildID": "guild-1",
+  "name": "Cyber Castle Armory",
+  "description": "Guild armory holding all NFTs and in-game items for member use",
+  "type": "armory",
+  "multisigWalletID": "0x5555555555555555555555555555555555555555",
+  "requiredSignatures": 2,
+  "signers": [
+    "g1_eve_founder",
+    "g1_charlie_officer"
+  ],
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true
+}

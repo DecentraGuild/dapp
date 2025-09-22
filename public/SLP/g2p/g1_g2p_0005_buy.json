@@ -1,0 +1,18 @@
+{
+  "orderID": "g1_g2p_0005",
+  "guildID": "guild-1",
+  "role": "g1-r5",
+  "type": "buy",
+  "amountOffered": 5000,
+  "tokenIDOffered": "resource-usdc",
+  "tokenImageOffered": "/SLP/resources/logo-usdc.png",
+  "amountAsked": 250,
+  "resourceIDAsked": "resource-maxhog",
+  "tokenImageAsked": "/SLP/resources/maxhog.jpg",
+  "status": "active",
+  "created": "2024-01-21T17:30:00Z",
+  "creator": "g1_eve_founder",
+  "expiresAt": "2024-02-21T23:59:59Z",
+  "isActive": true,
+  "description": "Founder's large Max Hog acquisition"
+}

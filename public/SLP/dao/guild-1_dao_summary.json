@@ -1,0 +1,115 @@
+{
+  "guildID": "guild-1",
+  "guildName": "Cyber Castle Guild",
+  "daoStructure": {
+    "token1DAO": {
+      "daoID": "g1_dao_token1",
+      "name": "Cyber Castle Coin DAO",
+      "description": "Governance for Cyber Castle Coin (CCC) token decisions",
+      "tokenID": "g1-token1",
+      "tokenSymbol": "CCC",
+      "tokenName": "Cyber Castle Coin",
+      "ownership": "token1",
+      "votingPower": "token_balance",
+      "quorum": 0.4,
+      "votingPeriod": 7,
+      "proposalThreshold": 0.5,
+      "isActive": true,
+      },
+      "weightInCombinedVotes": 0.6,
+      "circulatingSupply": 750000
+
+    },
+    "token2DAO": {
+      "daoID": "g1_dao_token2",
+      "name": "Castle Gem DAO",
+      "description": "Governance for Castle Gem (CGM) token decisions",
+      "tokenID": "g1-token2",
+      "tokenSymbol": "CGM",
+      "tokenName": "Castle Gem",
+      "ownership": "token2",
+      "votingPower": "token_balance",
+      "quorum": 0.4,
+      "votingPeriod": 5,
+      "proposalThreshold": 0.5
+      "isActive": true,
+      "settings": {
+        "allowDelegation": true,
+        "requireProposalDeposit": true,
+        "depositAmount": 10
+      },
+      "weightInCombinedVotes": 0.4,
+      "circulatingSupply": 75000
+    },
+    "combinedDAO": {
+      "daoID": "g1_dao_totalvote",
+      "name": "Cyber Castle Combined DAO",
+      "description": "Combined governance using both CCC and CGM tokens for major guild decisions",
+      "tokenID": "g1-token1",
+      "secondaryTokenID": "g1-token2",
+      "ownership": "totalvote",
+      "votingPower": "combined_balance",
+      "quorum": 1,
+      "votingPeriod": 10,
+      "proposalThreshold": 0.6
+      "isActive": true,
+      "settings": {
+        "allowDelegation": true,
+        "requireProposalDeposit": true,
+      },
+      "tokenWeights": {
+        "token1": 0.6,
+        "token2": 0.4
+      }
+    }
+  },
+  "votingStatistics": {
+    "totalProposals": 13,
+    "activeProposals": 4,
+    "completedProposals": 6,
+    "cancelledProposals": 3,
+    "passedProposals": 4,
+    "rejectedProposals": 2,
+    "participationRate": 0.75,
+    "averageVotingPeriod": 7.2
+  },
+  "memberParticipation": {
+    "totalMembers": 5,
+    "activeVoters": 4,
+    "delegationEnabled": true,
+    "votingPowerDistribution": {
+      "g1_eve_founder": 0.35,
+      "g1_diana_council": 0.25,
+      "g1_charlie_officer": 0.20,
+      "g1_bob_member": 0.15,
+      "g1_alice_prospect": 0.05
+    }
+  },
+  "recentActivity": {
+    "lastVoteCreated": "2024-01-22T10:00:00Z",
+    "lastVoteCompleted": "2024-01-17T09:00:00Z",
+    "upcomingVoteDeadlines": [
+      "2024-01-23T10:30:00Z",
+      "2024-01-26T15:00:00Z",
+      "2024-01-27T14:00:00Z",
+      "2024-01-29T10:00:00Z"
+    ]
+  
+      "majorityThreshold": 0.5,
+      "superMajorityThreshold": 0.67,
+      "votingPeriods": {
+        "token1": 7,
+        "token2": 5,
+        "combined": 10
+      }
+
+    "executionRules": {
+      "autoExecution": false,
+      "executionDelay": 24,
+      "councilOverride": true,
+      "emergencyPause": true
+    }
+  },
+  "createdAt": "2024-01-01T00:00:00Z",
+  "updatedAt": "2024-01-22T10:00:00Z"
+}

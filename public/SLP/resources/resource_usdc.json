@@ -1,0 +1,19 @@
+{
+  "resourceID": "resource-usdc",
+  "name": "USD Coin",
+  "symbol": "USDC",
+  "description": "Fully-backed US dollar stablecoin issued by Centre",
+  "image": "/SLP/resources/logo-usdc.png",
+  "type": "stablecoin",
+  "rarity": "common",
+  "blockchain": "Solana",
+  "decimals": 6,
+  "circulatingSupply": 32000000000,
+  "maxSupply": 0,
+  "createdAt": "2018-10-15T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "demoPrice": 1.00,
+  "Pricetoken": "resource-usdc",
+  "contractAddress": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+}

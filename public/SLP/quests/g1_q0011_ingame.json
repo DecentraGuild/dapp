@@ -1,0 +1,45 @@
+{
+  "questID": "g1_q0011",
+  "guildID": "guild-1",
+  "title": "Master the Elemental Arts",
+  "description": "Learn to harness the power of all four elements - fire, water, earth, and air - to become a true elemental master.",
+  "type": "ingame",
+  "status": "new",
+  "phase": "create",
+  "role": "guild1_r2",
+  "roleRequirement": "member",
+  "goal": "Complete all four elemental trials and master each element",
+  "requirements": [
+    "Minimum level 30",
+    "Complete 'Elemental Awakening' quest",
+    "Pass all elemental affinity tests"
+  ],
+  "gear": [
+    "Elemental Focus Crystal",
+    "Mystic Robes",
+    "Elemental Essences x4"
+  ],
+  "guildSupplies": [
+    "Elemental Focus Crystal",
+    "Mystic Robes"
+  ],
+  "rewards": {
+    "tokens": {
+      "token1": 1000,
+      "token2": 200
+    },
+    "badges": ["elemental_master"],
+    "nfts": ["elemental_medallion"],
+    "experience": 6000
+  },
+  "contributors": [],
+  "assignedTo": null,
+  "creator": "guild1_officer",
+  "created": "2024-01-16T10:30:00Z",
+  "deadline": "2024-01-28T23:59:59Z",
+  "completedAt": null,
+  "isActive": true,
+  "applications": [],
+  "verification": null,
+  "rewards": []
+}

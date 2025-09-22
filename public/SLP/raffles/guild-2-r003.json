@@ -1,0 +1,23 @@
+{
+  "guildID": "guild-2",
+  "raffleId": "guild-2-r003",
+  "title": "Legendary Equipment Drop",
+  "description": "Rare chance to win exclusive legendary equipment for your character",
+  "status": "running",
+  "ticketstotal": 1000,
+  "ticketsprice": 50,
+  "ticketpaymentcurrency": "g2-token1",
+  "rewardtokenid": "resource-pearcex5",
+  "rewardamount": 3,
+  "ticketsoldwallets": [
+    "0x1234567890123456789012345678901234567890",
+    "0x2345678901234567890123456789012345678901",
+    "0x3456789012345678901234567890123456789012",
+    "0x4567890123456789012345678901234567890123",
+    "0x5678901234567890123456789012345678901234"
+  ],
+  "winner": null,
+  "createdby": "g2_charlie_council",
+  "createdon": "2024-01-15T09:00:00Z",
+  "imagepath": "/SLP/resources/PEARCE X5 PNG.png"
+}

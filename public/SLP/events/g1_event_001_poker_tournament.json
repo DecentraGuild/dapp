@@ -1,0 +1,92 @@
+{
+  "eventID": "g1_event_001",
+  "guildID": "guild-1",
+  "title": "Cyber Castle Poker Championship",
+  "description": "High-stakes poker tournament with legendary resource prizes",
+  "eventType": "poker_tournament",
+  "status": "upcoming",
+  "date": "2025-09-17T19:00:00Z",
+  "startingTime": "2025-09-17T19:00:00Z",
+  "lateRegTime": "2025-09-17T19:15:00Z",
+  "entryFee": 100,
+  "entryCurrency": "g1-token1",
+  "startChips": 10000,
+  "earlyBirdChips": 2000,
+  "pricePercent": 85,
+  "bountyPercent": 10,
+  "rakePercent": 5,
+  "blindsTime": 15,
+  "bonusRewards": [
+    {
+      "type": "early_bird",
+      "description": "Early registration bonus",
+      "chips": 2000
+    },
+    {
+      "type": "first_elimination",
+      "description": "First elimination bounty",
+      "chips": 1000
+    }
+  ],
+  "leaderboard": [
+    {
+      "memberID": "g1_eve_founder",
+      "entryTime": "2025-09-12T10:00:00Z",
+      "chips": 12000,
+      "position": null,
+      "eliminated": false,
+      "eliminationTime": null
+    },
+    {
+      "memberID": "g1_diana_council",
+      "entryTime": "2025-09-12T10:05:00Z",
+      "chips": 12000,
+      "position": null,
+      "eliminated": false,
+      "eliminationTime": null
+    },
+    {
+      "memberID": "g1_charlie_officer",
+      "entryTime": "2025-09-12T10:10:00Z",
+      "chips": 12000,
+      "position": null,
+      "eliminated": false,
+      "eliminationTime": null
+    },
+    {
+      "memberID": "g1_bob_member",
+      "entryTime": "2025-09-12T10:15:00Z",
+      "chips": 12000,
+      "position": null,
+      "eliminated": false,
+      "eliminationTime": null
+    }
+  ],
+  "minRole": "g1-r2",
+  "maxParticipants": 16,
+  "prizes": [
+    {
+      "position": 1,
+      "resourceID": "resource-pearcer6",
+      "amount": 1,
+      "description": "1st Place: Legendary Pearcer 6 Weapon"
+    },
+    {
+      "position": 2,
+      "resourceID": "resource-opaljet",
+      "amount": 1,
+      "description": "2nd Place: Opal Jet Luxury Vehicle"
+    },
+    {
+      "position": 3,
+      "resourceID": "resource-maxhog",
+      "amount": 2,
+      "description": "3rd Place: 2 Max Hog Companions"
+    }
+  ],
+  "marked": ["g1_eve_founder", "g1_diana_council", "g1_charlie_officer", "g1_bob_member"],
+  "attended": [],
+  "createdBy": "g1_eve_founder",
+  "createdAt": "2025-09-12T10:00:00Z",
+  "isActive": true
+}

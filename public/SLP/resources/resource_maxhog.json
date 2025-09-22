@@ -1,0 +1,18 @@
+{
+  "resourceID": "resource-maxhog",
+  "name": "Max Hog",
+  "symbol": "MAXHOG",
+  "description": "Rare creature companion with special abilities and unique traits",
+  "image": "maxhog.jpg",
+  "type": "spaceship",
+  "rarity": "epic",
+  "circulatingSupply": 1000,
+  "maxSupply": 5000,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "contractAddress": "0x6666666666666666666666666666666666666666",
+  "blockchain": "Solana",
+  "decimals": 0,
+  "category": "Star Atlas Spaceship"
+}

@@ -1,0 +1,18 @@
+{
+  "resourceID": "resource-pearcex4",
+  "name": "Pearce X4",
+  "symbol": "PEARCEX4",
+  "description": "Advanced combat ship with superior firepower and defensive capabilities",
+  "image": "Pearce X4_Thumbnail.png",
+  "type": "spaceship",
+  "rarity": "rare",
+  "circulatingSupply": 250,
+  "maxSupply": 1000,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "contractAddress": "0x9999999999999999999999999999999999999999",
+  "blockchain": "Solana",
+  "decimals": 0,
+  "category": "Star Atlas Spaceship"
+}

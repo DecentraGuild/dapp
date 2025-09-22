@@ -1,0 +1,15 @@
+{
+  "memberID": "g1_bob_member",
+  "walletAddress": "5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1",
+  "guild": "guild-1",
+  "role": "g1-r2",
+  "username": "Bob",
+  "avatar": "avatar2.png",
+  "email": "bob@example.com",
+  "notification": [true, true, true],
+  "lastActive": "2024-01-15T10:30:00Z",
+  "joinedAt": "2024-01-02T00:00:00Z",
+  "isActive": true,
+  "contributionScore": 450,
+  "bio": "Strategic thinker and team player. I enjoy coordinating guild activities and mentoring new members. Let's build something amazing together!"
+}

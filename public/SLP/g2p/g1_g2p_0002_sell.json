@@ -1,0 +1,18 @@
+{
+  "orderID": "g1_g2p_0002",
+  "guildID": "guild-1",
+  "role": "g1-r3",
+  "type": "sell",
+  "amountOffered": 25,
+  "resourceIDOffered": "resource-maxhog",
+  "tokenImageOffered": "/SLP/resources/maxhog.jpg",
+  "amountAsked": 500,
+  "tokenIDAsked": "resource-atlas",
+  "tokenImageAsked": "/SLP/resources/logo-atlas.png",
+  "status": "active",
+  "created": "2024-01-19T09:15:00Z",
+  "creator": "g1_charlie_officer",
+  "expiresAt": "2024-02-19T23:59:59Z",
+  "isActive": true,
+  "description": "Selling Max Hog for Cyber Castle Coins"
+}

@@ -1,0 +1,20 @@
+{
+  "orderID": "g1_g2p_0003",
+  "guildID": "guild-1",
+  "role": "g1-r4",
+  "type": "buy",
+  "amountOffered": 2000,
+  "tokenIDOffered": "resource-polis",
+  "tokenImageOffered": "/SLP/resources/logo-polis.png",
+  "amountAsked": 100,
+  "resourceIDAsked": "resource-opaljet",
+  "tokenImageAsked": "/SLP/resources/Opaljet.jpg",
+  "status": "filled",
+  "created": "2024-01-15T11:45:00Z",
+  "creator": "g1_diana_council",
+  "filledAt": "2024-01-18T16:20:00Z",
+  "filledBy": "g1_bob_member",
+  "expiresAt": "2024-02-15T23:59:59Z",
+  "isActive": false,
+  "description": "Large Opal Jet purchase - COMPLETED"
+}

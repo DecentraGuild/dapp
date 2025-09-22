@@ -1,0 +1,30 @@
+{
+  "guildID": "guild-1",
+  "guildName": "Cyber Castle",
+  "customTypes": [
+    {
+      "typeID": "tokenised",
+      "name": "Tokenised",
+      "description": "For example : Tokenized version of assets. Collect 5000 tokens to redeem for a full ship",
+      "icon": "mdi:share-variant",
+      "image": "tokenised_assets.png",
+      "isActive": true
+    },
+    {
+      "typeID": "fleet",
+      "name": "Fleet",
+      "description": "For example : Supply assets for a fleet and keep track with it through representation token",
+      "icon": "mdi:ship-wheel",
+      "image": "fleet_management.png",
+      "isActive": true
+    },
+    {
+      "typeID": "collateral",
+      "name": "Collateral",
+      "description": "For example : Deposit dGuild tokens and use assets, return assets safe and take back your deposit",
+      "icon": "mdi:bank",
+      "image": "lending_pool.png",
+      "isActive": true
+    }
+  ]
+}

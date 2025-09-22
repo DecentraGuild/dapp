@@ -1,0 +1,24 @@
+{
+  "wrapperID": "g1-rainbowarc-wrapper",
+  "guildID": "guild-1",
+  "name": "Rainbow Arc Token Wrapper",
+  "symbol": "RAINBOWARC-WRAP",
+  "description": "Tokenized version of Rainbow Arc ship. Collect 8000 tokens to redeem for a full ship",
+  "image": "Rainbow_Arc_Showroom.png",
+  "type": "tokenised",
+  "decimals": 0,
+  "circulatingSupply": 200,
+  "exchangeRatio": [1, 100], 
+  "vaultBalance": 3,
+  "redemptionAsset": "resource-rainbowarc",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0xdddddddddddddddddddddddddddddddddddddddd",
+  "backingAsset": {
+    "resourceID": "resource-rainbowarc",
+    "name": "Rainbow Arc",
+    "image": "Rainbow_Arc_Showroom.png",
+    "type": "ship",
+    "rarity": "rare"
+  }
+}

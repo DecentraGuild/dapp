@@ -1,0 +1,42 @@
+{
+  "questIndex": {
+    "sidebarItems": [
+      {
+        "id": "new",
+        "name": "New",
+        "icon": "game-icons:newspaper",
+        "count": 6
+      },
+      {
+        "id": "pending", 
+        "name": "Pending",
+        "icon": "game-icons:time-trap",
+        "count": 1
+      },
+      {
+        "id": "assigned",
+        "name": "Assigned", 
+        "icon": "game-icons:wanted-reward",
+        "count": 1
+      },
+      {
+        "id": "delivered",
+        "name": "Delivered",
+        "icon": "game-icons:stork-delivery", 
+        "count": 1
+      },
+      {
+        "id": "rewarded",
+        "name": "Rewarded",
+        "icon": "game-icons:laurels-trophy", 
+        "count": 1
+      },
+      {
+        "id": "completed",
+        "name": "Complete",
+        "icon": "game-icons:check-mark", 
+        "count": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "vaultID": "g2_token2_vault",
+  "guildID": "guild-2",
+  "name": "Shadow Gem Staking Vault",
+  "description": "Vault holding staking and backing assets for g2-token2 (SGM) token",
+  "type": "token2_vault",
+  "tokenID": "g2-token2",
+  "multisigWalletID": "0x9999999999999999999999999999999999999999",
+  "requiredSignatures": 2,
+  "signers": [
+    "g2_diana_founder",
+    "g2_charlie_council"
+  ],
+  "createdAt": "2024-01-10T00:00:00Z",
+  "isActive": true
+}

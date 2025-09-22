@@ -1,0 +1,52 @@
+{
+  "questID": "g1_q0004",
+  "guildID": "guild-1",
+  "title": "Raid the Oni Fortress",
+  "description": "Lead a coordinated raid on the Oni Fortress to secure valuable resources and territory.",
+  "type": "ingame",
+  "status": "delivered",
+  "phase": "execute",
+  "role": "guild1_r3",
+  "roleRequirement": "officer",
+  "goal": "Successfully complete the Oni Fortress raid with at least 80% success rate",
+  "requirements": [
+    "Minimum level 35",
+    "Lead a team of 5+ members",
+    "Coordinate with other guilds"
+  ],
+  "gear": [
+    "Commander's Armor",
+    "Guild Banner",
+    "Communication Device"
+  ],
+  "guildSupplies": [
+    "Commander's Armor",
+    "Guild Banner",
+    "Communication Device"
+  ],
+  "rewards": {
+    "tokens": {
+      "token1": 2000,
+      "token2": 500
+    },
+    "badges": ["raid_commander"],
+    "nfts": ["oni_fortress_key"],
+    "experience": 10000
+  },
+  "contributors": ["member_001", "member_002", "member_003", "member_004", "member_005"],
+  "assignedTo": "member_003",
+  "creator": "guild1_founder",
+  "created": "2024-01-12T08:00:00Z",
+  "deadline": "2024-01-19T18:00:00Z",
+  "completedAt": null,
+  "isActive": true,
+  "applications": [],
+  "verification": {
+    "verifiedBy": "guild1_council",
+    "verifiedAt": "2024-01-15T19:30:00Z",
+    "notes": "Raid completed successfully with 85% success rate. Excellent coordination and leadership demonstrated.",
+    "quality": "excellent",
+    "approved": true
+  },
+  "rewards": []
+}

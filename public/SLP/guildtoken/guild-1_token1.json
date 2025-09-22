@@ -1,0 +1,16 @@
+{
+  "tokenID": "g1-token1",
+  "guildID": "guild-1",
+  "name": "Cyber Castle Coin",
+  "symbol": "CCC",
+  "description": "The primary currency of Cyber Castle Guild, earned through quests and achievements",
+  "image": "https://api.dicebear.com/7.x/shapes/svg?seed=cybercoin",
+  "decimals": 18,
+  "circulatingSupply": 10000,
+  "assetbacking": "ATLAS",
+  "vaultHolding":1000000,
+  "exchangeRatio": [1, 100], 
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0x1111111111111111111111111111111111111111"
+}

@@ -1,0 +1,53 @@
+{
+  "questID": "g1_q0002",
+  "guildID": "guild-1",
+  "title": "Explore the Digital Mines",
+  "description": "Venture into the digital mines to gather rare cyber crystals needed for guild upgrades.",
+  "type": "ingame",
+  "status": "pending",
+  "phase": "apply",
+  "role": "guild1_r2",
+  "roleRequirement": "member",
+  "goal": "Collect 50 Cyber Crystals from the Digital Mines",
+  "requirements": [
+    "Minimum level 20",
+    "Complete 'Mining License' quest",
+    "Bring a mining pickaxe"
+  ],
+  "gear": [
+    "Cyber Pickaxe",
+    "Crystal Detector",
+    "Mining Helmet"
+  ],
+  "guildSupplies": [
+    "Cyber Pickaxe",
+    "Crystal Detector"
+  ],
+  "rewards": {
+    "tokens": {
+      "token1": 300,
+      "token2": 75
+    },
+    "badges": ["crystal_collector"],
+    "nfts": ["rare_cyber_crystal"],
+    "experience": 1500
+  },
+  "contributors": [],
+  "assignedTo": null,
+  "creator": "guild1_officer",
+  "created": "2024-01-14T14:30:00Z",
+  "deadline": "2024-01-21T23:59:59Z",
+  "completedAt": null,
+  "isActive": true,
+  "applications": [
+    {
+      "memberID": "member_001",
+      "memberName": "CyberKnight",
+      "appliedAt": "2024-01-15T09:15:00Z",
+      "message": "I have experience with mining operations and can complete this efficiently.",
+      "status": "pending"
+    }
+  ],
+  "verification": null,
+  "rewards": []
+}

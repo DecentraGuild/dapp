@@ -1,0 +1,23 @@
+{
+  "eventID": "g1_event_009",
+  "guildID": "guild-1",
+  "title": "New Member Welcome Party",
+  "description": "Social event to welcome new members and build community bonds",
+  "date": "2025-09-25 18:30:00",
+  "status": "upcoming",
+  "eventType": "chill_session",
+  "minRole": "g1-r1",
+  "maxParticipants": 30,
+  "entryFee": 0,
+  "activities": [
+    "New member introductions",
+    "Guild history presentation",
+    "Ice breaker games",
+    "Resource sharing session"
+  ],
+  "marked": ["g1_eve_founder", "g1_diana_council", "g1_charlie_officer"],
+  "attended": [],
+  "createdBy": "g1_eve_founder",
+  "createdAt": "2025-09-20 12:00:00",
+  "isActive": true
+}

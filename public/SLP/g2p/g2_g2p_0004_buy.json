@@ -1,0 +1,18 @@
+{
+  "orderID": "g2_g2p_0004",
+  "guildID": "guild-2",
+  "role": "g2-r1",
+  "type": "buy",
+  "amountOffered": 500,
+  "tokenIDOffered": "resource-sol",
+  "tokenImageOffered": "/SLP/resources/logo-solana.png",
+  "amountAsked": 25,
+  "resourceIDAsked": "resource-maxhog",
+  "tokenImageAsked": "/SLP/resources/maxhog.jpg",
+  "status": "active",
+  "created": "2024-01-23T12:00:00Z",
+  "creator": "g2_eve_prospect",
+  "expiresAt": "2024-02-23T23:59:59Z",
+  "isActive": true,
+  "description": "Prospect member buying Max Hog"
+}

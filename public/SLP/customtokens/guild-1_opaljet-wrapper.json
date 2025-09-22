@@ -1,0 +1,24 @@
+{
+  "wrapperID": "g1-opaljet-wrapper",
+  "guildID": "guild-1",
+  "name": "Opal Jet Token Wrapper",
+  "symbol": "OPALJET-WRAP",
+  "description": "Supply Opal Jet for a fleet and keep track with it through representation token",
+  "image": "pearce D9.png",
+  "type": "fleet",
+  "decimals": 0,
+  "circulatingSupply": 20000,
+  "exchangeRatio": [1, 10000], 
+  "vaultBalance": 5,
+  "redemptionAsset": "resource-opaljet",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0xffffffffffffffffffffffffffffffffffffffff",
+  "backingAsset": {
+    "resourceID": "resource-opaljet",
+    "name": "Opal Jet",
+    "image": "pearce D9.png",
+    "type": "ship",
+    "rarity": "rare"
+  }
+}

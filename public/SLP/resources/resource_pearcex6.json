@@ -1,0 +1,18 @@
+{
+  "resourceID": "resource-pearcex6",
+  "name": "Pearce X6",
+  "symbol": "PEARCEX6",
+  "description": "Premium combat ship with cutting-edge technology and superior performance",
+  "image": "PEARCE X6 PNG1v2.png",
+  "type": "spaceship",
+  "rarity": "epic",
+  "circulatingSupply": 150,
+  "maxSupply": 600,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "contractAddress": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "blockchain": "Solana",
+  "decimals": 0,
+  "category": "Star Atlas Spaceship"
+}

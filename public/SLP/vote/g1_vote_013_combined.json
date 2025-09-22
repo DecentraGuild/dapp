@@ -1,0 +1,38 @@
+{
+  "voteID": "g1_vote_013",
+  "daoID": "g1_dao_totalvote",
+  "votetype": "combined",
+  "guildID": "guild-1",
+  "title": "Guild Merger with Shadow Knights",
+  "description": "Proposal to merge Cyber Castle Guild with Shadow Knights Guild, combining resources and members to create a stronger alliance. This would require significant treasury allocation and role restructuring.",
+  "proposer": "g1_diana_council",
+  "status": "cancelled",
+  "votingStarts": "2024-01-12T13:00:00Z",
+  "votingEnds": "2024-01-22T13:00:00Z",
+  "completedAt": "2024-01-15T08:00:00Z",
+  "result": "cancelled",
+  "quorum": 2000,
+  "currentVotes": 800,
+  "yesVotes": 300,
+  "noVotes": 450,
+  "abstainVotes": 50,
+  "voters": [
+    "g1_eve_founder",
+    "g1_diana_council",
+    "g1_charlie_officer"
+  ],
+  "isActive": false,
+  "cancellationReason": "Shadow Knights Guild withdrew from merger negotiations",
+  "token1Weight": 0.6,
+  "token2Weight": 0.4,
+  "token1Results": {
+    "yesVotes": 180,
+    "noVotes": 270,
+    "abstainVotes": 30
+  },
+  "token2Results": {
+    "yesVotes": 120,
+    "noVotes": 180,
+    "abstainVotes": 20
+  }
+}

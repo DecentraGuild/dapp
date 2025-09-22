@@ -1,0 +1,21 @@
+{
+  "gameID": "guild-2_dice_game",
+  "guildID": "guild-2",
+  "name": "Shadow Realm Dice Fortune",
+  "description": "Challenge fate with the mystical dice! Predict the outcome and claim your fortune.",
+  "gameType": "dice_roll",
+  "tokenID": "g2-token1",
+  "minBet": 5,
+  "maxBet": 1000,
+  "multiplier": 5,
+  "dailyFreeSpins": 5,
+  "isActive": true,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "settings": {
+    "diceCount": 1,
+    "maxNumber": 6,
+    "minNumber": 1,
+    "animationDuration": 2000,
+    "cooldownTime": 1000
+  }
+}

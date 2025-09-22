@@ -1,0 +1,213 @@
+{
+    "guildId": "guild-1",
+    "guildName": "Dragon Knights",
+    "lastUpdated": "2024-01-15T10:30:00Z",
+    "timeFilters": {
+      "last5Days": "2024-01-10T00:00:00Z",
+      "last7Days": "2024-01-08T00:00:00Z", 
+      "last30Days": "2023-12-16T00:00:00Z"
+    },
+    "vaultActions": [
+      {
+        "id": "vault_001",
+        "vaultName": "Guild Treasury",
+        "action": "deposit",
+        "amount": "100 SOL",
+        "timestamp": "2024-01-15T09:00:00Z",
+        "source": "Quest Rewards",
+        "balanceAfter": "2500 SOL"
+      },
+      {
+        "id": "vault_002",
+        "vaultName": "Income Vault",
+        "action": "withdrawal",
+        "amount": "50 SOL",
+        "timestamp": "2024-01-14T14:30:00Z",
+        "purpose": "Event Prizes",
+        "balanceAfter": "1200 SOL"
+      },
+      {
+        "id": "vault_003",
+        "vaultName": "Token Vault",
+        "action": "mint",
+        "amount": "10000 Guild Coins",
+        "timestamp": "2024-01-13T11:15:00Z",
+        "cost": "25 SOL",
+        "balanceAfter": "50000 Guild Coins"
+      }
+    ],
+    "financialSummary": {
+      "totalAssets": {
+        "sol": 4500,
+        "guildCoins": 75000,
+        "nfts": 150,
+        "totalValueSOL": 4650
+      },
+      "totalLiabilities": {
+        "pendingRewards": 200,
+        "deferredExpenses": 50,
+        "totalValueSOL": 250
+      },
+      "netWorth": 4400
+    },
+    "income": [
+      {
+        "id": "income_001",
+        "source": "Quest Completions",
+        "amount": "150 SOL",
+        "period": "last7Days",
+        "timestamp": "2024-01-15T00:00:00Z"
+      },
+      {
+        "id": "income_002",
+        "source": "Event Fees",
+        "amount": "75 SOL",
+        "period": "last7Days",
+        "timestamp": "2024-01-14T00:00:00Z"
+      },
+      {
+        "id": "income_003",
+        "source": "Token Sales",
+        "amount": "200 SOL",
+        "period": "last7Days",
+        "timestamp": "2024-01-13T00:00:00Z"
+      },
+      {
+        "id": "income_004",
+        "source": "Foundry Fees",
+        "amount": "50 SOL",
+        "period": "last7Days",
+        "timestamp": "2024-01-12T00:00:00Z"
+      }
+    ],
+    "expenses": [
+      {
+        "id": "expense_001",
+        "category": "Event Prizes",
+        "amount": "100 SOL",
+        "period": "last7Days",
+        "timestamp": "2024-01-14T00:00:00Z"
+      },
+      {
+        "id": "expense_002",
+        "category": "Infrastructure",
+        "amount": "25 SOL",
+        "period": "last7Days",
+        "timestamp": "2024-01-13T00:00:00Z"
+      },
+      {
+        "id": "expense_003",
+        "category": "Rewards Distribution",
+        "amount": "75 SOL",
+        "period": "last7Days",
+        "timestamp": "2024-01-12T00:00:00Z"
+      },
+      {
+        "id": "expense_004",
+        "category": "Marketing",
+        "amount": "30 SOL",
+        "period": "last7Days",
+        "timestamp": "2024-01-11T00:00:00Z"
+      }
+    ],
+    "vaultBalances": [
+      {
+        "vaultName": "Guild Treasury",
+        "balance": "2500 SOL",
+        "lastUpdated": "2024-01-15T09:00:00Z",
+        "change24h": "+50 SOL",
+        "change7d": "+200 SOL"
+      },
+      {
+        "vaultName": "Income Vault",
+        "balance": "1200 SOL",
+        "lastUpdated": "2024-01-14T14:30:00Z",
+        "change24h": "-50 SOL",
+        "change7d": "+100 SOL"
+      },
+      {
+        "vaultName": "Token Vault",
+        "balance": "50000 Guild Coins",
+        "lastUpdated": "2024-01-13T11:15:00Z",
+        "change24h": "+1000 Guild Coins",
+        "change7d": "+5000 Guild Coins"
+      },
+      {
+        "vaultName": "NFT Vault",
+        "balance": "150 NFTs",
+        "lastUpdated": "2024-01-15T08:45:00Z",
+        "change24h": "+5 NFTs",
+        "change7d": "+25 NFTs"
+      }
+    ],
+    "profitLoss": {
+      "last7Days": {
+        "totalIncome": "475 SOL",
+        "totalExpenses": "230 SOL",
+        "netProfit": "245 SOL",
+        "profitMargin": "51.6%"
+      },
+      "last30Days": {
+        "totalIncome": "1800 SOL",
+        "totalExpenses": "950 SOL",
+        "netProfit": "850 SOL",
+        "profitMargin": "47.2%"
+      }
+    },
+    "tokenMetrics": [
+      {
+        "tokenName": "Guild Coin",
+        "totalSupply": "100000",
+        "circulatingSupply": "75000",
+        "marketCap": "1500 SOL",
+        "price": "0.02 SOL",
+        "change24h": "+5%",
+        "change7d": "+15%"
+      },
+      {
+        "tokenName": "Old Guild Token",
+        "totalSupply": "50000",
+        "circulatingSupply": "10000",
+        "marketCap": "100 SOL",
+        "price": "0.01 SOL",
+        "change24h": "-10%",
+        "change7d": "-25%"
+      }
+    ],
+    "financialGoals": [
+      {
+        "id": "goal_001",
+        "title": "Reach 5000 SOL Treasury",
+        "current": 2500,
+        "target": 5000,
+        "deadline": "2024-06-01T00:00:00Z",
+        "progress": 50
+      },
+      {
+        "id": "goal_002",
+        "title": "Achieve 100K Guild Coin Circulation",
+        "current": 75000,
+        "target": 100000,
+        "deadline": "2024-03-01T00:00:00Z",
+        "progress": 75
+      },
+      {
+        "id": "goal_003",
+        "title": "Maintain 50% Profit Margin",
+        "current": 51.6,
+        "target": 50,
+        "deadline": "2024-12-31T00:00:00Z",
+        "progress": 103
+      }
+    ],
+    "summary": {
+      "totalRevenue": "475 SOL",
+      "totalExpenses": "230 SOL",
+      "netProfit": "245 SOL",
+      "profitMargin": "51.6%",
+      "totalAssets": "4650 SOL",
+      "activeVaults": 4,
+      "tokenTypes": 2,
+      "financialGoals": 3
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "walletID": "0x4444444444444444444444444444444444444444",
+  "vaultID": "guild-1_income_vault",
+  "guildID": "guild-1",
+  "tokens": {
+    "sol": 10.25,
+    "usdc": 500,
+    "atlas": 5000
+  },
+  "lastUpdated": "2024-01-20T12:00:00Z"
+}

@@ -1,0 +1,45 @@
+{
+  "questID": "g1_q0010",
+  "guildID": "guild-1",
+  "title": "Conquer the Shadow Realm",
+  "description": "Venture into the mysterious Shadow Realm to defeat the Shadow Lord and claim the realm's treasures for the guild.",
+  "type": "ingame",
+  "status": "new",
+  "phase": "create",
+  "role": "guild1_r2",
+  "roleRequirement": "member",
+  "goal": "Defeat the Shadow Lord and clear all shadow creatures from the realm",
+  "requirements": [
+    "Minimum level 40",
+    "Complete 'Shadow Realm Access' quest",
+    "Equip light-based weapons"
+  ],
+  "gear": [
+    "Radiant Sword",
+    "Shadow Ward Amulet",
+    "Light Potions x15"
+  ],
+  "guildSupplies": [
+    "Radiant Sword",
+    "Shadow Ward Amulet"
+  ],
+  "rewards": {
+    "tokens": {
+      "token1": 1500,
+      "token2": 300
+    },
+    "badges": ["shadow_conqueror"],
+    "nfts": ["shadow_lord_crown"],
+    "experience": 8000
+  },
+  "contributors": [],
+  "assignedTo": null,
+  "creator": "guild1_founder",
+  "created": "2024-01-16T09:00:00Z",
+  "deadline": "2024-01-30T23:59:59Z",
+  "completedAt": null,
+  "isActive": true,
+  "applications": [],
+  "verification": null,
+  "rewards": []
+}

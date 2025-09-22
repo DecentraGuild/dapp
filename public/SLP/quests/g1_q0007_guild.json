@@ -1,0 +1,42 @@
+{
+  "questID": "g1_q0007",
+  "guildID": "guild-1",
+  "title": "Moderate Guild Chat",
+  "description": "Help maintain a positive and productive guild chat environment by moderating discussions and helping new members.",
+  "type": "guild",
+  "status": "new",
+  "phase": "create",
+  "role": "guild1_r3",
+  "roleRequirement": "officer",
+  "goal": "Moderate guild chat for 7 consecutive days, ensuring positive community atmosphere",
+  "requirements": [
+    "Officer role or higher",
+    "Complete moderation training",
+    "Available during peak hours (6-10 PM)"
+  ],
+  "gear": [],
+  "guildSupplies": [
+    "Moderation Guidelines",
+    "Community Standards Document",
+    "Member Roster"
+  ],
+  "rewards": {
+    "tokens": {
+      "token1": 400,
+      "token2": 100
+    },
+    "badges": ["community_moderator"],
+    "nfts": ["moderator_badge"],
+    "experience": 2000
+  },
+  "contributors": [],
+  "assignedTo": null,
+  "creator": "guild1_founder",
+  "created": "2024-01-15T11:00:00Z",
+  "deadline": "2024-01-22T23:59:59Z",
+  "completedAt": null,
+  "isActive": true,
+  "applications": [],
+  "verification": null,
+  "rewards": []
+}

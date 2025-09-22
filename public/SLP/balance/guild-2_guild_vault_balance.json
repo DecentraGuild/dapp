@@ -1,0 +1,19 @@
+{
+  "walletID": "0x2222222222222222222222222222222222222222",
+  "vaultID": "g2_guild_vault",
+  "guildID": "guild-2",
+  "tokens": {
+    "sol": 1800.25,
+    "usdc": 35000,
+    "wbtc": 1.8,
+    "atlas": 75000,
+    "polis": 5000
+  },
+  "nfts": {
+    "Crew Rare": 15,
+    "Crew Epic": 5,
+    "Crew Legendary": 2,
+    "Crew Common": 750
+  },
+  "lastUpdated": "2024-01-20T12:00:00Z"
+}

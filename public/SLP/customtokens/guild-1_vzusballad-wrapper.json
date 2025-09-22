@@ -1,0 +1,24 @@
+{
+  "wrapperID": "g1-vzusballad-wrapper",
+  "guildID": "guild-1",
+  "name": "VZUS Ballad Token Wrapper",
+  "symbol": "VZUSBALLAD-WRAP",
+  "description": "Supply VZUS Ballad for a fleet and keep track with it through representation token",
+  "image": "VZUS  ballad.png",
+  "type": "fleet",
+  "decimals": 0,
+  "circulatingSupply": 12000,
+  "exchangeRatio": [1, 6000], 
+  "vaultBalance": 8,
+  "redemptionAsset": "resource-vzusballad",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0x3333333333333333333333333333333333333333",
+  "backingAsset": {
+    "resourceID": "resource-vzusballad",
+    "name": "VZUS Ballad",
+    "image": "VZUS  ballad.png",
+    "type": "ship",
+    "rarity": "rare"
+  }
+}

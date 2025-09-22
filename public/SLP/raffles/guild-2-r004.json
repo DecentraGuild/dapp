@@ -1,0 +1,27 @@
+{
+  "guildID": "guild-2",
+  "raffleId": "guild-2-r004",
+  "title": "Sun Diamond Mega Draw",
+  "description": "Massive Sun Diamond collection awaits the lucky winner in this premium raffle",
+  "status": "running",
+  "ticketstotal": 2000,
+  "ticketsprice": 150,
+  "ticketpaymentcurrency": "g2-token1",
+  "rewardtokenid": "resource-pearcex4",
+  "rewardamount": 5,
+  "ticketsoldwallets": [
+    "0x9999111111111111111111111111111111111111",
+    "0x8888222222222222222222222222222222222222",
+    "0x7777333333333333333333333333333333333333",
+    "0x6666444444444444444444444444444444444444",
+    "0x5555555555555555555555555555555555555555",
+    "0x4444666666666666666666666666666666666666",
+    "0x3333777777777777777777777777777777777777",
+    "0x2222888888888888888888888888888888888888",
+    "0x1111999999999999999999999999999999999999"
+  ],
+  "winner": null,
+  "createdby": "g2_charlie_council",
+  "createdon": "2024-01-22T16:45:00Z",
+  "imagepath": "/SLP/resources/Pearce X4_Thumbnail.png"
+}

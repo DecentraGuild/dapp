@@ -1,0 +1,24 @@
+{
+  "guildID": "guild-1",
+  "raffleId": "guild-1-r006",
+  "title": "Cyber Castle Elite Weapons",
+  "description": "Win rare elite weapons for enhanced combat capabilities in Cyber Castle",
+  "status": "running",
+  "ticketstotal": 750,
+  "ticketsprice": 75,
+  "ticketpaymentcurrency": "g1-token1",
+  "rewardtokenid": "resource-pearcer8",
+  "rewardamount": 2,
+  "ticketsoldwallets": [
+    "0xaaaa111111111111111111111111111111111111",
+    "0xbbbb222222222222222222222222222222222222",
+    "0xcccc333333333333333333333333333333333333",
+    "0xdddd444444444444444444444444444444444444",
+    "0xeeee555555555555555555555555555555555555",
+    "0xffff666666666666666666666666666666666666"
+  ],
+  "winner": null,
+  "createdby": "g1_alice_admin",
+  "createdon": "2024-01-18T11:15:00Z",
+  "imagepath": "/SLP/resources/Pearce_R8 PNG FINAL.png"
+}

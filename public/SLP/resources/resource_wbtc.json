@@ -1,0 +1,19 @@
+{
+  "resourceID": "resource-wbtc",
+  "name": "Wrapped Bitcoin",
+  "symbol": "WBTC",
+  "description": "Wrapped Bitcoin token on Ethereum, backed 1:1 by Bitcoin",
+  "image": "/SLP/resources/wbtc.png",
+  "type": "wrapped_asset",
+  "rarity": "epic",
+  "blockchain": "Solana",
+  "decimals": 8,
+  "circulatingSupply": 150000,
+  "maxSupply": 21000000,
+  "createdAt": "2019-01-31T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "demoPrice": 120000.000,
+  "Pricetoken": "resource-usdc",
+  "contractAddress": "9n4nbM75f5Ui33ZbPYXn59EwSgE8CGsHtAeTH5YFeJ9E"
+}

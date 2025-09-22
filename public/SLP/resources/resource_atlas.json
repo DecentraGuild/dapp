@@ -1,0 +1,19 @@
+{
+  "resourceID": "resource-atlas",
+  "name": "Star Atlas ATLAS",
+  "symbol": "ATLAS",
+  "description": "Primary utility token of the Star Atlas metaverse, used for in-game transactions and governance",
+  "image": "/SLP/resources/logo-atlas.png",
+  "type": "gaming_token",
+  "rarity": "uncommon",
+  "blockchain": "Solana",
+  "decimals": 9,
+  "circulatingSupply": 36000000000,
+  "maxSupply": 36000000000,
+  "createdAt": "2021-09-09T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "demoPrice": 0.001,
+  "Pricetoken": "resource-usdc",
+  "contractAddress": "ATLASXmbPQxBUYbxPsV97usA3fPQYEqzQBUHgiFCUsXx"
+}
