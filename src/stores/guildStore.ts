@@ -116,46 +116,42 @@ export const useGuildStore = defineStore('guild', () => {
       }
       
       const memberAddresses = await response.json()
-      console.log(`Loaded ${memberAddresses.length} member addresses for ${guildId}:`, memberAddresses)
+      
+      // Create a direct lookup map for wallet addresses to member files
+      const walletToMemberMap: Record<string, string> = {
+        '9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM': 'g1_alice_prospect.json',
+        '5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1': 'g1_bob_member.json',
+        '7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU': 'g1_charlie_officer.json',
+        '3xJ3H4V8K8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q': 'g1_diana_council.json',
+        '8xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU': 'g1_eve_founder.json'
+      }
+      
+      // Add guild-2 mappings
+      if (guildId === 'guild-2') {
+        Object.assign(walletToMemberMap, {
+          '9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM': 'g2_alice_member.json',
+          '5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1': 'g2_bob_officer.json',
+          '7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU': 'g2_charlie_council.json',
+          '3xJ3H4V8K8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q': 'g2_diana_founder.json',
+          '8xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU': 'g2_eve_prospect.json'
+        })
+      }
+      
       const members: GuildMember[] = []
       
-      // Load all member profiles for this guild
-      const guildPrefix = guildId === 'guild-1' ? 'g1' : 'g2'
-      const memberNames = ['alice', 'bob', 'charlie', 'diana', 'eve']
-      
-      for (const name of memberNames) {
-        try {
-          // Try to find the member profile by guild + name pattern
-          const possibleFiles = [
-            `${guildPrefix}_${name}_prospect.json`,
-            `${guildPrefix}_${name}_member.json`,
-            `${guildPrefix}_${name}_officer.json`,
-            `${guildPrefix}_${name}_council.json`,
-            `${guildPrefix}_${name}_founder.json`
-          ]
-          
-          for (const fileName of possibleFiles) {
-            try {
-              const memberResponse = await fetch(getSlpPath(`memberprofiles/${fileName}`))
-              if (memberResponse.ok) {
-                const memberData = await memberResponse.json()
-                // Only include members whose addresses are in the guild member list
-                if (memberAddresses.includes(memberData.walletAddress)) {
-                  console.log(`Found member ${name} in ${guildId}:`, memberData.username, memberData.role)
-                  members.push(memberData)
-                  break // Found the member, no need to check other roles
-                } else {
-                  console.log(`Member ${name} (${memberData.walletAddress}) not in guild member list`)
-                }
-              } else {
-                console.warn(`Member profile ${fileName} not found: ${memberResponse.status}`)
-              }
-            } catch (err) {
-              console.warn(`Error loading member profile ${fileName}:`, err)
+      // Load only the specific member files for addresses in the guild
+      for (const walletAddress of memberAddresses) {
+        const memberFile = walletToMemberMap[walletAddress]
+        if (memberFile) {
+          try {
+            const memberResponse = await fetch(getSlpPath(`memberprofiles/${memberFile}`))
+            if (memberResponse.ok) {
+              const memberData = await memberResponse.json()
+              members.push(memberData)
             }
+          } catch (err) {
+            // Silent fail for missing member files
           }
-        } catch (err) {
-          console.warn(`Failed to load member profile for ${name}:`, err)
         }
       }
       

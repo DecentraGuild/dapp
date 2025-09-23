@@ -277,6 +277,7 @@ import { Icon } from '@iconify/vue'
 import { BaseCard, BaseTimeline, BaseButton, BaseCalendar } from '@/components/base'
 import BaseSidebar from '@/components/base/BaseSidebar.vue'
 import { EVENT_TYPE_ICONS, EVENT_TYPE_TITLES, EVENT_TYPE_SIDEBAR, EVENT_TYPE_COLORS } from '@/constants/eventTypes'
+import { getSlpPath } from '@/utils/api'
 
 interface Event {
   eventID: string
@@ -466,35 +467,50 @@ const toggleSignup = (event: Event) => {
   }
   
   // In a real app, you would also make an API call here to persist the change
-  console.log(`User ${isUserSignedUp(targetEvent) ? 'signed up for' : 'cancelled signup for'} event: ${targetEvent.title}`)
 }
 
 const loadEvents = async () => {
   try {
-    // Get all event files dynamically using the correct glob pattern
-    const eventModules = import.meta.glob('/SLP/events/*.json')
-    const events: Event[] = []
-    
-    for (const path in eventModules) {
+    const eventFiles = [
+      'g1_event_001_poker_tournament.json',
+      'g1_event_002_poker_tournament_past.json',
+      'g1_event_002_raid.json',
+      'g1_event_003_meeting.json',
+      'g1_event_003_raid_past.json',
+      'g1_event_004_chill_session.json',
+      'g1_event_004_meeting_past.json',
+      'g1_event_005_gaming.json',
+      'g1_event_006_poker_tournament.json',
+      'g1_event_007_raid.json',
+      'g1_event_008_meeting.json',
+      'g1_event_009_chill_session.json',
+      'g1_event_010_gaming.json',
+      'g1_event_011_poker_tournament.json',
+      'g2_event_001_poker_tournament.json',
+      'g2_event_002_poker_tournament_past.json'
+    ]
+
+    const eventPromises = eventFiles.map(async (filename) => {
       try {
-        const eventData = await fetch(path)
-        if (eventData.ok) {
-          const event = await eventData.json() as Event
-          
+        const response = await fetch(getSlpPath(`events/${filename}`))
+        if (response.ok) {
+          const event = await response.json()
           // Only show upcoming events
           if (event.status === 'upcoming' && event.isActive) {
-            events.push(event)
+            return event
           }
-        } else {
-          console.warn(`Failed to load event from ${path}: ${eventData.status}`)
         }
       } catch (error) {
-        console.warn(`Failed to load event from ${path}:`, error)
+        // Silent fail for missing files
       }
-    }
+      return null
+    })
+
+    const loadedEvents = await Promise.all(eventPromises)
+    const validEvents = loadedEvents.filter(event => event !== null)
     
     // Sort by date
-    upcomingEvents.value = events.sort((a, b) => 
+    upcomingEvents.value = validEvents.sort((a, b) => 
       new Date(a.date).getTime() - new Date(b.date).getTime()
     )
   } catch (error) {

@@ -202,8 +202,6 @@ const selectTrade = (trade: any) => {
 }
 
 const handleTradeExecution = (executionData: { orderID: string, amount: number, totalCost: number }) => {
-  console.log('Trade execution:', executionData)
-  
   // In a real app, this would:
   // 1. Validate the trade
   // 2. Check permissions

@@ -90,6 +90,23 @@ export const useUserStore = defineStore('user', () => {
     error.value = null
   }
 
+  const demoLogin = async () => {
+    try {
+      // Load available wallets first
+      if (availableWallets.value.length === 0) {
+        await loadAvailableWallets()
+      }
+      
+      // Find Alice's wallet
+      const aliceWallet = availableWallets.value.find(w => w.name === 'Alice')
+      if (aliceWallet) {
+        await selectWallet(aliceWallet)
+      }
+    } catch (err) {
+      console.error('Demo login failed:', err)
+    }
+  }
+
   const getBalance = (token: string) => {
     return walletBalance.value?.balances[token] || 0
   }
@@ -115,6 +132,7 @@ export const useUserStore = defineStore('user', () => {
     loadAvailableWallets,
     selectWallet,
     logout,
+    demoLogin,
     getBalance,
     isInGuild
   }

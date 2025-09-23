@@ -394,16 +394,40 @@ onMounted(() => {
   min-height: 100%;
   background: var(--theme-background);
   position: relative;
+  width: 100%;
+  max-width: 100%;
 }
 
 .main-content {
   flex: 1;
-  padding: var(--space-lg);
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
   min-height: 100%;
   overflow-y: visible;
+  min-width: 0; /* Allow flex item to shrink below content size */
+}
+
+/* Responsive Layout */
+@media (max-width: 1200px) {
+  .foundry-custom-content {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  
+  .main-content {
+    gap: var(--space-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .foundry-custom-content {
+    gap: var(--space-sm);
+  }
+  
+  .main-content {
+    gap: var(--space-sm);
+  }
 }
 
 /* Custom Type Info Card */
@@ -416,6 +440,19 @@ onMounted(() => {
   display: flex;
   gap: var(--space-lg);
   align-items: flex-start;
+}
+
+/* Responsive header layout */
+@media (max-width: 768px) {
+  .custom-type-header {
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: center;
+  }
+  
+  .custom-type-icon {
+    align-self: center;
+  }
 }
 
 .custom-type-icon {
@@ -488,6 +525,19 @@ onMounted(() => {
   display: flex;
   gap: var(--space-xl);
   align-items: flex-start;
+}
+
+/* Responsive asset details layout */
+@media (max-width: 1024px) {
+  .asset-details-header {
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  
+  .asset-image-container {
+    max-width: 100%;
+    align-self: center;
+  }
 }
 
 .asset-image-container {
@@ -576,6 +626,19 @@ onMounted(() => {
   justify-content: flex-end;
   align-items: flex-end;
   gap: var(--space-lg);
+}
+
+/* Responsive exchange section */
+@media (max-width: 768px) {
+  .exchange-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-md);
+  }
+  
+  .input-group {
+    max-width: 100%;
+  }
 }
 
 .input-group {

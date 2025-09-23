@@ -5,10 +5,14 @@ import TopNavbar from './components/TopNavbar.vue'
 import { useSkinTheme } from './composables/useSkinTheme'
 import { useFooterState } from './composables/useFooterState'
 import { useThemeStore } from './stores/themeStore'
+import { useUserStore } from './stores/userStore'
+import { useGuildStore } from './stores/guildStore'
 
 const { currentTheme, getTextColor, getPrimaryColor, getSecondaryColor, getBackgroundColor } = useSkinTheme()
 const { isFooterExpanded, isDashboardMode } = useFooterState()
 const themeStore = useThemeStore()
+const userStore = useUserStore()
+const guildStore = useGuildStore()
 
 const appClasses = computed(() => [
   'app',
@@ -32,8 +36,9 @@ watch(() => themeStore.cssVariables, (variables) => {
   }
 }, { immediate: true, deep: true })
 
-// Initialize default theme
+// Initialize default theme and demo login
 onMounted(async () => {
+  // Load themes
   if (themeStore.availableThemes.length === 0) {
     await themeStore.loadAvailableThemes()
   }
@@ -42,6 +47,19 @@ onMounted(async () => {
     // Load the first available theme as default
     if (themeStore.availableThemes.length > 0) {
       await themeStore.loadTheme(themeStore.availableThemes[0].id)
+    }
+  }
+
+  // Demo login with Alice if not already logged in
+  if (!userStore.isLoggedIn) {
+    await userStore.demoLogin()
+  }
+
+  // Load guilds and select guild-1 if not already selected
+  if (!guildStore.hasActiveGuild) {
+    await guildStore.loadAvailableGuilds()
+    if (guildStore.availableGuilds.length > 0) {
+      await guildStore.selectGuild('guild-1')
     }
   }
 })

@@ -352,16 +352,40 @@ onMounted(() => {
   min-height: 100%;
   background: var(--theme-background);
   position: relative;
+  width: 100%;
+  max-width: 100%;
 }
 
 .main-content {
   flex: 1;
-  padding: var(--space-lg);
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
   min-height: 100%;
   overflow-y: visible;
+  min-width: 0; /* Allow flex item to shrink below content size */
+}
+
+/* Responsive Layout */
+@media (max-width: 1200px) {
+  .foundry-nft-content {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  
+  .main-content {
+    gap: var(--space-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .foundry-nft-content {
+    gap: var(--space-sm);
+  }
+  
+  .main-content {
+    gap: var(--space-sm);
+  }
 }
 
 /* Collection Info Card */
@@ -374,6 +398,23 @@ onMounted(() => {
   display: flex;
   gap: var(--space-lg);
   align-items: flex-start;
+}
+
+/* Responsive collection header layout */
+@media (max-width: 768px) {
+  .collection-header {
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: center;
+  }
+  
+  .collection-icon {
+    align-self: center;
+  }
+  
+  .collection-stats {
+    justify-content: center;
+  }
 }
 
 .collection-icon {
@@ -467,6 +508,19 @@ onMounted(() => {
   display: flex;
   gap: var(--space-xl);
   align-items: flex-start;
+}
+
+/* Responsive NFT details layout */
+@media (max-width: 1024px) {
+  .nft-details-header {
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  
+  .nft-image-container {
+    max-width: 100%;
+    align-self: center;
+  }
 }
 
 .nft-image-container {

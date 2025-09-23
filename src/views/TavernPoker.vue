@@ -299,30 +299,36 @@ const filteredPokerEvents = computed(() => {
 
 const loadPokerEvents = async () => {
   try {
-    // Get all event files dynamically and filter for poker tournaments
-    const eventModules = import.meta.glob('/SLP/events/*.json')
-    const events: PokerEvent[] = []
-    
-    for (const path in eventModules) {
+    const eventFiles = [
+      'g1_event_001_poker_tournament.json',
+      'g1_event_002_poker_tournament_past.json',
+      'g1_event_006_poker_tournament.json',
+      'g1_event_011_poker_tournament.json',
+      'g2_event_001_poker_tournament.json',
+      'g2_event_002_poker_tournament_past.json'
+    ]
+
+    const eventPromises = eventFiles.map(async (filename) => {
       try {
-        const eventData = await fetch(path)
-        if (eventData.ok) {
-          const event = await eventData.json() as PokerEvent
-          
+        const response = await fetch(getSlpPath(`events/${filename}`))
+        if (response.ok) {
+          const event = await response.json()
           // Only show poker tournament events that are active
           if (event.eventType === 'poker_tournament' && event.isActive) {
-            events.push(event)
+            return event
           }
-        } else {
-          console.warn(`Failed to load event from ${path}: ${eventData.status}`)
         }
       } catch (error) {
-        console.warn(`Failed to load event from ${path}:`, error)
+        // Silent fail for missing files
       }
-    }
+      return null
+    })
+
+    const loadedEvents = await Promise.all(eventPromises)
+    const validEvents = loadedEvents.filter(event => event !== null)
     
     // Store all poker events (filtering and sorting happens in computed property)
-    pokerEvents.value = events
+    pokerEvents.value = validEvents
   } catch (error) {
     console.error('Failed to load poker events:', error)
   }

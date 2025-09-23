@@ -154,7 +154,6 @@ const availableRooms = ref([
 
 // Methods
 const handleRoomManage = (roomId: string) => {
-  console.log('Managing room:', roomId)
   // TODO: Implement room management functionality
   // This could open a modal, navigate to a specific management view, etc.
 }

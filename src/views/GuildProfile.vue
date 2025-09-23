@@ -182,31 +182,21 @@ import BaseButton from '@/components/base/BaseButton.vue'
 import BaseDropdown from '@/components/base/BaseDropdown.vue'
 import { getSlpPath } from '@/utils/api'
 
-// Role permission data
-const rolePermissions = ref<any[]>([])
-
-// Load role permissions from guild permission table
-const loadRolePermissions = async (guildId: string) => {
-  try {
-    console.log('Loading role permissions for guild:', guildId)
-    const response = await fetch(getSlpPath(`guildpermission/${guildId}_permissiontable.json`))
-    if (response.ok) {
-      const data = await response.json()
-      rolePermissions.value = data
-      console.log('Loaded role permissions:', data)
-    } else {
-      console.error('Failed to load role permissions:', response.status, response.statusText)
-    }
-  } catch (error) {
-    console.error('Failed to load role permissions:', error)
-  }
-}
-
-// Get role display name from permission table
+// Simple role display mapping for demo
 const getRoleDisplayName = (roleId: string) => {
-  const role = rolePermissions.value.find(r => r.id === roleId)
-  console.log('Looking for role:', roleId, 'Found:', role, 'All roles:', rolePermissions.value)
-  return role ? role.name : roleId
+  const roleMap: Record<string, string> = {
+    'g1-r1': 'Prospect',
+    'g1-r2': 'Member', 
+    'g1-r3': 'Officer',
+    'g1-r4': 'Council',
+    'g1-r5': 'Founder',
+    'g2-r1': 'Prospect',
+    'g2-r2': 'Member',
+    'g2-r3': 'Officer', 
+    'g2-r4': 'Council',
+    'g2-r5': 'Founder'
+  }
+  return roleMap[roleId] || roleId
 }
 
 const router = useRouter()
@@ -361,10 +351,10 @@ const handleMemberClick = (member: any) => {
   router.push(`/member/${member.memberID}`)
 }
 
-// Watch for guild changes to load role permissions
+// Watch for guild changes (no permissions loading needed for demo)
 watch(() => guildStore.guildId, async (newGuildId) => {
   if (newGuildId) {
-    await loadRolePermissions(newGuildId)
+    // Guild changed - no additional loading needed for demo
   }
 }, { immediate: true })
 

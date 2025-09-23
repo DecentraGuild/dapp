@@ -283,14 +283,11 @@ const formatTokenAmount = (amount: number) => {
 
 // Theme selector methods
 const toggleThemeDropdown = () => {
-  console.log('TopNavbar: Toggling theme dropdown. Available themes:', availableThemes.value)
   showThemeDropdown.value = !showThemeDropdown.value
 }
 
 const selectTheme = async (themeId: string) => {
-  console.log('TopNavbar: Selecting theme:', themeId)
   await themeStore.loadTheme(themeId)
-  console.log('TopNavbar: Theme loaded:', themeStore.currentTheme)
   showThemeDropdown.value = false
 }
 
@@ -314,7 +311,6 @@ onMounted(async () => {
   }
   if (themeStore.availableThemes.length === 0) {
     await themeStore.loadAvailableThemes()
-    console.log('TopNavbar: Available themes loaded:', themeStore.availableThemes)
   }
 })
 

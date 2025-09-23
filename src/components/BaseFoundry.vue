@@ -127,16 +127,19 @@ watch(() => route.path, updateTabFromRoute, { immediate: true })
 
 /* Wide screen margin */
 @media (min-width: 1400px) {
+  .base-foundry {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
   .foundry-header-card {
-    margin: 0% 10%;
-    width: 80%;
-    max-width: 80%;
+    width: 100%;
+    max-width: 100%;
   }
   
   .foundry-main-card {
-    margin: 0 10%;
-    width: 80%;
-    max-width: 80%;
+    width: 100%;
+    max-width: 100%;
   }
 }
 

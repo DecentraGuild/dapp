@@ -102,29 +102,34 @@ const handleBuyTickets = (purchase: { raffleId: string; quantity: number; totalC
 
 const loadRaffles = async () => {
   try {
-    // Get all raffle files dynamically using the correct glob pattern
-    const raffleModules = import.meta.glob('/SLP/raffles/*.json')
-    const loadedRaffles: Raffle[] = []
-    
-    for (const path in raffleModules) {
+    const raffleFiles = [
+      'guild-1-r004.json',
+      'guild-1-r005.json',
+      'guild-1-r006.json',
+      'guild-2-r003.json',
+      'guild-2-r004.json'
+    ]
+
+    const rafflePromises = raffleFiles.map(async (filename) => {
       try {
-        const raffleData = await fetch(path)
-        if (raffleData.ok) {
-          const raffle = await raffleData.json() as Raffle
-          loadedRaffles.push(raffle)
-        } else {
-          console.warn(`Failed to load raffle from ${path}: ${raffleData.status}`)
+        const response = await fetch(getSlpPath(`raffles/${filename}`))
+        if (response.ok) {
+          return await response.json()
         }
       } catch (error) {
-        console.warn(`Failed to load raffle from ${path}:`, error)
+        // Silent fail for missing files
       }
-    }
+      return null
+    })
+
+    const loadedRaffles = await Promise.all(rafflePromises)
+    const validRaffles = loadedRaffles.filter(raffle => raffle !== null)
     
     // Sort by creation date (newest first) and status (running first)
-    raffles.value = loadedRaffles.sort((a, b) => {
+    raffles.value = validRaffles.sort((a, b) => {
       // First sort by status priority (running > concept > finished)
-      const statusPriority = { running: 3, concept: 2, finished: 1 }
-      const statusDiff = statusPriority[b.status] - statusPriority[a.status]
+      const statusPriority: Record<string, number> = { running: 3, concept: 2, finished: 1 }
+      const statusDiff = (statusPriority[b.status] || 0) - (statusPriority[a.status] || 0)
       if (statusDiff !== 0) return statusDiff
       
       // Then by creation date

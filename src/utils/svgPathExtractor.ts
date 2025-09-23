@@ -21,7 +21,6 @@ async function loadSvgDocument(svgFile: string): Promise<Document> {
     try {
       // Convert SLP path to correct GitHub Pages path
       const correctedSvgFile = svgFile.startsWith('/SLP/') ? getSlpPath(svgFile.replace('/SLP/', '')) : svgFile
-      console.log('Loading SVG file:', correctedSvgFile)
       const response = await fetch(correctedSvgFile)
       
       if (!response.ok) {
@@ -67,14 +66,12 @@ export async function getShapePath(shapeId: string, svgFile: string): Promise<st
     if (pathElement) {
       const pathData = pathElement.getAttribute('d')
       if (pathData) {
-        console.log(`Found shape path for ${shapeId} in ${svgFile}`)
         pathCache.set(cacheKey, pathData)
         return pathData
       }
     }
     
     // Fallback: return a simple rectangle if shape not found
-    console.warn(`Shape with ID "${shapeId}" not found in SVG file: ${svgFile}`)
     const fallbackPath = "M10,10 L90,10 L90,50 L10,50 Z"
     pathCache.set(cacheKey, fallbackPath)
     return fallbackPath

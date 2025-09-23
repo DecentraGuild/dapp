@@ -223,10 +223,7 @@ const handleShapeLeave = () => {
 
 
 const handleShapeClick = (item: NavigationItem, event: MouseEvent) => {
-  console.log('FooterNavbar: Shape clicked:', item.id, 'hasSubmenu:', item.hasSubmenu)
-  
   if (item.hasSubmenu) {
-    console.log('FooterNavbar: Showing submenu for:', item.id)
     // Calculate dynamic position based on submenu content and available space
     const submenuItemCount = item.submenuItems?.length || 0
     const estimatedHeight = Math.max(100, submenuItemCount * 60 + 80) // Base height + items
@@ -255,13 +252,10 @@ const handleShapeClick = (item: NavigationItem, event: MouseEvent) => {
       y: yPosition
     }
     
-    console.log('FooterNavbar: Submenu position:', newPosition)
     submenuPosition.value = newPosition
     // Show submenu or toggle it
     setHoveredItem(hoveredItem.value?.id === item.id ? null : item.id)
-    console.log('FooterNavbar: Hovered item set to:', hoveredItem.value?.id)
   } else {
-    console.log('FooterNavbar: Navigating directly to:', item.path)
     // Navigate directly
     handleNavigation(item)
   }
@@ -276,31 +270,23 @@ const handleNavigation = (item: NavigationItem) => {
 // Load shape paths when component mounts or theme changes
 const loadShapePaths = async () => {
   if (!currentTheme.value) {
-    console.log('FooterNavbar: No theme loaded yet')
     return
   }
   
-  console.log('FooterNavbar: Loading shape paths for theme:', currentTheme.value.id)
   const svgFile = currentTheme.value.svgFile
   const shapeIds = props.navigationItems.map(item => getShapeId(item.name))
   const imageSize = currentTheme.value.shapeCoordinates?.imageSize
-  
-  console.log('FooterNavbar: SVG file:', svgFile)
-  console.log('FooterNavbar: Image size:', imageSize)
-  console.log('FooterNavbar: Shape IDs:', shapeIds)
   
   try {
     const paths = await Promise.all(
       shapeIds.map(async (shapeId) => {
         const path = await getShapePath(shapeId, svgFile)
-        console.log(`FooterNavbar: Loaded path for ${shapeId}:`, path.substring(0, 100) + '...')
         return { shapeId, path }
       })
     )
     
     // Create new Map directly from the paths array
     shapePaths.value = new Map(paths.map(({ shapeId, path }) => [shapeId, path]))
-    console.log('FooterNavbar: Shape paths loaded successfully')
   } catch (error) {
     console.error('FooterNavbar: Error loading shape paths:', error)
   }

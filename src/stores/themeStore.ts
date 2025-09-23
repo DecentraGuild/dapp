@@ -130,13 +130,10 @@ export const useThemeStore = defineStore('theme', () => {
             themeData.svgFile = themeData.svgFile.startsWith('/SLP/') 
               ? getSlpPath(themeData.svgFile.replace('/SLP/', '')) 
               : themeData.svgFile
-            console.log(`Loaded theme ${file}:`, themeData.name, themeData.images)
             themes.push(themeData)
           } else {
-            console.warn(`Failed to load theme ${file}: ${response.status} ${response.statusText}`)
           }
         } catch (err) {
-          console.warn(`Failed to load theme ${file}:`, err)
         }
       }
       
@@ -180,7 +177,6 @@ export const useThemeStore = defineStore('theme', () => {
               : theme.svgFile
           }
         } else {
-          console.warn(`Theme ${themeId} not found: ${response.status}`)
           throw new Error('Theme not found')
         }
       }
