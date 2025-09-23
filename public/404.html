@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dGuild dApp</title>
     <script>
-        // GitHub Pages SPA redirect - ONLY for page routes, NOT assets
+        // GitHub Pages SPA redirect
+        // This script takes the current URL and redirects to the index.html with the path as a query parameter
+        // The Vue router will then handle the routing client-side
+        
+        var pathSegmentsToKeep = 0;
         var l = window.location;
         
-        // Check if this is an asset request
+        // Check if this is an asset request (js, css, images, etc.)
         var isAsset = /\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|json)$/i.test(l.pathname);
-        var isInAssets = l.pathname.includes('/assets/');
         
-        if (!isAsset && !isInAssets) {
-            // Only redirect for actual page routes
-            var pathSegmentsToKeep = 0;
+        if (!isAsset) {
+            // Redirect to index.html with the current path as a query parameter
             l.replace(
                 l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
                 l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
@@ -23,7 +25,6 @@
                 l.hash
             );
         }
-        // For assets, do nothing - let them fail naturally
     </script>
 </head>
 <body>
