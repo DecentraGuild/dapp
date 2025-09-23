@@ -121,6 +121,7 @@ import { ref, computed } from 'vue'
 import { Icon } from '@iconify/vue'
 import BaseCard from './BaseCard.vue'
 import BaseButton from './BaseButton.vue'
+import { getSlpPath } from '@/utils/api'
 
 interface RaffleProps {
   raffleId: string
@@ -138,7 +139,7 @@ interface RaffleProps {
 }
 
 const props = withDefaults(defineProps<RaffleProps>(), {
-  imageUrl: '/SLP/nfts/nft-legendary-ship.png'
+  imageUrl: getSlpPath('nfts/nft-legendary-ship.png')
 })
 
 const emit = defineEmits<{
@@ -231,7 +232,7 @@ const buyTickets = () => {
 
 const handleImageError = (event: Event) => {
   const img = event.target as HTMLImageElement
-  img.src = '/SLP/nfts/nft-legendary-ship.png' // Fallback image
+  img.src = getSlpPath('nfts/nft-legendary-ship.png') // Fallback image
 }
 </script>
 

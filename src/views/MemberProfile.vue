@@ -214,6 +214,7 @@ import BaseCard from '../components/base/BaseCard.vue'
 import BaseProgressBar from '../components/base/BaseProgressBar.vue'
 import BaseList from '../components/base/BaseList.vue'
 import BaseButton from '../components/base/BaseButton.vue'
+import { getSlpPath } from '@/utils/api'
 
 // Design tokens and theme
 const { spacing, typography, borderRadius, colors } = useDesignTokens()
@@ -250,7 +251,7 @@ const memberData = computed(() => ({
     year: 'numeric', 
     month: 'long' 
   }) : '',
-  avatar: memberStore.memberAvatar ? `/SLP/nfts/${memberStore.memberAvatar}` : '/default-avatar.png',
+  avatar: memberStore.memberAvatar ? getSlpPath(`nfts/${memberStore.memberAvatar}`) : '/default-avatar.png',
   contributionPoints: memberStore.memberContributionScore,
   nextLevelPoints: 1000, // This could be calculated based on level
   bio: memberStore.memberBio

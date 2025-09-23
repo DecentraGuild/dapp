@@ -56,6 +56,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { Icon } from '@iconify/vue'
 import { BaseCard, BaseRaffle } from '@/components/base'
+import { getSlpPath } from '@/utils/api'
 
 interface Raffle {
   guildID: string
@@ -89,7 +90,7 @@ const getRaffleImage = (raffle: Raffle) => {
   }
   
   // Fallback to default image
-  return '/SLP/nfts/nft-legendary-ship.png'
+  return getSlpPath('nfts/nft-legendary-ship.png')
 }
 
 const handleBuyTickets = (purchase: { raffleId: string; quantity: number; totalCost: number }) => {

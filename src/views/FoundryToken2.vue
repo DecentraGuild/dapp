@@ -142,6 +142,7 @@ import BaseFoundry from '@/components/BaseFoundry.vue'
 import { BaseCard, BaseButton, BaseListGrid } from '@/components/base'
 import { useSkinTheme } from '@/composables/useSkinTheme'
 import { useGuildStore } from '@/stores/guildStore'
+import { getSlpPath } from '@/utils/api'
 
 // Types
 interface TokenData {
@@ -244,7 +245,7 @@ const canMint = computed(() => {
 // Methods
 const loadTokenData = async () => {
   try {
-    const response = await fetch('/SLP/guildtoken/guild-1_token2.json')
+    const response = await fetch(getSlpPath('guildtoken/guild-1_token2.json'))
     if (response.ok) {
       tokenData.value = await response.json()
     }
@@ -256,7 +257,7 @@ const loadTokenData = async () => {
 const loadGuildAllocations = async () => {
   try {
     const guildId = guildStore.guildId || 'guild-1'
-    const response = await fetch(`/SLP/guildprofiles/${guildId}_profile.json`)
+    const response = await fetch(getSlpPath(`guildprofiles/${guildId}_profile.json`))
     if (response.ok) {
       const guildData = await response.json()
       if (guildData.token2Allocation) {

@@ -235,6 +235,7 @@ import { Icon } from '@iconify/vue'
 import { BaseCard, BaseButton } from '@/components/base'
 import { useGuildStore } from '@/stores/guildStore'
 import { useSkinTheme } from '@/composables/useSkinTheme'
+import { getSlpPath } from '@/utils/api'
 
 interface DiceGame {
   gameID: string
@@ -445,7 +446,7 @@ const loadDiceGame = async () => {
     const currentGuildId = guildStore.guildId
     if (!currentGuildId) return
     
-    const response = await fetch(`/SLP/minigames/${currentGuildId}_dice_game.json`)
+    const response = await fetch(getSlpPath(`minigames/${currentGuildId}_dice_game.json`))
     if (!response.ok) {
       console.warn(`Dice game not found for ${currentGuildId}`)
       return

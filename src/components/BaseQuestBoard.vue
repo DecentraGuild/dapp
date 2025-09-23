@@ -93,6 +93,7 @@ import BaseSidebar from '@/components/base/BaseSidebar.vue'
 import BaseQuest from '@/components/base/BaseQuest.vue'
 import QuestDetails from '@/components/QuestDetails.vue'
 import { useQuestStore } from '@/stores/questStore'
+import { getSlpPath } from '@/utils/api'
 import { QUEST_TABS } from '@/constants/quest'
 import type { SidebarItem } from '@/components/base/BaseSidebar'
 import type { Quest } from '@/constants/quest'
@@ -175,7 +176,7 @@ const handleStatusClick = (item: SidebarItem) => {
 
 const loadQuestIndex = async () => {
   try {
-    const response = await fetch('/SLP/quests/quest-index.json')
+    const response = await fetch(getSlpPath('quests/quest-index.json'))
     if (response.ok) {
       questIndex.value = await response.json()
     }

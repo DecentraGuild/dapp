@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { QUEST_TABS, QUEST_ICONS, QUEST_TITLES, QUEST_DESCRIPTIONS, QUEST_FEATURES, QUEST_STATUS, QUEST_STATUS_ICONS, QUEST_STATUS_LABELS, QUEST_STATUS_COLORS } from '@/constants/quest'
+import { getSlpPath } from '@/utils/api'
 import type { Quest, QuestItem, QuestApplication, QuestVerification, QuestReward } from '@/constants/quest'
 
 export const useQuestStore = defineStore('quest', () => {
@@ -118,7 +119,7 @@ export const useQuestStore = defineStore('quest', () => {
 
       for (const file of questFiles) {
         try {
-          const response = await fetch(`/SLP/quests/${file}`)
+          const response = await fetch(getSlpPath(`quests/${file}`))
           if (response.ok) {
             const quest = await response.json()
             loadedQuests.push(quest)

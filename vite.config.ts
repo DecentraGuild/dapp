@@ -15,7 +15,9 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
-  base: '/DecentraWebApp/',
+  base: process.env.NODE_ENV === 'production' && !process.env.VITE_SUBDOMAIN_DEPLOY 
+    ? '/DecentraWebApp/' 
+    : '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

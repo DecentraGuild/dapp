@@ -155,6 +155,7 @@ import BaseFoundry from '@/components/BaseFoundry.vue'
 import { BaseCard, BaseButton, BaseListGrid, BaseList } from '@/components/base'
 import BaseSidebar from '@/components/base/BaseSidebar.vue'
 import { useSkinTheme } from '@/composables/useSkinTheme'
+import { getSlpPath } from '@/utils/api'
 import type { SidebarItem } from '@/components/base/BaseSidebar'
 
 // Types
@@ -296,7 +297,7 @@ const canExchange = computed(() => {
 // Methods
 const loadCustomTypes = async () => {
   try {
-    const response = await fetch('/SLP/customtypes/guild-1_custom-types.json')
+    const response = await fetch(getSlpPath('customtypes/guild-1_custom-types.json'))
     if (response.ok) {
       const data = await response.json()
       customTypes.value = data.customTypes
@@ -333,7 +334,7 @@ const loadCustomAssets = async () => {
     const loadedAssets: CustomAsset[] = []
     
     for (const file of assetFiles) {
-      const response = await fetch(`/SLP/customtokens/${file}`)
+      const response = await fetch(getSlpPath(`customtokens/${file}`))
       if (response.ok) {
         const asset = await response.json()
         loadedAssets.push(asset)
@@ -349,7 +350,7 @@ const loadCustomAssets = async () => {
 const getAssetImage = (asset: CustomAsset): string => {
   return asset.image.startsWith('http') 
     ? asset.image 
-    : `/SLP/resources/${asset.image}`
+    : getSlpPath(`resources/${asset.image}`)
 }
 
 const handleCustomTypeClick = (item: SidebarItem) => {

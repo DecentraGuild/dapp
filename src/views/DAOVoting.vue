@@ -512,6 +512,7 @@ import { Icon } from '@iconify/vue'
 import { BaseCard } from '@/components/base'
 import BaseSidebar from '@/components/base/BaseSidebar.vue'
 import { useSkinTheme } from '@/composables/useSkinTheme'
+import { getSlpPath } from '@/utils/api'
 
 // Types
 interface Vote {
@@ -716,7 +717,7 @@ const loadVotes = async () => {
 
     const votePromises = voteFiles.map(async (filename) => {
       try {
-        const response = await fetch(`/SLP/vote/${filename}`)
+        const response = await fetch(getSlpPath(`vote/${filename}`))
         if (response.ok) {
           return await response.json()
         }
@@ -738,7 +739,7 @@ const loadVotes = async () => {
 
 const loadDAOSettings = async () => {
   try {
-    const response = await fetch('/SLP/dao/guild-1_dao_summary.json')
+    const response = await fetch(getSlpPath('dao/guild-1_dao_summary.json'))
     if (response.ok) {
       daoSettings.value = await response.json()
     }

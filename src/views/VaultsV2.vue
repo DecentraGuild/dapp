@@ -154,6 +154,7 @@ import { Icon } from '@iconify/vue'
 import { BaseCard, BaseList, BaseListGrid } from '@/components/base'
 import { useThemeStore } from '@/stores/themeStore'
 import { useDesignTokens } from '@/composables/useDesignTokens'
+import { getSlpPath } from '@/utils/api'
 
 // Types
 interface VaultBalance {
@@ -524,27 +525,27 @@ const getAllVaultsTransactionData = () => {
 const fetchVaultData = async () => {
   try {
     // Fetch guild vault balance
-    const guildResponse = await fetch('/SLP/balance/guild-1_guild_vault_balance.json')
+    const guildResponse = await fetch(getSlpPath('balance/guild-1_guild_vault_balance.json'))
     guildVaultBalance.value = await guildResponse.json()
     
     // Fetch token1 vault balance
-    const token1Response = await fetch('/SLP/balance/guild-1_token1_vault_balance.json')
+    const token1Response = await fetch(getSlpPath('balance/guild-1_token1_vault_balance.json'))
     token1VaultBalance.value = await token1Response.json()
     
     // Fetch token2 vault balance
-    const token2Response = await fetch('/SLP/balance/guild-1_token2_vault_balance.json')
+    const token2Response = await fetch(getSlpPath('balance/guild-1_token2_vault_balance.json'))
     token2VaultBalance.value = await token2Response.json()
     
     // Fetch income vault balance
-    const incomeResponse = await fetch('/SLP/balance/guild-1_income_vault_balance.json')
+    const incomeResponse = await fetch(getSlpPath('balance/guild-1_income_vault_balance.json'))
     incomeVaultBalance.value = await incomeResponse.json()
     
     // Fetch armory balance
-    const armoryResponse = await fetch('/SLP/balance/guild-1_armory_balance.json')
+    const armoryResponse = await fetch(getSlpPath('balance/guild-1_armory_balance.json'))
     armoryBalance.value = await armoryResponse.json()
     
     // Fetch transaction data
-    const transactionsResponse = await fetch('/SLP/guildtransactions/guild-1_vault_transactions.json')
+    const transactionsResponse = await fetch(getSlpPath('guildtransactions/guild-1_vault_transactions.json'))
     const transactionsData = await transactionsResponse.json()
     transactions.value = transactionsData.transactions
   } catch (error) {

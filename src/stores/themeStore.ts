@@ -123,6 +123,13 @@ export const useThemeStore = defineStore('theme', () => {
           const response = await fetch(getSlpPath(`skin/${file}`))
           if (response.ok) {
             const themeData = await response.json()
+            // Process hardcoded paths in theme data
+            themeData.images = themeData.images.map((img: string) => 
+              img.startsWith('/SLP/') ? getSlpPath(img.replace('/SLP/', '')) : img
+            )
+            themeData.svgFile = themeData.svgFile.startsWith('/SLP/') 
+              ? getSlpPath(themeData.svgFile.replace('/SLP/', '')) 
+              : themeData.svgFile
             console.log(`Loaded theme ${file}:`, themeData.name, themeData.images)
             themes.push(themeData)
           } else {
@@ -160,6 +167,13 @@ export const useThemeStore = defineStore('theme', () => {
         const response = await fetch(getSlpPath(`skin/${fileName}`))
         if (response.ok) {
           theme = await response.json()
+          // Process hardcoded paths in theme data
+          theme.images = theme.images.map((img: string) => 
+            img.startsWith('/SLP/') ? getSlpPath(img.replace('/SLP/', '')) : img
+          )
+          theme.svgFile = theme.svgFile.startsWith('/SLP/') 
+            ? getSlpPath(theme.svgFile.replace('/SLP/', '')) 
+            : theme.svgFile
         } else {
           console.warn(`Theme ${themeId} not found: ${response.status}`)
           throw new Error('Theme not found')

@@ -105,6 +105,7 @@ import BaseG2PCard from '@/components/base/BaseG2PCard.vue'
 import ExecuteTrade from '@/components/ExecuteTrade.vue'
 import { useDesignTokens } from '@/composables/useDesignTokens'
 import { useGuildStore } from '@/stores/guildStore'
+import { getSlpPath } from '@/utils/api'
 
 // Composables
 const { colors, spacing, typography, borderRadius } = useDesignTokens()
@@ -172,7 +173,7 @@ const loadGuildTrades = async () => {
     
     for (const filename of tradeFiles) {
       try {
-        const response = await fetch(`/SLP/g2p/${filename}`)
+        const response = await fetch(getSlpPath(`g2p/${filename}`))
         
         if (response.ok) {
           const tradeData = await response.json()

@@ -176,6 +176,7 @@ import { Icon } from '@iconify/vue'
 import { BaseCard, BasePoker, BaseButton } from '@/components/base'
 import { useGuildStore } from '@/stores/guildStore'
 import { useSkinTheme } from '@/composables/useSkinTheme'
+import { getSlpPath } from '@/utils/api'
 
 interface PokerEvent {
   eventID: string
@@ -332,7 +333,7 @@ const loadPracticeTable = async () => {
     const guildPrefix = currentGuildId === 'guild-1' ? 'g1' : 'g2'
     const tableFile = `${guildPrefix}_poker_table.json`
     
-    const response = await fetch(`/SLP/poker/${tableFile}`)
+    const response = await fetch(getSlpPath(`poker/${tableFile}`))
     if (!response.ok) {
       console.warn(`Practice table ${tableFile} not found: ${response.status}`)
       return

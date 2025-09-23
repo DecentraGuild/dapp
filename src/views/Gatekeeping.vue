@@ -37,7 +37,7 @@
               <!-- Role Emblem -->
               <div class="role-emblem">
                 <img 
-                  :src="`/SLP/guildpermission/${role.name.toLowerCase()}.svg`"
+                  :src="getSlpPath(`guildpermission/${role.name.toLowerCase()}.svg`)"
                   :alt="`${role.name} emblem`"
                   class="emblem-svg"
                 />
@@ -92,6 +92,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { BaseCard, BasePermissionTable } from '@/components/base'
 import { useGuildStore } from '@/stores/guildStore'
+import { getSlpPath } from '@/utils/api'
 
 interface Role {
   id: string
@@ -132,14 +133,14 @@ const loadRoles = async () => {
     error.value = null
 
     // Load the main permission table to get all roles
-    const permissionTableResponse = await fetch('/SLP/guildpermission/guild-1_permissiontable.json')
+    const permissionTableResponse = await fetch(getSlpPath('guildpermission/guild-1_permissiontable.json'))
     if (!permissionTableResponse.ok) {
       throw new Error('Failed to load permission table')
     }
     const permissionTable = await permissionTableResponse.json()
 
     // Load rooms data
-    const roomsResponse = await fetch('/SLP/guildpermission/guild-1_rooms.json')
+    const roomsResponse = await fetch(getSlpPath('guildpermission/guild-1_rooms.json'))
     if (!roomsResponse.ok) {
       throw new Error('Failed to load rooms data')
     }
@@ -151,7 +152,7 @@ const loadRoles = async () => {
     for (const roleData of permissionTable.roles) {
       try {
         // Load the specific role's permission file
-        const rolePermissionResponse = await fetch(`/SLP/guildpermission/guild-1_role-${roleData.name.toLowerCase()}.json`)
+        const rolePermissionResponse = await fetch(getSlpPath(`guildpermission/guild-1_role-${roleData.name.toLowerCase()}.json`))
         if (!rolePermissionResponse.ok) {
           console.warn(`Failed to load permissions for role ${roleData.name}`)
           continue

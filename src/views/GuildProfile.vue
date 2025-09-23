@@ -134,7 +134,7 @@
           >
             <div class="member-avatar">
               <img 
-                :src="`/SLP/nfts/${member.avatar}`" 
+                :src="getSlpPath(`nfts/${member.avatar}`)" 
                 :alt="member.username"
                 class="avatar-image"
               />
@@ -180,6 +180,7 @@ import BaseList from '@/components/base/BaseList.vue'
 import BaseListGrid from '@/components/base/BaseListGrid.vue'
 import BaseButton from '@/components/base/BaseButton.vue'
 import BaseDropdown from '@/components/base/BaseDropdown.vue'
+import { getSlpPath } from '@/utils/api'
 
 // Role permission data
 const rolePermissions = ref<any[]>([])
@@ -188,7 +189,7 @@ const rolePermissions = ref<any[]>([])
 const loadRolePermissions = async (guildId: string) => {
   try {
     console.log('Loading role permissions for guild:', guildId)
-    const response = await fetch(`/SLP/guildpermission/${guildId}_permissiontable.json`)
+    const response = await fetch(getSlpPath(`guildpermission/${guildId}_permissiontable.json`))
     if (response.ok) {
       const data = await response.json()
       rolePermissions.value = data

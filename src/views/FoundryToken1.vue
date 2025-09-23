@@ -125,6 +125,7 @@ import { ref, computed, onMounted } from 'vue'
 import BaseFoundry from '@/components/BaseFoundry.vue'
 import { BaseCard, BaseButton, BaseListGrid } from '@/components/base'
 import { useSkinTheme } from '@/composables/useSkinTheme'
+import { getSlpPath } from '@/utils/api'
 
 // Types
 interface TokenData {
@@ -213,7 +214,7 @@ const canRedeem = computed(() => {
 // Methods
 const loadTokenData = async () => {
   try {
-    const response = await fetch('/SLP/guildtoken/guild-1_token1.json')
+    const response = await fetch(getSlpPath('guildtoken/guild-1_token1.json'))
     if (response.ok) {
       tokenData.value = await response.json()
     }

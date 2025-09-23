@@ -61,6 +61,7 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { Icon } from '@iconify/vue'
 import { BaseCard, BaseAchievementProgressionCard, BaseSidebar } from '@/components/base'
 import { useSkinTheme } from '@/composables/useSkinTheme'
+import { getSlpPath } from '@/utils/api'
 import { useGuildStore } from '@/stores/guildStore'
 import { useMemberStore } from '@/stores/memberStore'
 import { useUserStore } from '@/stores/userStore'
@@ -188,7 +189,7 @@ const handleFilterClick = (item: any) => {
 // Load achievement categories
 const loadAchievementCategories = async () => {
   try {
-    const response = await fetch('/SLP/Achievements/achievements_index.json')
+    const response = await fetch(getSlpPath('Achievements/achievements_index.json'))
     if (!response.ok) {
       console.warn('Failed to load achievement categories')
       return
@@ -223,7 +224,7 @@ const loadMemberAchievementStatus = async () => {
     }
 
     const guildPrefix = currentGuildId === 'guild-1' ? 'g1' : 'g2'
-    const url = `/SLP/Achievements/guild1_achievement_status.json`
+    const url = getSlpPath('Achievements/guild1_achievement_status.json')
     console.log('Fetching achievement status from:', url)
     console.log('Current location:', window.location.href)
     const response = await fetch(url)
@@ -271,7 +272,7 @@ const loadAllAchievements = async () => {
     for (const category of achievementCategories.value) {
       try {
         console.log(`Loading achievements for category: ${category.id}`)
-        const response = await fetch(`/SLP/Achievements/${category.file}`)
+        const response = await fetch(getSlpPath(`Achievements/${category.file}`))
         if (!response.ok) {
           console.warn(`Failed to load ${category.file}`)
           continue

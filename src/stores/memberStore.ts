@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { useUserStore } from './userStore'
 import { useGuildStore } from './guildStore'
+import { getSlpPath } from '@/utils/api'
 
 export interface MemberProfile {
   memberID: string
@@ -124,7 +125,7 @@ export const useMemberStore = defineStore('member', () => {
     try {
       // Load guild permission table
       const permissionFile = guildId === 'guild-1' ? 'guild1_permissiontable.json' : 'guild2_permissiontable.json'
-      const response = await fetch(`/SLP/guildpermission/${permissionFile}`)
+      const response = await fetch(getSlpPath(`guildpermission/${permissionFile}`))
       if (!response.ok) throw new Error('Failed to load permissions')
       
       const permissionData = await response.json()
@@ -175,7 +176,7 @@ export const useMemberStore = defineStore('member', () => {
   const loadMemberTokenBalance = async (walletAddress: string, guildId: string) => {
     try {
       // Load wallet balance data
-      const balanceResponse = await fetch(`/SLP/balance/wallet_${walletAddress}_balance.json`)
+      const balanceResponse = await fetch(getSlpPath(`balance/wallet_${walletAddress}_balance.json`))
       if (!balanceResponse.ok) {
         console.warn(`Balance file not found for wallet ${walletAddress}`)
         return
@@ -185,8 +186,8 @@ export const useMemberStore = defineStore('member', () => {
       console.log('Balance data loaded:', balanceData)
       
       // Load token names from guild token files
-      const token1Response = await fetch(`/SLP/guildtoken/${guildId}_token1.json`)
-      const token2Response = await fetch(`/SLP/guildtoken/${guildId}_token2.json`)
+      const token1Response = await fetch(getSlpPath(`guildtoken/${guildId}_token1.json`))
+      const token2Response = await fetch(getSlpPath(`guildtoken/${guildId}_token2.json`))
       
       let token1Name = 'Token-1'
       let token2Name = 'Token-2'

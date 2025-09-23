@@ -156,6 +156,7 @@ import BaseFoundry from '@/components/BaseFoundry.vue'
 import { BaseCard, BaseButton, BaseListGrid } from '@/components/base'
 import BaseSidebar from '@/components/base/BaseSidebar.vue'
 import { useSkinTheme } from '@/composables/useSkinTheme'
+import { getSlpPath } from '@/utils/api'
 import type { SidebarItem } from '@/components/base/BaseSidebar'
 
 // Types
@@ -261,7 +262,7 @@ const loadCollections = async () => {
     const loadedCollections: NFTCollection[] = []
     
     for (const file of collectionFiles) {
-      const response = await fetch(`/SLP/nftcollections/${file}`)
+      const response = await fetch(getSlpPath(`nftcollections/${file}`))
       if (response.ok) {
         const collection = await response.json()
         loadedCollections.push(collection)
@@ -292,24 +293,24 @@ const getCollectionIcon = (type: string): string => {
 const getCollectionImage = (collection: NFTCollection): string => {
   // Use appropriate collection images based on type
   if (collection.type === 'achievement') {
-    return `/SLP/nfts/achievement (1).png`
+    return getSlpPath('nfts/achievement (1).png')
   } else if (collection.type === 'trophy') {
-    return `/SLP/nfts/Trophy (1).png`
+    return getSlpPath('nfts/Trophy (1).png')
   } else {
-    return `/SLP/nfts/avatar1.png`
+    return getSlpPath('nfts/avatar1.png')
   }
 }
 
 const getNFTImage = (nft: any): string => {
   // Use the actual image path from the NFT data
   if (nft.image) {
-    return `/SLP/nfts/${nft.image}`
+    return getSlpPath(`nfts/${nft.image}`)
   }
   
   // Fallback to avatar images if no image specified
   const avatarImages = ['avatar1.png', 'avatar2.png', 'avatar3.png', 'avatar4.png', 'avatar5.png']
   const imageIndex = (nft.tokenId - 1) % avatarImages.length
-  return `/SLP/nfts/${avatarImages[imageIndex]}`
+  return getSlpPath(`nfts/${avatarImages[imageIndex]}`)
 }
 
 const handleCollectionClick = (item: SidebarItem) => {
