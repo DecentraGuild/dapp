@@ -1,5 +1,0 @@
-# Netlify SPA redirect rules
-# This file tells Netlify to serve index.html for all routes
-# so the Vue Router can handle client-side routing
-
-/*    /index.html   200

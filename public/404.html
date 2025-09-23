@@ -3,21 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
+    <title>dGuild dApp</title>
     <script>
-        // GitHub Pages SPA redirect
-        // This script takes the current URL and redirects to the index.html
-        // with the path as a query parameter, then the SPA router handles it
-        
-        var pathSegmentsToKeep = 0;
+        // GitHub Pages SPA redirect - ONLY for page routes, NOT assets
         var l = window.location;
-        l.replace(
-            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-            l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-            l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-            (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-            l.hash
-        );
+        
+        // Check if this is an asset request
+        var isAsset = /\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|json)$/i.test(l.pathname);
+        var isInAssets = l.pathname.includes('/assets/');
+        
+        if (!isAsset && !isInAssets) {
+            // Only redirect for actual page routes
+            var pathSegmentsToKeep = 0;
+            l.replace(
+                l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+                l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+                l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+                (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+                l.hash
+            );
+        }
+        // For assets, do nothing - let them fail naturally
     </script>
 </head>
 <body>
