@@ -16,7 +16,7 @@
       // GitHub Pages SPA redirect handler
       // This script runs before Vue app initialization to handle redirected URLs
       (function(l) {
-        if (l.search[1] === '/' ) {
+        if (l.search[1] !== undefined && l.search[1] !== '&') {
           var decoded = l.search.slice(1).split('&').map(function(s) { 
             return s.replace(/~and~/g, '&')
           }).join('?');
