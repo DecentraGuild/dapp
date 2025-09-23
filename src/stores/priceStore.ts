@@ -1,4 +1,5 @@
 import { ref, computed, readonly } from 'vue'
+import { getSlpPath } from '@/utils/api'
 
 // Simple price list type - just ticker and price
 type PriceList = Record<string, number>
@@ -47,7 +48,7 @@ const loadPriceData = async (): Promise<void> => {
     isLoading.value = true
     error.value = null
     
-    const response = await fetch('/SLP/pricelist/pricelist.json')
+    const response = await fetch(getSlpPath('pricelist/pricelist.json'))
     if (!response.ok) {
       throw new Error(`Failed to load price data: ${response.statusText}`)
     }

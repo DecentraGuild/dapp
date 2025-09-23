@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import { getSlpPath } from '@/utils/api'
 import { useUserStore } from './userStore'
 
 export interface GuildProfile {
@@ -80,7 +81,7 @@ export const useGuildStore = defineStore('guild', () => {
       
       for (const file of guildFiles) {
         try {
-          const response = await fetch(`/SLP/guildprofiles/${file}`)
+          const response = await fetch(getSlpPath(`guildprofiles/${file}`))
           if (response.ok) {
             const guildData = await response.json()
             guilds.push(guildData)
@@ -108,7 +109,7 @@ export const useGuildStore = defineStore('guild', () => {
       
       // Load guild member list
       const memberListFile = guildId === 'guild-1' ? 'guild-1_memberlist.json' : 'guild-2_memberlist.json'
-      const response = await fetch(`/SLP/guildmemberlist/${memberListFile}`)
+      const response = await fetch(getSlpPath(`guildmemberlist/${memberListFile}`))
       if (!response.ok) {
         console.error(`Failed to load guild members: ${response.status} ${response.statusText}`)
         throw new Error('Failed to load guild members')
@@ -135,7 +136,7 @@ export const useGuildStore = defineStore('guild', () => {
           
           for (const fileName of possibleFiles) {
             try {
-              const memberResponse = await fetch(`/SLP/memberprofiles/${fileName}`)
+              const memberResponse = await fetch(getSlpPath(`memberprofiles/${fileName}`))
               if (memberResponse.ok) {
                 const memberData = await memberResponse.json()
                 // Only include members whose addresses are in the guild member list
@@ -226,7 +227,7 @@ export const useGuildStore = defineStore('guild', () => {
         
         for (const fileName of possibleFiles) {
           try {
-            const response = await fetch(`/SLP/memberprofiles/${fileName}`)
+            const response = await fetch(getSlpPath(`memberprofiles/${fileName}`))
             if (response.ok) {
               const memberData = await response.json()
               if (memberData.walletAddress === walletAddress && memberData.guild === guildId) {

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import { getSlpPath } from '@/utils/api'
 import { useGuildStore } from './guildStore'
 
 export interface ThemeData {
@@ -119,7 +120,7 @@ export const useThemeStore = defineStore('theme', () => {
       
       for (const file of themeFiles) {
         try {
-          const response = await fetch(`/SLP/skin/${file}`)
+          const response = await fetch(getSlpPath(`skin/${file}`))
           if (response.ok) {
             const themeData = await response.json()
             console.log(`Loaded theme ${file}:`, themeData.name, themeData.images)
@@ -156,7 +157,7 @@ export const useThemeStore = defineStore('theme', () => {
           fileName = `skin_spaceship_${themeId}.json`
         }
         
-        const response = await fetch(`/SLP/skin/${fileName}`)
+        const response = await fetch(getSlpPath(`skin/${fileName}`))
         if (response.ok) {
           theme = await response.json()
         } else {

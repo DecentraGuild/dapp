@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import { getSlpPath } from '@/utils/api'
 
 export interface Wallet {
   address: string
@@ -34,7 +35,7 @@ export const useUserStore = defineStore('user', () => {
       error.value = null
       
       // Load wallets from SLP assets
-      const response = await fetch('/SLP/userwallet/test_wallets.json')
+      const response = await fetch(getSlpPath('userwallet/test_wallets.json'))
       if (!response.ok) throw new Error('Failed to load wallets')
       
       const wallets = await response.json()
@@ -55,7 +56,7 @@ export const useUserStore = defineStore('user', () => {
       selectedWallet.value = wallet
       
       // Load wallet balance data
-      const balanceResponse = await fetch(`/SLP/balance/wallet_${wallet.address}_balance.json`)
+      const balanceResponse = await fetch(getSlpPath(`balance/wallet_${wallet.address}_balance.json`))
       if (balanceResponse.ok) {
         const balanceData = await balanceResponse.json()
         walletBalance.value = balanceData
