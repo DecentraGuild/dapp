@@ -1,5 +1,6 @@
 import { computed } from 'vue'
 import { useThemeStore } from '@/stores/themeStore'
+import { getImagePath } from '@/utils/api'
 
 export function useSkinTheme() {
   const themeStore = useThemeStore()
@@ -47,6 +48,11 @@ export function useSkinTheme() {
     return currentTheme.value?.backgroundColor || 'rgba(0, 0, 0, 1)'
   }
 
+  const getImagePaths = () => {
+    const images = currentTheme.value?.images || []
+    return images.map(imagePath => getImagePath(imagePath))
+  }
+
   return {
     currentTheme,
     currentThemeId,
@@ -59,6 +65,7 @@ export function useSkinTheme() {
     getEmergencyColor,
     getBorderRadius,
     getBorderWidth,
-    getBackgroundColor
+    getBackgroundColor,
+    getImagePaths
   }
 }

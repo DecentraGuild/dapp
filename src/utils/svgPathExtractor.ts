@@ -1,3 +1,5 @@
+import { getSlpPath } from './api'
+
 // Cache for SVG path data and parsed SVG documents
 const pathCache = new Map<string, string>()
 const svgDocumentCache = new Map<string, Document>()
@@ -17,8 +19,10 @@ async function loadSvgDocument(svgFile: string): Promise<Document> {
   // Start loading the SVG file
   const loadPromise = (async () => {
     try {
-      console.log('Loading SVG file:', svgFile)
-      const response = await fetch(svgFile)
+      // Convert SLP path to correct GitHub Pages path
+      const correctedSvgFile = svgFile.startsWith('/SLP/') ? getSlpPath(svgFile.replace('/SLP/', '')) : svgFile
+      console.log('Loading SVG file:', correctedSvgFile)
+      const response = await fetch(correctedSvgFile)
       
       if (!response.ok) {
         throw new Error(`Failed to load SVG: ${response.status}`)

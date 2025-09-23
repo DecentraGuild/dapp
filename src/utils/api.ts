@@ -21,3 +21,14 @@ export function getApiPath(path: string): string {
 export function getSlpPath(path: string): string {
   return getApiPath(`SLP/${path}`)
 }
+
+/**
+ * Get the correct image path for SLP assets
+ */
+export function getImagePath(imagePath: string): string {
+  // Handle both absolute and relative paths
+  if (imagePath.startsWith('/SLP/')) {
+    return getSlpPath(imagePath.replace('/SLP/', ''))
+  }
+  return imagePath
+}
