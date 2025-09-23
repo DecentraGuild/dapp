@@ -15,7 +15,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
-  base: '/',
+  base: '/DecentraWebApp/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -28,6 +28,11 @@ export default defineConfig({
           icons: ['@iconify/vue']
         }
       }
+    }
+  },
+  server: {
+    headers: {
+      'Cache-Control': 'no-cache'
     }
   }
 })
