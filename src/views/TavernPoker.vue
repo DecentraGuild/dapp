@@ -300,17 +300,21 @@ const filteredPokerEvents = computed(() => {
 const loadPokerEvents = async () => {
   try {
     // Get all event files dynamically and filter for poker tournaments
-    const eventModules = import.meta.glob('/public/SLP/events/*.json')
+    const eventModules = import.meta.glob('/SLP/events/*.json')
     const events: PokerEvent[] = []
     
     for (const path in eventModules) {
       try {
-        const eventData = await fetch(path.replace('/public', ''))
-        const event = await eventData.json() as PokerEvent
-        
-        // Only show poker tournament events that are active
-        if (event.eventType === 'poker_tournament' && event.isActive) {
-          events.push(event)
+        const eventData = await fetch(path)
+        if (eventData.ok) {
+          const event = await eventData.json() as PokerEvent
+          
+          // Only show poker tournament events that are active
+          if (event.eventType === 'poker_tournament' && event.isActive) {
+            events.push(event)
+          }
+        } else {
+          console.warn(`Failed to load event from ${path}: ${eventData.status}`)
         }
       } catch (error) {
         console.warn(`Failed to load event from ${path}:`, error)

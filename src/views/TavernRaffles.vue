@@ -102,15 +102,19 @@ const handleBuyTickets = (purchase: { raffleId: string; quantity: number; totalC
 
 const loadRaffles = async () => {
   try {
-    // Get all raffle files dynamically
-    const raffleModules = import.meta.glob('/public/SLP/raffles/*.json')
+    // Get all raffle files dynamically using the correct glob pattern
+    const raffleModules = import.meta.glob('/SLP/raffles/*.json')
     const loadedRaffles: Raffle[] = []
     
     for (const path in raffleModules) {
       try {
-        const raffleData = await fetch(path.replace('/public', ''))
-        const raffle = await raffleData.json() as Raffle
-        loadedRaffles.push(raffle)
+        const raffleData = await fetch(path)
+        if (raffleData.ok) {
+          const raffle = await raffleData.json() as Raffle
+          loadedRaffles.push(raffle)
+        } else {
+          console.warn(`Failed to load raffle from ${path}: ${raffleData.status}`)
+        }
       } catch (error) {
         console.warn(`Failed to load raffle from ${path}:`, error)
       }

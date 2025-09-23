@@ -51,6 +51,7 @@
 import { computed } from 'vue'
 import { useDesignTokens } from '@/composables/useDesignTokens'
 import { useSkinTheme } from '@/composables/useSkinTheme'
+import { getSlpPath } from '@/utils/api'
 
 interface Props {
   // Trade data
@@ -106,11 +107,19 @@ const tradePair = computed(() => {
 
 const itemImage = computed(() => {
   // Use the correct image field based on trade type
+  let imagePath = ''
   if (props.type === 'buy') {
-    return props.tokenImageAsked
+    imagePath = props.tokenImageAsked || ''
   } else {
-    return props.tokenImageOffered
+    imagePath = props.tokenImageOffered || ''
   }
+  
+  // Process the image path to handle /SLP/ prefix
+  if (imagePath.startsWith('/SLP/')) {
+    return getSlpPath(imagePath.replace('/SLP/', ''))
+  }
+  
+  return imagePath
 })
 
 const itemName = computed(() => {

@@ -471,18 +471,22 @@ const toggleSignup = (event: Event) => {
 
 const loadEvents = async () => {
   try {
-    // Get all event files dynamically
-    const eventModules = import.meta.glob('/public/SLP/events/*.json')
+    // Get all event files dynamically using the correct glob pattern
+    const eventModules = import.meta.glob('/SLP/events/*.json')
     const events: Event[] = []
     
     for (const path in eventModules) {
       try {
-        const eventData = await fetch(path.replace('/public', ''))
-        const event = await eventData.json() as Event
-        
-        // Only show upcoming events
-        if (event.status === 'upcoming' && event.isActive) {
-          events.push(event)
+        const eventData = await fetch(path)
+        if (eventData.ok) {
+          const event = await eventData.json() as Event
+          
+          // Only show upcoming events
+          if (event.status === 'upcoming' && event.isActive) {
+            events.push(event)
+          }
+        } else {
+          console.warn(`Failed to load event from ${path}: ${eventData.status}`)
         }
       } catch (error) {
         console.warn(`Failed to load event from ${path}:`, error)
