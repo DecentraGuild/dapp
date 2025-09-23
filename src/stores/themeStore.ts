@@ -141,6 +141,9 @@ export const useThemeStore = defineStore('theme', () => {
       }
       
       availableThemes.value = themes
+      
+      // Initialize default theme if none is currently loaded
+      await initializeDefaultTheme()
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to load themes'
       console.error('Error loading themes:', err)
@@ -168,12 +171,14 @@ export const useThemeStore = defineStore('theme', () => {
         if (response.ok) {
           theme = await response.json()
           // Process hardcoded paths in theme data
-          theme.images = theme.images.map((img: string) => 
-            img.startsWith('/SLP/') ? getSlpPath(img.replace('/SLP/', '')) : img
-          )
-          theme.svgFile = theme.svgFile.startsWith('/SLP/') 
-            ? getSlpPath(theme.svgFile.replace('/SLP/', '')) 
-            : theme.svgFile
+          if (theme) {
+            theme.images = theme.images.map((img: string) => 
+              img.startsWith('/SLP/') ? getSlpPath(img.replace('/SLP/', '')) : img
+            )
+            theme.svgFile = theme.svgFile.startsWith('/SLP/') 
+              ? getSlpPath(theme.svgFile.replace('/SLP/', '')) 
+              : theme.svgFile
+          }
         } else {
           console.warn(`Theme ${themeId} not found: ${response.status}`)
           throw new Error('Theme not found')
@@ -238,6 +243,17 @@ export const useThemeStore = defineStore('theme', () => {
     error.value = null
   }
 
+  const initializeDefaultTheme = async () => {
+    // If no theme is loaded and we have available themes, load castle_medieval as default
+    if (!currentTheme.value && availableThemes.value.length > 0) {
+      const defaultTheme = availableThemes.value.find(t => t.id === 'castle_medieval')
+      if (defaultTheme) {
+        currentTheme.value = defaultTheme
+        applyThemeToDocument()
+      }
+    }
+  }
+
   const getHeaderText = (index: number) => {
     return themeHeaders.value[index] || ''
   }
@@ -282,6 +298,7 @@ export const useThemeStore = defineStore('theme', () => {
     applyThemeToDocument,
     resetToGuildTheme,
     clearTheme,
+    initializeDefaultTheme,
     getHeaderText,
     getIconName,
     getThemeImage
