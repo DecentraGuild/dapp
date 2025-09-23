@@ -149,6 +149,12 @@ const router = createRouter({
       path: '/commandcenter',
       name: 'CommandCenter',
       component: () => import('../views/CommandCenter.vue')
+    },
+    // Catch-all route for 404s - redirect to dashboard
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      redirect: '/dashboard'
     }
   ],
 })
