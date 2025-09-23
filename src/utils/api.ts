@@ -110,10 +110,15 @@ export async function loadMultipleSlpData<T = any>(paths: string[]): Promise<T[]
   const promises = paths.map(path => loadSlpData<T>(path))
   const results = await Promise.allSettled(promises)
   
-  return results
-    .filter((result): result is PromiseFulfilledResult<T> => result.status === 'fulfilled')
-    .map(result => result.value)
-    .filter(data => data !== null)
+  const loadedData: T[] = []
+  
+  for (const result of results) {
+    if (result.status === 'fulfilled' && result.value !== null) {
+      loadedData.push(result.value)
+    }
+  }
+  
+  return loadedData
 }
 
 /**
