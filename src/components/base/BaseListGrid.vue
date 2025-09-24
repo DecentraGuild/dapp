@@ -375,11 +375,22 @@ const isImageUrl = (url: string): boolean => {
 
 @media (max-width: 768px) {
   .grid-cols-3 { grid-template-columns: repeat(2, 1fr); }
-  .grid-cols-4 { grid-template-columns: repeat(3, 1fr); }
+  .grid-cols-4 { grid-template-columns: repeat(2, 1fr); } /* Reduced to 2 columns for better mobile fit */
   
   .grid-item-icon.large {
-    max-width: 8rem;
-    height: 8rem;
+    max-width: 7rem;
+    height: 7rem;
+  }
+}
+
+/* Add breakpoint for common mobile sizes */
+@media (max-width: 640px) {
+  .grid-cols-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+  
+  .grid-item-icon.large {
+    max-width: 6.5rem;
+    height: 6.5rem;
   }
 }
 

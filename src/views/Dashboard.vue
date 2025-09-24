@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import { useFooterState } from '../composables/useFooterState'
 
 const { setDashboardMode } = useFooterState()
@@ -13,6 +13,11 @@ const { setDashboardMode } = useFooterState()
 // Set dashboard mode to keep footer permanently expanded
 onMounted(() => {
   setDashboardMode(true)
+})
+
+// Reset dashboard mode when leaving the dashboard
+onUnmounted(() => {
+  setDashboardMode(false)
 })
 </script>
 

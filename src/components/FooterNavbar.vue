@@ -47,7 +47,7 @@
            viewBox="0 0 3413.3299 1946.67"
            class="nav-svg"
            xmlns="http://www.w3.org/2000/svg"
-           preserveAspectRatio="none"
+           preserveAspectRatio="xMidYMid meet"
          >
            <!-- Background Image embedded in SVG -->
            <image 
@@ -56,7 +56,7 @@
              y="0" 
              width="3413.3299" 
              height="1946.67"
-             preserveAspectRatio="none"
+             preserveAspectRatio="xMidYMid slice"
            />
            <!-- Render all navigation shapes -->
            <g v-for="item in navigationItems" :key="item.id">
@@ -335,9 +335,9 @@ onUnmounted(() => {
 }
 
 .footer-navbar.expanded {
-  height: 80vh;
+  height: 85vh; /* Increased height for desktop */
   background: var(--theme-secondary-3, rgba(0, 204, 204, 0.1));
-  clip-path: polygon(50% 5%, 100% 30%, 100% 100%, 0% 100%, 0% 30%);
+  clip-path: polygon(50% 4%, 100% 25%, 100% 100%, 0% 100%, 0% 25%); /* Optimized polygon for more content space */
   overflow: visible;
 }
 
@@ -416,7 +416,7 @@ onUnmounted(() => {
 .footer-header {
   display: flex;
   justify-content: flex-end;
-  padding: 1rem;
+  padding: 0.5rem 1rem; /* Reduced vertical padding */
 }
 
 .close-button {
@@ -436,20 +436,22 @@ onUnmounted(() => {
 .svg-container {
   flex: 1;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  bottom: 50px;
-  padding: 2rem 2rem 0 2rem;
+  padding: 1rem 2rem 0.5rem 2rem; /* Reduced top and bottom padding */
   position: relative;
   overflow: visible;
+  min-height: 0; /* Allow flex item to shrink */
 }
 
 .nav-svg {
   width: 100%;
-  max-width: 1000px;
-  height: auto;
+  max-width: 1400px; /* Increased for desktop */
+  height: 100%;
+  max-height: 100%;
   display: block;
   overflow: visible;
+  object-fit: contain;
 }
 
 .nav-shape {
@@ -516,7 +518,8 @@ onUnmounted(() => {
 /* Responsive design */
 @media (max-width: 768px) {
   .footer-navbar.expanded {
-    height: 70vh;
+    height: 75vh; /* Increased height for better image display */
+    clip-path: polygon(50% 3%, 100% 25%, 100% 100%, 0% 100%, 0% 25%); /* Adjusted for mobile */
   }
   
   .expand-text {
@@ -524,13 +527,44 @@ onUnmounted(() => {
   }
   
   .svg-container {
-    padding: 1rem;
+    padding: 1rem 0.5rem 1.5rem 0.5rem; /* Reduced horizontal padding, increased bottom */
+  }
+  
+  .nav-svg {
+    max-width: none; /* Remove max-width constraint on mobile */
+    width: 95%; /* Use more of the available width */
+    height: 100%;
   }
   
   .shape-tooltip {
     font-size: 0.8rem;
     padding: 0.6rem 0.8rem;
     min-width: 100px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .footer-navbar.expanded {
+    height: 80vh; /* Even more height for very small screens */
+    clip-path: polygon(50% 2%, 100% 20%, 100% 100%, 0% 100%, 0% 20%); /* More space for content */
+  }
+  
+  .svg-container {
+    padding: 0.5rem 0.25rem 1rem 0.25rem;
+  }
+  
+  .nav-svg {
+    width: 98%; /* Use almost full width on very small screens */
+  }
+  
+  .footer-header {
+    padding: 0.5rem;
+  }
+  
+  .close-button {
+    font-size: 1.2rem;
+    padding: 0.4rem;
   }
 }
 </style>

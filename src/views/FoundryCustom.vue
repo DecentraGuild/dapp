@@ -149,7 +149,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { Icon } from '@iconify/vue'
 import BaseFoundry from '@/components/BaseFoundry.vue'
 import { BaseCard, BaseButton, BaseListGrid, BaseList } from '@/components/base'
@@ -212,6 +212,7 @@ const customTypes = ref<CustomType[]>([])
 const customAssets = ref<CustomAsset[]>([])
 const gridView = ref<'grid' | 'list'>('grid')
 const exchangeAmount = ref<number>(0)
+const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1200)
 
 // Computed
 const customTypeItems = computed((): SidebarItem[] => {
@@ -243,7 +244,17 @@ const customAssetItems = computed((): AssetItem[] => {
   }))
 })
 
-const gridColumns = computed(() => gridView.value === 'grid' ? 4 : 1)
+const gridColumns = computed(() => {
+  if (gridView.value === 'list') return 1
+  
+  // Responsive grid columns based on screen size
+  const width = windowWidth.value
+  if (width <= 360) return 1      // Very small screens: 1 column
+  if (width <= 480) return 2      // Mobile: 2 columns  
+  if (width <= 640) return 2      // Small tablets: 2 columns
+  if (width <= 768) return 2      // Tablets: 2 columns
+  return 4                        // Desktop: 4 columns
+})
 
 const calculationItems = computed(() => {
   if (!selectedAsset.value) return []
@@ -379,12 +390,29 @@ const handleExchange = () => {
   alert(`Exchanging ${exchangeAmount.value} ${selectedAsset.value.symbol} for ${totalCost.value} tokens`)
 }
 
+// Window resize handler
+const handleResize = () => {
+  windowWidth.value = window.innerWidth
+}
+
 // Lifecycle
 onMounted(() => {
   loadCustomTypes()
   loadCustomAssets()
   // Scroll to top when component mounts
   window.scrollTo({ top: 0, behavior: 'smooth' })
+  
+  // Add resize listener
+  if (typeof window !== 'undefined') {
+    window.addEventListener('resize', handleResize)
+  }
+})
+
+onUnmounted(() => {
+  // Remove resize listener
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('resize', handleResize)
+  }
 })
 </script>
 

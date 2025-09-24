@@ -20,6 +20,9 @@ export function useFooterState() {
     isDashboardMode.value = dashboardMode
     if (dashboardMode) {
       isFooterExpanded.value = true
+    } else {
+      // When leaving dashboard mode, close the footer
+      isFooterExpanded.value = false
     }
   }
 

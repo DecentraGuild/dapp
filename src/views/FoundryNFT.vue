@@ -151,7 +151,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import BaseFoundry from '@/components/BaseFoundry.vue'
 import { BaseCard, BaseButton, BaseListGrid } from '@/components/base'
 import BaseSidebar from '@/components/base/BaseSidebar.vue'
@@ -208,6 +208,7 @@ const selectedCollection = ref<NFTCollection | null>(null)
 const selectedNFT = ref<any>(null)
 const collections = ref<NFTCollection[]>([])
 const gridView = ref<'grid' | 'list'>('grid')
+const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1200)
 
 // Computed
 const collectionItems = computed((): SidebarItem[] => {
@@ -235,7 +236,17 @@ const nftGridItems = computed((): NFTItem[] => {
   }))
 })
 
-const gridColumns = computed(() => gridView.value === 'grid' ? 4 : 1)
+const gridColumns = computed(() => {
+  if (gridView.value === 'list') return 1
+  
+  // Responsive grid columns based on screen size
+  const width = windowWidth.value
+  if (width <= 360) return 1      // Very small screens: 1 column
+  if (width <= 480) return 2      // Mobile: 2 columns  
+  if (width <= 640) return 2      // Small tablets: 2 columns
+  if (width <= 768) return 2      // Tablets: 2 columns
+  return 4                        // Desktop: 4 columns
+})
 
 const traitItems = computed(() => {
   if (!selectedNFT.value) return []
@@ -338,11 +349,28 @@ const handleMint = () => {
   alert(`Minting ${selectedNFT.value.name} for ${selectedCollection.value.mintPrice} ${selectedCollection.value.mintCurrency}`)
 }
 
+// Window resize handler
+const handleResize = () => {
+  windowWidth.value = window.innerWidth
+}
+
 // Lifecycle
 onMounted(() => {
   loadCollections()
   // Scroll to top when component mounts
   window.scrollTo({ top: 0, behavior: 'smooth' })
+  
+  // Add resize listener
+  if (typeof window !== 'undefined') {
+    window.addEventListener('resize', handleResize)
+  }
+})
+
+onUnmounted(() => {
+  // Remove resize listener
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('resize', handleResize)
+  }
 })
 </script>
 

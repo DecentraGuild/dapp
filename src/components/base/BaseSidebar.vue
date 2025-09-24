@@ -134,7 +134,7 @@ const handleItemClick = (item: SidebarItem, index: number) => {
   flex-direction: column;
   width: v-bind(width);
   min-height: 12.5rem;
-  max-height: 70vh;
+  max-height: 80vh; /* Increased max height */
   height: auto;
   position: fixed;
   top: 50%;
@@ -147,6 +147,7 @@ const handleItemClick = (item: SidebarItem, index: number) => {
   padding: var(--space-sm) 0;
   gap: 2px;
   overflow-y: auto;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
   transition: all var(--transition-normal);
 }
 
@@ -310,10 +311,17 @@ const handleItemClick = (item: SidebarItem, index: number) => {
 @media (max-width: 768px) {
   .base-sidebar {
     width: 3.5rem;
-    height: 35vh;
+    max-height: 80vh; /* Consistent with desktop */
+    height: auto; /* Allow natural height */
     top: 50%;
     transform: translateY(-50%);
     padding: var(--space-sm) 0;
+    gap: 1px; /* Reduced gap between items */
+  }
+  
+  .sidebar-item {
+    padding: 1px 0; /* Reduced padding within items */
+    min-height: 3.5rem; /* Reduced from 4.5rem */
   }
   
   .sidebar-item-icon {
@@ -333,10 +341,17 @@ const handleItemClick = (item: SidebarItem, index: number) => {
 @media (max-width: 480px) {
   .base-sidebar {
     width: 3rem;
-    height: 30vh;
+    max-height: 80vh; /* Consistent with desktop */
+    height: auto; /* Allow natural height */
     top: 50%;
     transform: translateY(-50%);
     padding: var(--space-xs) 0;
+    gap: 0px; /* Minimal gap between items */
+  }
+  
+  .sidebar-item {
+    padding: 0px 0; /* Minimal padding within items */
+    min-height: 3rem; /* Further reduced from 4.5rem */
   }
   
   .sidebar-item-icon {
@@ -371,4 +386,6 @@ const handleItemClick = (item: SidebarItem, index: number) => {
 .base-sidebar::-webkit-scrollbar-thumb:hover {
   background: var(--secondary-color-0);
 }
+
+/* Note: Mobile responsive rules are handled above in main responsive section */
 </style>
