@@ -8,6 +8,7 @@ type PriceList = Record<string, number>
 const priceData = ref<PriceList | null>(null)
 const isLoading = ref(false)
 const error = ref<string | null>(null)
+const isInitialized = ref(false)
 
 // Price calculation functions
 const getTokenPrice = (symbol: string): number => {
@@ -48,12 +49,16 @@ const loadPriceData = async (): Promise<void> => {
     isLoading.value = true
     error.value = null
     
-    const response = await fetch(getSlpPath('pricelist/pricelist.json'))
+    const url = getSlpPath('pricelist/pricelist.json')
+    console.log('PriceStore: Fetching from URL:', url)
+    
+    const response = await fetch(url)
     if (!response.ok) {
       throw new Error(`Failed to load price data: ${response.statusText}`)
     }
     
     const data = await response.json()
+    console.log('PriceStore: Loaded price data:', data)
     priceData.value = data
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Failed to load price data'
@@ -65,7 +70,15 @@ const loadPriceData = async (): Promise<void> => {
 
 // Initialize store
 const initialize = async (): Promise<void> => {
+  if (isInitialized.value) {
+    console.log('PriceStore: Already initialized, skipping...')
+    return
+  }
+  
+  console.log('PriceStore: Initializing...')
   await loadPriceData()
+  isInitialized.value = true
+  console.log('PriceStore: Initialization complete')
 }
 
 // Export store
@@ -75,6 +88,7 @@ export const usePriceStore = () => {
     priceData: readonly(priceData),
     isLoading: readonly(isLoading),
     error: readonly(error),
+    isInitialized: readonly(isInitialized),
     
     // Methods
     getTokenPrice,
@@ -86,5 +100,4 @@ export const usePriceStore = () => {
   }
 }
 
-// Auto-initialize when store is imported
-initialize()
+// Note: Store should be initialized by components that use it

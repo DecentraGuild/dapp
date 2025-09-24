@@ -51,19 +51,19 @@
   "prizes": [
     {
       "position": 1,
-      "resourceID": "resource-cybercore",
+      "resourceID": "cybercore",
       "amount": 1,
       "description": "1st Place: Cyber Core Processor"
     },
     {
       "position": 2,
-      "resourceID": "resource-neonjet",
+      "resourceID": "neonjet",
       "amount": 1,
       "description": "2nd Place: Neon Jet Vehicle"
     },
     {
       "position": 3,
-      "resourceID": "resource-quantum",
+      "resourceID": "quantum",
       "amount": 5,
       "description": "3rd Place: 5 Quantum Crystals"
     }

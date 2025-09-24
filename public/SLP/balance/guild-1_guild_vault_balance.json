@@ -3,17 +3,17 @@
   "vaultID": "guild-1_guild_vault",
   "guildID": "guild-1",
   "tokens": {
-    "sol": 2500.5,
-    "usdc": 50000,
-    "wbtc": 2.5,
-    "atlas": 100000,
+    "sol": 50,
+    "usdc": 25000,
+    "wbtc": 0.02,
+    "atlas": 60606,
     "polis": 0
   },
   "nfts": {
-    "Crew Rare": 5,
-    "Crew Epic": 5,
-    "Crew Legendary": 2,
-    "Crew Common": 7
+    "Crew Rare": 2,
+    "Crew Epic": 1,
+    "Crew Legendary": 1,
+    "Crew Common": 3
   },
   "lastUpdated": "2024-01-20T12:00:00Z"
 }

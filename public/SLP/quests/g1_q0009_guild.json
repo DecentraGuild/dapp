@@ -1,4 +1,4 @@
-{
+﻿{
   "questID": "g1_q0009",
   "guildID": "guild-1",
   "title": "Organize Guild Event",
@@ -46,5 +46,4 @@
     }
   ],
   "verification": null,
-  "rewards": []
 }

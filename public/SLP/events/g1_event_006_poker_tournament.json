@@ -46,13 +46,13 @@
   "prizes": [
     {
       "position": 1,
-      "resourceID": "resource-maxhog",
+      "resourceID": "maxhog",
       "amount": 1,
       "description": "1st Place: Max Hog Companion"
     },
     {
       "position": 2,
-      "resourceID": "resource-nitro",
+      "resourceID": "nitro",
       "amount": 10,
       "description": "2nd Place: 10 Cyber Nitro"
     }

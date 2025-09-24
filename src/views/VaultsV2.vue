@@ -155,6 +155,7 @@ import { BaseCard, BaseList, BaseListGrid } from '@/components/base'
 import { useThemeStore } from '@/stores/themeStore'
 import { useDesignTokens } from '@/composables/useDesignTokens'
 import { getSlpPath } from '@/utils/api'
+import { usePriceStore } from '@/stores/priceStore'
 
 // Types
 interface VaultBalance {
@@ -199,6 +200,9 @@ interface TokenItem {
 // Theme and design tokens
 const themeStore = useThemeStore()
 const { borderRadius, spacing } = useDesignTokens()
+
+// Price store
+const priceStore = usePriceStore()
 
 // State
 const guildVaultBalance = ref<VaultBalance | null>(null)
@@ -375,8 +379,62 @@ const getVaultDisplayName = (vaultType: string) => {
 }
 
 
+// Helper function to get token price
+const getTokenPrice = (token: string): number => {
+  const prices = priceStore.priceData
+  if (!prices) {
+    console.log('PriceStore: No price data available')
+    return 0
+  }
+  
+  // Access the actual price data from the Vue ref
+  const priceData = prices.value || prices
+  console.log('PriceStore: Available prices:', priceData)
+  
+  // Map token names to pricelist keys
+  const tokenMap: Record<string, string> = {
+    'sol': 'SOL',
+    'usdc': 'USDC',
+    'wbtc': 'WBTC',
+    'atlas': 'ATLAS',
+    'polis': 'POLIS',
+    'maxhog': 'MAXHOG',
+    'opaljet': 'OPALJET',
+    'pearcer6': 'PEARCER6',
+    'pearcex4': 'PEARCEX4',
+    'pearcex5': 'PEARCEX5',
+    'pearcex6': 'PEARCEX6',
+    'pearcer8': 'PEARCER8',
+    'rainbowchi': 'RAINBOWCHI',
+    'rainbowom': 'RAINBOWOM',
+    'tufafeist': 'TUFAFEIST',
+    'vzusambwe': 'VZUSAMBWE',
+    'vzuballad': 'VZUSBALLAD',
+    'vzusopod': 'VZUSOPOD',
+    'vzussolos': 'VZUSSOLOS',
+    'nitro': 'NITRO'
+  }
+  
+  const priceKey = tokenMap[token.toLowerCase()]
+  const price = priceKey ? priceData[priceKey] || 0 : 0
+  
+  console.log(`Token: ${token} -> PriceKey: ${priceKey} -> Price: ${price}`)
+  return price
+}
+
+// Helper function to get NFT price
+const getNFTPrice = (nftName: string): number => {
+  const prices = priceStore.priceData
+  if (!prices) return 0
+  
+  // Access the actual price data from the Vue ref
+  const priceData = prices.value || prices
+  return priceData[nftName] || 0
+}
+
 // Data generation methods - 3 columns: Description, Amount, $ Value
 const getVaultBalanceData = (vaultType: string) => {
+  console.log(`VaultsV2: Getting vault balance data for ${vaultType}`)
   let vaultData: VaultBalance | null = null
   
   switch (vaultType) {
@@ -394,14 +452,24 @@ const getVaultBalanceData = (vaultType: string) => {
       break
   }
   
-  if (!vaultData) return []
+  if (!vaultData) {
+    console.log(`VaultsV2: No vault data for ${vaultType}`)
+    return []
+  }
   
-  const items = Object.entries(vaultData.tokens || {}).map(([token, amount], index) => ({
-    id: `${vaultType}-${token}-${index}`,
-    title: `${token.toUpperCase()} - ${token === 'sol' ? 'Solana' : token === 'usdc' ? 'USD Coin' : token === 'wbtc' ? 'Wrapped Bitcoin' : token === 'atlas' ? 'Star Atlas' : token === 'polis' ? 'Star Atlas Polis' : 'Custom Token'}`,
-    subtitle: `${amount.toLocaleString()} ${token.toUpperCase()}`,
-    value: `$${(amount * 50).toLocaleString()}`
-  }))
+  console.log(`VaultsV2: Processing tokens for ${vaultType}:`, vaultData.tokens)
+  
+  const items = Object.entries(vaultData.tokens || {}).map(([token, amount], index) => {
+    const price = getTokenPrice(token)
+    const totalValue = amount * price
+    console.log(`VaultsV2: ${token} - amount: ${amount}, price: ${price}, total: ${totalValue}`)
+    return {
+      id: `${vaultType}-${token}-${index}`,
+      title: `${token.toUpperCase()} - ${token === 'sol' ? 'Solana' : token === 'usdc' ? 'USD Coin' : token === 'wbtc' ? 'Wrapped Bitcoin' : token === 'atlas' ? 'Star Atlas' : token === 'polis' ? 'Star Atlas Polis' : 'Custom Token'}`,
+      subtitle: `${amount.toLocaleString()} ${token.toUpperCase()}`,
+      value: `$${totalValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+    }
+  })
   
   // Add total row for tokens
   const total = items.reduce((sum, item) => {
@@ -420,6 +488,7 @@ const getVaultBalanceData = (vaultType: string) => {
 }
 
 const getAllVaultsBalanceData = () => {
+  console.log('VaultsV2: Getting all vaults balance data')
   const allTokens: Record<string, number> = {}
   
   // Combine tokens from all vaults
@@ -432,12 +501,19 @@ const getAllVaultsBalanceData = () => {
     }
   })
   
-  const items = Object.entries(allTokens).map(([token, amount], index) => ({
-    id: `all-${token}-${index}`,
-    title: `${token.toUpperCase()} - ${token === 'sol' ? 'Solana' : token === 'usdc' ? 'USD Coin' : token === 'wbtc' ? 'Wrapped Bitcoin' : token === 'atlas' ? 'Star Atlas' : token === 'polis' ? 'Star Atlas Polis' : 'Custom Token'}`,
-    subtitle: `${amount.toLocaleString()} ${token.toUpperCase()}`,
-    value: `$${(amount * 50).toLocaleString()}`
-  }))
+  console.log('VaultsV2: Combined tokens:', allTokens)
+  
+  const items = Object.entries(allTokens).map(([token, amount], index) => {
+    const price = getTokenPrice(token)
+    const totalValue = amount * price
+    console.log(`VaultsV2: ${token} - amount: ${amount}, price: ${price}, total: ${totalValue}`)
+    return {
+      id: `all-${token}-${index}`,
+      title: `${token.toUpperCase()} - ${token === 'sol' ? 'Solana' : token === 'usdc' ? 'USD Coin' : token === 'wbtc' ? 'Wrapped Bitcoin' : token === 'atlas' ? 'Star Atlas' : token === 'polis' ? 'Star Atlas Polis' : 'Custom Token'}`,
+      subtitle: `${amount.toLocaleString()} ${token.toUpperCase()}`,
+      value: `$${totalValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+    }
+  })
   
   // Add total row
   const total = items.reduce((sum, item) => {
@@ -467,12 +543,16 @@ const getVaultNFTData = (vaultType: string) => {
     nftData = armoryBalance.value.nfts
   }
   
-  return Object.entries(nftData).map(([nft, count], index) => ({
-    id: `${vaultType}-nft-${index}`,
-    title: nft,
-    subtitle: `${count} Items`,
-    value: `$${(count * 100).toLocaleString()}` // Placeholder NFT pricing
-  }))
+  return Object.entries(nftData).map(([nft, count], index) => {
+    const price = getNFTPrice(nft)
+    const totalValue = count * price
+    return {
+      id: `${vaultType}-nft-${index}`,
+      title: nft,
+      subtitle: `${count} Items`,
+      value: `$${totalValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+    }
+  })
 }
 
 const getAllVaultsNFTData = () => {
@@ -493,12 +573,16 @@ const getAllVaultsNFTData = () => {
     }
   })
   
-  return Object.entries(allNFTs).map(([nft, count], index) => ({
-    id: `all-nft-${index}`,
-    title: nft,
-    subtitle: `${count} Items`,
-    value: `$${(count * 100).toLocaleString()}` // Placeholder NFT pricing
-  }))
+  return Object.entries(allNFTs).map(([nft, count], index) => {
+    const price = getNFTPrice(nft)
+    const totalValue = count * price
+    return {
+      id: `all-nft-${index}`,
+      title: nft,
+      subtitle: `${count} Items`,
+      value: `$${totalValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+    }
+  })
 }
 
 const getVaultTransactionData = (vaultType: string) => {
@@ -554,7 +638,10 @@ const fetchVaultData = async () => {
 }
 
 // Lifecycle
-onMounted(() => {
+onMounted(async () => {
+  console.log('VaultsV2: Initializing price store...')
+  await priceStore.initialize()
+  console.log('VaultsV2: Price store initialized, data:', priceStore.priceData)
   fetchVaultData()
 })
 </script>

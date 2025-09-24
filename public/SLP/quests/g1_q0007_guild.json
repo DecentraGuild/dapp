@@ -22,8 +22,8 @@
   ],
   "rewards": {
     "tokens": {
-      "token1": 400,
-      "token2": 100
+      "token1": 30,
+      "token2": 85
     },
     "badges": ["community_moderator"],
     "nfts": ["moderator_badge"],
@@ -37,6 +37,5 @@
   "completedAt": null,
   "isActive": true,
   "applications": [],
-  "verification": null,
-  "rewards": []
+  "verification": null
 }

@@ -7,8 +7,8 @@
   "ticketstotal": 200,
   "ticketsprice": 100,
   "ticketpaymentcurrency": "g1-token1",
-  "rewardtokenid": "resource-pearcer6",
-  "rewardamount": 5000,
+  "rewardtokenid": "pearcer6",
+  "rewardamount": 1,
   "ticketsoldwallets": [
     "0x1111111111111111111111111111111111111111",
     "0x2222222222222222222222222222222222222222",

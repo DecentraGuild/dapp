@@ -1,4 +1,4 @@
-{
+﻿{
   "questID": "g1_q0012",
   "guildID": "guild-1",
   "title": "Guild Treasury Audit",
@@ -38,5 +38,4 @@
   "isActive": true,
   "applications": [],
   "verification": null,
-  "rewards": []
 }

@@ -25,8 +25,8 @@
   ],
   "rewards": {
     "tokens": {
-      "token1": 300,
-      "token2": 75
+      "token1": 60,
+      "token2": 170
     },
     "badges": ["crystal_collector"],
     "nfts": ["rare_cyber_crystal"],
@@ -48,6 +48,5 @@
       "status": "pending"
     }
   ],
-  "verification": null,
-  "rewards": []
+  "verification": null
 }

@@ -39,19 +39,19 @@
   "prizes": [
     {
       "position": 1,
-      "resourceID": "resource-legendary_weapon",
+      "resourceID": "legendary_weapon",
       "amount": 1,
       "description": "1st Place: Legendary Weapon Set"
     },
     {
       "position": 2,
-      "resourceID": "resource-rare_vehicle",
+      "resourceID": "rare_vehicle",
       "amount": 1,
       "description": "2nd Place: Rare Vehicle"
     },
     {
       "position": 3,
-      "resourceID": "resource-epic_companion",
+      "resourceID": "epic_companion",
       "amount": 1,
       "description": "3rd Place: Epic Companion"
     }

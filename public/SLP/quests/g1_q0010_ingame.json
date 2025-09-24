@@ -1,4 +1,4 @@
-{
+﻿{
   "questID": "g1_q0010",
   "guildID": "guild-1",
   "title": "Conquer the Shadow Realm",
@@ -41,5 +41,4 @@
   "isActive": true,
   "applications": [],
   "verification": null,
-  "rewards": []
 }

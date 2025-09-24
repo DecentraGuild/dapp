@@ -1,5 +1,5 @@
 {
-  "resourceID": "resource-usdc",
+  "resourceID": "usdc",
   "name": "USD Coin",
   "symbol": "USDC",
   "description": "Fully-backed US dollar stablecoin issued by Centre",
@@ -14,6 +14,6 @@
   "isActive": true,
   "isPublic": true,
   "demoPrice": 1.00,
-  "Pricetoken": "resource-usdc",
+  "Pricetoken": "usdc",
   "contractAddress": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
 }

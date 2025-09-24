@@ -62,13 +62,13 @@
   "prizes": [
     {
       "position": 1,
-      "resourceID": "resource-neoncore",
+      "resourceID": "neoncore",
       "amount": 1,
       "description": "1st Place: Neon Core Processor"
     },
     {
       "position": 2,
-      "resourceID": "resource-cyberfuel",
+      "resourceID": "cyberfuel",
       "amount": 20,
       "description": "2nd Place: 20 Cyber Fuel"
     }

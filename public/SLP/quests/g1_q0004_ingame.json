@@ -1,4 +1,4 @@
-{
+﻿{
   "questID": "g1_q0004",
   "guildID": "guild-1",
   "title": "Raid the Oni Fortress",
@@ -48,5 +48,4 @@
     "quality": "excellent",
     "approved": true
   },
-  "rewards": []
 }

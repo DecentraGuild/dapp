@@ -25,8 +25,8 @@
   ],
   "rewards": {
     "tokens": {
-      "token1": 500,
-      "token2": 100
+      "token1": 90,
+      "token2": 255
     },
     "badges": ["dragon_slayer"],
     "nfts": ["cyber_dragon_scale"],
@@ -40,6 +40,5 @@
   "completedAt": null,
   "isActive": true,
   "applications": [],
-  "verification": null,
-  "rewards": []
+  "verification": null
 }

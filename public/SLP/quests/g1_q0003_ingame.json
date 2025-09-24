@@ -25,8 +25,8 @@
   ],
   "rewards": {
     "tokens": {
-      "token1": 1000,
-      "token2": 200
+      "token1": 120,
+      "token2": 340
     },
     "badges": ["tournament_champion"],
     "nfts": ["champion_crown"],
@@ -48,6 +48,5 @@
       "status": "approved"
     }
   ],
-  "verification": null,
-  "rewards": []
+  "verification": null
 }

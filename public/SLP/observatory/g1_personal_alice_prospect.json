@@ -50,7 +50,7 @@
       {
         "id": "f_personal_002",
         "type": "resource_mint",
-        "resourceName": "resource-pearcer6",
+        "resourceName": "pearcer6",
         "timestamp": "2025-09-20T14:20:00Z",
         "status": "completed",
         "cost": "2 SOL"
@@ -98,7 +98,7 @@
         "type": "poker_tournament",
         "participatedAt": "2025-09-17T19:00:00Z",
         "result": "3rd place",
-        "reward": "100 g1-token1 + resource-maxhog"
+        "reward": "100 g1-token1 + maxhog"
       },
       {
         "id": "g1_event_003",
@@ -114,7 +114,7 @@
         "type": "raid",
         "participatedAt": "2025-09-18T20:00:00Z",
         "result": "victory",
-        "reward": "150 g1-token1 + resource-pearcer6"
+        "reward": "150 g1-token1 + pearcer6"
       }
     ],
     "minigameActivity": [

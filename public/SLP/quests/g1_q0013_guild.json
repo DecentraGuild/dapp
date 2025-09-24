@@ -1,4 +1,4 @@
-{
+﻿{
   "questID": "g1_q0013",
   "guildID": "guild-1",
   "title": "Mentor New Recruits",
@@ -38,5 +38,4 @@
   "isActive": true,
   "applications": [],
   "verification": null,
-  "rewards": []
 }

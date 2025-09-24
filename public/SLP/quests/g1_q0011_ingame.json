@@ -1,4 +1,4 @@
-{
+﻿{
   "questID": "g1_q0011",
   "guildID": "guild-1",
   "title": "Master the Elemental Arts",
@@ -41,5 +41,4 @@
   "isActive": true,
   "applications": [],
   "verification": null,
-  "rewards": []
 }

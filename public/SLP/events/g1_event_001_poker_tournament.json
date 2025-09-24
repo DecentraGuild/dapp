@@ -67,19 +67,19 @@
   "prizes": [
     {
       "position": 1,
-      "resourceID": "resource-pearcer6",
+      "resourceID": "pearcer6",
       "amount": 1,
       "description": "1st Place: Legendary Pearcer 6 Weapon"
     },
     {
       "position": 2,
-      "resourceID": "resource-opaljet",
+      "resourceID": "opaljet",
       "amount": 1,
       "description": "2nd Place: Opal Jet Luxury Vehicle"
     },
     {
       "position": 3,
-      "resourceID": "resource-maxhog",
+      "resourceID": "maxhog",
       "amount": 2,
       "description": "3rd Place: 2 Max Hog Companions"
     }

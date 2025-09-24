@@ -1,5 +1,5 @@
 {
-  "resourceID": "resource-sol",
+  "resourceID": "sol",
   "name": "Solana",
   "symbol": "SOL",
   "description": "Native token of the Solana blockchain, used for transaction fees and staking",
@@ -14,6 +14,6 @@
   "isActive": true,
   "isPublic": true,
   "demoPrice": 200.001,
-  "Pricetoken": "resource-usdc",
+  "Pricetoken": "usdc",
   "contractAddress": "So11111111111111111111111111111111111111112"
 }
