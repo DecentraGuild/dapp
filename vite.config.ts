@@ -15,9 +15,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
-  base: process.env.NODE_ENV === 'production' && !process.env.VITE_SUBDOMAIN_DEPLOY 
-    ? '/dapp/' 
-    : '/',
+  base: '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
