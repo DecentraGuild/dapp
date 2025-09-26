@@ -165,6 +165,10 @@ interface VaultBalance {
   tokens: Record<string, number>
   nfts?: Record<string, number>
   lastUpdated: string
+  mintMember?: boolean
+  burnMember?: boolean
+  exchangeRatio?: [number, number]
+  circulatingSupply?: number
 }
 
 interface ArmoryBalance {
@@ -385,13 +389,12 @@ const getVaultDisplayName = (vaultType: string) => {
 const getTokenPrice = (token: string): number => {
   const prices = priceStore.priceData
   if (!prices) {
-    console.log('PriceStore: No price data available')
     return 0
   }
   
   // Access the actual price data from the Vue ref
-  const priceData = prices.value || prices
-  console.log('PriceStore: Available prices:', priceData)
+  const priceData = prices.value
+  if (!priceData) return 0
   
   // Map token names to pricelist keys
   const tokenMap: Record<string, string> = {
@@ -418,9 +421,8 @@ const getTokenPrice = (token: string): number => {
   }
   
   const priceKey = tokenMap[token.toLowerCase()]
-  const price = priceKey ? (priceData.value?.[priceKey] || 0) : 0
+  const price = priceKey ? (priceData[priceKey] || 0) : 0
   
-  console.log(`Token: ${token} -> PriceKey: ${priceKey} -> Price: ${price}`)
   return price
 }
 
