@@ -56,10 +56,7 @@
           @click="toggleThemeDropdown"
           :style="buttonStyles"
         >
-          <Icon 
-            :icon="currentTheme?.id?.includes('spacebase') ? 'game-icons:space-suit' : 'game-icons:castle'" 
-            class="theme-icon button-icon" 
-          />
+          <span class="skin-label">Skin:</span>
           <span class="theme-text button-text">{{ currentTheme?.name || 'Theme' }}</span>
           <Icon icon="mdi:chevron-down" class="dropdown-icon" :class="{ 'rotated': showThemeDropdown }" />
         </button>
@@ -475,6 +472,14 @@ onUnmounted(() => {
   transition: color 0.2s ease;
 }
 
+.skin-label {
+  font-size: 0.9rem;
+  color: var(--secondary-color-1);
+  font-weight: 500;
+  white-space: nowrap;
+  margin-right: 0.25rem;
+}
+
 .theme-button:hover .theme-text {
   color: var(--secondary-color-0);
 }
@@ -553,15 +558,15 @@ onUnmounted(() => {
 .right-section {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 1.5rem;
 }
 
 .member-button {
-  margin-left: 1rem;
+  margin-left: 0;
 }
 
 .right-section > *:not(.theme-selector):not(.member-button) {
-  margin-left: 0.75rem;
+  margin-left: 0;
 }
 
 .nav-button {
