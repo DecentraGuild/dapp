@@ -205,10 +205,10 @@ const tabs = [
 
 // Computed data for vault cards
 const guildVaultData = computed(() => {
-  if (!guildVaultBalance.value || !armoryBalance.value) return []
+  if (!guildVaultBalance.value) return []
   
   const totalTokens = Object.values(guildVaultBalance.value.tokens || {}).reduce((sum: number, val: number) => sum + val, 0)
-  const totalArmory = Object.values(armoryBalance.value.tokens || {}).reduce((sum: number, val: number) => sum + val, 0)
+  const totalArmory = armoryBalance.value ? Object.values(armoryBalance.value.tokens || {}).reduce((sum: number, val: number) => sum + val, 0) : 0
   
   return [
     {
@@ -237,9 +237,10 @@ const guildVaultData = computed(() => {
 const token1VaultData = computed(() => {
   if (!token1VaultBalance.value) return []
   
-  const vaultBalance = token1VaultBalance.value.tokens?.['guild-1-token1'] || 0
   const atlasBalance = token1VaultBalance.value.tokens?.atlas || 0
-  const exchangeRatio = atlasBalance > 0 ? (vaultBalance / atlasBalance).toFixed(4) : '0.0000'
+  const circulatingSupply = token1VaultBalance.value.circulatingSupply || 0
+  const exchangeRatio = token1VaultBalance.value.exchangeRatio || [1, 100]
+  const exchangeRatioText = `${exchangeRatio[0]}:${exchangeRatio[1]}`
   
   return [
     {
@@ -250,17 +251,17 @@ const token1VaultData = computed(() => {
     {
       id: 'exchange-ratio',
       title: 'Exchange Ratio',
-      subtitle: `1:${exchangeRatio}`
+      subtitle: exchangeRatioText
     },
     {
       id: 'vault-balance',
       title: 'Vault Balance',
-      subtitle: `${vaultBalance.toLocaleString()} Tokens`
+      subtitle: `${atlasBalance.toLocaleString()} ATLAS`
     },
     {
       id: 'circulating',
       title: 'Circulating',
-      subtitle: `${(vaultBalance * 0.75).toLocaleString()} Tokens`
+      subtitle: `${circulatingSupply.toLocaleString()} Tokens`
     }
   ]
 })
@@ -268,9 +269,10 @@ const token1VaultData = computed(() => {
 const token2VaultData = computed(() => {
   if (!token2VaultBalance.value) return []
   
-  const vaultBalance = token2VaultBalance.value.tokens?.['guild-1-token2'] || 0
   const polisBalance = token2VaultBalance.value.tokens?.polis || 0
-  const exchangeRatio = polisBalance > 0 ? (vaultBalance / polisBalance).toFixed(4) : '0.0000'
+  const circulatingSupply = token2VaultBalance.value.circulatingSupply || 0
+  const exchangeRatio = token2VaultBalance.value.exchangeRatio || [1, 1.33]
+  const exchangeRatioText = `${exchangeRatio[0]}:${exchangeRatio[1]}`
   
   return [
     {
@@ -281,17 +283,17 @@ const token2VaultData = computed(() => {
     {
       id: 'exchange-ratio',
       title: 'Exchange Ratio',
-      subtitle: `1:${exchangeRatio}`
+      subtitle: exchangeRatioText
     },
     {
       id: 'vault-balance',
       title: 'Vault Balance',
-      subtitle: `${vaultBalance.toLocaleString()} Tokens`
+      subtitle: `${polisBalance.toLocaleString()} POLIS`
     },
     {
       id: 'circulating',
       title: 'Circulating',
-      subtitle: `${(vaultBalance * 0.60).toLocaleString()} Tokens`
+      subtitle: `${circulatingSupply.toLocaleString()} Tokens`
     }
   ]
 })
@@ -385,7 +387,7 @@ const getTokenPrice = (token: string): number => {
   }
   
   const priceKey = tokenMap[token.toLowerCase()]
-  const price = priceKey ? priceData[priceKey] || 0 : 0
+  const price = priceKey ? (priceData.value?.[priceKey] || 0) : 0
   
   console.log(`Token: ${token} -> PriceKey: ${priceKey} -> Price: ${price}`)
   return price
@@ -397,8 +399,7 @@ const getNFTPrice = (nftName: string): number => {
   if (!prices) return 0
   
   // Access the actual price data from the Vue ref
-  const priceData = prices.value || prices
-  return priceData[nftName] || 0
+  return prices.value?.[nftName] || 0
 }
 
 // Methods
@@ -577,23 +578,33 @@ const fetchVaultData = async () => {
   try {
     // Fetch guild vault balance
     const guildResponse = await fetch(getSlpPath('balance/guild-1_guild_vault_balance.json'))
-    guildVaultBalance.value = await guildResponse.json()
+    if (guildResponse.ok) {
+      guildVaultBalance.value = await guildResponse.json()
+    }
     
     // Fetch token1 vault balance
     const token1Response = await fetch(getSlpPath('balance/guild-1_token1_vault_balance.json'))
-    token1VaultBalance.value = await token1Response.json()
+    if (token1Response.ok) {
+      token1VaultBalance.value = await token1Response.json()
+    }
     
     // Fetch token2 vault balance
     const token2Response = await fetch(getSlpPath('balance/guild-1_token2_vault_balance.json'))
-    token2VaultBalance.value = await token2Response.json()
+    if (token2Response.ok) {
+      token2VaultBalance.value = await token2Response.json()
+    }
     
     // Fetch income vault balance
     const incomeResponse = await fetch(getSlpPath('balance/guild-1_income_vault_balance.json'))
-    incomeVaultBalance.value = await incomeResponse.json()
+    if (incomeResponse.ok) {
+      incomeVaultBalance.value = await incomeResponse.json()
+    }
     
     // Fetch armory balance
     const armoryResponse = await fetch(getSlpPath('balance/guild-1_armory_balance.json'))
-    armoryBalance.value = await armoryResponse.json()
+    if (armoryResponse.ok) {
+      armoryBalance.value = await armoryResponse.json()
+    }
     
     // Fetch transaction data
     const transactionsResponse = await fetch(getSlpPath('guildtransactions/guild-1_vault_transactions.json'))
@@ -606,9 +617,7 @@ const fetchVaultData = async () => {
 
 // Lifecycle
 onMounted(async () => {
-  console.log('Vaults: Initializing price store...')
   await priceStore.initialize()
-  console.log('Vaults: Price store initialized, data:', priceStore.priceData)
   fetchVaultData()
 })
 </script>

@@ -2,6 +2,10 @@
   "walletID": "0x2222222222222222222222222222222222222222",
   "vaultID": "guild-1_token1_vault",
   "guildID": "guild-1",
+  "mintMember": false,
+  "burnMember": true,
+  "exchangeRatio": [1, 100], 
+  "circulatingSupply": 4100, 
   "tokens": {
     "atlas": 121212,
     "guild-1-token1": 1
