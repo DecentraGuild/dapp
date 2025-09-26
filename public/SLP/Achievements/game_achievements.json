@@ -4,89 +4,89 @@
   "achievements": [
     {
       "id": "game_001",
-      "title": "Planet Deliverer",
+      "title": "R4 Supplier",
       "description": "Deliver resources to planets across the galaxy",
       "icon": "rocket",
       "levels": [
         {
           "level": "Common",
-          "requirement": "Deliver 10 resources to Planet Alpha",
+          "requirement": "Deliver 100k Food, Ammo and Fuel to Planet Alpha",
           "contributionPoints": 50,
-          "tokenReward": 25,
+          "tokenReward": 2,
           "mintable": false
         },
         {
           "level": "Epic",
-          "requirement": "Deliver 50 resources to 3 different planets",
+          "requirement": "Deliver 500k Food, Ammo and Fuel to 3 different planets",
           "contributionPoints": 150,
-          "tokenReward": 75,
+          "tokenReward": 6,
           "mintable": false
         },
         {
           "level": "Legendary",
-          "requirement": "Deliver 100 resources to all 5 planets in the system",
+          "requirement": "Deliver 1 mil Food, Ammo and Fuel to 5 different planets",
           "contributionPoints": 500,
-          "tokenReward": 250,
+          "tokenReward": 10,
           "mintable": true,
-          "nftTitle": "Master Planet Deliverer"
+          "nftTitle": "Master R4 Supplier"
         }
       ]
     },
     {
       "id": "game_002",
-      "title": "Dragon Mountain Raider",
-      "description": "Conquer the legendary Dragon Mountain",
+      "title": "Galia Raider",
+      "description": "Help with the conquer of enemy territory",
       "icon": "game-icons:double-dragon",
       "levels": [
         {
           "level": "Common",
-          "requirement": "Complete 1 successful raid on Dragon Mountain",
+          "requirement": "Participate in 1 successful raid on the enemy",
           "contributionPoints": 100,
-          "tokenReward": 50,
+          "tokenReward": 2,
           "mintable": false
         },
         {
           "level": "Epic",
-          "requirement": "Complete 5 successful raids on Dragon Mountain",
+          "requirement": "Participate in 10 successful raid on the enemy",
           "contributionPoints": 300,
-          "tokenReward": 150,
+          "tokenReward": 6,
           "mintable": false
         },
         {
           "level": "Legendary",
-          "requirement": "Complete 10 successful raids and defeat the Ancient Dragon",
+          "requirement": "Participate in 100 successful raid on the enemyn",
           "contributionPoints": 750,
-          "tokenReward": 375,
+          "tokenReward": 10,
           "mintable": true,
-          "nftTitle": "Dragon Slayer"
+          "nftTitle": "Devil Slayer"
         }
       ]
     },
     {
       "id": "game_003",
-      "title": "Grim Reaper Hunter",
+      "title": "Parts Savager",
       "description": "Hunt down the fearsome Grim Reapers",
       "icon": "game-icons:alien-skull",
       "levels": [
         {
           "level": "Common",
-          "requirement": "Slay 10 Grim Reapers",
+          "requirement": "Blow up 10 Pearce X6",
           "contributionPoints": 75,
-          "tokenReward": 35,
+          "tokenReward": 2,
           "mintable": false
         },
         {
           "level": "Epic",
-          "requirement": "Slay 50 Grim Reapers",
+          "requirement": "Blow up 10 Pearce F4",
           "contributionPoints": 250,
-          "tokenReward": 125,
+          "tokenReward": 6,
           "mintable": false
         },
         {
           "level": "Legendary",
-          "requirement": "Slay 100 Grim Reapers and defeat the Death Lord",
+          "requirement": "Blow up 10 Pearce C9",
           "contributionPoints": 600,
-          "tokenReward": 300,
+          "tokenReward": 10,
           "mintable": true,
           "nftTitle": "Death's Bane"
         }
@@ -102,21 +102,21 @@
           "level": "Common",
           "requirement": "Complete 25 quests",
           "contributionPoints": 60,
-          "tokenReward": 30,
+          "tokenReward": 2,
           "mintable": false
         },
         {
           "level": "Epic",
           "requirement": "Complete 100 quests",
           "contributionPoints": 200,
-          "tokenReward": 100,
+          "tokenReward": 6,
           "mintable": false
         },
         {
           "level": "Legendary",
           "requirement": "Complete 250 quests including all epic storylines",
           "contributionPoints": 500,
-          "tokenReward": 250,
+          "tokenReward": 10,
           "mintable": true,
           "nftTitle": "Legendary Quest Master"
         }
@@ -125,28 +125,28 @@
     {
       "id": "game_005",
       "title": "Boss Destroyer",
-      "description": "Defeat powerful bosses across the realm",
+      "description": "Defeat powerful fleets across the realm",
       "icon": "game-icons:skull-shield",
       "levels": [
         {
           "level": "Common",
-          "requirement": "Defeat 5 different bosses",
+          "requirement": "Defeat 5 different medium fleets",
           "contributionPoints": 80,
-          "tokenReward": 40,
+          "tokenReward": 2,
           "mintable": false
         },
         {
           "level": "Epic",
-          "requirement": "Defeat 15 different bosses",
+          "requirement": "Defeat 15 different large fleets",
           "contributionPoints": 220,
-          "tokenReward": 110,
+          "tokenReward": 6,
           "mintable": false
         },
         {
           "level": "Legendary",
-          "requirement": "Defeat all 30 bosses including the World Ender",
+          "requirement": "Defeat 30 capital fleets and 1 commander fleet",
           "contributionPoints": 600,
-          "tokenReward": 300,
+          "tokenReward": 10,
           "mintable": true,
           "nftTitle": "Ultimate Boss Slayer"
         }

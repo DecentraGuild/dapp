@@ -57,7 +57,7 @@
           :style="buttonStyles"
         >
           <Icon 
-            :icon="currentTheme?.id?.includes('spaceship') ? 'game-icons:space-suit' : 'game-icons:castle'" 
+            :icon="currentTheme?.id?.includes('spacebase') ? 'game-icons:space-suit' : 'game-icons:castle'" 
             class="theme-icon button-icon" 
           />
           <span class="theme-text button-text">{{ currentTheme?.name || 'Theme' }}</span>

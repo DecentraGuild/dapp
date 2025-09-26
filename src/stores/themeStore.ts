@@ -111,9 +111,8 @@ export const useThemeStore = defineStore('theme', () => {
       // Load available themes from SLP assets
       const themeFiles = [
         'skin_castle_medieval.json',
-        'skin_castle_shadowsun.json',
         'skin_castle_whitesun.json',
-        'skin_spaceship_redknight.json'
+        'skin_spacebase_yellow.json'
       ]
       
       const themes: ThemeData[] = []

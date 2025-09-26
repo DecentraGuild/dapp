@@ -42,9 +42,10 @@
        <div class="svg-container">
          <!-- SVG with embedded image background -->
          <svg 
-           width="3413.3301"
-           height="1946.67"
-           viewBox="0 0 3413.3299 1946.67"
+           v-if="svgDimensions"
+           :width="svgDimensions.width"
+           :height="svgDimensions.height"
+           :viewBox="`0 0 ${svgDimensions.width} ${svgDimensions.height}`"
            class="nav-svg"
            xmlns="http://www.w3.org/2000/svg"
            preserveAspectRatio="xMidYMid meet"
@@ -54,11 +55,11 @@
              :href="currentTheme?.images?.[0] || ''" 
              x="0" 
              y="0" 
-             width="3413.3299" 
-             height="1946.67"
+             :width="svgDimensions.width" 
+             :height="svgDimensions.height"
              preserveAspectRatio="xMidYMid slice"
            />
-           <!-- Render all navigation shapes -->
+           <!-- Render all navigation shapes - they will automatically scale with the SVG viewBox -->
            <g v-for="item in navigationItems" :key="item.id">
              <path
                :id="getShapeId(item.name)"
@@ -137,6 +138,7 @@ const submenuPosition = ref({ x: 0, y: 0 })
 const shapePaths = ref<Map<string, string>>(new Map())
 const hoveredShape = ref<string | null>(null)
 const tooltipPosition = ref({ x: 0, y: 0 })
+const svgDimensions = ref<{ width: number; height: number } | null>(null)
 
 // Computed styles
 const footerStyles = computed(() => ({
@@ -267,6 +269,31 @@ const handleNavigation = (item: NavigationItem) => {
   isExpanded.value = false
 }
 
+// Load SVG dimensions from the actual SVG file
+const loadSvgDimensions = async () => {
+  if (!currentTheme.value?.svgFile) {
+    return
+  }
+  
+  try {
+    const response = await fetch(currentTheme.value.svgFile)
+    if (response.ok) {
+      const svgText = await response.text()
+      const parser = new DOMParser()
+      const svgDoc = parser.parseFromString(svgText, 'image/svg+xml')
+      const svgElement = svgDoc.querySelector('svg')
+      
+      if (svgElement) {
+        const width = parseFloat(svgElement.getAttribute('width') || '0')
+        const height = parseFloat(svgElement.getAttribute('height') || '0')
+        svgDimensions.value = { width, height }
+      }
+    }
+  } catch (error) {
+    console.error('FooterNavbar: Error loading SVG dimensions:', error)
+  }
+}
+
 // Load shape paths when component mounts or theme changes
 const loadShapePaths = async () => {
   if (!currentTheme.value) {
@@ -308,13 +335,15 @@ const handleClickOutside = (event: MouseEvent) => {
 }
 
 // Watch for theme changes
-watch(() => currentTheme.value?.id, () => {
-  loadShapePaths()
+watch(() => currentTheme.value?.id, async () => {
+  await loadSvgDimensions()
+  await loadShapePaths()
 })
 
-onMounted(() => {
+onMounted(async () => {
   document.addEventListener('click', handleClickOutside)
-  loadShapePaths()
+  await loadSvgDimensions()
+  await loadShapePaths()
 })
 
 onUnmounted(() => {

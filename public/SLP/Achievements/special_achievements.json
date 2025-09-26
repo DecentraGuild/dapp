@@ -12,21 +12,21 @@
           "level": "Common",
           "requirement": "Win 1 guild tournament",
           "contributionPoints": 200,
-          "tokenReward": 100,
+          "tokenReward": 2,
           "mintable": false
         },
         {
           "level": "Epic",
           "requirement": "Win 3 different guild tournaments",
           "contributionPoints": 500,
-          "tokenReward": 250,
+          "tokenReward": 6,
           "mintable": false
         },
         {
           "level": "Legendary",
           "requirement": "Win 5 different tournaments including the Grand Championship",
           "contributionPoints": 1000,
-          "tokenReward": 500,
+          "tokenReward": 10,
           "mintable": true,
           "nftTitle": "Grand Champion"
         }
@@ -42,21 +42,21 @@
           "level": "Common",
           "requirement": "Participate in Christmas 2025 event",
           "contributionPoints": 100,
-          "tokenReward": 50,
+          "tokenReward": 2,
           "mintable": false
         },
         {
           "level": "Epic",
           "requirement": "Complete all Christmas 2025 special quests",
           "contributionPoints": 300,
-          "tokenReward": 150,
+          "tokenReward": 6,
           "mintable": false
         },
         {
           "level": "Legendary",
           "requirement": "Be among the top 10 participants in Christmas 2025 event",
           "contributionPoints": 600,
-          "tokenReward": 300,
+          "tokenReward": 10,
           "mintable": true,
           "nftTitle": "Christmas Legend 2025"
         }
@@ -72,21 +72,21 @@
           "level": "Common",
           "requirement": "Be a founding member of the guild",
           "contributionPoints": 500,
-          "tokenReward": 250,
+          "tokenReward": 6,
           "mintable": false
         },
         {
           "level": "Epic",
           "requirement": "Be a founding member and contribute to guild's first year",
           "contributionPoints": 1000,
-          "tokenReward": 500,
+          "tokenReward": 10,
           "mintable": false
         },
         {
           "level": "Legendary",
           "requirement": "Be a founding member and help guild reach 1000 members",
           "contributionPoints": 2000,
-          "tokenReward": 1000,
+          "tokenReward": 10,
           "mintable": true,
           "nftTitle": "Guild Founder"
         }
@@ -102,21 +102,21 @@
           "level": "Common",
           "requirement": "30 days of perfect attendance",
           "contributionPoints": 150,
-          "tokenReward": 75,
+          "tokenReward": 2,
           "mintable": false
         },
         {
           "level": "Epic",
           "requirement": "90 days of perfect attendance",
           "contributionPoints": 400,
-          "tokenReward": 200,
+          "tokenReward": 6,
           "mintable": false
         },
         {
           "level": "Legendary",
           "requirement": "365 days of perfect attendance",
           "contributionPoints": 1000,
-          "tokenReward": 500,
+          "tokenReward": 10,
           "mintable": true,
           "nftTitle": "Perfect Member"
         }
@@ -132,21 +132,21 @@
           "level": "Common",
           "requirement": "Earn 5000 total contribution points",
           "contributionPoints": 300,
-          "tokenReward": 150,
+          "tokenReward": 6,
           "mintable": false
         },
         {
           "level": "Epic",
           "requirement": "Earn 15000 total contribution points",
           "contributionPoints": 600,
-          "tokenReward": 300,
+          "tokenReward": 10,
           "mintable": false
         },
         {
           "level": "Legendary",
           "requirement": "Earn 50000 total contribution points and be recognized by all members",
           "contributionPoints": 1500,
-          "tokenReward": 750,
+          "tokenReward": 10,
           "mintable": true,
           "nftTitle": "Guild Legend"
         }
@@ -160,23 +160,23 @@
       "levels": [
         {
           "level": "Common",
-          "requirement": "Test 3 new features and provide feedback",
+          "requirement": "Test 3 new loops and provide feedback",
           "contributionPoints": 80,
-          "tokenReward": 40,
+          "tokenReward": 2,
           "mintable": false
         },
         {
           "level": "Epic",
-          "requirement": "Test 10 new features and provide detailed feedback",
+          "requirement": "Test 10 new loops and provide detailed feedback",
           "contributionPoints": 200,
-          "tokenReward": 100,
+          "tokenReward": 2,
           "mintable": false
         },
         {
           "level": "Legendary",
-          "requirement": "Test 25 new features and become a trusted beta tester",
+          "requirement": "Test 25 new loops and become a trusted beta tester",
           "contributionPoints": 500,
-          "tokenReward": 250,
+          "tokenReward": 6,
           "mintable": true,
           "nftTitle": "Beta Master"
         }
