@@ -10,7 +10,7 @@
   "maxSupply": 100000,
   "vaultHolding":55000,
   "assetbacking": "POLIS",
-  "exchangeRatio": [1, 1.1], 
+  "exchangeRatio": [1, 1.327], 
   "createdAt": "2024-01-01T00:00:00Z",
   "isActive": true,
   "contractAddress": "0x2222222222222222222222222222222222222222"

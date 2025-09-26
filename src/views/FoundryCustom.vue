@@ -96,7 +96,7 @@
                 </div>
                 <div class="detail-item">
                   <span class="detail-label">Vault Balance:</span>
-                  <span class="detail-value">{{ selectedAsset.circulatingSupply }}</span>
+                  <span class="detail-value">{{ selectedAsset.vaultBalance }}</span>
                 </div>
               </div>
               
@@ -109,38 +109,33 @@
                   size="sm"
                 />
               </div>
-            </div>
-          </div>
-        </BaseCard>
 
-        <!-- Exchange Input Card -->
-        <BaseCard 
-          v-if="selectedAsset"
-          variant="primary" 
-          size="lg"
-          class="exchange-input-card"
-        >
-          <div class="exchange-section">
-            <div class="input-group">
-              <label class="input-label">Amount to Exchange</label>
-              <input 
-                v-model="exchangeAmount"
-                type="number"
-                class="amount-input"
-                placeholder="Enter amount"
-                min="1"
-                :max="selectedAsset.circulatingSupply"
-              />
+              <!-- Exchange Input Section -->
+              <div class="exchange-section">
+                <div class="input-group">
+                  <label class="input-label">Amount to Exchange</label>
+                  <div class="input-with-help">
+                    <span class="input-help-text">(Positive = Mint, Negative = Redeem)</span>
+                    <input 
+                      v-model="exchangeAmount"
+                      type="number"
+                      class="amount-input"
+                      placeholder="Enter amount (+mint, -redeem)"
+                      :max="selectedAsset.vaultBalance"
+                    />
+                  </div>
+                </div>
+                <BaseButton
+                  variant="accent"
+                  size="lg"
+                  :icon="exchangeAmount < 0 ? 'mdi:arrow-down' : 'mdi:arrow-up'"
+                  @click="handleExchange"
+                  :disabled="!canExchange"
+                >
+                  {{ exchangeAmount < 0 ? 'Redeem' : 'Mint' }}
+                </BaseButton>
+              </div>
             </div>
-            <BaseButton
-              variant="accent"
-              size="lg"
-              icon="mdi:swap-horizontal"
-              @click="handleExchange"
-              :disabled="!canExchange"
-            >
-              Exchange
-            </BaseButton>
           </div>
         </BaseCard>
       </div>
@@ -178,6 +173,7 @@ interface CustomAsset {
   type: string
   decimals: number
   circulatingSupply: number
+  vaultBalance: number
   exchangeRatio: [number, number]
   redemptionAsset: string
   createdAt: string
@@ -259,30 +255,34 @@ const gridColumns = computed(() => {
 const calculationItems = computed(() => {
   if (!selectedAsset.value) return []
   
+  const isRedeeming = exchangeAmount.value < 0
+  const assetName = selectedAsset.value.backingAsset.name
+  const tokenName = selectedAsset.value.symbol
+  
   return [
     {
       id: 'amount',
       icon: 'mdi:counter',
       title: 'Amount',
-      subtitle: `${exchangeAmount.value || 0}`
+      subtitle: `${Math.abs(exchangeAmount.value || 0)} ${isRedeeming ? tokenName : assetName}`
     },
     {
       id: 'rate',
       icon: 'mdi:swap-horizontal',
       title: 'Exchange Rate',
-      subtitle: `${selectedAsset.value.exchangeRatio[1]} : ${selectedAsset.value.exchangeRatio[0]}`
+      subtitle: `${selectedAsset.value.exchangeRatio[1]} ${tokenName} : ${selectedAsset.value.exchangeRatio[0]} ${assetName}`
     },
     {
       id: 'fee',
       icon: 'mdi:percent',
       title: 'Minting Fee',
-      subtitle: `${mintingFee.value.toFixed(2)}`
+      subtitle: `${mintingFee.value.toFixed(4)} SOL`
     },
     {
       id: 'total',
       icon: 'mdi:calculator',
       title: 'Total Cost',
-      subtitle: `${totalCost.value.toFixed(2)}`
+      subtitle: `${totalCost.value.toFixed(4)} ${isRedeeming ? assetName : tokenName}`
     }
   ]
 })
@@ -294,15 +294,34 @@ const mintingFee = computed(() => {
 
 const totalCost = computed(() => {
   if (!selectedAsset.value || !exchangeAmount.value) return 0
-  // Fixed exchange rate calculation - 1 asset gives X tokens
-  const exchangeCost = (exchangeAmount.value * selectedAsset.value.exchangeRatio[1]) / selectedAsset.value.exchangeRatio[0]
-  return exchangeCost + mintingFee.value
+  
+  const isRedeeming = exchangeAmount.value < 0
+  const absAmount = Math.abs(exchangeAmount.value)
+  
+  if (isRedeeming) {
+    // When redeeming: tokens -> assets (reverse of exchange rate)
+    const assetCost = (absAmount * selectedAsset.value.exchangeRatio[0]) / selectedAsset.value.exchangeRatio[1]
+    return assetCost
+  } else {
+    // When minting: assets -> tokens + SOL fee
+    const tokenCost = (absAmount * selectedAsset.value.exchangeRatio[1]) / selectedAsset.value.exchangeRatio[0]
+    return tokenCost + mintingFee.value
+  }
 })
 
 const canExchange = computed(() => {
-  return selectedAsset.value && 
-         exchangeAmount.value > 0 && 
-         exchangeAmount.value <= (selectedAsset.value.circulatingSupply || 0)
+  if (!selectedAsset.value || !exchangeAmount.value) return false
+  
+  const isRedeeming = exchangeAmount.value < 0
+  const absAmount = Math.abs(exchangeAmount.value)
+  
+  if (isRedeeming) {
+    // For redeeming, check if user has enough tokens (can go negative)
+    return true // Allow negative token balance for redemption
+  } else {
+    // For minting, check vault balance
+    return absAmount <= (selectedAsset.value.vaultBalance || 0)
+  }
 })
 
 // Methods
@@ -386,8 +405,18 @@ const handleExchange = () => {
     return
   }
   
-  // Demo: Show exchange calculation
-  alert(`Exchanging ${exchangeAmount.value} ${selectedAsset.value.symbol} for ${totalCost.value} tokens`)
+  const isRedeeming = exchangeAmount.value < 0
+  const absAmount = Math.abs(exchangeAmount.value)
+  const assetName = selectedAsset.value.backingAsset.name
+  const tokenName = selectedAsset.value.symbol
+  
+  if (isRedeeming) {
+    // Redeeming: tokens -> assets
+    alert(`Redeeming ${absAmount} ${tokenName} for ${totalCost.value} ${assetName}`)
+  } else {
+    // Minting: assets -> tokens + SOL fee
+    alert(`Minting ${absAmount} ${assetName} for ${totalCost.value} ${tokenName} (Fee: ${mintingFee.value.toFixed(4)} SOL)`)
+  }
 }
 
 // Window resize handler
@@ -674,6 +703,19 @@ onUnmounted(() => {
   flex-direction: column;
   gap: var(--space-sm);
   max-width: 12.5rem;
+}
+
+.input-with-help {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.input-help-text {
+  font-size: var(--text-xs);
+  color: var(--text-color-2);
+  font-style: italic;
 }
 
 .input-label {

@@ -3,9 +3,9 @@
   "vaultID": "guild-1_income_vault",
   "guildID": "guild-1",
   "tokens": {
-    "sol": 15,
-    "usdc": 2500,
-    "atlas": 18182
+    "sol": 0.5,
+    "usdc": 150,
+    "atlas": 180182
   },
   "lastUpdated": "2024-01-20T12:00:00Z"
 }

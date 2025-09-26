@@ -10,6 +10,8 @@
   "circulatingSupply": 2000,
   "exchangeRatio": [1, 1000], 
   "vaultBalance": 1,
+  "mintFee": 0.1,
+  "feeToken": "SOL",
   "redemptionAsset": "pearcex5",
   "createdAt": "2024-01-01T00:00:00Z",
   "isActive": true,

@@ -3,16 +3,24 @@
   "armoryID": "guild-1_armory",
   "guildID": "guild-1",
   "tokens": {
-    "maxhog": 25,
-    "opaljet": 8,
-    "pearcer6": 3,
-    "nitro": 1000
+    "maxhog": 150,
+    "opaljet": 130,
+    "pearcer6": 6,
+    "pearcex4": 1250,
+    "pearcex5": 55,
+    "pearcex6": 11,
+    "vzussolos": 960,
+    "vzusambwe": 69,
+    "vzusopod": 17,
+    "tufafeist": 40,
+    "rainbowchi": 24,
+    "nitro": 500000000
   },
   "nfts": {
-    "Crew Rare": 15,
-    "Crew Epic": 5,
-    "Crew Legendary": 2,
-    "Crew Common": 750
+    "Crew Rare": 285,
+    "Crew Epic": 60,
+    "Crew Legendary": 6,
+    "Crew Common": 1200
   },
   "lastUpdated": "2024-01-20T12:00:00Z"
 }

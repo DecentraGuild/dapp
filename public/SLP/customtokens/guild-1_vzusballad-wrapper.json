@@ -10,6 +10,8 @@
   "circulatingSupply": 12000,
   "exchangeRatio": [1, 6000], 
   "vaultBalance": 8,
+  "mintFee": 0.1,
+  "feeToken": "SOL",
   "redemptionAsset": "vzusballad",
   "createdAt": "2024-01-01T00:00:00Z",
   "isActive": true,

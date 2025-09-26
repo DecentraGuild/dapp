@@ -8,9 +8,9 @@
     "wbtc": 0.1,
     "atlas": 5000,
     "polis": 500,
-    "g1-token1": 2500,
-    "g1-token2": 100,
-    "g2-token1": 3000,
+    "g1-token1": 250,
+    "g1-token2": 10,
+    "g2-token1": 100,
     "g2-token2": 50
   },
   "lastUpdated": "2024-01-20T12:00:00Z"

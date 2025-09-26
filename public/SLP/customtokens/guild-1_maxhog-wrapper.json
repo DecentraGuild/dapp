@@ -1,8 +1,8 @@
 {
   "wrapperID": "g1-C9-wrapper",
   "guildID": "guild-1",
-  "name": "Pearce C9 Token Wrapper",
-  "symbol": "MAXHOG-WRAP",
+  "name": "Pearce C9 Tokenised",
+  "symbol": "C9-Tokenised",
   "description": "Tokenized version of C9 ship. Collect 5000 tokens to redeem for a full ship",
   "image": "Pearce C9 capital ship.png",
   "type": "tokenised",
@@ -10,15 +10,17 @@
   "circulatingSupply": 10000,
   "exchangeRatio": [1, 5000], 
   "vaultBalance": 2,
-  "redemptionAsset": "maxhog",
+  "mintFee": 0.1,
+  "feeToken": "SOL",
+  "redemptionAsset": "pearceC9",
   "createdAt": "2024-01-01T00:00:00Z",
   "isActive": true,
   "contractAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
   "backingAsset": {
-    "resourceID": "maxhog",
-    "name": "Max Hog",
+    "resourceID": "pearcec9",
+    "name": "Pearce C9",
     "image": "Pearce C9 capital ship.png",
     "type": "ship",
-    "rarity": "epic"
+    "rarity": "legendary"
   }
 }

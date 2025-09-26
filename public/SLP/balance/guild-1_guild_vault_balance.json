@@ -3,11 +3,11 @@
   "vaultID": "guild-1_guild_vault",
   "guildID": "guild-1",
   "tokens": {
-    "sol": 50,
+    "sol": 20,
     "usdc": 25000,
-    "wbtc": 0.02,
+    "wbtc": 0.20,
     "atlas": 60606,
-    "polis": 0
+    "polis": 2000
   },
   "nfts": {
     "Crew Rare": 2,

@@ -54,7 +54,7 @@
         },
         {
           "level": "Legendary",
-          "requirement": "Participate in 100 successful raid on the enemyn",
+          "requirement": "Participate in 100 successful raid on the enemy",
           "contributionPoints": 750,
           "tokenReward": 10,
           "mintable": true,
