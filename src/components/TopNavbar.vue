@@ -95,28 +95,21 @@
         <span class="button-text">Member</span>
       </button>
 
-      <!-- Guild Dropdown -->
-      <BaseButtonDropdown
-        :model-value="selectedGuild"
-        :items="guildOptionsForDropdown"
-        :disabled="!isLoggedIn || isLoadingGuilds"
-        icon="game-icons:castle"
-        button-text="Guild"
-        @update:model-value="handleGuildSelect"
+      <!-- Guild Display (Fixed to Guild-1) -->
+      <div 
+        v-if="selectedGuild"
+        class="guild-display nav-button"
+        :style="buttonStyles"
       >
-        <template #title="{ item }">
-          {{ item.name }}
-        </template>
-        <template #icon="{ item }">
-          <img 
-            v-if="item.logo" 
-            :src="item.logo" 
-            :alt="item.name"
-            class="guild-logo"
-          />
-          <Icon v-else icon="game-icons:castle" />
-        </template>
-      </BaseButtonDropdown>
+        <img 
+          v-if="selectedGuild.logo" 
+          :src="selectedGuild.logo" 
+          :alt="selectedGuild.name"
+          class="guild-logo"
+        />
+        <Icon v-else icon="game-icons:castle" class="button-icon" />
+        <span class="button-text">{{ selectedGuild.name }}</span>
+      </div>
 
       <!-- Wallet Dropdown -->
       <BaseButtonDropdown
@@ -179,29 +172,7 @@ const token1Balance = computed(() => memberStore.token1Balance)
 const token2Balance = computed(() => memberStore.token2Balance)
 const token1Name = computed(() => memberStore.token1Name)
 const token2Name = computed(() => memberStore.token2Name)
-const guildOptions = computed(() => {
-  // Only show guilds that the user is a member of
-  return guildStore.availableGuilds.filter(guild => 
-    userStore.isInGuild(guild.id)
-  )
-})
-
-const guildOptionsForDropdown = computed(() => {
-  // Remove description to only show logo + name
-  return guildOptions.value.map(guild => {
-    const { description, ...guildWithoutDescription } = guild
-    return guildWithoutDescription
-  })
-})
 const isLoadingWallets = computed(() => userStore.isLoading)
-const isLoadingGuilds = computed(() => guildStore.isLoading)
-const memberCounts = computed(() => {
-  const counts: Record<string, number> = {}
-  guildStore.availableGuilds.forEach(guild => {
-    counts[guild.id] = guild.id === guildStore.guildId ? guildStore.memberCount : 0
-  })
-  return counts
-})
 
 // Computed styles
 const navbarStyles = computed(() => ({
@@ -246,25 +217,6 @@ const handleWalletSelect = async (wallet: any) => {
   }
 }
 
-const handleGuildSelect = async (guild: any) => {
-  if (guild) {
-    await guildStore.selectGuild(guild.id)
-    
-    // Load member profile for current user
-    if (userStore.selectedWallet) {
-      await memberStore.loadMemberProfile(
-        userStore.selectedWallet.address, 
-        guild.id
-      )
-    }
-    
-    // Load guild theme
-    await themeStore.loadGuildTheme(guild.id)
-    
-    // Always redirect to dashboard when guild is selected
-    router.push('/dashboard')
-  }
-}
 
 const formatAddress = (address: string) => {
   if (address.length <= 12) return address
@@ -353,6 +305,18 @@ onUnmounted(() => {
   border-radius: 6px;
   object-fit: cover;
   border: var(--border-width-thin) solid var(--secondary-color-0);
+}
+
+.guild-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--primary-color-1);
+  border: var(--border-width-thin) solid var(--secondary-color-0);
+  border-radius: var(--border-radius-md);
+  cursor: default;
+  opacity: 0.8;
 }
 
 .default-guild-icon {

@@ -55,12 +55,9 @@ onMounted(async () => {
     await userStore.demoLogin()
   }
 
-  // Load guilds and select guild-1 if not already selected
+  // Load guilds (auto-selects guild-1)
   if (!guildStore.hasActiveGuild) {
     await guildStore.loadAvailableGuilds()
-    if (guildStore.availableGuilds.length > 0) {
-      await guildStore.selectGuild('guild-1')
-    }
   }
 })
 </script>

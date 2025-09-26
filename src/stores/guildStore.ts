@@ -75,8 +75,8 @@ export const useGuildStore = defineStore('guild', () => {
       isLoading.value = true
       error.value = null
       
-      // Load guild profiles from SLP assets
-      const guildFiles = ['guild-1_profile.json', 'guild-2_profile.json']
+      // Load only guild-1 profile from SLP assets
+      const guildFiles = ['guild-1_profile.json']
       const guilds: GuildProfile[] = []
       
       for (const file of guildFiles) {
@@ -94,6 +94,11 @@ export const useGuildStore = defineStore('guild', () => {
       }
       
       availableGuilds.value = guilds
+      
+      // Auto-select guild-1 if available
+      if (guilds.length > 0) {
+        await selectGuild('guild-1')
+      }
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to load guilds'
       console.error('Error loading guilds:', err)

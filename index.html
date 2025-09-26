@@ -16,10 +16,35 @@
       // GitHub Pages SPA redirect handler
       // This script runs before Vue app initialization to handle redirected URLs
       (function(l) {
+        // Check for malformed URLs with double hash (##) or other issues
+        if (l.href.includes('##') || l.href.includes('//#/') || l.href.includes('/dapp/dapp/')) {
+          console.warn('Detected malformed URL, redirecting to base domain:', l.href);
+          window.location.replace('https://dapp.decentraguild.com');
+          return;
+        }
+        
         // Check if we have a hash that contains a path (from 404.html redirect)
         if (l.hash && l.hash.startsWith('#/')) {
           var path = l.hash.slice(1); // Remove the # symbol
-          window.history.replaceState(null, null, l.pathname + path + l.search);
+          // Ensure we don't create double slashes or malformed paths
+          var cleanPath = path.startsWith('/') ? path : '/' + path;
+          var newUrl = l.origin + cleanPath;
+          
+          // Final safety check before redirecting
+          if (newUrl.includes('##') || newUrl.includes('//#/')) {
+            console.warn('Detected malformed URL after processing, redirecting to base domain');
+            window.location.replace('https://dapp.decentraguild.com');
+            return;
+          }
+          
+          console.log('Redirecting from', l.href, 'to', newUrl);
+          window.history.replaceState(null, null, newUrl);
+        }
+        
+        // Final check for any remaining malformed URLs
+        if (l.href.includes('##') || l.href.includes('//#/') || l.href.includes('/dapp/dapp/')) {
+          console.warn('Detected malformed URL after all processing, redirecting to base domain');
+          window.location.replace('https://dapp.decentraguild.com');
         }
       }(window.location))
     </script>

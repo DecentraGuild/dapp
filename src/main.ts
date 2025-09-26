@@ -15,6 +15,12 @@ if (window.location.search.includes('?/')) {
   window.history.replaceState(null, '', newPath);
 }
 
+// Additional safety check for malformed URLs
+if (window.location.href.includes('##') || window.location.href.includes('//#/')) {
+  console.warn('Detected malformed URL in main.ts, redirecting to base domain');
+  window.location.replace('https://dapp.decentraguild.com');
+}
+
 const app = createApp(App)
 
 app.use(createPinia())

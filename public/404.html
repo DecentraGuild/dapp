@@ -13,11 +13,31 @@
         var isAsset = /\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|json)$/i.test(l.pathname);
         
         if (!isAsset) {
-            // Redirect to index.html with the current path as a hash
-            l.replace(
-                l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-                '/dapp/' + '#' + l.pathname.replace('/dapp/', '') + l.search + l.hash
-            );
+            // Clean up the path to avoid double slashes and malformed URLs
+            var cleanPath = l.pathname.replace('/dapp/', '').replace(/^\/+/, '/');
+            if (cleanPath === '/') cleanPath = '';
+            
+            // Build the redirect URL carefully
+            var baseUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + '/dapp/';
+            var hashPath = cleanPath + l.search;
+            
+            // Ensure we don't create double hashes
+            if (l.hash && !l.hash.startsWith('#')) {
+                hashPath += '#' + l.hash;
+            } else if (l.hash) {
+                hashPath += l.hash;
+            }
+            
+            var redirectUrl = baseUrl + '#' + hashPath;
+            
+            // Additional safety check - if URL looks malformed, redirect to base
+            if (redirectUrl.includes('##') || redirectUrl.includes('//#/')) {
+                console.warn('Detected malformed redirect URL, redirecting to base domain');
+                l.replace('https://dapp.decentraguild.com');
+            } else {
+                console.log('Redirecting to:', redirectUrl);
+                l.replace(redirectUrl);
+            }
         }
     </script>
 </head>
