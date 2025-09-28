@@ -5,7 +5,7 @@
     {
       "typeID": "tokenised",
       "name": "Tokenised",
-      "description": "For example : Tokenized version of assets. Collect 5000 tokens to redeem for a full ship",
+      "description": "For example : Tokenized version of assets. Collect part-tokens to redeem for a full ship",
       "icon": "mdi:share-variant",
       "image": "tokenised_assets.png",
       "isActive": true

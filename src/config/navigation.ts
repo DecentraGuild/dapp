@@ -109,12 +109,30 @@ export const mainNavigationItems: NavigationItem[] = [
     roomType: 'Armory',
     submenuItems: [
       {
-        id: 'g2p',
-        name: 'g2p',
+        id: 'claim',
+        name: 'claim',
+        path: 'armory/claim',
+        icon: 'game-icons:open-treasure-chest',
+        label: 'Claim',
+        description: 'Claim rewards and airdrops',
+        hasSubmenu: false
+      },
+      {
+        id: 'shop',
+        name: 'shop',
         path: 'armory/g2p',
         icon: 'game-icons:buy-card',
-        label: 'Guild2Player',
-        description: 'G2P trades',
+        label: 'Shop',
+        description: 'G2P trades and marketplace',
+        hasSubmenu: false
+      },
+      {
+        id: 'use',
+        name: 'use',
+        path: 'armory/gear',
+        icon: 'game-icons:spiked-shoulder-armor',
+        label: 'Use',
+        description: 'Borrow and return gear with collateral',
         hasSubmenu: false
       }
     ]

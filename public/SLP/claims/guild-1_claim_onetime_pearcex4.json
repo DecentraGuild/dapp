@@ -1,0 +1,41 @@
+{
+  "claimID": "g1-claim-onetime-pearcex4",
+  "guildID": "guild-1",
+  "name": "One-Time Pearce X4 Airdrop",
+  "description": "Special one-time airdrop of Pearce X4 weapons for founding members and early supporters",
+  "image": "Pearce X4_Thumbnail.png",
+  "resourceID": "pearcex4",
+  "type": "role",
+  "period": "onetime",
+  "requiredRoleID": "member",
+  "snapshotBegin": "2025-09-20T00:00:00Z",
+  "snapshotEnd": "2025-09-20T23:59:59Z",
+  "claimPeriod": {
+    "start": "2025-09-27T00:00:00Z",
+    "end": "2025-12-31T23:59:59Z"
+  },
+  "claimAmount": 1,
+  "memberList": {
+    "g1_bob_member": {
+      "role": "member"
+    },
+    "g1_charlie_officer": {
+      "role": "officer"
+    },
+    "g1_diana_council": {
+      "role": "council"
+    },
+    "g1_eve_founder": {
+      "role": "founder"
+    }
+  },
+  "rewardPool": {
+    "totalAmount": 4,
+    "remainingAmount": 4,
+    "claimedAmount": 0
+  },
+  "claimHistory": [],
+  "createdAt": "2025-09-28T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0x6666666666666666666666666666666666666666"
+}

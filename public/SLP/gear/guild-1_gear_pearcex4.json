@@ -1,0 +1,19 @@
+{
+  "gearID": "g1-gear-pearcex4",
+  "guildID": "guild-1",
+  "name": "Pearce X4",
+  "description": "A powerful weapon system for space combat",
+  "image": "Pearce X4_Thumbnail.png",
+  "type": "weapon",
+  "rarity": "Free",
+  "depositRequired": 1500,
+  "depositToken": "atlas",
+  "rentalFee": 0,
+  "rentalFeeToken": "none",
+  "amountAvailable": 2,
+  "maxPerMember": 1,
+  "currentlyHeldBy": [],
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

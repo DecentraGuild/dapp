@@ -115,12 +115,12 @@
                 <div class="input-group">
                   <label class="input-label">Amount to Exchange</label>
                   <div class="input-with-help">
-                    <span class="input-help-text">(Positive = Mint, Negative = Redeem)</span>
+                    <span class="input-help-text">{{ getHelpText() }}</span>
                     <input 
                       v-model="exchangeAmount"
                       type="number"
                       class="amount-input"
-                      placeholder="Enter amount (+mint, -redeem)"
+                      :placeholder="getInputPlaceholder()"
                       :max="selectedAsset.vaultBalance"
                     />
                   </div>
@@ -175,6 +175,12 @@ interface CustomAsset {
   circulatingSupply: number
   vaultBalance: number
   exchangeRatio: [number, number]
+  mintFee: number
+  feeToken: string
+  mintMember: boolean
+  burnMember: boolean
+  mintAdmin: boolean
+  burnAdmin: boolean
   redemptionAsset: string
   createdAt: string
   isActive: boolean
@@ -254,17 +260,18 @@ const gridColumns = computed(() => {
 
 const calculationItems = computed(() => {
   if (!selectedAsset.value) return []
-  
+
   const isRedeeming = exchangeAmount.value < 0
   const assetName = selectedAsset.value.backingAsset.name
   const tokenName = selectedAsset.value.symbol
-  
+  const absAmount = Math.abs(exchangeAmount.value || 0)
+
   return [
     {
       id: 'amount',
       icon: 'mdi:counter',
-      title: 'Amount',
-      subtitle: `${Math.abs(exchangeAmount.value || 0)} ${isRedeeming ? tokenName : assetName}`
+      title: 'Amount Receiving',
+      subtitle: `${absAmount} ${assetName}`
     },
     {
       id: 'rate',
@@ -281,8 +288,8 @@ const calculationItems = computed(() => {
     {
       id: 'total',
       icon: 'mdi:calculator',
-      title: 'Total Cost',
-      subtitle: `${totalCost.value.toFixed(4)} ${isRedeeming ? assetName : tokenName}`
+      title: 'Amount Paying',
+      subtitle: `${totalCost.value.toFixed(4)} ${tokenName}`
     }
   ]
 })
@@ -298,15 +305,10 @@ const totalCost = computed(() => {
   const isRedeeming = exchangeAmount.value < 0
   const absAmount = Math.abs(exchangeAmount.value)
   
-  if (isRedeeming) {
-    // When redeeming: tokens -> assets (reverse of exchange rate)
-    const assetCost = (absAmount * selectedAsset.value.exchangeRatio[0]) / selectedAsset.value.exchangeRatio[1]
-    return assetCost
-  } else {
-    // When minting: assets -> tokens + SOL fee
-    const tokenCost = (absAmount * selectedAsset.value.exchangeRatio[1]) / selectedAsset.value.exchangeRatio[0]
-    return tokenCost + mintingFee.value
-  }
+  // Input is always redemption asset amount
+  // Calculate how many wrapper tokens are needed
+  const tokenCost = (absAmount * selectedAsset.value.exchangeRatio[1]) / selectedAsset.value.exchangeRatio[0]
+  return tokenCost
 })
 
 const canExchange = computed(() => {
@@ -315,16 +317,33 @@ const canExchange = computed(() => {
   const isRedeeming = exchangeAmount.value < 0
   const absAmount = Math.abs(exchangeAmount.value)
   
+  // Calculate required tokens for the redemption asset amount
+  const requiredTokens = (absAmount * selectedAsset.value.exchangeRatio[1]) / selectedAsset.value.exchangeRatio[0]
+  
   if (isRedeeming) {
-    // For redeeming, check if user has enough tokens (can go negative)
-    return true // Allow negative token balance for redemption
+    // Check if user can burn/redeem and has enough tokens
+    return selectedAsset.value.burnMember && requiredTokens <= (selectedAsset.value.circulatingSupply || 0)
   } else {
-    // For minting, check vault balance
-    return absAmount <= (selectedAsset.value.vaultBalance || 0)
+    // Check if user can mint and vault has enough assets
+    return selectedAsset.value.mintMember && absAmount <= (selectedAsset.value.vaultBalance || 0)
   }
 })
 
 // Methods
+const getInputPlaceholder = () => {
+  if (!selectedAsset.value) return "Enter amount"
+  
+  const assetName = selectedAsset.value.backingAsset.name
+  return `Enter ${assetName} amount (+mint, -redeem)`
+}
+
+const getHelpText = () => {
+  if (!selectedAsset.value) return "(Positive = Mint, Negative = Redeem)"
+  
+  const assetName = selectedAsset.value.backingAsset.name
+  return `(Positive = Mint ${assetName}, Negative = Redeem ${assetName})`
+}
+
 const loadCustomTypes = async () => {
   try {
     const response = await fetch(getSlpPath('customtypes/guild-1_custom-types.json'))
@@ -680,9 +699,16 @@ onUnmounted(() => {
 
 .exchange-section {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  flex-direction: column;
   gap: var(--space-lg);
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Button styling */
+.exchange-section .base-button {
+  width: 100%;
+  justify-content: center;
 }
 
 /* Responsive exchange section */
@@ -702,7 +728,8 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-  max-width: 12.5rem;
+  width: 100%;
+  max-width: 100%;
 }
 
 .input-with-help {
@@ -710,6 +737,7 @@ onUnmounted(() => {
   flex-direction: row;
   align-items: center;
   gap: var(--space-sm);
+  width: 100%;
 }
 
 .input-help-text {
@@ -732,6 +760,8 @@ onUnmounted(() => {
   color: var(--text-color-0);
   font-size: var(--text-base);
   transition: border-color var(--transition-normal);
+  flex: 1;
+  min-width: 0;
 }
 
 .amount-input:focus {

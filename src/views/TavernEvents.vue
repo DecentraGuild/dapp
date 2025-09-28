@@ -13,27 +13,6 @@
           <p>Join exciting guild events, participate in community celebrations, and connect with fellow members. From tournaments to social gatherings, there's always something happening in the tavern!</p>
         </div>
         
-        <!-- View Toggle Buttons -->
-        <div class="view-toggle-container">
-          <BaseButton
-            :variant="currentView === 'list' ? 'accent' : 'outline'"
-            size="sm"
-            icon="game-icons:list"
-            @click="setView('list')"
-            class="view-toggle-btn"
-          >
-            List
-          </BaseButton>
-          <BaseButton
-            :variant="currentView === 'calendar' ? 'accent' : 'outline'"
-            size="sm"
-            icon="game-icons:calendar"
-            @click="setView('calendar')"
-            class="view-toggle-btn"
-          >
-            Calendar
-          </BaseButton>
-        </div>
       </div>
     </BaseCard>
 
@@ -46,14 +25,29 @@
       @item-click="handleFilterClick"
     />
 
-    <!-- Main Content Area -->
+    <!-- Calendar Section -->
     <BaseCard 
       variant="neutral" 
       size="xl"
-      class="events-main-card"
+      class="events-calendar-card"
     >
-      <!-- List View -->
-      <div v-if="currentView === 'list'" class="events-list-container">
+      <div class="events-calendar-container">
+        <BaseCalendar
+          :events="filteredEvents as any[]"
+          @day-click="handleDayClick"
+          @month-change="handleMonthChange"
+          @jump-to-list="handleJumpToList"
+        />
+      </div>
+    </BaseCard>
+
+    <!-- Events List Section -->
+    <BaseCard 
+      variant="neutral" 
+      size="xl"
+      class="events-list-card"
+    >
+      <div class="events-list-container">
         <BaseTimeline
           v-for="(event, index) in filteredEvents" 
           :key="event.eventID"
@@ -257,16 +251,6 @@
           <p v-else>No events match the selected filter</p>
         </div>
       </div>
-
-      <!-- Calendar View -->
-      <div v-else-if="currentView === 'calendar'" class="events-calendar-container">
-        <BaseCalendar
-          :events="filteredEvents as any[]"
-          @day-click="handleDayClick"
-          @month-change="handleMonthChange"
-          @jump-to-list="handleJumpToList"
-        />
-      </div>
     </BaseCard>
   </div>
 </template>
@@ -303,7 +287,6 @@ interface Event {
 
 const upcomingEvents = ref<Event[]>([])
 const selectedFilter = ref<string>('all')
-const currentView = ref<'list' | 'calendar'>('list')
 const expandedEvent = ref<string | null>(null)
 
 // Filter items for sidebar
@@ -346,9 +329,6 @@ const handleFilterClick = (item: any) => {
   selectedFilter.value = item.id
 }
 
-const setView = (view: 'list' | 'calendar') => {
-  currentView.value = view
-}
 
 const handleDayClick = (date: Date, dayEvents: any[]) => {
   console.log('Day clicked:', date.toDateString())
@@ -404,7 +384,6 @@ const handleMonthChange = (date: Date) => {
 }
 
 const handleJumpToList = (eventID: string) => {
-  currentView.value = 'list'
   expandedEvent.value = eventID
   
   // Scroll to the expanded event after a short delay to allow DOM update
@@ -556,36 +535,29 @@ onMounted(() => {
   margin: 0;
 }
 
-.view-toggle-container {
-  display: flex;
-  gap: var(--space-xs);
-  flex-shrink: 0;
-}
 
-.view-toggle-btn {
-  min-width: 80px;
-}
-
-.events-main-card {
+.events-calendar-card {
   width: 100%;
   max-width: 100%;
-  
-  overflow: hidden;
+  margin-bottom: var(--space-lg);
+}
+
+.events-list-card {
+  width: 100%;
+  max-width: 100%;
+}
+
+.events-calendar-container {
+  /* Auto height - no fixed height or scroll */
+  padding-right: var(--space-xs);
 }
 
 .events-list-container {
-
   overflow-y: auto;
   padding-right: var(--space-xs);
   display: flex;
   flex-direction: column;
   gap: var(--space-xl);
-}
-
-.events-calendar-container {
-  height: calc(90vh - 2rem); /* Account for card padding */
-  overflow-y: auto;
-  padding-right: var(--space-xs);
 }
 
 .event-card-container {
@@ -1017,7 +989,8 @@ onMounted(() => {
     max-width: 80%;
   }
   
-  .events-main-card {
+  .events-calendar-card,
+  .events-list-card {
     margin: 0 10%;
     width: 80%;
     max-width: 80%;
@@ -1044,9 +1017,6 @@ onMounted(() => {
     gap: var(--space-md);
   }
   
-  .view-toggle-container {
-    justify-content: center;
-  }
   
   .event-content {
     gap: var(--space-md);

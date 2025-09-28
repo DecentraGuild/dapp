@@ -1,0 +1,19 @@
+{
+  "gearID": "g1-gear-pearcex6",
+  "guildID": "guild-1",
+  "name": "Pearce X6",
+  "description": "The ultimate weapon system for elite combat operations",
+  "image": "PEARCE X6 PNG1v2.png",
+  "type": "weapon",
+  "rarity": "Rental",
+  "depositRequired": 750,
+  "depositToken": "token-1",
+  "rentalFee": 100,
+  "rentalFeeToken": "atlas",
+  "amountAvailable": 1,
+  "maxPerMember": 1,
+  "currentlyHeldBy": [],
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0xcccccccccccccccccccccccccccccccccccccccc"
+}

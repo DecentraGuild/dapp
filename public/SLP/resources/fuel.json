@@ -1,0 +1,18 @@
+{
+  "resourceID": "fuel",
+  "name": "Fuel",
+  "symbol": "FUEL",
+  "description": "Essential fuel for spaceship propulsion and energy systems",
+  "image": "FUEL.png",
+  "type": "resource",
+  "rarity": "common",
+  "circulatingSupply": 1000000,
+  "maxSupply": 10000000,
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": true,
+  "contractAddress": "0x3333333333333333333333333333333333333333",
+  "blockchain": "Solana",
+  "decimals": 0,
+  "category": "Star Atlas Resource"
+}

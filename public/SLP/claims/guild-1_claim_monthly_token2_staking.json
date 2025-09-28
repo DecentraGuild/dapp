@@ -1,0 +1,64 @@
+{
+  "claimID": "g1-claim-monthly-token2-staking",
+  "guildID": "guild-1",
+  "name": "Monthly token-2 Staking Rewards",
+  "description": "Monthly staking rewards for token-2 holders based on their holding amount",
+  "image": "logo-polis.png",
+  "resourceID": "token2",
+  "type": "token",
+  "period": "monthly",
+  "requiredTokenID": "guild-1-token-2",
+  "snapshotBegin": "2025-08-01T00:00:00Z",
+  "snapshotEnd": "2025-08-30T23:59:59Z",
+  "claimPeriod": {
+    "start": "2025-09-01T00:00:00Z",
+    "end": "2025-12-31T23:59:59Z"
+  },
+  "claimAmount": 100,
+  "memberList": {
+    "9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM": {
+      "walletAddress": "9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+      "beginEpoch": 1000,
+      "endEpoch": 1000,
+      "mintedEpoch": null,
+      "finalScore": 3.83
+    },
+    "5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1": {
+      "walletAddress": "5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1",
+      "beginEpoch": 2500,
+      "endEpoch": 2600,
+      "mintedEpoch": 100,
+      "finalScore": 9.96
+    },
+    "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU": {
+      "walletAddress": "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU",
+      "beginEpoch": 5000,
+      "endEpoch": 5000,
+      "mintedEpoch": null,
+      "finalScore": 19.16
+    },
+    "3xJ3H4V8K8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q": {
+      "walletAddress": "3xJ3H4V8K8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q8Q",
+      "beginEpoch": 7500,
+      "endEpoch": 7500,
+      "mintedEpoch": null,
+      "finalScore": 28.74
+    },
+    "8xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU": {
+      "walletAddress": "8xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU",
+      "beginEpoch": 10000,
+      "endEpoch": 10000,
+      "mintedEpoch": null,
+      "finalScore": 38.31
+    }
+  },
+  "rewardPool": {
+    "totalAmount": 500,
+    "remainingAmount": 500,
+    "claimedAmount": 0
+  },
+  "claimHistory": [],
+  "createdAt": "2025-09-28T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0x5555555555555555555555555555555555555555"
+}

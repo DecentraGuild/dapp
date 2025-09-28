@@ -117,6 +117,16 @@ const router = createRouter({
       component: () => import('../views/ArmoryG2P.vue')
     },
     {
+      path: '/armory/gear',
+      name: 'ArmoryGear',
+      component: () => import('../views/ArmoryGear.vue')
+    },
+    {
+      path: '/armory/claim',
+      name: 'ArmoryClaim',
+      component: () => import('../views/ArmoryClaim.vue')
+    },
+    {
       path: '/integrations',
       name: 'Integrations',
       component: () => import('../views/Integration.vue')

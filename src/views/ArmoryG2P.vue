@@ -1,26 +1,10 @@
 <template>
-  <div class="armory-g2p">
-    <!-- Primary Card with Title and Description -->
-    <BaseCard 
-      title="Guild2Player Trading" 
-      subtitle="Trade resources and tokens with other guild members"
-      variant="primary" 
-      size="lg"
-      class="g2p-header-card"
-    >
-      <div class="g2p-header-content">
-        <div class="g2p-description">
-          <p>Welcome to the Guild2Player trading floor! Here you can buy and sell resources, tokens, and other assets with fellow guild members. Browse available trades, execute transactions, and manage your trading portfolio.</p>
-        </div>
-      </div>
-    </BaseCard>
-
-    <!-- Main Trading Area -->
-    <BaseCard 
-      variant="neutral" 
-      size="xl"
-      class="g2p-main-card"
-    >
+  <BaseArmory
+    description="Welcome to the Guild2Player trading floor! Here you can buy and sell resources, tokens, and other assets with fellow guild members. Browse available trades, execute transactions, and manage your trading portfolio."
+    default-tab="shop"
+    @tab-change="handleTabChange"
+  >
+    <template #default="{ activeTab }">
       <!-- Trades Grid and Execute Trade -->
       <div v-if="guildTrades.length > 0" class="trading-container">
         <!-- Available Trades Grid -->
@@ -93,15 +77,14 @@
         <p v-else>No trades available for your guild</p>
         <p class="empty-subtitle">Check back later for new trading opportunities</p>
       </div>
-    </BaseCard>
-  </div>
+    </template>
+  </BaseArmory>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { Icon } from '@iconify/vue'
-import { BaseCard } from '@/components/base'
-import BaseG2PCard from '@/components/base/BaseG2PCard.vue'
+import { BaseCard, BaseArmory, BaseG2PCard } from '@/components/base'
 import ExecuteTrade from '@/components/ExecuteTrade.vue'
 import { useDesignTokens } from '@/composables/useDesignTokens'
 import { useGuildStore } from '@/stores/guildStore'
@@ -216,6 +199,16 @@ const handleTradeExecution = (executionData: { orderID: string, amount: number, 
   selectedTrade.value = null
 }
 
+const handleTabChange = (tab: string) => {
+  // Navigate to the appropriate armory page
+  if (tab === 'claim') {
+    window.location.href = '/armory/claim'
+  } else if (tab === 'use') {
+    window.location.href = '/armory/gear'
+  }
+  // 'shop' tab is already active, no navigation needed
+}
+
 // Lifecycle
 onMounted(async () => {
   // Load available guilds if not already loaded
@@ -235,46 +228,6 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.armory-g2p {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-  padding: var(--space-lg);
-  background: var(--theme-background);
-  min-height: 100%;
-}
-
-/* Header Card */
-.g2p-header-card {
-  width: 100%;
-  max-width: 100%;
-}
-
-.g2p-header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: var(--space-lg);
-  margin-top: var(--space-md);
-}
-
-.g2p-description {
-  flex: 1;
-}
-
-.g2p-description p {
-  color: var(--text-color-1);
-  line-height: 1.6;
-  margin: 0;
-}
-
-/* Main Card */
-.g2p-main-card {
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-}
-
 /* Trading Container */
 .trading-container {
   display: flex;
@@ -329,40 +282,8 @@ onMounted(async () => {
   margin-top: var(--space-xs);
 }
 
-/* Wide screen margin - matching other pages */
-@media (min-width: 1400px) {
-  .g2p-header-card {
-    margin: 0% 10%;
-    width: 80%;
-    max-width: 80%;
-  }
-  
-  .g2p-main-card {
-    margin: 0 10%;
-    width: 80%;
-    max-width: 80%;
-  }
-}
-
 /* Responsive Design */
-@media (max-width: 1200px) {
-  .armory-g2p {
-    padding: var(--space-md);
-  }
-}
-
 @media (max-width: 768px) {
-  .armory-g2p {
-    padding: var(--space-md);
-    gap: var(--space-md);
-  }
-  
-  .g2p-header-content {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-md);
-  }
-  
   .trades-grid {
     grid-template-columns: 1fr;
     gap: var(--space-md);
@@ -370,13 +291,6 @@ onMounted(async () => {
   
   .trading-container {
     padding: var(--space-sm);
-  }
-}
-
-@media (max-width: 480px) {
-  .armory-g2p {
-    padding: var(--space-sm);
-    gap: var(--space-sm);
   }
 }
 </style>

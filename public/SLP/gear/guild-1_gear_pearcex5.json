@@ -1,0 +1,19 @@
+{
+  "gearID": "g1-gear-pearcex5",
+  "guildID": "guild-1",
+  "name": "Pearce X5",
+  "description": "An advanced weapon system with enhanced capabilities",
+  "image": "PEARCE X5 PNG.png",
+  "type": "weapon",
+  "rarity": "Rental",
+  "depositRequired": 1000,
+  "depositToken": "atlas",
+  "rentalFee": 100,
+  "rentalFeeToken": "atlas",
+  "amountAvailable": 1,
+  "maxPerMember": 1,
+  "currentlyHeldBy": [],
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+}

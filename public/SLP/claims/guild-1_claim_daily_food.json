@@ -1,0 +1,44 @@
+{
+  "claimID": "g1-claim-daily-food",
+  "guildID": "guild-1",
+  "name": "Daily Food Supplies",
+  "description": "Daily food supplies for all guild members to maintain their energy and health in space exploration",
+  "image": "FOOD.png",
+  "resourceID": "food",
+  "type": "role",
+  "period": "daily",
+  "requiredRoleID": "prospect",
+  "snapshotBegin": "2025-09-28T00:00:00Z",
+  "snapshotEnd": "2025-09-28T23:59:59Z",
+  "claimPeriod": {
+    "start": "2025-09-28T00:00:00Z",
+    "end": "2025-12-29T23:59:59Z"
+  },
+  "claimAmount": 15,
+  "memberList": {
+    "g1_alice_prospect": {
+      "role": "prospect"
+    },
+    "g1_bob_member": {
+      "role": "member"
+    },
+    "g1_charlie_officer": {
+      "role": "officer"
+    },
+    "g1_diana_council": {
+      "role": "council"
+    },
+    "g1_eve_founder": {
+      "role": "founder"
+    }
+  },
+  "rewardPool": {
+    "totalAmount": 75,
+    "remainingAmount": 75,
+    "claimedAmount": 0
+  },
+  "claimHistory": [],
+  "createdAt": "2025-09-28T00:00:00Z",
+  "isActive": true,
+  "contractAddress": "0x3333333333333333333333333333333333333333"
+}
