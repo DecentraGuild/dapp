@@ -67,19 +67,19 @@ const activeTab = ref(props.defaultTab)
 // Armory tabs configuration
 const armoryTabs = [
   {
-    id: 'claim',
+    id: 'claim' as const,
     label: 'Claim',
     icon: 'game-icons:gift',
     description: 'Claim rewards and airdrops'
   },
   {
-    id: 'shop',
+    id: 'shop' as const,
     label: 'Shop',
     icon: 'game-icons:buy-card',
     description: 'G2P trades and marketplace'
   },
   {
-    id: 'use',
+    id: 'use' as const,
     label: 'Use',
     icon: 'game-icons:armor',
     description: 'Borrow and return gear with collateral'
@@ -87,7 +87,7 @@ const armoryTabs = [
 ]
 
 // Methods
-const switchTab = (tabId: string) => {
+const switchTab = (tabId: 'claim' | 'shop' | 'use') => {
   activeTab.value = tabId
   emit('tab-change', tabId)
 }
