@@ -394,7 +394,7 @@ const selectAchievement = (achievement: Achievement) => {
   padding: var(--space-md);
   background: var(--primary-color-1);
   border: var(--border-width-thin) solid var(--secondary-color-2);
-  border-radius: var(--radius-lg);
+  border-radius: var(--theme-radius-lg);
   transition: all 0.3s ease;
 }
 
@@ -439,7 +439,7 @@ const selectAchievement = (achievement: Achievement) => {
 .selected-achievement {
   background: var(--primary-color-1);
   border: var(--border-width-thin) solid var(--secondary-color-2);
-  border-radius: var(--radius-lg);
+  border-radius: var(--theme-radius-lg);
   padding: var(--space-lg);
   margin-top: var(--space-xl);
 }
@@ -453,7 +453,7 @@ const selectAchievement = (achievement: Achievement) => {
 
 .achievement-details {
   background: var(--primary-color-2);
-  border-radius: var(--radius-md);
+  border-radius: var(--theme-radius-md);
   padding: var(--space-md);
   overflow-x: auto;
 }
@@ -505,6 +505,15 @@ const selectAchievement = (achievement: Achievement) => {
   
   .stat-value {
     font-size: var(--text-xl);
+  }
+}
+
+/* Wide screen margin - matching armory pattern */
+@media (min-width: 1400px) {
+  .permission-table-demo {
+    margin: 0 10%;
+    width: 80%;
+    max-width: 80%;
   }
 }
 </style>

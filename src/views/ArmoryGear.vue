@@ -179,7 +179,8 @@ const handleGearExecution = (executionData: { gearID: string, action: 'borrow' |
   
   // For now, just show a success message
   const actionText = executionData.action === 'borrow' ? 'borrowed' : 'returned'
-  alert(`Gear ${actionText} successfully!\nGear: ${executionData.gearID}\nAmount: ${executionData.amount}\nTotal Cost: ${executionData.totalCost}`)
+  // TODO: Show success notification
+  // This should use a proper notification system instead of alert
   
   // Reset selection
   selectedGear.value = null
@@ -225,7 +226,7 @@ onMounted(async () => {
 /* Gear Grid */
 .gear-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
   gap: var(--space-lg);
   height: auto;
 }
@@ -256,8 +257,8 @@ onMounted(async () => {
 }
 
 .empty-icon {
-  width: 64px;
-  height: 64px;
+  width: var(--space-3xl);
+  height: var(--space-3xl);
   margin-bottom: var(--space-md);
   color: var(--secondary-color-0);
 }

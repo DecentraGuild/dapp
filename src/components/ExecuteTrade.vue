@@ -425,11 +425,11 @@ watch(() => props.orderID, () => {
 }
 
 .action-buy {
-  color: #10B981;
+  color: var(--color-success);
 }
 
 .action-sell {
-  color: #EF4444;
+  color: var(--color-error);
 }
 
 /* Responsive Design */

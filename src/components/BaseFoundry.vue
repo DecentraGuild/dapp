@@ -115,8 +115,8 @@ watch(() => route.path, updateTabFromRoute, { immediate: true })
 
 .foundry-nav-button {
   flex: 1;
-  min-width: 120px;
-  max-width: 200px;
+  min-width: var(--component-button-min-width);
+  max-width: 12.5rem;
 }
 
 .foundry-main-card {
@@ -128,7 +128,7 @@ watch(() => route.path, updateTabFromRoute, { immediate: true })
 /* Wide screen margin */
 @media (min-width: 1400px) {
   .base-foundry {
-    max-width: 1400px;
+    max-width: 87.5rem;
     margin: 0 auto;
   }
   

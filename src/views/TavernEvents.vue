@@ -331,56 +331,14 @@ const handleFilterClick = (item: any) => {
 
 
 const handleDayClick = (date: Date, dayEvents: any[]) => {
-  console.log('Day clicked:', date.toDateString())
-  
-  if (dayEvents.length > 0) {
-    console.log(`Found ${dayEvents.length} event(s) on this day:`)
-    dayEvents.forEach((event, index) => {
-      console.log(`\n--- Event ${index + 1} ---`)
-      console.log(`Title: ${event.title}`)
-      console.log(`Type: ${event.eventType}`)
-      console.log(`Time: ${new Date(event.date).toLocaleTimeString()}`)
-      console.log(`Description: ${event.description}`)
-      
-      if (event.agenda && event.agenda.length > 0) {
-        console.log('Agenda:')
-        event.agenda.forEach((item: string, i: number) => {
-          console.log(`  ${i + 1}. ${item}`)
-        })
-      }
-      
-      if (event.requirements && event.requirements.length > 0) {
-        console.log('Requirements:')
-        event.requirements.forEach((req: string) => console.log(`  • ${req}`))
-      }
-      
-      if (event.rewards && event.rewards.length > 0) {
-        console.log('Rewards:')
-        event.rewards.forEach((reward: string) => console.log(`  • ${reward}`))
-      }
-      
-      if (event.prizes && event.prizes.length > 0) {
-        console.log('Prizes:')
-        event.prizes.forEach((prize: any) => {
-          console.log(`  • ${prize.description || `${prize.position} Place: ${prize.amount}x ${prize.resourceID}`}`)
-        })
-      }
-      
-      if (event.entryFee && event.entryFee > 0) {
-        console.log(`Entry Fee: ${event.entryFee} ${event.tokenID || 'tokens'}`)
-      }
-      
-      console.log(`Max Participants: ${event.maxParticipants}`)
-      console.log(`Min Role: ${event.minRole}`)
-    })
-  } else {
-    console.log('No events on this day')
-  }
+  // TODO: Implement proper event display logic
+  // This could show event details in a modal or sidebar
+  // For now, this is a placeholder for event interaction
 }
 
 const handleMonthChange = (date: Date) => {
-  console.log('Month changed:', date)
-  // You can add logic here to load events for the new month
+  // TODO: Implement month change logic
+  // This could load events for the new month
 }
 
 const handleJumpToList = (eventID: string) => {
@@ -493,7 +451,8 @@ const loadEvents = async () => {
       new Date(a.date).getTime() - new Date(b.date).getTime()
     )
   } catch (error) {
-    console.error('Failed to load events:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -588,19 +547,19 @@ onMounted(() => {
 
 .event-icon {
   flex-shrink: 0;
-  width: 120px;
-  height: 120px;
+  width: var(--space-3xl);
+  height: var(--space-3xl);
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--primary-color-1);
-  border-radius: var(--radius-lg);
+  border-radius: var(--theme-radius-lg);
   border: var(--border-width-thin) solid var(--secondary-color-1);
 }
 
 .event-icon .icon {
-  width: 80px;
-  height: 80px;
+  width: calc(var(--space-3xl) * 0.8);
+  height: calc(var(--space-3xl) * 0.8);
   color: var(--text-color-0);
 }
 
@@ -631,7 +590,7 @@ onMounted(() => {
   font-weight: var(--font-semibold);
   color: var(--text-color-1);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .event-name {
@@ -659,8 +618,8 @@ onMounted(() => {
 }
 
 .empty-icon {
-  width: 64px;
-  height: 64px;
+  width: var(--space-3xl);
+  height: var(--space-3xl);
   margin-bottom: var(--space-md);
 }
 
@@ -678,7 +637,7 @@ onMounted(() => {
 
 .expanded-content {
   display: grid;
-  grid-template-columns: 1fr 350px;
+  grid-template-columns: 1fr 21.875rem;
   gap: var(--space-xl);
   align-items: start;
 }
@@ -712,7 +671,7 @@ onMounted(() => {
 
 .detail-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
   gap: var(--space-sm);
 }
 
@@ -727,7 +686,7 @@ onMounted(() => {
   font-weight: var(--font-semibold);
   color: var(--text-color-1);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .detail-value {
@@ -748,7 +707,7 @@ onMounted(() => {
 .detail-list-item {
   padding: var(--space-xs) var(--space-sm);
   background: var(--secondary-color-2);
-  border-radius: var(--radius-md);
+  border-radius: var(--theme-radius-md);
   font-size: var(--text-sm);
   color: var(--text-color-0);
   position: relative;
@@ -772,7 +731,7 @@ onMounted(() => {
 .prize-item {
   padding: var(--space-sm);
   background: var(--secondary-color-2);
-  border-radius: var(--radius-lg);
+  border-radius: var(--theme-radius-lg);
   border-left: var(--border-width-thin) solid var(--secondary-color-0);
 }
 
@@ -834,7 +793,7 @@ onMounted(() => {
   font-size: var(--text-sm);
   color: var(--text-color-1);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: var(--letter-spacing-tight);
   font-weight: var(--font-semibold);
 }
 
@@ -857,7 +816,7 @@ onMounted(() => {
   gap: var(--space-xs);
   padding: var(--space-sm);
   background: var(--secondary-color-2);
-  border-radius: var(--radius-lg);
+  border-radius: var(--theme-radius-lg);
   font-size: var(--text-sm);
   color: var(--text-color-0);
 }
@@ -883,7 +842,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
-  max-height: 200px;
+  max-height: var(--state-height-loading);
   overflow-y: auto;
 }
 
@@ -893,7 +852,7 @@ onMounted(() => {
   gap: var(--space-sm);
   padding: var(--space-sm);
   background: var(--secondary-color-2);
-  border-radius: var(--radius-lg);
+  border-radius: var(--theme-radius-lg);
   border-left: var(--border-width-thin) solid var(--secondary-color-0);
 }
 
@@ -917,7 +876,7 @@ onMounted(() => {
   align-items: center;
   gap: var(--space-sm);
   padding: var(--space-sm);
-  border-radius: var(--radius-lg);
+  border-radius: var(--theme-radius-lg);
   font-size: var(--text-sm);
   font-weight: var(--font-semibold);
 }
@@ -952,29 +911,29 @@ onMounted(() => {
 .accordion-leave-to {
   max-height: 0;
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateY(calc(-1 * var(--space-sm)));
 }
 
 .accordion-enter-to,
 .accordion-leave-from {
-  max-height: 1000px;
+  max-height: 62.5rem;
   opacity: 1;
   transform: translateY(0);
 }
 
 /* Scrollbar styling */
 .events-list-container::-webkit-scrollbar {
-  width: 6px;
+  width: var(--space-xs);
 }
 
 .events-list-container::-webkit-scrollbar-track {
   background: var(--primary-color-1);
-  border-radius: 3px;
+  border-radius: var(--theme-radius-sm);
 }
 
 .events-list-container::-webkit-scrollbar-thumb {
   background: var(--secondary-color-1);
-  border-radius: 3px;
+  border-radius: var(--theme-radius-sm);
 }
 
 .events-list-container::-webkit-scrollbar-thumb:hover {
@@ -1023,13 +982,13 @@ onMounted(() => {
   }
   
   .event-icon {
-    width: 100px;
-    height: 100px;
+    width: calc(var(--space-3xl) * 0.8);
+    height: calc(var(--space-3xl) * 0.8);
   }
   
   .event-icon .icon {
-    width: 60px;
-    height: 60px;
+    width: calc(var(--space-3xl) * 0.6);
+    height: calc(var(--space-3xl) * 0.6);
   }
   
   .event-name {
@@ -1069,13 +1028,13 @@ onMounted(() => {
   }
   
   .event-icon {
-    width: 80px;
-    height: 80px;
+    width: calc(var(--space-3xl) * 0.7);
+    height: calc(var(--space-3xl) * 0.7);
   }
   
   .event-icon .icon {
-    width: 50px;
-    height: 50px;
+    width: calc(var(--space-3xl) * 0.5);
+    height: calc(var(--space-3xl) * 0.5);
   }
 }
 </style>

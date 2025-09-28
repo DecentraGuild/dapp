@@ -181,7 +181,7 @@ const loadQuestIndex = async () => {
       questIndex.value = await response.json()
     }
   } catch (error) {
-    console.error('Error loading quest index:', error)
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -331,7 +331,7 @@ onMounted(() => {
   background: var(--primary-color-0);
   color: var(--primary-color-0-contrast);
   padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--theme-radius-sm);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   opacity: 0.9;
@@ -391,6 +391,15 @@ onMounted(() => {
     margin: 0 var(--layout-wide-margin);
     width: var(--layout-wide-width);
     max-width: var(--layout-wide-width);
+  }
+}
+
+/* Wide screen margin - matching armory pattern */
+@media (min-width: 1400px) {
+  .base-quest-board {
+    margin: 0 10%;
+    width: 80%;
+    max-width: 80%;
   }
 }
 

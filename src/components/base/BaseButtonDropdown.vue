@@ -384,7 +384,7 @@ onUnmounted(() => {
 .nav-button {
   background: var(--primary-color-0);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   padding: 0.75rem 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -455,8 +455,8 @@ onUnmounted(() => {
   right: 0;
   background: var(--primary-color-0);
   border: var(--border-width-thin) solid var(--secondary-color-2);
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-radius: var(--theme-radius-lg);
+  box-shadow: var(--shadow-2xl);
   z-index: 1000;
   margin-top: 0.25rem;
   overflow: hidden;
@@ -526,7 +526,7 @@ onUnmounted(() => {
   margin: 0.25rem 0;
   background: none;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: left;
@@ -594,7 +594,7 @@ onUnmounted(() => {
   background: var(--secondary-color-0);
   color: var(--primary-color-0);
   padding: 0.125rem 0.5rem;
-  border-radius: 12px;
+  border-radius: var(--theme-radius-lg);
   font-size: 0.75rem;
   font-weight: 500;
 }

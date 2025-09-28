@@ -443,7 +443,7 @@ watch(() => props.selectedDate, (newDate) => {
 .base-calendar {
   background: var(--primary-color-0);
   border: var(--border-width-thin) solid var(--secondary-color-2);
-  border-radius: 12px;
+  border-radius: var(--theme-radius-lg);
   padding: var(--space-lg);
   width: 100%;
   max-width: 100%;
@@ -595,7 +595,7 @@ watch(() => props.selectedDate, (newDate) => {
 .year-selector {
   background: var(--primary-color-0);
   border: var(--border-width-thin) solid var(--secondary-color-1);
-  border-radius: 12px;
+  border-radius: var(--theme-radius-lg);
   padding: var(--space-sm);
   margin-bottom: var(--space-sm);
   box-shadow: var(--shadow-lg);
@@ -625,7 +625,7 @@ watch(() => props.selectedDate, (newDate) => {
 .year-option {
   padding: var(--space-xs) var(--space-sm);
   border: var(--border-width-thin) solid var(--secondary-color-2);
-  border-radius: 6px;
+  border-radius: var(--theme-radius-sm);
   background: var(--primary-color-1);
   color: var(--text-color-1);
   cursor: pointer;
@@ -663,7 +663,7 @@ watch(() => props.selectedDate, (newDate) => {
   font-size: 0.875rem;
   color: var(--text-color-1);
   background: var(--primary-color-1);
-  border-radius: 6px;
+  border-radius: var(--theme-radius-sm);
 }
 
 .calendar-grid {
@@ -671,7 +671,7 @@ watch(() => props.selectedDate, (newDate) => {
   grid-template-columns: repeat(7, 1fr);
   gap: 1px;
   background: var(--secondary-color-2);
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   overflow: hidden;
 }
 
@@ -733,7 +733,7 @@ watch(() => props.selectedDate, (newDate) => {
   display: flex;
   align-items: center;
   padding: 2px 4px;
-  border-radius: 4px;
+  border-radius: var(--theme-radius-sm);
   font-size: 0.75rem;
   min-height: 16px;
   opacity: 0.8;
@@ -764,28 +764,28 @@ watch(() => props.selectedDate, (newDate) => {
 
 /* Event type colors - using theme variables with fallbacks */
 .event-poker_tournament {
-  background: var(--event-poker-bg, rgba(139, 69, 19, 0.3));
-  color: var(--event-poker-color, rgb(139, 69, 19));
+  background: var(--event-poker-bg, var(--color-warning-light));
+  color: var(--event-poker-color, var(--color-warning));
 }
 
 .event-raid {
-  background: var(--event-raid-bg, rgba(139, 0, 0, 0.3));
-  color: var(--event-raid-color, rgb(139, 0, 0));
+  background: var(--event-raid-bg, var(--color-error-light));
+  color: var(--event-raid-color, var(--color-error));
 }
 
 .event-meeting {
-  background: var(--event-meeting-bg, rgba(46, 139, 87, 0.3));
-  color: var(--event-meeting-color, rgb(46, 139, 87));
+  background: var(--event-meeting-bg, var(--color-success-light));
+  color: var(--event-meeting-color, var(--color-success));
 }
 
 .event-chill_session {
-  background: var(--event-chill-bg, rgba(147, 112, 219, 0.3));
-  color: var(--event-chill-color, rgb(147, 112, 219));
+  background: var(--event-chill-bg, var(--color-info-light));
+  color: var(--event-chill-color, var(--color-info));
 }
 
 .event-gaming {
-  background: var(--event-gaming-bg, rgba(65, 105, 225, 0.3));
-  color: var(--event-gaming-color, rgb(65, 105, 225));
+  background: var(--event-gaming-bg, var(--color-info-light));
+  color: var(--event-gaming-color, var(--color-info));
 }
 
 .more-events {
@@ -794,7 +794,7 @@ watch(() => props.selectedDate, (newDate) => {
   text-align: center;
   padding: 2px;
   background: var(--primary-color-1);
-  border-radius: 4px;
+  border-radius: var(--theme-radius-sm);
   margin-top: 2px;
 }
 

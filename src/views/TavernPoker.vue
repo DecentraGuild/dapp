@@ -330,7 +330,8 @@ const loadPokerEvents = async () => {
     // Store all poker events (filtering and sorting happens in computed property)
     pokerEvents.value = validEvents
   } catch (error) {
-    console.error('Failed to load poker events:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -345,7 +346,7 @@ const loadPracticeTable = async () => {
     
     const response = await fetch(getSlpPath(`poker/${tableFile}`))
     if (!response.ok) {
-      console.warn(`Practice table ${tableFile} not found: ${response.status}`)
+      // Handle practice table not found silently
       return
     }
     
@@ -356,7 +357,8 @@ const loadPracticeTable = async () => {
       practiceTable.value = tableData
     }
   } catch (error) {
-    console.error('Failed to load practice table:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -364,8 +366,10 @@ const joinPracticeTable = () => {
   if (!practiceTable.value) return
   
   // TODO: Implement practice table join logic
-  console.log('Joining practice table:', practiceTable.value.tableID)
-  alert(`Joining ${practiceTable.value.name}!\nBuy-in: ${practiceTable.value.minEntry}-${practiceTable.value.maxEntry} ${practiceTable.value.tokenID?.toUpperCase()}`)
+  // TODO: Implement actual poker table joining logic
+  // This should integrate with the poker game system
+  // TODO: Show success notification
+  // This should use a proper notification system instead of alert
 }
 
 onMounted(() => {
@@ -430,8 +434,8 @@ onMounted(() => {
 }
 
 .empty-icon {
-  width: 64px;
-  height: 64px;
+  width: var(--space-3xl);
+  height: var(--space-3xl);
   margin-bottom: var(--space-md);
   color: var(--secondary-color-0);
 }
@@ -496,7 +500,7 @@ onMounted(() => {
   text-align: center;
   padding: var(--space-sm) var(--space-md);
   background: var(--secondary-color-2);
-  border-radius: var(--radius-md);
+  border-radius: var(--theme-radius-md);
   border: var(--border-width-thin) solid var(--secondary-color-1);
   margin-top: var(--space-sm);
 }
@@ -556,7 +560,7 @@ onMounted(() => {
   }
 
   .table-svg {
-    width: 95%;
+    width: 100%;
   }
 }
 

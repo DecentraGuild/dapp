@@ -125,14 +125,15 @@ export const useQuestStore = defineStore('quest', () => {
             loadedQuests.push(quest)
           }
         } catch (fileError) {
-          console.warn(`Failed to load quest file ${file}:`, fileError)
+          // Handle failed quest file load silently
         }
       }
 
       quests.value = loadedQuests
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to load quests'
-      console.error('Error loading quests:', err)
+      // Handle error silently in production
+      // Could implement proper error handling/notification system here
     } finally {
       loading.value = false
     }

@@ -40,13 +40,13 @@ export function useDesignTokens() {
     black: 'var(--font-black)'
   }
 
-  // Border radius tokens - use skin values when available, fallback to CSS vars
+  // Border radius tokens - use theme-aware values that respect skin settings
   const borderRadius = {
     none: 'var(--radius-none)',
-    sm: getBorderRadius('sm'),
-    md: getBorderRadius('md'),
-    lg: getBorderRadius('lg'),
-    xl: getBorderRadius('xl'),
+    sm: 'var(--theme-radius-sm)',
+    md: 'var(--theme-radius-md)',
+    lg: 'var(--theme-radius-lg)',
+    xl: 'var(--theme-radius-xl)',
     '2xl': 'var(--radius-2xl)',
     full: 'var(--radius-full)'
   }
@@ -105,7 +105,7 @@ export function useDesignTokens() {
       2: getTextColor(2)
     },
     background: currentTheme.value?.backgroundColor || 'rgba(0, 0, 0, 1)',
-    emergency: currentTheme.value?.emergencyColor || '#ef4444'
+    emergency: currentTheme.value?.emergencyColor || 'var(--color-error)'
   }))
 
   // Component size variants

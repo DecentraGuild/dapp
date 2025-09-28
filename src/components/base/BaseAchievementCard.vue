@@ -147,11 +147,11 @@ const props = withDefaults(defineProps<Props>(), {
 
 const { getPrimaryColor, getSecondaryColor, getTextColor } = useSkinTheme()
 
-// Level-based styling
+// Level-based styling - using design tokens
 const levelColors = {
-  Common: '#6B7280',
-  Epic: '#10B981', 
-  Legendary: '#EF4444'
+  Common: 'var(--color-gray-500)',
+  Epic: 'var(--color-success)', 
+  Legendary: 'var(--color-error)'
 }
 
 const levelIcons = {
@@ -215,7 +215,7 @@ const formatDate = (dateString: string) => {
   align-items: center;
   justify-content: center;
   background: var(--primary-color-1);
-  border-radius: var(--radius-lg);
+  border-radius: var(--theme-radius-lg);
   border: var(--border-width-thin) solid var(--secondary-color-2);
 }
 
@@ -273,7 +273,7 @@ const formatDate = (dateString: string) => {
   color: var(--text-color-2);
   background: var(--primary-color-2);
   padding: 0.25rem 0.5rem;
-  border-radius: var(--radius-sm);
+  border-radius: var(--theme-radius-sm);
   font-weight: var(--font-medium);
 }
 
@@ -281,23 +281,23 @@ const formatDate = (dateString: string) => {
   font-size: var(--text-xs);
   font-weight: var(--font-semibold);
   padding: 0.25rem 0.5rem;
-  border-radius: var(--radius-sm);
+  border-radius: var(--theme-radius-sm);
   text-transform: uppercase;
   letter-spacing: 0.025em;
 }
 
 .level-common {
-  background: #6B7280;
+  background: var(--color-gray-500);
   color: white;
 }
 
 .level-epic {
-  background: #10B981;
+  background: var(--color-success);
   color: white;
 }
 
 .level-legendary {
-  background: #EF4444;
+  background: var(--color-error);
   color: white;
 }
 
@@ -328,7 +328,7 @@ const formatDate = (dateString: string) => {
   gap: var(--space-xs);
   padding: var(--space-sm);
   background: var(--primary-color-1);
-  border-radius: var(--radius-md);
+  border-radius: var(--theme-radius-md);
   border: var(--border-width-thin) solid var(--secondary-color-2);
 }
 
@@ -376,7 +376,7 @@ const formatDate = (dateString: string) => {
   line-height: 1.4;
   background: var(--primary-color-1);
   padding: var(--space-sm);
-  border-radius: var(--radius-md);
+  border-radius: var(--theme-radius-md);
   border-left: var(--border-width-thin) solid var(--secondary-color-0);
 }
 
@@ -404,15 +404,15 @@ const formatDate = (dateString: string) => {
 
 /* Level-specific styling */
 .achievement-common .achievement-icon-container {
-  border-color: #6B7280;
+  border-color: var(--color-gray-500);
 }
 
 .achievement-epic .achievement-icon-container {
-  border-color: #10B981;
+  border-color: var(--color-success);
 }
 
 .achievement-legendary .achievement-icon-container {
-  border-color: #EF4444;
+  border-color: var(--color-error);
 }
 
 .achievement-completed .achievement-icon-container {

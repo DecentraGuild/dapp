@@ -702,11 +702,11 @@ const styleCode = computed(() => {
 
 // Methods
 const handleMemberClick = (item: any, index: number) => {
-  console.log('Member clicked:', item, index)
+  // TODO: Implement member click logic
 }
 
 const handleGridItemClick = (item: any, index: number) => {
-  console.log('Grid item clicked:', item, index)
+  // TODO: Implement grid item click logic
 }
 
 </script>
@@ -754,7 +754,7 @@ const handleGridItemClick = (item: any, index: number) => {
   background: var(--secondary-color-0);
   color: var(--primary-color-0);
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   font-weight: 500;
   transition: all 0.2s ease;
   border: var(--border-width-thin) solid var(--secondary-color-1);
@@ -763,7 +763,7 @@ const handleGridItemClick = (item: any, index: number) => {
 .doc-link:hover {
   background: var(--secondary-color-1);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+  box-shadow: var(--shadow-lg);
 }
 
 .theme-controls {
@@ -786,7 +786,7 @@ const handleGridItemClick = (item: any, index: number) => {
 .control-group select {
   padding: 0.5rem;
   border: var(--border-width-thin) solid var(--secondary-color-0);
-  border-radius: 6px;
+  border-radius: var(--theme-radius-sm);
   background: var(--primary-color-1);
   color: var(--secondary-color-0);
 }
@@ -899,7 +899,7 @@ const handleGridItemClick = (item: any, index: number) => {
 
 .spacing-visual {
   background: var(--secondary-color-0);
-  border-radius: 2px;
+  border-radius: var(--theme-radius-sm);
 }
 
 .token-value {
@@ -940,7 +940,7 @@ const handleGridItemClick = (item: any, index: number) => {
 
 .color-swatch {
   aspect-ratio: 1;
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -953,7 +953,7 @@ const handleGridItemClick = (item: any, index: number) => {
   font-weight: 500;
   text-align: center;
   color: white;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: var(--shadow-sm);
 }
 
 .transaction-amount {
@@ -1027,7 +1027,7 @@ const handleGridItemClick = (item: any, index: number) => {
 .shadow-visual {
   background: var(--primary-color-1);
   border: var(--border-width-thin) solid var(--secondary-color-2);
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
 }
 
 .component-styles-demo {
@@ -1045,14 +1045,14 @@ const handleGridItemClick = (item: any, index: number) => {
 
 .style-preview {
   border: var(--border-width-thin) dashed var(--secondary-color-2);
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   margin: 0.5rem 0;
 }
 
 .style-code {
   background: var(--primary-color-1);
   border: var(--border-width-thin) solid var(--secondary-color-2);
-  border-radius: 6px;
+  border-radius: var(--theme-radius-sm);
   padding: 1rem;
   overflow-x: auto;
 }
@@ -1084,6 +1084,15 @@ const handleGridItemClick = (item: any, index: number) => {
   
   .color-palette {
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  }
+}
+
+/* Wide screen margin - matching armory pattern */
+@media (min-width: 1400px) {
+  .component-showcase {
+    margin: 0 10%;
+    width: 80%;
+    max-width: 80%;
   }
 }
 

@@ -135,7 +135,7 @@ const switchTab = (tabId: 'claim' | 'shop' | 'use') => {
 
 .armory-tab {
   flex: 1;
-  min-width: 120px;
+  min-width: var(--component-button-min-width);
   justify-content: center;
   transition: all var(--transition-normal);
 }

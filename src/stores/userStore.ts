@@ -42,7 +42,8 @@ export const useUserStore = defineStore('user', () => {
       availableWallets.value = wallets
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to load wallets'
-      console.error('Error loading wallets:', err)
+      // Handle error silently in production
+      // Could implement proper error handling/notification system here
     } finally {
       isLoading.value = false
     }
@@ -78,7 +79,8 @@ export const useUserStore = defineStore('user', () => {
       }
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to select wallet'
-      console.error('Error selecting wallet:', err)
+      // Handle error silently in production
+      // Could implement proper error handling/notification system here
     } finally {
       isLoading.value = false
     }
@@ -103,7 +105,8 @@ export const useUserStore = defineStore('user', () => {
         await selectWallet(aliceWallet)
       }
     } catch (err) {
-      console.error('Demo login failed:', err)
+      // Handle error silently in production
+      // Could implement proper error handling/notification system here
     }
   }
 

@@ -190,8 +190,8 @@ const handleImageError = (event: Event) => {
 <style scoped>
 .base-gear {
   background: var(--card-background);
-  border: 2px solid var(--secondary-color-2);
-  border-radius: 12px;
+  border: var(--border-width-medium) solid var(--secondary-color-2);
+  border-radius: var(--theme-radius-lg);
   overflow: hidden;
   transition: all 0.2s ease;
   position: relative;
@@ -201,15 +201,15 @@ const handleImageError = (event: Event) => {
 
 /* Size variants */
 .base-gear--sm {
-  max-width: 250px;
+  max-width: 15.625rem;
 }
 
 .base-gear--md {
-  max-width: 300px;
+  max-width: 18.75rem;
 }
 
 .base-gear--lg {
-  max-width: 350px;
+  max-width: 21.875rem;
 }
 
 /* Rarity variants */
@@ -263,7 +263,7 @@ const handleImageError = (event: Event) => {
 .gear-image-container {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: var(--state-height-loading);
   overflow: hidden;
   background: var(--background-2);
 }
@@ -283,10 +283,10 @@ const handleImageError = (event: Event) => {
   position: absolute;
   top: var(--space-sm);
   right: var(--space-sm);
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--color-black);
   color: white;
   padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--theme-radius-sm);
   display: flex;
   align-items: center;
   gap: var(--space-xs);
@@ -295,8 +295,8 @@ const handleImageError = (event: Event) => {
 }
 
 .rarity-icon {
-  width: 12px;
-  height: 12px;
+  width: var(--space-sm);
+  height: var(--space-sm);
 }
 
 /* Gear Info */
@@ -329,15 +329,15 @@ const handleImageError = (event: Event) => {
   gap: var(--space-xs);
   background: var(--background-2);
   padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--theme-radius-sm);
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--text-color-2);
 }
 
 .type-icon {
-  width: 12px;
-  height: 12px;
+  width: var(--space-sm);
+  height: var(--space-sm);
 }
 
 .gear-description {
@@ -355,8 +355,8 @@ const handleImageError = (event: Event) => {
 .deposit-info {
   background: var(--background-2);
   padding: var(--space-sm);
-  border-radius: var(--border-radius-sm);
-  border-left: 3px solid var(--warning-color-0);
+  border-radius: var(--theme-radius-sm);
+  border-left: var(--border-width-thick) solid var(--warning-color-0);
 }
 
 .deposit-required {
@@ -367,8 +367,8 @@ const handleImageError = (event: Event) => {
 }
 
 .deposit-icon {
-  width: 16px;
-  height: 16px;
+  width: var(--space-md);
+  height: var(--space-md);
   color: var(--warning-color-0);
 }
 
@@ -390,7 +390,7 @@ const handleImageError = (event: Event) => {
   font-size: 0.875rem;
   margin-top: var(--space-xs);
   padding-top: var(--space-xs);
-  border-top: 1px solid var(--border-color);
+  border-top: var(--border-width-thin) solid var(--border-color);
 }
 
 .rental-fee-free {
@@ -400,12 +400,12 @@ const handleImageError = (event: Event) => {
   font-size: 0.875rem;
   margin-top: var(--space-xs);
   padding-top: var(--space-xs);
-  border-top: 1px solid var(--border-color);
+  border-top: var(--border-width-thin) solid var(--border-color);
 }
 
 .rental-icon {
-  width: 16px;
-  height: 16px;
+  width: var(--space-md);
+  height: var(--space-md);
   color: var(--info-color-0);
 }
 
@@ -440,8 +440,8 @@ const handleImageError = (event: Event) => {
 }
 
 .availability-icon {
-  width: 14px;
-  height: 14px;
+  width: var(--space-sm);
+  height: var(--space-sm);
   color: var(--text-color-3);
 }
 
@@ -460,8 +460,8 @@ const handleImageError = (event: Event) => {
 .held-by-info {
   background: var(--background-2);
   padding: var(--space-sm);
-  border-radius: var(--border-radius-sm);
-  border-left: 3px solid var(--info-color-0);
+  border-radius: var(--theme-radius-sm);
+  border-left: var(--border-width-thick) solid var(--info-color-0);
 }
 
 .held-by-header {
@@ -475,8 +475,8 @@ const handleImageError = (event: Event) => {
 }
 
 .held-icon {
-  width: 14px;
-  height: 14px;
+  width: var(--space-sm);
+  height: var(--space-sm);
   color: var(--info-color-0);
 }
 
@@ -502,7 +502,7 @@ const handleImageError = (event: Event) => {
   color: white;
   border: none;
   padding: var(--space-sm) var(--space-md);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--theme-radius-sm);
   font-weight: 600;
   font-size: 0.875rem;
   display: flex;
@@ -525,8 +525,8 @@ const handleImageError = (event: Event) => {
 }
 
 .action-icon {
-  width: 16px;
-  height: 16px;
+  width: var(--space-md);
+  height: var(--space-md);
 }
 
 /* Responsive Design */

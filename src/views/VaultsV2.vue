@@ -437,7 +437,7 @@ const getNFTPrice = (nftName: string): number => {
 
 // Data generation methods - 3 columns: Description, Amount, $ Value
 const getVaultBalanceData = (vaultType: string) => {
-  console.log(`VaultsV2: Getting vault balance data for ${vaultType}`)
+  // Getting vault balance data
   let vaultData: VaultBalance | null = null
   
   switch (vaultType) {
@@ -456,16 +456,13 @@ const getVaultBalanceData = (vaultType: string) => {
   }
   
   if (!vaultData) {
-    console.log(`VaultsV2: No vault data for ${vaultType}`)
     return []
   }
-  
-  console.log(`VaultsV2: Processing tokens for ${vaultType}:`, vaultData.tokens)
   
   const items = Object.entries(vaultData.tokens || {}).map(([token, amount], index) => {
     const price = getTokenPrice(token)
     const totalValue = amount * price
-    console.log(`VaultsV2: ${token} - amount: ${amount}, price: ${price}, total: ${totalValue}`)
+    // Process token data
     return {
       id: `${vaultType}-${token}-${index}`,
       title: `${token.toUpperCase()} - ${token === 'sol' ? 'Solana' : token === 'usdc' ? 'USD Coin' : token === 'wbtc' ? 'Wrapped Bitcoin' : token === 'atlas' ? 'Star Atlas' : token === 'polis' ? 'Star Atlas Polis' : 'Custom Token'}`,
@@ -491,7 +488,7 @@ const getVaultBalanceData = (vaultType: string) => {
 }
 
 const getAllVaultsBalanceData = () => {
-  console.log('VaultsV2: Getting all vaults balance data')
+  // Getting all vaults balance data
   const allTokens: Record<string, number> = {}
   
   // Combine tokens from all vaults
@@ -504,12 +501,12 @@ const getAllVaultsBalanceData = () => {
     }
   })
   
-  console.log('VaultsV2: Combined tokens:', allTokens)
+  // Combined tokens processed
   
   const items = Object.entries(allTokens).map(([token, amount], index) => {
     const price = getTokenPrice(token)
     const totalValue = amount * price
-    console.log(`VaultsV2: ${token} - amount: ${amount}, price: ${price}, total: ${totalValue}`)
+    // Process token data
     return {
       id: `all-${token}-${index}`,
       title: `${token.toUpperCase()} - ${token === 'sol' ? 'Solana' : token === 'usdc' ? 'USD Coin' : token === 'wbtc' ? 'Wrapped Bitcoin' : token === 'atlas' ? 'Star Atlas' : token === 'polis' ? 'Star Atlas Polis' : 'Custom Token'}`,
@@ -646,7 +643,8 @@ const fetchVaultData = async () => {
     const transactionsData = await transactionsResponse.json()
     transactions.value = transactionsData.transactions
   } catch (error) {
-    console.error('Error fetching vault data:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -784,7 +782,7 @@ onMounted(async () => {
 /* Vault card hover effect */
 .vault-card-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-xl);
   border-color: var(--secondary-color-1);
   background: var(--secondary-color-3);
 }

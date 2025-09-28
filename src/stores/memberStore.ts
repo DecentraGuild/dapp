@@ -115,7 +115,8 @@ export const useMemberStore = defineStore('member', () => {
       await loadMemberTokenBalance(walletAddress, guildId)
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to load member profile'
-      console.error('Error loading member profile:', err)
+      // Handle error silently in production
+      // Could implement proper error handling/notification system here
     } finally {
       isLoading.value = false
     }
@@ -153,7 +154,7 @@ export const useMemberStore = defineStore('member', () => {
         }
       }
     } catch (err) {
-      console.warn('Failed to load member permissions:', err)
+      // Handle failed member permissions load silently
       // Set default permissions
       memberPermissions.value = {
         role: roleId,
@@ -178,12 +179,10 @@ export const useMemberStore = defineStore('member', () => {
       // Load wallet balance data
       const balanceResponse = await fetch(getSlpPath(`balance/wallet_${walletAddress}_balance.json`))
       if (!balanceResponse.ok) {
-        console.warn(`Balance file not found for wallet ${walletAddress}`)
         return
       }
       
       const balanceData = await balanceResponse.json()
-      console.log('Balance data loaded:', balanceData)
       
       // Load token names from guild token files
       const token1Response = await fetch(getSlpPath(`guildtoken/${guildId}_token1.json`))
@@ -198,14 +197,12 @@ export const useMemberStore = defineStore('member', () => {
         const token1Data = await token1Response.json()
         token1Name = token1Data.name || 'Token-1'
         token1Symbol = token1Data.symbol || 'T1'
-        console.log('Token1 data loaded:', token1Data)
       }
       
       if (token2Response.ok) {
         const token2Data = await token2Response.json()
         token2Name = token2Data.name || 'Token-2'
         token2Symbol = token2Data.symbol || 'T2'
-        console.log('Token2 data loaded:', token2Data)
       }
       
       // Extract guild-specific token balances
@@ -213,13 +210,8 @@ export const useMemberStore = defineStore('member', () => {
       const token1Key = `${guildPrefix}-token1`
       const token2Key = `${guildPrefix}-token2`
       
-      console.log('Looking for token keys:', token1Key, token2Key)
-      console.log('Available balance keys:', Object.keys(balanceData.balances))
-      
       const token1Balance = balanceData.balances[token1Key] || 0
       const token2Balance = balanceData.balances[token2Key] || 0
-      
-      console.log('Token balances found:', { token1Balance, token2Balance })
       
       memberTokenBalance.value = {
         token1: token1Balance,
@@ -231,9 +223,8 @@ export const useMemberStore = defineStore('member', () => {
         lastUpdated: balanceData.lastUpdated || new Date().toISOString()
       }
       
-      console.log('Member token balance set:', memberTokenBalance.value)
     } catch (err) {
-      console.warn('Failed to load member token balance:', err)
+      // Handle failed member token balance load silently
       // Set default balance if loading fails
       memberTokenBalance.value = {
         token1: 0,

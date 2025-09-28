@@ -114,7 +114,7 @@ const timelineStyles = computed(() => ({
   padding: var(--space-sm) var(--space-md);
   background: var(--primary-color-0);
   border: var(--border-width-thin) solid v-bind('getSecondaryColor(0)');
-  border-radius: 12px;
+  border-radius: var(--theme-radius-lg);
   white-space: nowrap;
   margin: var(--space-xs) 0;
   color: v-bind('getSecondaryColor(0)');

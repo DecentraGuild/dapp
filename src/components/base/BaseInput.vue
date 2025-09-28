@@ -218,7 +218,7 @@ const clearInput = () => {
 .input-field {
   width: 100%;
   border: var(--border-width-thin) solid var(--secondary-color-2);
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   background: var(--primary-color-0);
   color: var(--secondary-color-0);
   font-size: 0.875rem;
@@ -332,7 +332,7 @@ const clearInput = () => {
   color: var(--secondary-color-1);
   cursor: pointer;
   padding: 0.25rem;
-  border-radius: 4px;
+  border-radius: var(--theme-radius-sm);
   transition: all 0.2s ease;
   display: flex;
   align-items: center;

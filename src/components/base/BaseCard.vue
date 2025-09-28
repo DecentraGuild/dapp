@@ -71,7 +71,7 @@ const cardStyles = computed(() => ({
 .base-card {
   background: var(--primary-color-0);
   border: var(--border-width-thin) solid var(--secondary-color-0);
-  border-radius: 12px;
+  border-radius: var(--theme-radius-lg);
   overflow: hidden;
   transition: all 0.3s ease;
   position: relative;

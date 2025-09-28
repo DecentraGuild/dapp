@@ -60,7 +60,7 @@ export function useThemeSystem() {
       colors: {
         primary: [getPrimaryColor(0), getPrimaryColor(1), getPrimaryColor(2)],
         secondary: [getSecondaryColor(0), getSecondaryColor(1), getSecondaryColor(2)],
-        accent: ['#ff6b6b', '#4ecdc4', '#45b7d1']
+        accent: ['var(--color-error)', 'var(--color-success)', 'var(--color-info)']
       }
     }
   })
@@ -151,7 +151,7 @@ export function useThemeSystem() {
     // Simple contrast calculation - in a real app you'd use a proper contrast algorithm
     if (backgroundColor.includes('rgba')) {
       const alpha = parseFloat(backgroundColor.match(/[\d.]+\)$/)?.[0]?.replace(')', '') || '1')
-      if (alpha < 0.5) return '#ffffff'
+      if (alpha < 0.5) return 'var(--color-white)'
     }
     
     // Check if color is light or dark based on RGB values
@@ -159,10 +159,10 @@ export function useThemeSystem() {
     if (rgb && rgb.length >= 3) {
       const [r, g, b] = rgb.map(Number)
       const brightness = (r * 299 + g * 587 + b * 114) / 1000
-      return brightness > 128 ? '#000000' : '#ffffff'
+      return brightness > 128 ? 'var(--color-black)' : 'var(--color-white)'
     }
     
-    return '#ffffff'
+    return 'var(--color-white)'
   }
 
   // Watch for theme changes and update variants

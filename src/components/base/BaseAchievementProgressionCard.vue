@@ -160,9 +160,9 @@ const { getPrimaryColor, getSecondaryColor, getTextColor } = useSkinTheme()
 
 // Level-based styling
 const levelColors = {
-  Common: '#6B7280',
-  Epic: '#10B981', 
-  Legendary: '#EF4444'
+  Common: 'var(--color-gray-500)',
+  Epic: 'var(--color-success)', 
+  Legendary: 'var(--color-error)'
 }
 
 const achievementClasses = computed(() => [
@@ -198,11 +198,11 @@ const formatDate = (dateString?: string) => {
 // Level color mapping - using exact colors from achievements_index.json
 const getLevelColor = (level: string) => {
   const colors = {
-    'Common': '#6B7280',  // Gray
-    'Epic': '#10B981',    // Green
-    'Legendary': '#EF4444' // Red
+    'Common': 'var(--color-gray-500)',  // Gray
+    'Epic': 'var(--color-success)',    // Green
+    'Legendary': 'var(--color-error)' // Red
   }
-  return colors[level as keyof typeof colors] || '#6B7280'
+  return colors[level as keyof typeof colors] || 'var(--color-gray-500)'
 }
 
 // Smart icon utility - handles both game-icons and regular icons
@@ -239,7 +239,7 @@ const getIconName = (icon: string) => {
   align-items: center;
   justify-content: center;
   background: var(--primary-color-1);
-  border-radius: var(--radius-lg);
+  border-radius: var(--theme-radius-lg);
   border: var(--border-width-thin) solid var(--secondary-color-2);
 }
 
@@ -268,7 +268,7 @@ const getIconName = (icon: string) => {
   margin-bottom: var(--space-md);
   padding: var(--space-md);
   background: var(--primary-color-1);
-  border-radius: var(--radius-lg);
+  border-radius: var(--theme-radius-lg);
   border: var(--border-width-thin) solid var(--secondary-color-2);
   transition: all 0.3s ease;
 }
@@ -285,31 +285,31 @@ const getIconName = (icon: string) => {
 
 /* Force icon colors with very specific selectors */
 .common-icon {
-  color: #10B981 !important;
+  color: var(--color-success) !important;
 }
 
 .epic-icon {
-  color: #F59E0B !important;
+  color: var(--color-warning) !important;
 }
 
 .legendary-icon {
-  color: #EF4444 !important;
+  color: var(--color-error) !important;
 }
 
 /* Force icon colors on SVG elements */
 .common-icon svg {
-  color: #10B981 !important;
-  fill: #10B981 !important;
+  color: var(--color-success) !important;
+  fill: var(--color-success) !important;
 }
 
 .epic-icon svg {
-  color: #F59E0B !important;
-  fill: #F59E0B !important;
+  color: var(--color-warning) !important;
+  fill: var(--color-warning) !important;
 }
 
 .legendary-icon svg {
-  color: #EF4444 !important;
-  fill: #EF4444 !important;
+  color: var(--color-error) !important;
+  fill: var(--color-error) !important;
 }
 
 .simple-level .level-content {
@@ -341,7 +341,7 @@ const getIconName = (icon: string) => {
   background: var(--secondary-color-2);
   color: var(--text-color-0);
   padding: 2px 8px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--theme-radius-sm);
   font-size: var(--text-xs);
   font-weight: var(--font-medium);
 }
@@ -401,14 +401,14 @@ const getIconName = (icon: string) => {
   color: var(--text-color-1);
   background: var(--secondary-color-2);
   padding: 2px 8px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--theme-radius-sm);
 }
 
 .achievement-current-level {
   font-size: var(--text-xs);
   font-weight: var(--font-semibold);
   padding: 2px 8px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--theme-radius-sm);
 }
 
 .level-common {
@@ -463,7 +463,7 @@ const getIconName = (icon: string) => {
   align-items: center;
   gap: var(--space-md);
   padding: var(--space-sm);
-  border-radius: var(--radius-md);
+  border-radius: var(--theme-radius-md);
   border: var(--border-width-thin) solid var(--secondary-color-2);
   background: var(--primary-color-1);
   transition: all 0.3s ease;
@@ -487,7 +487,7 @@ const getIconName = (icon: string) => {
   align-items: center;
   justify-content: center;
   background: var(--level-color, var(--primary-color-0));
-  border-radius: var(--radius-md);
+  border-radius: var(--theme-radius-md);
   border: var(--border-width-thin) solid var(--level-color, var(--secondary-color-1));
   flex-shrink: 0;
   color: var(--level-color, var(--text-color-0));
@@ -569,7 +569,7 @@ const getIconName = (icon: string) => {
   padding: 2px 6px;
   background: var(--secondary-color-2);
   color: var(--text-color-0);
-  border-radius: var(--radius-sm);
+  border-radius: var(--theme-radius-sm);
   font-weight: var(--font-medium);
 }
 

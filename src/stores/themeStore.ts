@@ -59,7 +59,7 @@ export const useThemeStore = defineStore('theme', () => {
   const secondaryColors = computed(() => currentTheme.value?.secondaryColor || ['rgba(0, 255, 255, 0.9)', 'rgba(0, 230, 230, 0.5)', 'rgba(0, 204, 204, 0.2)'])
   const textColors = computed(() => currentTheme.value?.textColor || ['rgba(229, 231, 235, 1)', 'rgba(156, 163, 175, 1)', 'rgba(107, 114, 128, 1)'])
   const backgroundColor = computed(() => currentTheme.value?.backgroundColor || 'rgba(0, 0, 0, 1)')
-  const emergencyColor = computed(() => currentTheme.value?.emergencyColor || '#ef4444')
+  const emergencyColor = computed(() => currentTheme.value?.emergencyColor || 'var(--color-error)')
   const borderRadius = computed(() => currentTheme.value?.borderRadius || {
     sm: '4px',
     md: '6px',
@@ -92,10 +92,10 @@ export const useThemeStore = defineStore('theme', () => {
       '--theme-text-3': textColors.value[2],
       '--theme-background': backgroundColor.value,
       '--theme-emergency': emergencyColor.value,
-      '--theme-border-radius-sm': borderRadius.value.sm,
-      '--theme-border-radius-md': borderRadius.value.md,
-      '--theme-border-radius-lg': borderRadius.value.lg,
-      '--theme-border-radius-xl': borderRadius.value.xl,
+      '--theme-radius-sm': borderRadius.value.sm,
+      '--theme-radius-md': borderRadius.value.md,
+      '--theme-radius-lg': borderRadius.value.lg,
+      '--theme-radius-xl': borderRadius.value.xl,
       '--theme-border-width-thin': borderWidth.value.thin,
       '--theme-border-width-medium': borderWidth.value.medium,
       '--theme-border-width-thick': borderWidth.value.thick
@@ -142,7 +142,8 @@ export const useThemeStore = defineStore('theme', () => {
       await initializeDefaultTheme()
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to load themes'
-      console.error('Error loading themes:', err)
+      // Handle error silently in production
+      // Could implement proper error handling/notification system here
     } finally {
       isLoading.value = false
     }
@@ -187,7 +188,8 @@ export const useThemeStore = defineStore('theme', () => {
       applyThemeToDocument()
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to load theme'
-      console.error('Error loading theme:', err)
+      // Handle error silently in production
+      // Could implement proper error handling/notification system here
     } finally {
       isLoading.value = false
     }
@@ -210,7 +212,8 @@ export const useThemeStore = defineStore('theme', () => {
       isOverride.value = false // This is the guild's default theme
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to load guild theme'
-      console.error('Error loading guild theme:', err)
+      // Handle error silently in production
+      // Could implement proper error handling/notification system here
     } finally {
       isLoading.value = false
     }

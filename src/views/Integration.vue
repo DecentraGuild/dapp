@@ -183,7 +183,7 @@ const starAtlasWallet = ref('')
   width: 60px;
   height: 60px;
   background: var(--secondary-color-2);
-  border-radius: var(--radius-lg);
+  border-radius: var(--theme-radius-lg);
   margin: 0 auto;
 }
 

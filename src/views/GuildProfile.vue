@@ -372,12 +372,12 @@ onMounted(async () => {
 
 <style scoped>
 .guild-profile-page {
-  max-width: 55%;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+  width: 100%;
+  max-width: 100%;
+  padding: var(--space-lg);
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: var(--space-lg);
 }
 
 /* Primary Guild Card */
@@ -400,10 +400,10 @@ onMounted(async () => {
 }
 
 .guild-logo {
-  width: 100px;
-  height: 100px;
+  width: calc(var(--space-3xl) * 1.5);
+  height: calc(var(--space-3xl) * 1.5);
   flex-shrink: 0;
-  border-radius: 12px;
+  border-radius: var(--theme-radius-lg);
   overflow: hidden;
   border: var(--border-width-thin) solid var(--secondary-color-0);
 }
@@ -440,7 +440,7 @@ onMounted(async () => {
   margin-bottom: 2rem;
   padding: 1.5rem;
   background: var(--secondary-color-2);
-  border-radius: 12px;
+  border-radius: var(--theme-radius-lg);
   border-left: var(--border-width-thin) solid var(--secondary-color-0);
 }
 
@@ -490,7 +490,7 @@ onMounted(async () => {
 
 .members-title {
   flex: 1;
-  min-width: 200px;
+  min-width: 12.5rem;
 }
 
 .members-filters {
@@ -502,14 +502,14 @@ onMounted(async () => {
 /* Member List Container */
 .member-list-container {
   background: var(--primary-color-0);
-  border-radius: 12px;
+  border-radius: var(--theme-radius-lg);
   overflow: hidden;
   border: var(--border-width-thin) solid var(--secondary-color-2);
 }
 
 .member-list-header {
   display: grid;
-  grid-template-columns: 60px 1fr 80px 100px 100px;
+  grid-template-columns: calc(var(--space-3xl) * 0.9) 1fr calc(var(--space-3xl) * 1.2) calc(var(--space-3xl) * 1.5) calc(var(--space-3xl) * 1.5);
   gap: 1rem;
   padding: 1rem;
   background: var(--secondary-color-2);
@@ -520,13 +520,13 @@ onMounted(async () => {
 }
 
 .member-list-rows {
-  max-height: 400px;
+  max-height: 25rem;
   overflow-y: auto;
 }
 
 .member-row {
   display: grid;
-  grid-template-columns: 60px 1fr 80px 100px 100px;
+  grid-template-columns: calc(var(--space-3xl) * 0.9) 1fr calc(var(--space-3xl) * 1.2) calc(var(--space-3xl) * 1.5) calc(var(--space-3xl) * 1.5);
   gap: 1rem;
   padding: 1rem;
   border-bottom: var(--border-width-thin) solid var(--secondary-color-2);
@@ -624,14 +624,13 @@ onMounted(async () => {
 /* Responsive Design */
 @media (max-width: 1024px) {
   .guild-profile-page {
-    max-width: 85%;
+    padding: var(--space-md);
   }
 }
 
 @media (max-width: 768px) {
   .guild-profile-page {
-    max-width: 95%;
-    padding: 1rem 0.5rem;
+    padding: var(--space-sm);
   }
   
   .guild-header {
@@ -646,8 +645,8 @@ onMounted(async () => {
   }
   
   .guild-logo {
-    width: 80px;
-    height: 80px;
+    width: calc(var(--space-3xl) * 1.2);
+    height: calc(var(--space-3xl) * 1.2);
   }
   
   .guild-name {
@@ -668,14 +667,14 @@ onMounted(async () => {
   }
   
   .member-list-header {
-    grid-template-columns: 50px 1fr 60px 80px 80px;
+    grid-template-columns: calc(var(--space-3xl) * 0.75) 1fr calc(var(--space-3xl) * 0.9) calc(var(--space-3xl) * 1.2) calc(var(--space-3xl) * 1.2);
     gap: 0.5rem;
     padding: 0.75rem;
     font-size: 0.8rem;
   }
   
   .member-row {
-    grid-template-columns: 50px 1fr 60px 80px 80px;
+    grid-template-columns: calc(var(--space-3xl) * 0.75) 1fr calc(var(--space-3xl) * 0.9) calc(var(--space-3xl) * 1.2) calc(var(--space-3xl) * 1.2);
     gap: 0.5rem;
     padding: 0.75rem;
   }
@@ -704,8 +703,8 @@ onMounted(async () => {
 
 @media (max-width: 480px) {
   .guild-logo {
-    width: 60px;
-    height: 60px;
+    width: calc(var(--space-3xl) * 0.9);
+    height: calc(var(--space-3xl) * 0.9);
   }
   
   .guild-name {
@@ -717,14 +716,14 @@ onMounted(async () => {
   }
   
   .member-list-header {
-    grid-template-columns: 40px 1fr 50px 70px 70px;
+    grid-template-columns: calc(var(--space-3xl) * 0.6) 1fr calc(var(--space-3xl) * 0.75) calc(var(--space-3xl) * 1.05) calc(var(--space-3xl) * 1.05);
     gap: 0.25rem;
     padding: 0.5rem;
     font-size: 0.75rem;
   }
   
   .member-row {
-    grid-template-columns: 40px 1fr 50px 70px 70px;
+    grid-template-columns: calc(var(--space-3xl) * 0.6) 1fr calc(var(--space-3xl) * 0.75) calc(var(--space-3xl) * 1.05) calc(var(--space-3xl) * 1.05);
     gap: 0.25rem;
     padding: 0.5rem;
   }
@@ -748,6 +747,15 @@ onMounted(async () => {
   
   .member-joined {
     font-size: 0.65rem;
+  }
+}
+
+/* Wide screen margin - matching armory pattern */
+@media (min-width: 1400px) {
+  .guild-profile-page {
+    margin: 0 10%;
+    width: 80%;
+    max-width: 80%;
   }
 }
 </style>

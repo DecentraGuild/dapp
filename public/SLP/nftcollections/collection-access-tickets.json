@@ -1,0 +1,94 @@
+{
+  "collectionID": "collection-access-tickets",
+  "guildID": "guild-1",
+  "name": "Cyber Castle Access Tickets",
+  "symbol": "CCAT",
+  "description": "Entry tickets for guild events: poker tournaments, raids, IRL meetings, and other exclusive activities",
+  "image": "accestickets (1).png",
+  "type": "access_tickets",
+  "rarity": "common",
+  "totalSupply": 1000,
+  "mintedSupply": 0,
+  "maxPerWallet": 10,
+  "mintPrice": 0,
+  "mintCurrency": "g1-token1",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "isActive": true,
+  "isPublic": false,
+  "contractAddress": "0xcccccccccccccccccccccccccccccccccccccccc",
+  "traits": [
+    {
+      "trait_type": "Event Type",
+      "values": ["Poker Tournament", "Raid", "Meeting", "Gaming", "Tournament"]
+    },
+    {
+      "trait_type": "Entry Fee",
+      "values": ["Free", "25 Tokens", "50 Tokens", "75 Tokens", "100 Tokens"]
+    },
+    {
+      "trait_type": "Validity",
+      "values": ["Single Use", "Multi Use", "Season Pass"]
+    },
+    {
+      "trait_type": "Rarity",
+      "values": ["Common", "Uncommon", "Rare", "Epic", "Legendary"]
+    }
+  ],
+  "sampleNFTs": [
+    {
+      "tokenId": 1,
+      "name": "Poker Tournament Ticket",
+      "image": "accestickets (1).png",
+      "traits": {
+        "Event Type": "Poker Tournament",
+        "Entry Fee": "100 Tokens",
+        "Validity": "Single Use",
+        "Rarity": "Common"
+      }
+    },
+    {
+      "tokenId": 2,
+      "name": "Raid Access Ticket",
+      "image": "accestickets (2).png",
+      "traits": {
+        "Event Type": "Raid",
+        "Entry Fee": "50 Tokens",
+        "Validity": "Single Use",
+        "Rarity": "Common"
+      }
+    },
+    {
+      "tokenId": 3,
+      "name": "Guild Meeting Ticket",
+      "image": "accestickets (3).png",
+      "traits": {
+        "Event Type": "Meeting",
+        "Entry Fee": "25 Tokens",
+        "Validity": "Single Use",
+        "Rarity": "Common"
+      }
+    },
+    {
+      "tokenId": 4,
+      "name": "Gaming Event Ticket",
+      "image": "accestickets (4).png",
+      "traits": {
+        "Event Type": "Gaming",
+        "Entry Fee": "75 Tokens",
+        "Validity": "Single Use",
+        "Rarity": "Common"
+      }
+    },
+    {
+      "tokenId": 5,
+      "name": "Tournament Access Ticket",
+      "image": "accestickets (5).png",
+      "traits": {
+        "Event Type": "Tournament",
+        "Entry Fee": "60 Tokens",
+        "Validity": "Single Use",
+        "Rarity": "Common"
+      }
+    }
+  ]
+}

@@ -17,14 +17,6 @@
       "icon": "mdi:ship-wheel",
       "image": "fleet_management.png",
       "isActive": true
-    },
-    {
-      "typeID": "collateral",
-      "name": "Collateral",
-      "description": "For example : Deposit dGuild tokens and use assets, return assets safe and take back your deposit",
-      "icon": "mdi:bank",
-      "image": "lending_pool.png",
-      "isActive": true
     }
   ]
 }

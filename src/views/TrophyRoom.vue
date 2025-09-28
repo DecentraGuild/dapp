@@ -152,7 +152,7 @@ const currentUser = computed(() => {
     return memberId
   }
   // Fallback for testing - use Alice as default
-  console.log('No member loaded, using fallback user')
+  // Using fallback user for testing
   return 'g1_alice_prospect'
 })
 
@@ -182,7 +182,7 @@ const filteredAchievements = computed(() => {
 
 // Handle filter click
 const handleFilterClick = (item: any) => {
-  console.log('Filter clicked:', item)
+  // Filter clicked
   selectedFilter.value = item.id
 }
 
@@ -191,14 +191,15 @@ const loadAchievementCategories = async () => {
   try {
     const response = await fetch(getSlpPath('Achievements/achievements_index.json'))
     if (!response.ok) {
-      console.warn('Failed to load achievement categories')
+      // Handle failed achievement categories load silently
       return
     }
     
     const data = await response.json()
     achievementCategories.value = data.categories || []
   } catch (error) {
-    console.error('Failed to load achievement categories:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -208,41 +209,27 @@ const loadMemberAchievementStatus = async () => {
     const currentGuildId = guildStore.guildId
     const currentUserId = currentUser.value
     
-    console.log('Loading member achievement status...')
-    console.log('Current guild ID:', currentGuildId)
-    console.log('Current user ID:', currentUserId)
-    console.log('Member store current member:', memberStore.currentMember)
-    
     if (!currentGuildId) {
-      console.warn('No guild selected')
       return
     }
     
     if (!currentUserId) {
-      console.warn('No user selected - member store might not be loaded yet')
       return
     }
 
     const guildPrefix = currentGuildId === 'guild-1' ? 'g1' : 'g2'
     const url = getSlpPath('Achievements/guild1_achievement_status.json')
-    console.log('Fetching achievement status from:', url)
-    console.log('Current location:', window.location.href)
     const response = await fetch(url)
     if (!response.ok) {
-      console.warn('Failed to load member achievement status:', response.status, response.statusText)
+      // Handle failed member achievement status load silently
       return
     }
     
     const responseText = await response.text()
-    console.log('Raw response:', responseText.substring(0, 200) + '...')
-    
     let data
     try {
       data = JSON.parse(responseText)
-      console.log('Loaded achievement status data:', data)
     } catch (parseError) {
-      console.error('Failed to parse JSON:', parseError)
-      console.error('Response was:', responseText)
       return
     }
     
@@ -250,37 +237,31 @@ const loadMemberAchievementStatus = async () => {
     const userStatus = data.find((member: MemberAchievementStatus) => member.memberID === currentUserId)
     if (userStatus) {
       memberAchievementStatus.value = userStatus
-      console.log('Loaded achievement status for user:', currentUserId, userStatus)
     } else {
-      console.warn('No achievement status found for user:', currentUserId)
-      console.log('Available member IDs:', data.map((m: MemberAchievementStatus) => m.memberID))
+      // No achievement status found for user
     }
   } catch (error) {
-    console.error('Failed to load member achievement status:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
 // Load all achievements from category files
 const loadAllAchievements = async () => {
   try {
-    console.log('Loading all achievements...')
-    console.log('Available categories:', achievementCategories.value)
-    console.log('Member achievement status:', memberAchievementStatus.value)
+    // Loading all achievements
     
     const achievements: Achievement[] = []
     
     for (const category of achievementCategories.value) {
       try {
-        console.log(`Loading achievements for category: ${category.id}`)
         const response = await fetch(getSlpPath(`Achievements/${category.file}`))
         if (!response.ok) {
-          console.warn(`Failed to load ${category.file}`)
           continue
         }
         
         const categoryData = await response.json()
         const categoryAchievements = categoryData.achievements || []
-        console.log(`Found ${categoryAchievements.length} achievements in ${category.id}`)
         
         // Map category achievements to our Achievement interface
         for (const achievement of categoryAchievements) {
@@ -288,11 +269,7 @@ const loadAllAchievements = async () => {
           const memberLevel = memberStatus?.level || 'Common'
           const memberCompleted = memberStatus?.completed || false
           
-          console.log(`Processing achievement ${achievement.id}:`, {
-            memberStatus,
-            memberLevel,
-            memberCompleted
-          })
+          // Processing achievement
           
           // Create achievement with all levels and current progress
           const achievementData: Achievement = {
@@ -335,22 +312,21 @@ const loadAllAchievements = async () => {
           achievements.push(achievementData)
         }
       } catch (error) {
-        console.warn(`Failed to load achievements for category ${category.id}:`, error)
+        // Handle failed achievement category load silently
       }
     }
     
     allAchievements.value = achievements
-    console.log('Loaded total achievements:', achievements.length)
-    console.log('Final achievements data:', achievements)
   } catch (error) {
-    console.error('Failed to load achievements:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
 // Watch for member changes and reload data
 watch(currentUser, async (newUserId) => {
   if (newUserId) {
-    console.log('User changed, reloading achievement data for:', newUserId)
+    // User changed, reloading achievement data
     await loadMemberAchievementStatus()
     await loadAllAchievements()
   }
@@ -358,15 +334,12 @@ watch(currentUser, async (newUserId) => {
 
 // Load all data on mount
 onMounted(async () => {
-  console.log('TrophyRoom mounted - Current user:', currentUser.value)
-  console.log('TrophyRoom mounted - Current member:', memberStore.currentMember)
-  
   // Load achievement categories first
   await loadAchievementCategories()
   
   // Try to load member profile if not already loaded
   if (!memberStore.currentMember) {
-    console.log('No member loaded, attempting to load member profile...')
+    // No member loaded, attempting to load member profile
     const userStore = useUserStore()
     const walletAddress = userStore.selectedWallet?.address
     const guildId = guildStore.guildId
@@ -374,9 +347,9 @@ onMounted(async () => {
     if (walletAddress && guildId) {
       try {
         await memberStore.loadMemberProfile(walletAddress, guildId)
-        console.log('Member profile loaded:', memberStore.currentMember)
+        // Member profile loaded
       } catch (error) {
-        console.warn('Failed to load member profile:', error)
+        // Handle failed member profile load silently
       }
     }
   }

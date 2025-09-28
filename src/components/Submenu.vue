@@ -114,8 +114,8 @@ const handleSubItemClick = (subItem: NavigationItem) => {
   position: fixed;
   background: var(--primary-color);
   border: var(--border-width-thin) solid var(--secondary-color-3);
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-radius: var(--theme-radius-lg);
+  box-shadow: var(--shadow-2xl);
   min-width: 300px;
   max-width: 400px;
   z-index: 1002;
@@ -160,7 +160,7 @@ const handleSubItemClick = (subItem: NavigationItem) => {
 }
 
 .submenu-close:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--color-white);
 }
 
 .submenu-items {
@@ -175,7 +175,7 @@ const handleSubItemClick = (subItem: NavigationItem) => {
   margin: 0.25rem 0;
   background: none;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: left;

@@ -281,12 +281,12 @@ const formatDateTime = (dateString: string) => {
 
 const registerForTournament = () => {
   // TODO: Implement registration logic
-  console.log('Registering for tournament:', props.pokerEvent.eventID)
+  // TODO: Implement actual tournament registration logic
 }
 
 const joinTournament = () => {
   // TODO: Implement join logic
-  console.log('Joining tournament:', props.pokerEvent.eventID)
+  // TODO: Implement actual tournament joining logic
 }
 </script>
 
@@ -303,7 +303,7 @@ const joinTournament = () => {
 
 .poker-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(var(--secondary-color-0-rgb, 139, 92, 246), 0.15);
+  box-shadow: var(--shadow-xl);
 }
 
 .poker-content {
@@ -339,7 +339,7 @@ const joinTournament = () => {
   font-weight: 500;
   color: var(--secondary-color-0);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--letter-spacing-tight);
   margin-bottom: 0.25rem;
 }
 
@@ -399,17 +399,17 @@ const joinTournament = () => {
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .status-badge.upcoming {
-  background: rgba(59, 130, 246, 0.1);
-  color: #3B82F6;
+  background: var(--color-info-light);
+  color: var(--color-info);
 }
 
 .status-badge.active {
-  background: rgba(34, 197, 94, 0.1);
-  color: #22C55E;
+  background: var(--color-success-light);
+  color: var(--color-success);
 }
 
 .tournament-times {
@@ -441,7 +441,7 @@ const joinTournament = () => {
 
 .grid-section {
   background: var(--surface-2);
-  border-radius: 0.75rem;
+  border-radius: var(--theme-radius-lg);
   padding: 1.5rem;
   border: var(--border-width-thin) solid var(--border-color);
 }
@@ -488,7 +488,7 @@ const joinTournament = () => {
 }
 
 .chip-item.bonus {
-  color: #22C55E;
+  color: var(--color-success);
 }
 
 .chip-icon {
@@ -612,7 +612,7 @@ const joinTournament = () => {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  max-height: 200px;
+  max-height: var(--state-height-loading);
   overflow-y: auto;
 }
 
@@ -656,13 +656,13 @@ const joinTournament = () => {
   font-weight: 500;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
-  background: rgba(34, 197, 94, 0.1);
-  color: #22C55E;
+  background: var(--color-success-light);
+  color: var(--color-success);
 }
 
 .player-status.eliminated {
-  background: rgba(239, 68, 68, 0.1);
-  color: #EF4444;
+  background: var(--color-error-light);
+  color: var(--color-error);
 }
 
 .action-buttons {
@@ -691,7 +691,7 @@ const joinTournament = () => {
 .accordion-leave-from {
   opacity: 1;
   transform: translateY(0);
-  max-height: 1000px;
+  max-height: 62.5rem;
 }
 
 /* Responsive Design */

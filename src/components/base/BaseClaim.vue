@@ -229,7 +229,7 @@ const handleClaim = () => {
   position: relative;
   background: var(--primary-color-1);
   border: var(--component-border-width) solid var(--secondary-color-2);
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--theme-radius-lg);
   overflow: hidden;
   transition: all var(--transition-normal);
   display: flex;
@@ -278,7 +278,7 @@ const handleClaim = () => {
   gap: var(--space-xs);
   padding: var(--space-xs) var(--space-sm);
   background: var(--secondary-color-1);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--theme-radius-sm);
   font-size: var(--text-xs);
   font-weight: var(--font-semibold);
   color: var(--text-color-0);
@@ -286,14 +286,14 @@ const handleClaim = () => {
 
 .type-icon,
 .period-icon {
-  width: 12px;
-  height: 12px;
+  width: var(--space-sm);
+  height: var(--space-sm);
 }
 
 /* Image */
 .claim-image-container {
   width: 100%;
-  height: 200px;
+  height: var(--state-height-loading);
   overflow: hidden;
   border-bottom: var(--component-border-width) solid var(--secondary-color-2);
 }
@@ -363,7 +363,7 @@ const handleClaim = () => {
   gap: var(--space-xs);
   padding: var(--space-xs) var(--space-sm);
   background: var(--primary-color-2);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--theme-radius-sm);
   border: var(--component-border-width-thin) solid var(--secondary-color-2);
 }
 
@@ -371,8 +371,8 @@ const handleClaim = () => {
 .epoch-icon,
 .amount-icon,
 .period-icon {
-  width: 14px;
-  height: 14px;
+  width: var(--space-sm);
+  height: var(--space-sm);
   color: var(--secondary-color-0);
   flex-shrink: 0;
 }
@@ -417,15 +417,15 @@ const handleClaim = () => {
   gap: var(--space-xs);
   padding: var(--space-sm);
   background: var(--primary-color-2);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--theme-radius-md);
   color: var(--text-color-2);
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
 }
 
 .status-icon {
-  width: 16px;
-  height: 16px;
+  width: var(--space-md);
+  height: var(--space-md);
 }
 
 /* Status Overlay */
@@ -437,17 +437,17 @@ const handleClaim = () => {
   align-items: center;
   gap: var(--space-xs);
   padding: var(--space-xs) var(--space-sm);
-  background: rgba(220, 38, 38, 0.9);
+  background: var(--color-error);
   color: white;
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--theme-radius-sm);
   font-size: var(--text-xs);
   font-weight: var(--font-semibold);
   z-index: 10;
 }
 
 .status-overlay-icon {
-  width: 12px;
-  height: 12px;
+  width: var(--space-sm);
+  height: var(--space-sm);
 }
 
 /* Responsive Design */
@@ -463,7 +463,7 @@ const handleClaim = () => {
   }
   
   .claim-image-container {
-    height: 150px;
+    height: calc(var(--state-height-loading) * 0.75);
   }
   
   .claim-content {
@@ -503,7 +503,7 @@ const handleClaim = () => {
 
 @media (max-width: 480px) {
   .claim-image-container {
-    height: 120px;
+    height: calc(var(--state-height-loading) * 0.6);
   }
   
   .claim-header {

@@ -158,7 +158,7 @@ const handleActionClick = (action: any, item: ListItem, index: number) => {
 <style scoped>
 .base-list {
   background: var(--primary-color-0);
-  border-radius: 12px;
+  border-radius: var(--theme-radius-lg);
   overflow: hidden;
 }
 
@@ -211,7 +211,7 @@ const handleActionClick = (action: any, item: ListItem, index: number) => {
   width: 2.5rem;
   height: 2.5rem;
   background: var(--secondary-color-2);
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   color: var(--secondary-color-0);
   flex-shrink: 0;
 }
@@ -262,7 +262,7 @@ const handleActionClick = (action: any, item: ListItem, index: number) => {
 .list-bordered .list-item {
   border: var(--border-width-thin) solid var(--secondary-color-2);
   margin-bottom: 0.5rem;
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
 }
 
 .list-bordered .list-item:last-child {

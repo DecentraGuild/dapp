@@ -690,10 +690,10 @@ const tokenFilterStyles = computed(() => ({
   '--text-color-0': getTextColor(0),
   '--text-color-1': getTextColor(1),
   '--text-color-2': getTextColor(2),
-  '--border-radius-sm': getBorderRadius('sm'),
-  '--border-radius-md': getBorderRadius('md'),
-  '--border-radius-lg': getBorderRadius('lg'),
-  '--border-radius-xl': getBorderRadius('xl')
+  '--theme-radius-sm': getBorderRadius('sm'),
+  '--theme-radius-md': getBorderRadius('md'),
+  '--theme-radius-lg': getBorderRadius('lg'),
+  '--theme-radius-xl': getBorderRadius('xl')
 }))
 
 // Methods
@@ -722,7 +722,8 @@ const loadVotes = async () => {
           return await response.json()
         }
       } catch (error) {
-        console.error(`Error loading ${filename}:`, error)
+        // Handle error silently in production
+        // Could implement proper error handling/notification system here
       }
       return null
     })
@@ -733,7 +734,8 @@ const loadVotes = async () => {
     // Sort by voting start date (newest first)
     votes.value.sort((a, b) => new Date(b.votingStarts).getTime() - new Date(a.votingStarts).getTime())
   } catch (error) {
-    console.error('Error loading votes:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -744,7 +746,8 @@ const loadDAOSettings = async () => {
       daoSettings.value = await response.json()
     }
   } catch (error) {
-    console.error('Error loading DAO settings:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -930,7 +933,9 @@ const handleVote = async (vote: Vote, tokenType: 'token-1' | 'token-2', voteChoi
   
   try {
     // In a real app, this would call an API to submit the vote
-    console.log(`Voting ${voteChoice} on ${vote.voteID} with ${tokenType}`)
+    // TODO: Implement actual voting logic
+    // This should integrate with the blockchain voting system
+    // For now, this is a placeholder for the voting functionality
     
     // Mock voting delay
     await new Promise(resolve => setTimeout(resolve, 1000))
@@ -939,7 +944,8 @@ const handleVote = async (vote: Vote, tokenType: 'token-1' | 'token-2', voteChoi
     const tokenSymbol = tokenType === 'token-1' ? 'CCC' : 'CGM'
     const unvoted = tokenType === 'token-1' ? getUserToken1Unvoted() : getUserToken2Unvoted()
     
-    alert(`Successfully voted ${voteChoice.toUpperCase()} with ${unvoted} ${tokenSymbol} tokens on "${vote.title}"`)
+    // TODO: Show success notification
+    // This should use a proper notification system instead of alert
     
     // Update voted amounts (in real app, this would come from the API response)
     if (tokenType === 'token-1') {
@@ -949,8 +955,10 @@ const handleVote = async (vote: Vote, tokenType: 'token-1' | 'token-2', voteChoi
     }
     
   } catch (error) {
-    console.error('Error voting:', error)
-    alert('Failed to submit vote. Please try again.')
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
+    // TODO: Show error notification
+    // This should use a proper notification system instead of alert
   } finally {
     isVoting.value = false
   }
@@ -986,8 +994,8 @@ onMounted(() => {
 
 /* DAO Header Card */
 .dao-voting-header-card {
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
 }
 
 .dao-header {
@@ -1000,7 +1008,7 @@ onMounted(() => {
   flex-shrink: 0;
   width: var(--space-3xl);
   height: var(--space-3xl);
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--theme-radius-lg);
   background: var(--secondary-color-2);
   display: flex;
   align-items: center;
@@ -1057,8 +1065,8 @@ onMounted(() => {
 
 /* Token Filter Container */
 .token-filter-container {
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
   display: flex;
   gap: 10%;
   margin-bottom: var(--space-lg);
@@ -1070,9 +1078,9 @@ onMounted(() => {
   align-items: center;
   gap: var(--space-md);
   padding: var(--space-lg);
-  background: var(--primary-color-0, #f8f9fa);
-  border: var(--border-width-thin) solid var(--secondary-color-2, #e9ecef);
-  border-radius: var(--border-radius-lg, 12px);
+  background: var(--primary-color-0);
+  border: var(--border-width-thin) solid var(--secondary-color-2);
+  border-radius: var(--theme-radius-lg);
   cursor: pointer;
   transition: all var(--transition-normal, 0.2s ease);
   text-align: left;
@@ -1084,13 +1092,13 @@ onMounted(() => {
   background: var(--primary-color-1, #e9ecef);
   border-color: var(--secondary-color-1, #6c757d);
   transform: translateY(-0.0625rem);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
 }
 
 .token-filter-button.active {
   background: var(--secondary-color-3, #0d6efd);
   border-color: var(--secondary-color-0, #495057);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
 }
 
 .token-filter-button.active .token-button-icon {
@@ -1136,8 +1144,8 @@ onMounted(() => {
 
 /* Voting List Card */
 .voting-list-card {
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
 }
 
 .voting-list-header {
@@ -1164,7 +1172,7 @@ onMounted(() => {
 
 .vote-item {
   border: var(--component-border-width) solid var(--secondary-color-2);
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--theme-radius-lg);
   overflow: hidden;
   background: var(--primary-color-0);
   transition: all var(--transition-normal);
@@ -1221,11 +1229,11 @@ onMounted(() => {
 }
 
 .vote-title.title-token-1 {
-  color: rgb(59, 130, 246);
+  color: var(--color-info);
 }
 
 .vote-title.title-token-2 {
-  color: rgb(168, 85, 247);
+  color: var(--color-info);
 }
 
 .vote-badges {
@@ -1236,7 +1244,7 @@ onMounted(() => {
 
 .vote-type-badge, .vote-status-badge {
   padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--theme-radius-sm);
   font-size: var(--text-xs);
   font-weight: var(--font-medium);
   text-transform: uppercase;
@@ -1249,28 +1257,28 @@ onMounted(() => {
 }
 
 .badge-token-1 {
-  background: rgba(59, 130, 246, 0.1);
-  color: rgb(59, 130, 246);
+  background: var(--color-info-light);
+  color: var(--color-info);
 }
 
 .badge-token-2 {
-  background: rgba(168, 85, 247, 0.1);
-  color: rgb(168, 85, 247);
+  background: var(--color-info-light);
+  color: var(--color-info);
 }
 
 .status-active {
-  background: rgba(34, 197, 94, 0.1);
-  color: rgb(34, 197, 94);
+  background: var(--color-success-light);
+  color: var(--color-success);
 }
 
 .status-completed {
-  background: rgba(156, 163, 175, 0.1);
-  color: rgb(156, 163, 175);
+  background: var(--color-gray-100);
+  color: var(--color-gray-500);
 }
 
 .status-cancelled {
-  background: rgba(239, 68, 68, 0.1);
-  color: rgb(239, 68, 68);
+  background: var(--color-error-light);
+  color: var(--color-error);
 }
 
 .vote-description {
@@ -1299,7 +1307,7 @@ onMounted(() => {
   gap: var(--space-sm);
   padding: var(--space-md);
   background: var(--theme-background);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--theme-radius-md);
   border: var(--component-border-width) solid var(--secondary-color-2);
 }
 
@@ -1322,19 +1330,19 @@ onMounted(() => {
 }
 
 .result-passed {
-  color: rgb(34, 197, 94);
+  color: var(--color-success);
 }
 
 .result-rejected {
-  color: rgb(239, 68, 68);
+  color: var(--color-error);
 }
 
 .result-cancelled {
-  color: rgb(156, 163, 175);
+  color: var(--color-gray-500);
 }
 
 .result-pending {
-  color: rgb(59, 130, 246);
+  color: var(--color-info);
 }
 
 .result-progress {
@@ -1375,7 +1383,7 @@ onMounted(() => {
 .progress-bar {
   height: 0.5rem;
   background: var(--primary-color-1);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--theme-radius-sm);
   overflow: hidden;
   display: flex;
   position: relative;
@@ -1385,13 +1393,13 @@ onMounted(() => {
   position: absolute;
   top: -2px;
   bottom: -2px;
-  width: 2px;
+  width: var(--border-width-thin);
   pointer-events: none;
   z-index: 2;
 }
 
 .threshold-marker {
-  width: 2px;
+  width: var(--border-width-thin);
   height: 100%;
   background: var(--text-color-0);
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
@@ -1407,7 +1415,7 @@ onMounted(() => {
   color: var(--text-color-0);
   background: var(--primary-color-0);
   padding: 0.125rem 0.25rem;
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--theme-radius-sm);
   border: var(--border-width-thin) solid var(--secondary-color-2);
   white-space: nowrap;
 }
@@ -1433,11 +1441,11 @@ onMounted(() => {
 }
 
 .yes-label {
-  color: rgb(34, 197, 94);
+  color: var(--color-success);
 }
 
 .no-label {
-  color: rgb(239, 68, 68);
+  color: var(--color-error);
 }
 
 /* Vote Expansion Icon */
@@ -1473,7 +1481,7 @@ onMounted(() => {
 .token-dao-card {
   background: var(--primary-color-0);
   border: var(--component-border-width) solid var(--secondary-color-2);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 .dao-inactive {
@@ -1517,7 +1525,7 @@ onMounted(() => {
   background: var(--secondary-color-0);
   color: var(--primary-color-0);
   padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--theme-radius-sm);
   font-size: var(--text-xs);
   font-weight: var(--font-bold);
 }
@@ -1676,7 +1684,7 @@ onMounted(() => {
   justify-content: center;
   gap: var(--space-sm);
   padding: var(--space-sm) var(--space-md);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--theme-radius-md);
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
   cursor: pointer;
@@ -1704,11 +1712,11 @@ onMounted(() => {
 }
 
 .vote-yes {
-  color: rgb(34, 197, 94);
+  color: var(--color-success);
 }
 
 .vote-no {
-  color: rgb(239, 68, 68);
+  color: var(--color-error);
 }
 
 .dao-inactive-message {
@@ -1752,6 +1760,27 @@ onMounted(() => {
   font-size: var(--text-base);
   color: var(--text-color-2);
   max-width: 28rem;
+}
+
+/* Wide screen margin - matching armory pattern */
+@media (min-width: 1400px) {
+  .dao-voting-header-card {
+    margin: 0 10%;
+    width: 80%;
+    max-width: 80%;
+  }
+  
+  .token-filter-container {
+    margin: 0 10%;
+    width: 80%;
+    max-width: 80%;
+  }
+  
+  .voting-list-card {
+    margin: 0 10%;
+    width: 80%;
+    max-width: 80%;
+  }
 }
 
 /* Responsive Design */

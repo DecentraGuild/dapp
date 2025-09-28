@@ -448,7 +448,7 @@ const loadDiceGame = async () => {
     
     const response = await fetch(getSlpPath(`minigames/${currentGuildId}_dice_game.json`))
     if (!response.ok) {
-      console.warn(`Dice game not found for ${currentGuildId}`)
+      // Handle dice game not found silently
       return
     }
     
@@ -460,7 +460,8 @@ const loadDiceGame = async () => {
       remainingFreeSpins.value = gameData.dailyFreeSpins
     }
   } catch (error) {
-    console.error('Failed to load dice game:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -581,7 +582,7 @@ onMounted(() => {
   width: 50px;
   height: 50px;
   border: var(--border-width-thin) solid;
-  border-radius: var(--radius-md);
+  border-radius: var(--theme-radius-md);
   font-size: var(--text-xl);
   font-weight: var(--font-semibold);
   cursor: pointer;
@@ -623,7 +624,7 @@ onMounted(() => {
   width: 120px;
   padding: var(--space-sm);
   border: var(--border-width-thin) solid;
-  border-radius: var(--radius-sm);
+  border-radius: var(--theme-radius-sm);
   text-align: center;
   font-size: 1rem;
 }
@@ -767,7 +768,7 @@ onMounted(() => {
 
 .spin-item {
   padding: var(--space-sm);
-  border-radius: var(--radius-sm);
+  border-radius: var(--theme-radius-sm);
   border: var(--border-width-thin) solid var(--secondary-color-1);
   background: var(--primary-color-1);
 }
@@ -800,7 +801,7 @@ onMounted(() => {
 .guessed {
   font-weight: 600;
   padding: 2px 6px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--theme-radius-sm);
   background: var(--secondary-color-2);
 }
 

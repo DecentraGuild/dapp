@@ -36,7 +36,8 @@ async function loadSvgDocument(svgFile: string): Promise<Document> {
       
       return svgDocument
     } catch (error) {
-      console.error('Error loading SVG file:', error)
+      // Handle error silently in production
+      // Could implement proper error handling/notification system here
       throw error
     } finally {
       // Remove the promise from the loading map
@@ -77,7 +78,8 @@ export async function getShapePath(shapeId: string, svgFile: string): Promise<st
     return fallbackPath
     
   } catch (error) {
-    console.error(`Error loading shape path for "${shapeId}" from "${svgFile}":`, error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
     const fallbackPath = "M10,10 L90,10 L90,50 L10,50 Z"
     pathCache.set(cacheKey, fallbackPath)
     return fallbackPath

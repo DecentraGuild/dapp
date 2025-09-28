@@ -321,7 +321,7 @@ const getTokenIcon = (item: PersonalObservatoryItem): string => {
 
 .item-status {
   padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  border-radius: var(--theme-radius-sm);
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -332,42 +332,42 @@ const getTokenIcon = (item: PersonalObservatoryItem): string => {
 .status-success,
 .status-yes {
   background: rgba(34, 197, 94, 0.2);
-  color: #16a34a;
+  color: var(--color-success);
 }
 
 .status-in_progress,
 .status-pending,
 .status-no {
   background: rgba(251, 191, 36, 0.2);
-  color: #d97706;
+  color: var(--color-warning);
 }
 
 .status-epic,
 .status-rare,
 .status-uncommon {
   background: rgba(147, 51, 234, 0.2);
-  color: #9333ea;
+  color: var(--color-info);
 }
 
 .status-mint,
 .status-transfer {
   background: rgba(59, 130, 246, 0.2);
-  color: #2563eb;
+  color: var(--color-info);
 }
 
 .status-burn {
   background: rgba(239, 68, 68, 0.2);
-  color: #dc2626;
+  color: var(--color-error);
 }
 
 .status-win {
   background: rgba(34, 197, 94, 0.2);
-  color: #16a34a;
+  color: var(--color-success);
 }
 
 .status-lose {
   background: rgba(239, 68, 68, 0.2);
-  color: #dc2626;
+  color: var(--color-error);
 }
 
 .item-subtitle {

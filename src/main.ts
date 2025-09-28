@@ -17,7 +17,7 @@ if (window.location.search.includes('?/')) {
 
 // Additional safety check for malformed URLs
 if (window.location.href.includes('##') || window.location.href.includes('//#/')) {
-  console.warn('Detected malformed URL in main.ts, redirecting to base domain');
+  // Handle malformed URL silently
   window.location.replace('https://dapp.decentraguild.com');
 }
 

@@ -74,7 +74,7 @@
               :src="theme.images?.[0] || ''" 
               :alt="theme.name" 
               class="theme-preview"
-              @error="console.warn('Failed to load theme image:', theme.images?.[0])"
+              @error="() => {}"
             />
             <span class="theme-name">{{ theme.name }}</span>
           </button>
@@ -274,7 +274,7 @@ onUnmounted(() => {
   top: 0;
   left: 0;
   right: 0;
-  height: 48px;
+  height: var(--space-3xl);
   background: var(--primary-color-0);
   border-bottom: var(--border-width-thin) solid var(--secondary-color-0);
   display: flex;
@@ -297,9 +297,9 @@ onUnmounted(() => {
 }
 
 .guild-logo {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
+  width: var(--space-2xl);
+  height: var(--space-2xl);
+  border-radius: var(--theme-radius-sm);
   object-fit: cover;
   border: var(--border-width-thin) solid var(--secondary-color-0);
 }
@@ -317,11 +317,11 @@ onUnmounted(() => {
 }
 
 .default-guild-icon {
-  width: 32px;
-  height: 32px;
+  width: var(--space-2xl);
+  height: var(--space-2xl);
   color: var(--secondary-color-0);
   background: var(--primary-color-1);
-  border-radius: 6px;
+  border-radius: var(--theme-radius-sm);
   padding: 0.5rem;
   border: var(--border-width-thin) solid var(--secondary-color-0);
 }
@@ -329,7 +329,7 @@ onUnmounted(() => {
 .dashboard-button {
   background: var(--primary-color-0);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   padding: 0.75rem;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -375,7 +375,7 @@ onUnmounted(() => {
   padding: 0.75rem 1rem;
   background: var(--primary-color-0);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   transition: all 0.2s ease;
 }
 
@@ -399,7 +399,7 @@ onUnmounted(() => {
   padding: 0.75rem 1.5rem;
   background: var(--primary-color-1);
   border: var(--border-width-thin) solid var(--secondary-color-2);
-  border-radius: 12px;
+  border-radius: var(--theme-radius-lg);
 }
 
 .loading-icon {
@@ -435,7 +435,7 @@ onUnmounted(() => {
 .theme-button {
   background: var(--primary-color-0);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   padding: 0.75rem 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -443,7 +443,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 0.75rem;
   font-weight: 500;
-  min-width: 120px;
+  min-width: var(--component-button-min-width);
   justify-content: space-between;
   text-align: left;
 }
@@ -505,8 +505,8 @@ onUnmounted(() => {
   right: 0;
   background: var(--primary-color-0);
   border: var(--border-width-thin) solid var(--secondary-color-0);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-radius: var(--theme-radius-md);
+  box-shadow: var(--shadow-lg);
   z-index: 1002;
   margin-top: 0.25rem;
   overflow: hidden;
@@ -536,9 +536,9 @@ onUnmounted(() => {
 }
 
 .theme-preview {
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
+  width: var(--space-lg);
+  height: var(--space-lg);
+  border-radius: var(--theme-radius-sm);
   object-fit: cover;
   border: var(--border-width-thin) solid var(--secondary-color-0);
 }
@@ -572,7 +572,7 @@ onUnmounted(() => {
 .nav-button {
   background: var(--primary-color-0);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   padding: 0.75rem 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -622,7 +622,7 @@ onUnmounted(() => {
 }
 
 .wallet-section {
-  min-width: 200px;
+  min-width: 12.5rem;
 }
 
 .guild-section {
@@ -632,7 +632,7 @@ onUnmounted(() => {
 .guild-logo {
   width: 1.5rem;
   height: 1.5rem;
-  border-radius: 4px;
+  border-radius: var(--theme-radius-sm);
   object-fit: cover;
 }
 
@@ -650,12 +650,12 @@ onUnmounted(() => {
 @media (max-width: 768px) {
   .top-navbar {
     padding: 0 0.75rem;
-    height: 42px;
+    height: calc(var(--space-3xl) * 0.875);
   }
   
   .guild-logo {
-    width: 28px;
-    height: 28px;
+    width: calc(var(--space-2xl) * 0.875);
+    height: calc(var(--space-2xl) * 0.875);
   }
   
   .dashboard-button {
@@ -693,7 +693,7 @@ onUnmounted(() => {
   
   .theme-button {
     padding: 0.6rem 0.75rem;
-    min-width: 100px;
+    min-width: calc(var(--component-button-min-width) * 0.8);
   }
   
   .theme-text {

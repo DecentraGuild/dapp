@@ -611,6 +611,15 @@ onMounted(() => {
   gap: var(--space-xl);
 }
 
+/* Wide screen margin - matching armory pattern */
+@media (min-width: 1400px) {
+  .observatory-dguild-content {
+    margin: 0 10%;
+    width: 80%;
+    max-width: 80%;
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .observatory-dguild-content {

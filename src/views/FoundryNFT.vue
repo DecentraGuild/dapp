@@ -267,7 +267,8 @@ const loadCollections = async () => {
     const collectionFiles = [
       'collection-avatar.json',
       'collection-achievements.json',
-      'collection-tournamentreward.json'
+      'collection-tournamentreward.json',
+      'collection-access-tickets.json'
     ]
     
     const loadedCollections: NFTCollection[] = []
@@ -287,7 +288,8 @@ const loadCollections = async () => {
       selectedCollection.value = loadedCollections[0]
     }
   } catch (error) {
-    console.error('Error loading collections:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -345,8 +347,9 @@ const handleMint = () => {
     return
   }
   
-  // Demo: Show minting calculation
-  alert(`Minting ${selectedNFT.value.name} for ${selectedCollection.value.mintPrice} ${selectedCollection.value.mintCurrency}`)
+  // TODO: Implement actual minting logic
+  // This should integrate with the blockchain minting system
+  // For now, this is a placeholder for the minting functionality
 }
 
 // Window resize handler
@@ -449,7 +452,7 @@ onUnmounted(() => {
   flex-shrink: 0;
   width: var(--space-3xl);
   height: var(--space-3xl);
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--theme-radius-lg);
   overflow: hidden;
   border: var(--component-border-width-thick) solid var(--secondary-color-2);
 }
@@ -554,9 +557,9 @@ onUnmounted(() => {
 .nft-image-container {
   flex-shrink: 0;
   width: 100%;
-  max-width: 31.25rem;
+  max-width: var(--space-3xl);
   aspect-ratio: 1;
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--theme-radius-lg);
   overflow: hidden;
   border: var(--component-border-width-thick) solid var(--secondary-color-2);
 }
@@ -632,23 +635,23 @@ onUnmounted(() => {
 /* Responsive Design */
 @media (max-width: 1200px) {
   .nft-image-container {
-    max-width: 25rem;
+    max-width: calc(var(--space-3xl) * 0.8);
   }
 }
 
 @media (max-width: 1024px) {
   .main-content {
-    margin-left: 6.25rem;
+    margin-left: var(--layout-content-margin);
   }
   
   .nft-image-container {
-    max-width: 20rem;
+    max-width: calc(var(--space-3xl) * 0.6);
   }
 }
 
 @media (max-width: 768px) {
   .main-content {
-    margin-left: 5rem;
+    margin-left: var(--layout-content-margin-md);
     padding: var(--space-md);
   }
   
@@ -663,7 +666,7 @@ onUnmounted(() => {
   }
   
   .nft-image-container {
-    max-width: 18.75rem;
+    max-width: calc(var(--space-3xl) * 0.5);
     align-self: center;
   }
   
@@ -697,6 +700,15 @@ onUnmounted(() => {
   
   .nft-image-container {
     max-width: 15rem;
+  }
+}
+
+/* Wide screen margin - matching armory pattern */
+@media (min-width: 1400px) {
+  .foundry-nft-content {
+    margin: 0 10%;
+    width: 80%;
+    max-width: 80%;
   }
 }
 </style>

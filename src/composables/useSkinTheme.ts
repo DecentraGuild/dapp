@@ -33,11 +33,22 @@ export function useSkinTheme() {
   }
 
   const getEmergencyColor = () => {
-    return currentTheme.value?.emergencyColor || '#ef4444'
+    return currentTheme.value?.emergencyColor || 'var(--color-error)'
   }
 
   const getBorderRadius = (size: 'sm' | 'md' | 'lg' | 'xl' = 'md') => {
     return currentTheme.value?.borderRadius?.[size] || '6px'
+  }
+
+  // Get theme-aware CSS variables for radius
+  const getThemeRadiusVars = () => {
+    const theme = currentTheme.value
+    return {
+      '--theme-radius-sm': theme?.borderRadius?.sm || 'var(--radius-sm)',
+      '--theme-radius-md': theme?.borderRadius?.md || 'var(--radius-md)',
+      '--theme-radius-lg': theme?.borderRadius?.lg || 'var(--radius-lg)',
+      '--theme-radius-xl': theme?.borderRadius?.xl || 'var(--radius-xl)'
+    }
   }
 
   const getBorderWidth = (size: 'thin' | 'medium' | 'thick' = 'thin') => {
@@ -64,6 +75,7 @@ export function useSkinTheme() {
     getSvgFile,
     getEmergencyColor,
     getBorderRadius,
+    getThemeRadiusVars,
     getBorderWidth,
     getBackgroundColor,
     getImagePaths

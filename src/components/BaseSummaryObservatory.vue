@@ -346,7 +346,7 @@ const getActivityIcon = (item: ActivityItem): string => {
 .metric-card {
   background: var(--primary-color-1);
   border: var(--border-width-thin) solid var(--secondary-color-2);
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   padding: var(--space-md);
   transition: all 0.2s ease;
 }
@@ -390,11 +390,11 @@ const getActivityIcon = (item: ActivityItem): string => {
 }
 
 .change-positive {
-  color: #16a34a;
+  color: var(--color-success);
 }
 
 .change-negative {
-  color: #dc2626;
+  color: var(--color-error);
 }
 
 .change-neutral {
@@ -422,7 +422,7 @@ const getActivityIcon = (item: ActivityItem): string => {
 .goal-card {
   background: var(--primary-color-1);
   border: var(--border-width-thin) solid var(--secondary-color-2);
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   padding: var(--space-md);
 }
 
@@ -447,7 +447,7 @@ const getActivityIcon = (item: ActivityItem): string => {
   width: 100%;
   height: 8px;
   background: var(--secondary-color-2);
-  border-radius: 4px;
+  border-radius: var(--theme-radius-sm);
   overflow: hidden;
   margin-bottom: var(--space-sm);
 }
@@ -487,7 +487,7 @@ const getActivityIcon = (item: ActivityItem): string => {
 .distribution-card {
   background: var(--primary-color-1);
   border: var(--border-width-thin) solid var(--secondary-color-2);
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   padding: var(--space-md);
 }
 
@@ -524,7 +524,7 @@ const getActivityIcon = (item: ActivityItem): string => {
   width: 100%;
   height: 4px;
   background: var(--secondary-color-2);
-  border-radius: 2px;
+  border-radius: var(--theme-radius-sm);
   overflow: hidden;
 }
 
@@ -554,7 +554,7 @@ const getActivityIcon = (item: ActivityItem): string => {
 
 .activity-status {
   padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  border-radius: var(--theme-radius-sm);
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -564,13 +564,13 @@ const getActivityIcon = (item: ActivityItem): string => {
 .status-completed,
 .status-success {
   background: rgba(34, 197, 94, 0.2);
-  color: #16a34a;
+  color: var(--color-success);
 }
 
 .status-pending,
 .status-in-progress {
   background: rgba(251, 191, 36, 0.2);
-  color: #d97706;
+  color: var(--color-warning);
 }
 
 .activity-subtitle {

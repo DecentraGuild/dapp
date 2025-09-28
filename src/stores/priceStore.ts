@@ -50,7 +50,7 @@ const loadPriceData = async (): Promise<void> => {
     error.value = null
     
     const url = getSlpPath('pricelist/pricelist.json')
-    console.log('PriceStore: Fetching from URL:', url)
+    // Fetching price data from URL
     
     const response = await fetch(url)
     if (!response.ok) {
@@ -58,11 +58,12 @@ const loadPriceData = async (): Promise<void> => {
     }
     
     const data = await response.json()
-    console.log('PriceStore: Loaded price data:', data)
+    // Price data loaded successfully
     priceData.value = data
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Failed to load price data'
-    console.error('Error loading price data:', err)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   } finally {
     isLoading.value = false
   }
@@ -71,14 +72,11 @@ const loadPriceData = async (): Promise<void> => {
 // Initialize store
 const initialize = async (): Promise<void> => {
   if (isInitialized.value) {
-    console.log('PriceStore: Already initialized, skipping...')
     return
   }
   
-  console.log('PriceStore: Initializing...')
   await loadPriceData()
   isInitialized.value = true
-  console.log('PriceStore: Initialization complete')
 }
 
 // Export store

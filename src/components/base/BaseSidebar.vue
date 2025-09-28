@@ -93,10 +93,10 @@ const sidebarStyles = computed(() => ({
   '--text-color-0': getTextColor(0),
   '--text-color-1': getTextColor(1),
   '--text-color-2': getTextColor(2),
-  '--border-radius-sm': getBorderRadius('sm'),
-  '--border-radius-md': getBorderRadius('md'),
-  '--border-radius-lg': getBorderRadius('lg'),
-  '--border-radius-xl': getBorderRadius('xl'),
+  '--theme-radius-sm': getBorderRadius('sm'),
+  '--theme-radius-md': getBorderRadius('md'),
+  '--theme-radius-lg': getBorderRadius('lg'),
+  '--theme-radius-xl': getBorderRadius('xl'),
   '--sidebar-width': props.width
 }))
 
@@ -145,7 +145,7 @@ const handleItemClick = (item: SidebarItem, index: number) => {
   border-top-right-radius: var(--border-radius-lg);
   border-bottom-right-radius: var(--border-radius-lg);
   padding: var(--space-sm) 0;
-  gap: 2px;
+  gap: var(--space-xs);
   overflow-y: auto;
   overflow-x: hidden; /* Prevent horizontal scrolling */
   transition: all var(--transition-normal);
@@ -188,13 +188,13 @@ const handleItemClick = (item: SidebarItem, index: number) => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2px 0;
+  padding: var(--space-xs) 0;
   border-radius: var(--border-radius-md);
   transition: all var(--transition-normal);
   cursor: pointer;
   position: relative;
   min-height: 4.5rem;
-  gap: 2px;
+  gap: var(--space-xs);
   width: 100%;
 }
 
@@ -316,11 +316,11 @@ const handleItemClick = (item: SidebarItem, index: number) => {
     top: 50%;
     transform: translateY(-50%);
     padding: var(--space-sm) 0;
-    gap: 1px; /* Reduced gap between items */
+    gap: calc(var(--space-xs) * 0.5); /* Reduced gap between items */
   }
   
   .sidebar-item {
-    padding: 1px 0; /* Reduced padding within items */
+    padding: calc(var(--space-xs) * 0.5) 0; /* Reduced padding within items */
     min-height: 3.5rem; /* Reduced from 4.5rem */
   }
   
@@ -346,11 +346,11 @@ const handleItemClick = (item: SidebarItem, index: number) => {
     top: 50%;
     transform: translateY(-50%);
     padding: var(--space-xs) 0;
-    gap: 0px; /* Minimal gap between items */
+    gap: 0; /* Minimal gap between items */
   }
   
   .sidebar-item {
-    padding: 0px 0; /* Minimal padding within items */
+    padding: 0; /* Minimal padding within items */
     min-height: 3rem; /* Further reduced from 4.5rem */
   }
   

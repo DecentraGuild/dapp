@@ -290,11 +290,11 @@ const executeReturn = () => {
 }
 
 .gear-thumbnail {
-  width: 60px;
-  height: 60px;
+  width: calc(var(--space-3xl) * 0.9);
+  height: calc(var(--space-3xl) * 0.9);
   object-fit: cover;
   border-radius: var(--border-radius-sm);
-  border: 2px solid var(--border-color);
+  border: var(--border-width-medium) solid var(--border-color);
 }
 
 .gear-details {
@@ -330,8 +330,8 @@ const executeReturn = () => {
   display: flex;
   background: var(--background-2);
   border-radius: var(--border-radius-sm);
-  padding: 4px;
-  gap: 4px;
+  padding: var(--space-xs);
+  gap: var(--space-xs);
 }
 
 .action-tab {
@@ -367,8 +367,8 @@ const executeReturn = () => {
 }
 
 .action-icon {
-  width: 16px;
-  height: 16px;
+  width: var(--space-md);
+  height: var(--space-md);
 }
 
 /* Main Sections Side by Side */
@@ -391,8 +391,8 @@ const executeReturn = () => {
 }
 
 .info-icon {
-  width: 20px;
-  height: 20px;
+  width: var(--space-lg);
+  height: var(--space-lg);
   color: var(--info-color-0);
 }
 
@@ -464,7 +464,7 @@ const executeReturn = () => {
   gap: var(--space-lg);
   padding: var(--space-md);
   background: var(--background-2);
-  border: 1px solid var(--border-color);
+  border: var(--border-width-thin) solid var(--border-color);
   border-radius: var(--border-radius-sm);
 }
 
@@ -484,8 +484,8 @@ const executeReturn = () => {
 }
 
 .balance-icon {
-  width: 16px;
-  height: 16px;
+  width: var(--space-md);
+  height: var(--space-md);
   color: var(--success-color-0);
 }
 
@@ -503,7 +503,7 @@ const executeReturn = () => {
 /* Transaction Summary */
 .transaction-summary {
   background: var(--background-2);
-  border: 1px solid var(--border-color);
+  border: var(--border-width-thin) solid var(--border-color);
   border-radius: var(--border-radius-sm);
   padding: var(--space-md);
   margin-top: var(--space-md);
@@ -517,8 +517,8 @@ const executeReturn = () => {
 }
 
 .summary-icon {
-  width: 20px;
-  height: 20px;
+  width: var(--space-lg);
+  height: var(--space-lg);
   color: var(--info-color-0);
 }
 
@@ -553,7 +553,7 @@ const executeReturn = () => {
 }
 
 .summary-total {
-  border-top: 1px solid var(--border-color);
+  border-top: var(--border-width-thin) solid var(--border-color);
   padding-top: var(--space-sm);
   margin-top: var(--space-sm);
   font-size: 1rem;

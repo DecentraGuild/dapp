@@ -87,7 +87,7 @@ export async function loadSlpData<T = any>(path: string): Promise<T | null> {
   try {
     const response = await fetch(fullPath)
     if (!response.ok) {
-      console.warn(`Failed to load SLP data from ${fullPath}: ${response.status}`)
+      // Handle failed SLP data load silently
       return null
     }
     
@@ -98,7 +98,8 @@ export async function loadSlpData<T = any>(path: string): Promise<T | null> {
     
     return data
   } catch (error) {
-    console.warn(`Failed to load SLP data from ${fullPath}:`, error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
     return null
   }
 }

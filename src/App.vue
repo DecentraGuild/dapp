@@ -103,21 +103,21 @@ body {
 
 .app {
   min-height: 100vh;
-  background: var(--theme-background, rgba(0, 0, 0, 1));
+  background: var(--theme-background, var(--color-black));
   transition: background 0.3s ease;
 }
 
 .main-content {
   flex: 1;
-  min-height: calc(100vh - 48); /* Account for navbar heights */
-  padding-top: 48px; /* Account for fixed topbar */
-  padding-bottom: 180px; /* Reserve space for footer */
+  min-height: calc(100vh - var(--space-3xl)); /* Account for navbar heights */
+  padding-top: var(--space-3xl); /* Account for fixed topbar */
+  padding-bottom: calc(var(--space-3xl) * 3.75); /* Reserve space for footer */
   transition: opacity 0.3s ease-in-out, filter 0.3s ease-in-out;
 }
 
 .main-content.faded {
   opacity: 0.3;
-  filter: blur(2px);
+  filter: blur(var(--space-xs));
   pointer-events: none;
 }
 

@@ -331,7 +331,8 @@ const loadMemberProfile = async () => {
       governance: memberStore.notifications[2] || false
     }
   } catch (err) {
-    console.error('Error loading member profile:', err)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -354,16 +355,18 @@ const saveProfile = async () => {
       profileForm.notifications.governance
     ])
     
-    console.log('Profile saved:', profileForm)
+    // Profile saved successfully
   } catch (error) {
-    console.error('Error saving profile:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   } finally {
     isSaving.value = false
   }
 }
 
 const mintAchievement = (achievement: any) => {
-  console.log('Minting achievement:', achievement)
+  // TODO: Implement actual achievement minting logic
+  // This should integrate with the achievement system
   // Demo: Show minting calculation
 }
 
@@ -383,12 +386,12 @@ onMounted(() => {
 
 <style scoped>
 .member-profile {
-  max-width: 55%;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+  width: 100%;
+  max-width: 100%;
+  padding: var(--space-lg);
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
+  gap: var(--space-lg);
 }
 
 .profile-primary-card,
@@ -410,7 +413,7 @@ onMounted(() => {
 .member-avatar {
   width: 100px;
   height: 100px;
-  border-radius: var(--radius-xl);
+  border-radius: var(--theme-radius-xl);
   object-fit: cover;
   border: var(--border-width-thin) solid var(--secondary-color-0);
 }
@@ -467,7 +470,7 @@ onMounted(() => {
 .form-textarea {
   padding: var(--space-md);
   border: var(--border-width-thin) solid var(--secondary-color-2);
-  border-radius: var(--radius-md);
+  border-radius: var(--theme-radius-md);
   background: var(--primary-color-1);
   color: var(--text-color-0);
   font-size: var(--text-base);
@@ -562,7 +565,7 @@ onMounted(() => {
   padding: var(--space-3xl);
   text-align: center;
   background: var(--primary-color-0);
-  border-radius: var(--radius-xl);
+  border-radius: var(--theme-radius-xl);
   box-shadow: var(--shadow-md);
   width: 100%;
 }
@@ -601,14 +604,13 @@ onMounted(() => {
 /* Responsive Design */
 @media (max-width: 1024px) {
   .member-profile {
-    max-width: 85%;
+    padding: var(--space-md);
   }
 }
 
 @media (max-width: 768px) {
   .member-profile {
-    max-width: 95%;
-    padding: 1rem 0.5rem;
+    padding: var(--space-sm);
   }
   
   .profile-header {
@@ -626,6 +628,15 @@ onMounted(() => {
   .member-avatar {
     width: 60px;
     height: 60px;
+  }
+}
+
+/* Wide screen margin - matching armory pattern */
+@media (min-width: 1400px) {
+  .member-profile {
+    margin: 0 10%;
+    width: 80%;
+    max-width: 80%;
   }
 }
 </style>

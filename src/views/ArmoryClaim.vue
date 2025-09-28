@@ -196,7 +196,8 @@ const handleClaim = (claimData: { claimID: string, amount: number }) => {
   // 4. Update claim status
   // 5. Refresh the claims list
   
-  alert(`Claim successful!\nClaim: ${claimData.claimID}\nAmount: ${claimData.amount}`)
+  // TODO: Show success notification
+  // This should use a proper notification system instead of alert
   
   // Refresh claims
   loadAvailableClaims()
@@ -242,7 +243,7 @@ onMounted(async () => {
 /* Claims Grid */
 .claims-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(21.875rem, 1fr));
   gap: var(--space-lg);
   height: auto;
 }
@@ -260,8 +261,8 @@ onMounted(async () => {
 }
 
 .empty-icon {
-  width: 64px;
-  height: 64px;
+  width: var(--space-3xl);
+  height: var(--space-3xl);
   margin-bottom: var(--space-md);
   color: var(--secondary-color-0);
 }

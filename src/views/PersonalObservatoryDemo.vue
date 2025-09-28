@@ -187,4 +187,13 @@ onMounted(() => {
     font-size: 1rem;
   }
 }
+
+/* Wide screen margin - matching armory pattern */
+@media (min-width: 1400px) {
+  .personal-observatory-demo {
+    margin: 0 10%;
+    width: 80%;
+    max-width: 80%;
+  }
+}
 </style>

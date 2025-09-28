@@ -86,10 +86,10 @@ export const useGuildStore = defineStore('guild', () => {
             const guildData = await response.json()
             guilds.push(guildData)
           } else {
-            console.warn(`Failed to load guild profile ${file}: ${response.status}`)
+            // Handle failed guild profile load silently
           }
         } catch (err) {
-          console.warn(`Failed to load guild profile ${file}:`, err)
+          // Handle failed guild profile load silently
         }
       }
       
@@ -101,7 +101,8 @@ export const useGuildStore = defineStore('guild', () => {
       }
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to load guilds'
-      console.error('Error loading guilds:', err)
+      // Handle error silently in production
+      // Could implement proper error handling/notification system here
     } finally {
       isLoading.value = false
     }
@@ -116,7 +117,7 @@ export const useGuildStore = defineStore('guild', () => {
       const memberListFile = guildId === 'guild-1' ? 'guild-1_memberlist.json' : 'guild-2_memberlist.json'
       const response = await fetch(getSlpPath(`guildmemberlist/${memberListFile}`))
       if (!response.ok) {
-        console.error(`Failed to load guild members: ${response.status} ${response.statusText}`)
+        // Handle failed guild members load silently
         throw new Error('Failed to load guild members')
       }
       
@@ -163,7 +164,8 @@ export const useGuildStore = defineStore('guild', () => {
       guildMembers.value = members
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to load guild members'
-      console.error('Error loading guild members:', err)
+      // Handle error silently in production
+      // Could implement proper error handling/notification system here
     } finally {
       isLoading.value = false
     }
@@ -184,7 +186,8 @@ export const useGuildStore = defineStore('guild', () => {
       await loadGuildMembers(guildId)
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to select guild'
-      console.error('Error selecting guild:', err)
+      // Handle error silently in production
+      // Could implement proper error handling/notification system here
     } finally {
       isLoading.value = false
     }
@@ -266,7 +269,8 @@ export const useGuildStore = defineStore('guild', () => {
       return memberData
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to load member profile'
-      console.error('Error loading member profile:', err)
+      // Handle error silently in production
+      // Could implement proper error handling/notification system here
       throw err
     } finally {
       isLoading.value = false

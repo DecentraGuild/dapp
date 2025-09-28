@@ -94,10 +94,12 @@ const getRaffleImage = (raffle: Raffle) => {
 }
 
 const handleBuyTickets = (purchase: { raffleId: string; quantity: number; totalCost: number }) => {
-  console.log('Buying tickets:', purchase)
+  // TODO: Implement actual ticket purchase logic
+  // This should integrate with the raffle system
   // Here you would implement the actual ticket purchase logic
   // For now, just show a confirmation
-  alert(`Purchasing ${purchase.quantity} tickets for ${purchase.totalCost} tokens from raffle ${purchase.raffleId}`)
+  // TODO: Show success notification
+  // This should use a proper notification system instead of alert
 }
 
 const loadRaffles = async () => {
@@ -136,7 +138,8 @@ const loadRaffles = async () => {
       return new Date(b.createdon).getTime() - new Date(a.createdon).getTime()
     })
   } catch (error) {
-    console.error('Failed to load raffles:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -185,7 +188,7 @@ onMounted(() => {
 
 .raffles-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(21.875rem, 1fr));
   gap: var(--space-xl);
   padding: var(--space-md);
 }
@@ -201,8 +204,8 @@ onMounted(() => {
 }
 
 .empty-icon {
-  width: 64px;
-  height: 64px;
+  width: var(--space-3xl);
+  height: var(--space-3xl);
   margin-bottom: var(--space-md);
   color: var(--secondary-color-0);
 }

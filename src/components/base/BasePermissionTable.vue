@@ -269,12 +269,12 @@ const togglePermission = (room: Room, permissionKey: string) => {
 
 .permission-granted {
   background: var(--secondary-color-2);
-  border-radius: var(--radius-sm);
+  border-radius: var(--theme-radius-sm);
 }
 
 .permission-denied {
   background: var(--primary-color-2);
-  border-radius: var(--radius-sm);
+  border-radius: var(--theme-radius-sm);
 }
 
 .permission-disabled {
@@ -288,7 +288,7 @@ const togglePermission = (room: Room, permissionKey: string) => {
   min-width: 24px;
   min-height: 24px;
   padding: 0;
-  border-radius: var(--radius-sm);
+  border-radius: var(--theme-radius-sm);
 }
 
 .permission-display {

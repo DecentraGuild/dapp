@@ -24,9 +24,9 @@ export const EVENT_TYPE_SIDEBAR = {
 } as const
 
 export const EVENT_TYPE_COLORS = {
-  poker_tournament: 'rgba(139, 69, 19, 0.8)',
-  raid: 'rgba(139, 0, 0, 0.8)',
-  meeting: 'rgba(46, 139, 87, 0.8)',
-  chill_session: 'rgba(147, 112, 219, 0.8)',
-  gaming: 'rgba(65, 105, 225, 0.8)'
+  poker_tournament: 'var(--color-warning)',
+  raid: 'var(--color-error)',
+  meeting: 'var(--color-success)',
+  chill_session: 'var(--color-info)',
+  gaming: 'var(--color-info)'
 } as const

@@ -218,12 +218,14 @@ const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1200
 
 // Computed
 const customTypeItems = computed((): SidebarItem[] => {
-  return customTypes.value.map(type => ({
-    id: type.typeID,
-    icon: type.icon,
-    title: type.name.toUpperCase(),
-    active: selectedCustomType.value?.typeID === type.typeID
-  }))
+  return customTypes.value.map(type => {
+    return {
+      id: type.typeID,
+      icon: type.icon,
+      title: type.name.toUpperCase(),
+      active: selectedCustomType.value?.typeID === type.typeID
+    }
+  })
 })
 
 const customAssetItems = computed((): AssetItem[] => {
@@ -357,19 +359,16 @@ const loadCustomTypes = async () => {
       }
     }
   } catch (error) {
-    console.error('Error loading custom types:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
 const loadCustomAssets = async () => {
   try {
     const assetFiles = [
-      'guild-1_pearcer6-wrapper.json',
       'guild-1_maxhog-wrapper.json',
       'guild-1_opaljet-wrapper.json',
-      'guild-1_pearcex4-wrapper.json',
-      'guild-1_pearcex5-wrapper.json',
-      'guild-1_pearcex6-wrapper.json',
       'guild-1_rainbowarc-wrapper.json',
       'guild-1_rainbowchi-wrapper.json',
       'guild-1_rainbowom-wrapper.json',
@@ -392,7 +391,8 @@ const loadCustomAssets = async () => {
     
     customAssets.value = loadedAssets
   } catch (error) {
-    console.error('Error loading custom assets:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -431,10 +431,14 @@ const handleExchange = () => {
   
   if (isRedeeming) {
     // Redeeming: tokens -> assets
-    alert(`Redeeming ${absAmount} ${tokenName} for ${totalCost.value} ${assetName}`)
+    // TODO: Implement actual redemption logic
+    // This should integrate with the blockchain redemption system
+    // For now, this is a placeholder for the redemption functionality
   } else {
     // Minting: assets -> tokens + SOL fee
-    alert(`Minting ${absAmount} ${assetName} for ${totalCost.value} ${tokenName} (Fee: ${mintingFee.value.toFixed(4)} SOL)`)
+    // TODO: Implement actual minting logic
+    // This should integrate with the blockchain minting system
+    // For now, this is a placeholder for the minting functionality
   }
 }
 
@@ -482,6 +486,15 @@ onUnmounted(() => {
   min-height: 100%;
   overflow-y: visible;
   min-width: 0; /* Allow flex item to shrink below content size */
+}
+
+/* Wide screen margin - matching armory pattern */
+@media (min-width: 1400px) {
+  .foundry-custom-content {
+    margin: 0 10%;
+    width: 80%;
+    max-width: 80%;
+  }
 }
 
 /* Responsive Layout */
@@ -535,7 +548,7 @@ onUnmounted(() => {
   flex-shrink: 0;
   width: var(--space-3xl);
   height: var(--space-3xl);
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--theme-radius-lg);
   overflow: hidden;
   border: var(--component-border-width-thick) solid var(--secondary-color-2);
   display: flex;
@@ -621,7 +634,7 @@ onUnmounted(() => {
   width: 100%;
   max-width: 31.25rem;
   aspect-ratio: 1;
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--theme-radius-lg);
   overflow: hidden;
   border: var(--component-border-width-thick) solid var(--secondary-color-2);
 }
@@ -662,7 +675,7 @@ onUnmounted(() => {
   justify-content: space-between;
   padding: var(--space-sm);
   background: var(--primary-color-1);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--theme-radius-md);
   border: var(--component-border-width) solid var(--secondary-color-2);
 }
 
@@ -755,7 +768,7 @@ onUnmounted(() => {
 .amount-input {
   padding: var(--space-sm) var(--space-md);
   border: var(--component-border-width) solid var(--secondary-color-2);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--theme-radius-md);
   background: var(--primary-color-1);
   color: var(--text-color-0);
   font-size: var(--text-base);

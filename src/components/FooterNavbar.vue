@@ -290,7 +290,8 @@ const loadSvgDimensions = async () => {
       }
     }
   } catch (error) {
-    console.error('FooterNavbar: Error loading SVG dimensions:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -315,7 +316,8 @@ const loadShapePaths = async () => {
     // Create new Map directly from the paths array
     shapePaths.value = new Map(paths.map(({ shapeId, path }) => [shapeId, path]))
   } catch (error) {
-    console.error('FooterNavbar: Error loading shape paths:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -357,7 +359,7 @@ onUnmounted(() => {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100px;
+  height: calc(var(--space-3xl) * 1.5);
   z-index: 1000;
   transition: height 0.3s ease-in-out;
   overflow: visible;
@@ -365,7 +367,7 @@ onUnmounted(() => {
 
 .footer-navbar.expanded {
   height: 85vh; /* Increased height for desktop */
-  background: var(--theme-secondary-3, rgba(0, 204, 204, 0.1));
+  background: var(--theme-secondary-3, var(--color-info-light));
   clip-path: polygon(50% 4%, 100% 25%, 100% 100%, 0% 100%, 0% 25%); /* Optimized polygon for more content space */
   overflow: visible;
 }
@@ -387,7 +389,7 @@ onUnmounted(() => {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
-  max-width: 400px;
+  max-width: 25rem;
   height: auto;
   z-index: 2;
   cursor: pointer;
@@ -421,7 +423,7 @@ onUnmounted(() => {
   right: 0;
   height: 100%;
   clip-path: polygon(5% 100%, 50% 15%, 95% 100%);
-  background: var(--theme-secondary-3, rgba(0, 204, 204, 0.1));
+  background: var(--theme-secondary-3, var(--color-info-light));
   z-index: 1;
 }
 
@@ -429,7 +431,7 @@ onUnmounted(() => {
   font-size: 1.2rem;
   font-weight: 600;
   margin: 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: var(--shadow-sm);
 }
 
 .footer-expanded {
@@ -459,7 +461,7 @@ onUnmounted(() => {
 }
 
 .close-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--color-white);
 }
 
 .svg-container {
@@ -475,7 +477,7 @@ onUnmounted(() => {
 
 .nav-svg {
   width: 100%;
-  max-width: 1400px; /* Increased for desktop */
+  max-width: 87.5rem; /* Increased for desktop */
   height: 100%;
   max-height: 100%;
   display: block;
@@ -503,8 +505,8 @@ onUnmounted(() => {
   position: fixed;
   background: var(--primary-color);
   border: var(--border-width-thin) solid var(--secondary-color-3);
-  border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-radius: var(--theme-radius-md);
+  box-shadow: var(--shadow-2xl);
   padding: 0.75rem 1rem;
   z-index: 1002;
   backdrop-filter: blur(10px);
@@ -512,7 +514,7 @@ onUnmounted(() => {
   animation: tooltipSlideIn 0.2s ease-out;
   pointer-events: none;
   white-space: nowrap;
-  min-width: 120px;
+  min-width: var(--component-button-min-width);
   text-align: center;
 }
 
@@ -541,7 +543,7 @@ onUnmounted(() => {
   color: var(--secondary-color);
   font-weight: 600;
   font-size: 0.9rem;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  text-shadow: var(--shadow-sm);
 }
 
 /* Responsive design */
@@ -568,7 +570,7 @@ onUnmounted(() => {
   .shape-tooltip {
     font-size: 0.8rem;
     padding: 0.6rem 0.8rem;
-    min-width: 100px;
+    min-width: calc(var(--component-button-min-width) * 0.8);
   }
 }
 

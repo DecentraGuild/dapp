@@ -176,7 +176,7 @@ const handleRoomManage = (roomId: string) => {
 
 .command-center-rooms {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
   gap: var(--space-md);
   margin-top: var(--space-md);
 }
@@ -274,7 +274,7 @@ const handleRoomManage = (roomId: string) => {
   }
   
   .command-center-rooms {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
   }
 }
 

@@ -219,7 +219,8 @@ const loadTokenData = async () => {
       tokenData.value = await response.json()
     }
   } catch (error) {
-    console.error('Error loading token data:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -239,7 +240,8 @@ const handleRedemption = () => {
   }
   
   // Demo: Show redemption calculation
-  alert(`Redeeming ${redemptionAmount.value} ${tokenData.value.symbol} for ${assetBackingAmount.value} ${tokenData.value.assetbacking}`)
+  // TODO: Show success notification
+  // This should use a proper notification system instead of alert
 }
 
 // Lifecycle
@@ -276,7 +278,7 @@ onMounted(() => {
   flex-shrink: 0;
   width: var(--space-3xl);
   height: var(--space-3xl);
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--theme-radius-lg);
   overflow: hidden;
   border: var(--component-border-width-thick) solid var(--secondary-color-2);
 }
@@ -355,7 +357,7 @@ onMounted(() => {
 .amount-input {
   padding: var(--space-sm) var(--space-md);
   border: var(--component-border-width) solid var(--secondary-color-2);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--theme-radius-md);
   background: var(--primary-color-1);
   color: var(--text-color-0);
   font-size: var(--text-base);
@@ -373,7 +375,7 @@ onMounted(() => {
   align-items: center;
   padding: var(--space-xs) var(--space-sm);
   background: var(--theme-background);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--theme-radius-sm);
   border: var(--component-border-width) solid var(--secondary-color-2);
 }
 
@@ -399,7 +401,7 @@ onMounted(() => {
   padding: var(--space-xs) var(--space-sm);
   background: var(--theme-background);
   border: var(--component-border-width) solid var(--secondary-color-2);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--theme-radius-sm);
   color: var(--text-color-1);
   font-size: var(--text-xs);
   font-weight: var(--font-medium);
@@ -427,7 +429,7 @@ onMounted(() => {
   gap: var(--space-sm);
   padding: var(--space-md);
   background: var(--theme-background);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--theme-radius-md);
   border: var(--component-border-width) solid var(--secondary-color-2);
 }
 
@@ -484,6 +486,14 @@ onMounted(() => {
     padding: var(--space-sm);
     gap: var(--space-sm);
   }
-  
+}
+
+/* Wide screen margin - matching armory pattern */
+@media (min-width: 1400px) {
+  .foundry-token1-content {
+    margin: 0 10%;
+    width: 80%;
+    max-width: 80%;
+  }
 }
 </style>

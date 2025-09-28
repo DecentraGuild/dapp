@@ -335,7 +335,7 @@ const incomeVaultData = computed(() => {
 
 // Computed properties for tab data
 const currentTabData = computed(() => {
-  console.log('Vaults: Computing tab data, priceData available:', !!priceStore.priceData)
+  // Computing tab data
   if (activeTab.value === 'balance') {
     return selectedVault.value ? getVaultBalanceData(selectedVault.value) : getAllVaultsBalanceData()
   } else if (activeTab.value === 'nft') {
@@ -436,7 +436,7 @@ const getTotalValue = () => {
 
 // Data generation methods
 const getVaultBalanceData = (vaultType: string): TokenItem[] => {
-  console.log(`Vaults: Getting vault balance data for ${vaultType}`)
+  // Getting vault balance data
   let vaultData: VaultBalance | null = null
   
   switch (vaultType) {
@@ -455,16 +455,13 @@ const getVaultBalanceData = (vaultType: string): TokenItem[] => {
   }
   
   if (!vaultData) {
-    console.log(`Vaults: No vault data for ${vaultType}`)
     return []
   }
-  
-  console.log(`Vaults: Processing tokens for ${vaultType}:`, vaultData.tokens)
   
   return Object.entries(vaultData.tokens || {}).map(([token, amount], index) => {
     const price = getTokenPrice(token)
     const totalValue = amount * price
-    console.log(`Vaults: ${token} - amount: ${amount}, price: ${price}, total: ${totalValue}`)
+    // Process token data
     return {
       id: `${vaultType}-${token}-${index}`,
       title: token.toUpperCase(),
@@ -475,7 +472,7 @@ const getVaultBalanceData = (vaultType: string): TokenItem[] => {
 }
 
 const getAllVaultsBalanceData = (): TokenItem[] => {
-  console.log('Vaults: Getting all vaults balance data')
+  // Getting all vaults balance data
   const allTokens: Record<string, number> = {}
   
   // Combine tokens from all vaults
@@ -488,12 +485,12 @@ const getAllVaultsBalanceData = (): TokenItem[] => {
     }
   })
   
-  console.log('Vaults: Combined tokens:', allTokens)
+  // Combined tokens processed
   
   return Object.entries(allTokens).map(([token, amount], index) => {
     const price = getTokenPrice(token)
     const totalValue = amount * price
-    console.log(`Vaults: ${token} - amount: ${amount}, price: ${price}, total: ${totalValue}`)
+    // Process token data
     return {
       id: `all-${token}-${index}`,
       title: token.toUpperCase(),
@@ -613,7 +610,8 @@ const fetchVaultData = async () => {
     const transactionsData = await transactionsResponse.json()
     transactions.value = transactionsData.transactions
   } catch (error) {
-    console.error('Error fetching vault data:', error)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   }
 }
 
@@ -708,7 +706,7 @@ onMounted(async () => {
 /* Vault card hover effect */
 .vault-card-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-xl);
   border-color: var(--secondary-color-1);
   background: var(--secondary-color-3);
 }

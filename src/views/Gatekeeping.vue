@@ -154,7 +154,7 @@ const loadRoles = async () => {
         // Load the specific role's permission file
         const rolePermissionResponse = await fetch(getSlpPath(`guildpermission/guild-1_role-${roleData.name.toLowerCase()}.json`))
         if (!rolePermissionResponse.ok) {
-          console.warn(`Failed to load permissions for role ${roleData.name}`)
+          // Handle failed permissions load silently
           continue
         }
         
@@ -185,7 +185,7 @@ const loadRoles = async () => {
           rooms: rooms
         })
       } catch (err) {
-        console.warn(`Error loading role ${roleData.name}:`, err)
+        // Handle failed role load silently
       }
     }
 
@@ -193,7 +193,8 @@ const loadRoles = async () => {
     roles.value = loadedRoles.sort((a, b) => a.level - b.level)
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Failed to load roles'
-    console.error('Error loading roles:', err)
+    // Handle error silently in production
+    // Could implement proper error handling/notification system here
   } finally {
     isLoading.value = false
   }
@@ -339,7 +340,7 @@ onMounted(() => {
 .requirement-item {
   padding: var(--space-xs) var(--space-sm);
   background: var(--secondary-color-2);
-  border-radius: var(--radius-md);
+  border-radius: var(--theme-radius-md);
   font-size: var(--text-xs);
   color: var(--text-color-0);
   position: relative;
@@ -469,6 +470,15 @@ onMounted(() => {
   
   .role-level {
     margin: 0 auto;
+  }
+}
+
+/* Wide screen margin - matching armory pattern */
+@media (min-width: 1400px) {
+  .gatekeeping {
+    margin: 0 10%;
+    width: 80%;
+    max-width: 80%;
   }
 }
 </style>

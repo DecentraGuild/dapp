@@ -239,7 +239,7 @@ const handleImageError = (event: Event) => {
 <style scoped>
 .base-raffle {
   width: 100%;
-  max-width: 400px;
+  max-width: 25rem;
   position: relative;
   overflow: hidden;
 }
@@ -256,29 +256,29 @@ const handleImageError = (event: Event) => {
   align-items: center;
   gap: var(--space-xs);
   padding: var(--space-xs) var(--space-sm);
-  border-radius: 16px;
+  border-radius: var(--theme-radius-xl);
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .status-running {
-  background: var(--success-color-bg, rgba(34, 197, 94, 0.9));
-  color: var(--success-color, rgb(34, 197, 94));
-  border: var(--border-width-thin) solid var(--success-color, rgb(34, 197, 94));
+  background: var(--success-color-bg, var(--color-success-light));
+  color: var(--success-color, var(--color-success));
+  border: var(--border-width-thin) solid var(--success-color, var(--color-success));
 }
 
 .status-finished {
-  background: var(--neutral-color-bg, rgba(156, 163, 175, 0.9));
-  color: var(--neutral-color, rgb(156, 163, 175));
-  border: var(--border-width-thin) solid var(--neutral-color, rgb(156, 163, 175));
+  background: var(--neutral-color-bg, var(--color-gray-100));
+  color: var(--neutral-color, var(--color-gray-500));
+  border: var(--border-width-thin) solid var(--neutral-color, var(--color-gray-500));
 }
 
 .status-concept {
-  background: var(--warning-color-bg, rgba(245, 158, 11, 0.9));
-  color: var(--warning-color, rgb(245, 158, 11));
-  border: var(--border-width-thin) solid var(--warning-color, rgb(245, 158, 11));
+  background: var(--warning-color-bg, var(--color-warning-light));
+  color: var(--warning-color, var(--color-warning));
+  border: var(--border-width-thin) solid var(--warning-color, var(--color-warning));
 }
 
 .status-icon {
@@ -287,9 +287,9 @@ const handleImageError = (event: Event) => {
 
 .raffle-image-container {
   width: 100%;
-  height: 300px;
+  height: 18.75rem;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   margin-bottom: var(--space-lg);
 }
 
@@ -331,7 +331,7 @@ const handleImageError = (event: Event) => {
   gap: var(--space-xs);
   padding: var(--space-sm);
   background: var(--secondary-color-2);
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   border-left: var(--border-width-thin) solid var(--secondary-color-0);
 }
 
@@ -340,7 +340,7 @@ const handleImageError = (event: Event) => {
   font-weight: 600;
   color: var(--text-color-1);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .reward-value {
@@ -383,16 +383,16 @@ const handleImageError = (event: Event) => {
 
 .progress-bar {
   width: 100%;
-  height: 8px;
+  height: var(--space-xs);
   background: var(--secondary-color-2);
-  border-radius: 4px;
+  border-radius: var(--theme-radius-sm);
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, var(--secondary-color-0), var(--accent-color-0));
-  border-radius: 4px;
+  border-radius: var(--theme-radius-sm);
   transition: width 0.3s ease;
 }
 
@@ -435,7 +435,7 @@ const handleImageError = (event: Event) => {
   height: 40px;
   text-align: center;
   border: var(--border-width-thin) solid var(--secondary-color-1);
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   background: var(--primary-color-1);
   color: var(--text-color-0);
   font-size: 1rem;
@@ -460,7 +460,7 @@ const handleImageError = (event: Event) => {
   gap: var(--space-sm);
   padding: var(--space-md);
   background: var(--secondary-color-2);
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   font-size: 0.875rem;
   color: var(--text-color-1);
   font-weight: 500;

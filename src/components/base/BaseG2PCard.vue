@@ -191,7 +191,7 @@ const cardStyles = computed(() => {
     '--text-color-2': getTextColor(2),
     '--padding': sizeConfig.padding,
     '--font-size': sizeConfig.fontSize,
-    '--border-radius': sizeConfig.borderRadius,
+    '--theme-radius': sizeConfig.borderRadius,
     '--gap': sizeConfig.gap
   }
 })
@@ -209,7 +209,7 @@ const handleClick = () => {
   position: relative;
   background: var(--primary-color-0);
   border: var(--border-width-thin) solid var(--secondary-color-2);
-  border-radius: var(--border-radius);
+  border-radius: var(--theme-radius);
   padding: var(--padding);
   transition: all var(--transition-normal);
   cursor: pointer;
@@ -217,11 +217,11 @@ const handleClick = () => {
 }
 
 .card-buy {
-  border-left: 6px solid var(--color-success);
+  border-left: var(--border-width-thick) solid var(--color-success);
 }
 
 .card-sell {
-  border-left: 6px solid var(--color-error);
+  border-left: var(--border-width-thick) solid var(--color-error);
 }
 
 /* Remove the top border - we only want left border colored */
@@ -250,9 +250,9 @@ const handleClick = () => {
   color: white;
   font-size: var(--text-xs);
   font-weight: var(--font-bold);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--theme-radius-sm);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .badge-buy {
@@ -283,8 +283,8 @@ const handleClick = () => {
 }
 
 .item-image-container {
-  width: 80px;
-  height: 80px;
+  width: calc(var(--space-3xl) * 1.2);
+  height: calc(var(--space-3xl) * 1.2);
   border-radius: 50%;
   overflow: hidden;
   border: var(--border-width-medium) solid var(--secondary-color-2);
@@ -346,28 +346,28 @@ const handleClick = () => {
 .card-sm {
   --padding: var(--space-sm);
   --font-size: var(--text-sm);
-  --border-radius: var(--border-radius-md);
+  --theme-radius: var(--theme-radius-md);
   --gap: var(--space-sm);
 }
 
 .card-md {
   --padding: var(--space-md);
   --font-size: var(--text-base);
-  --border-radius: var(--border-radius-lg);
+  --theme-radius: var(--theme-radius-lg);
   --gap: var(--space-md);
 }
 
 .card-lg {
   --padding: var(--space-lg);
   --font-size: var(--text-lg);
-  --border-radius: var(--border-radius-xl);
+  --theme-radius: var(--theme-radius-xl);
   --gap: var(--space-lg);
 }
 
 .card-xl {
   --padding: var(--space-xl);
   --font-size: var(--text-xl);
-  --border-radius: var(--border-radius-2xl);
+  --theme-radius: var(--radius-2xl);
   --gap: var(--space-xl);
 }
 
@@ -378,8 +378,8 @@ const handleClick = () => {
   }
   
   .item-image-container {
-    width: 60px;
-    height: 60px;
+    width: calc(var(--space-3xl) * 0.9);
+    height: calc(var(--space-3xl) * 0.9);
   }
   
   .item-name {

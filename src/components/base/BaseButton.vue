@@ -75,7 +75,7 @@ const handleClick = (event: MouseEvent) => {
   justify-content: center;
   gap: 0.5rem;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--theme-radius-md);
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;

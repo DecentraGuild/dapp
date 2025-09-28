@@ -194,7 +194,8 @@ const handleTradeExecution = (executionData: { orderID: string, amount: number, 
   // 5. Refresh the trade list
   
   // For now, just show a success message
-  alert(`Trade executed successfully!\nOrder: ${executionData.orderID}\nAmount: ${executionData.amount}\nTotal Cost: ${executionData.totalCost}`)
+  // TODO: Show success notification
+  // This should use a proper notification system instead of alert
   
   // Reset selection
   selectedTrade.value = null
@@ -240,7 +241,7 @@ onMounted(async () => {
 /* Trades Grid */
 .trades-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
   gap: var(--space-lg);
   height: auto;
 }
@@ -271,8 +272,8 @@ onMounted(async () => {
 }
 
 .empty-icon {
-  width: 64px;
-  height: 64px;
+  width: var(--space-3xl);
+  height: var(--space-3xl);
   margin-bottom: var(--space-md);
   color: var(--secondary-color-0);
 }
