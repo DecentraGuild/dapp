@@ -75,7 +75,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { Icon } from '@iconify/vue'
-import { BaseCard, BaseArmory, BaseGear, BaseGearExecution } from '@/components/base'
+import { BaseCard, BaseGear, BaseGearExecution } from '@/components/base'
+import BaseArmory from '@/components/base/BaseArmory.vue'
 import { useDesignTokens } from '@/composables/useDesignTokens'
 import { useGuildStore } from '@/stores/guildStore'
 import { getSlpPath } from '@/utils/api'
