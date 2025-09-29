@@ -740,7 +740,7 @@ onMounted(async () => {
 /* Vault details section */
 .vault-details-container {
   width: 100%;
-  max-width: 80%;
+  max-width: 100%;
 }
 
 .vault-details-header {
@@ -794,6 +794,7 @@ onMounted(async () => {
 /* Token details styling */
 .token-details-container {
   margin-top: var(--space-md);
+  width: 100%;
 }
 
 .token-list {
@@ -801,6 +802,7 @@ onMounted(async () => {
   flex-direction: column;
   gap: var(--space-sm);
   margin-bottom: var(--space-md);
+  width: 100%;
 }
 
 .token-row {
@@ -848,6 +850,7 @@ onMounted(async () => {
   border-radius: var(--theme-border-radius-lg);
   background: var(--primary-color-0);
   margin-top: var(--space-sm);
+  width: 100%;
 }
 
 .total-label {

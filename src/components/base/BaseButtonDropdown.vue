@@ -393,6 +393,8 @@ onUnmounted(() => {
   gap: 0.75rem;
   font-weight: 500;
   text-align: left;
+  height: calc(var(--space-3xl) - 1px);
+  box-sizing: border-box;
 }
 
 .nav-button:hover:not(.nav-button-disabled) {
@@ -657,6 +659,7 @@ onUnmounted(() => {
   
   .nav-button {
     padding: 0.6rem;
+    height: calc(var(--space-3xl) - 1px);
   }
 }
 </style>

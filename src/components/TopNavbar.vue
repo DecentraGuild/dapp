@@ -309,6 +309,8 @@ onUnmounted(() => {
   gap: 0.75rem;
   font-weight: 500;
   text-align: left;
+  height: calc(var(--space-3xl) - 1px);
+  box-sizing: border-box;
 }
 
 .guild-info-button:hover {
@@ -321,9 +323,11 @@ onUnmounted(() => {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  background: var(--primary-color-1);
+  background: none;
   border-radius: var(--theme-radius-md);
   opacity: 0.8;
+  height: calc(var(--space-3xl) - 1px);
+  box-sizing: border-box;
 }
 
 .guild-logo {
@@ -367,12 +371,14 @@ onUnmounted(() => {
   background: var(--primary-color-0);
   border: none;
   border-radius: var(--theme-radius-md);
-  padding: 0.75rem;
+  padding: 0.75rem 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: calc(var(--space-3xl) - 1px);
+  box-sizing: border-box;
 }
 
 .dashboard-button:hover {
@@ -413,6 +419,8 @@ onUnmounted(() => {
   border: none;
   border-radius: var(--theme-radius-md);
   transition: all 0.2s ease;
+  height: calc(var(--space-3xl) - 1px);
+  box-sizing: border-box;
 }
 
 .token-icon {
@@ -483,6 +491,8 @@ onUnmounted(() => {
   min-width: var(--component-button-min-width);
   justify-content: space-between;
   text-align: left;
+  height: calc(var(--space-3xl) - 1px);
+  box-sizing: border-box;
 }
 
 .theme-button:hover {
@@ -618,6 +628,8 @@ onUnmounted(() => {
   gap: 0.75rem;
   font-weight: 500;
   text-align: left;
+  height: calc(var(--space-3xl) - 1px);
+  box-sizing: border-box;
 }
 
 .nav-button:hover {
@@ -695,8 +707,9 @@ onUnmounted(() => {
   }
   
   .guild-info-button {
-    padding: 0.6rem 0.75rem;
+    padding: 0.75rem 1rem;
     gap: 0.5rem;
+    height: calc(var(--space-3xl) - 1px);
   }
   
   .guild-name {
@@ -704,7 +717,8 @@ onUnmounted(() => {
   }
   
   .dashboard-button {
-    padding: 0.6rem 0.75rem;
+    padding: 0.75rem 1rem;
+    height: calc(var(--space-3xl) - 1px);
   }
   
   .dashboard-icon {
@@ -717,7 +731,8 @@ onUnmounted(() => {
   }
   
   .token-balance-field {
-    padding: 0.6rem 0.75rem;
+    padding: 0.75rem 1rem;
+    height: calc(var(--space-3xl) - 1px);
   }
   
   .token-icon {
@@ -738,8 +753,9 @@ onUnmounted(() => {
   }
   
   .theme-button {
-    padding: 0.6rem 0.75rem;
+    padding: 0.75rem 1rem;
     min-width: calc(var(--component-button-min-width) * 0.8);
+    height: calc(var(--space-3xl) - 1px);
   }
   
   .theme-text {
@@ -752,7 +768,8 @@ onUnmounted(() => {
   }
   
   .nav-button {
-    padding: 0.6rem 0.75rem;
+    padding: 0.75rem 1rem;
+    height: calc(var(--space-3xl) - 1px);
   }
   
   .button-text {
@@ -775,7 +792,8 @@ onUnmounted(() => {
   }
   
   .nav-button {
-    padding: 0.6rem;
+    padding: 0.75rem;
+    height: calc(var(--space-3xl) - 1px);
   }
   
   .theme-text {
@@ -784,7 +802,8 @@ onUnmounted(() => {
   
   .theme-button {
     min-width: auto;
-    padding: 0.6rem;
+    padding: 0.75rem;
+    height: calc(var(--space-3xl) - 1px);
   }
   
   .token-balances {
@@ -792,7 +811,8 @@ onUnmounted(() => {
   }
   
   .token-balance-field {
-    padding: 0.6rem;
+    padding: 0.75rem;
+    height: calc(var(--space-3xl) - 1px);
   }
   
   .token-icon {
