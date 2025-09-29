@@ -22,6 +22,11 @@ export interface ThemeData {
   textColor: string[]
   backgroundColor: string
   emergencyColor: string
+  daoColors: {
+    token1Color: string
+    token2Color: string
+    guildColor: string
+  }
   borderRadius: {
     sm: string
     md: string
@@ -60,6 +65,11 @@ export const useThemeStore = defineStore('theme', () => {
   const textColors = computed(() => currentTheme.value?.textColor || ['rgba(229, 231, 235, 1)', 'rgba(156, 163, 175, 1)', 'rgba(107, 114, 128, 1)'])
   const backgroundColor = computed(() => currentTheme.value?.backgroundColor || 'rgba(0, 0, 0, 1)')
   const emergencyColor = computed(() => currentTheme.value?.emergencyColor || 'var(--color-error)')
+  const daoColors = computed(() => currentTheme.value?.daoColors || {
+    token1Color: 'rgba(0, 255, 255, 0.9)', // Cyan for Token 1
+    token2Color: 'rgba(255, 165, 0, 0.9)', // Orange for Token 2
+    guildColor: 'rgba(138, 43, 226, 0.9)'  // Purple for Guild/Combined
+  })
   const borderRadius = computed(() => currentTheme.value?.borderRadius || {
     sm: '4px',
     md: '6px',
@@ -92,6 +102,9 @@ export const useThemeStore = defineStore('theme', () => {
       '--theme-text-3': textColors.value[2],
       '--theme-background': backgroundColor.value,
       '--theme-emergency': emergencyColor.value,
+      '--theme-dao-token1': daoColors.value.token1Color,
+      '--theme-dao-token2': daoColors.value.token2Color,
+      '--theme-dao-guild': daoColors.value.guildColor,
       '--theme-radius-sm': borderRadius.value.sm,
       '--theme-radius-md': borderRadius.value.md,
       '--theme-radius-lg': borderRadius.value.lg,
@@ -281,6 +294,7 @@ export const useThemeStore = defineStore('theme', () => {
     textColors,
     backgroundColor,
     emergencyColor,
+    daoColors,
     borderRadius,
     borderWidth,
     themeHeaders,

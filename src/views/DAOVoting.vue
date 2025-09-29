@@ -48,7 +48,7 @@
       <!-- Token Filter Buttons -->
       <div class="token-filter-container" :style="tokenFilterStyles">
         <button 
-          class="token-filter-button"
+          class="token-filter-button token1-filter"
           :class="{ 'active': showToken1 }"
           :style="tokenFilterStyles"
           @click="toggleToken1Filter"
@@ -61,7 +61,7 @@
         </button>
         
         <button 
-          class="token-filter-button"
+          class="token-filter-button token2-filter"
           :class="{ 'active': showToken2 }"
           :style="tokenFilterStyles"
           @click="toggleToken2Filter"
@@ -589,7 +589,7 @@ interface DAOSettings {
 }
 
 // Composables
-const { getPrimaryColor, getSecondaryColor, getTextColor, getBorderRadius } = useSkinTheme()
+const { getPrimaryColor, getSecondaryColor, getTextColor, getBorderRadius, getDaoToken1Color, getDaoToken2Color, getDaoGuildColor } = useSkinTheme()
 
 // State
 const votes = ref<Vote[]>([])
@@ -678,6 +678,20 @@ const filteredVotes = computed(() => {
 // Get secondary color 3 (index 2) for active state - same as sidebar
 const getSecondaryColor3 = () => getSecondaryColor(2)
 
+// Get DAO color based on vote type
+const getDaoColor = (voteType: string) => {
+  switch (voteType) {
+    case 'token-1':
+      return getDaoToken1Color()
+    case 'token-2':
+      return getDaoToken2Color()
+    case 'combined':
+      return getDaoGuildColor()
+    default:
+      return getSecondaryColor(0)
+  }
+}
+
 // Computed styles for token filter buttons
 const tokenFilterStyles = computed(() => ({
   '--primary-color-0': getPrimaryColor(0),
@@ -690,6 +704,9 @@ const tokenFilterStyles = computed(() => ({
   '--text-color-0': getTextColor(0),
   '--text-color-1': getTextColor(1),
   '--text-color-2': getTextColor(2),
+  '--theme-dao-token1': getDaoToken1Color(),
+  '--theme-dao-token2': getDaoToken2Color(),
+  '--theme-dao-guild': getDaoGuildColor(),
   '--theme-radius-sm': getBorderRadius('sm'),
   '--theme-radius-md': getBorderRadius('md'),
   '--theme-radius-lg': getBorderRadius('lg'),
@@ -1101,8 +1118,26 @@ onMounted(() => {
   box-shadow: var(--shadow-lg);
 }
 
+.token1-filter.active {
+  background: var(--secondary-color-2);
+  border-color: var(--theme-dao-token1);
+}
+
+.token2-filter.active {
+  background: var(--secondary-color-2);
+  border-color: var(--theme-dao-token2);
+}
+
 .token-filter-button.active .token-button-icon {
   color: var(--secondary-color-0);
+}
+
+.token1-filter.active .token-button-icon {
+  color: var(--theme-dao-token1);
+}
+
+.token2-filter.active .token-button-icon {
+  color: var(--theme-dao-token2);
 }
 
 .token-filter-button.active .token-button-title {
@@ -1110,8 +1145,26 @@ onMounted(() => {
   font-weight: var(--font-semibold);
 }
 
+.token1-filter.active .token-button-title {
+  color: var(--theme-dao-token1);
+}
+
+.token2-filter.active .token-button-title {
+  color: var(--theme-dao-token2);
+}
+
 .token-filter-button.active .token-button-subtitle {
   color: var(--secondary-color-1);
+}
+
+.token1-filter.active .token-button-subtitle {
+  color: var(--theme-dao-token1);
+  opacity: 0.8;
+}
+
+.token2-filter.active .token-button-subtitle {
+  color: var(--theme-dao-token2);
+  opacity: 0.8;
 }
 
 .token-button-icon {
@@ -1223,17 +1276,17 @@ onMounted(() => {
   transition: color var(--transition-normal);
 }
 
-/* Vote title colors matching badge colors */
+/* Vote title colors using DAO colors */
 .vote-title.title-combined {
-  color: var(--secondary-color-0);
+  color: var(--theme-dao-guild);
 }
 
 .vote-title.title-token-1 {
-  color: var(--color-info);
+  color: var(--theme-dao-token1);
 }
 
 .vote-title.title-token-2 {
-  color: var(--color-info);
+  color: var(--theme-dao-token2);
 }
 
 .vote-badges {
@@ -1253,17 +1306,20 @@ onMounted(() => {
 
 .badge-combined {
   background: var(--secondary-color-2);
-  color: var(--secondary-color-0);
+  color: var(--theme-dao-guild);
+  border: 1px solid var(--theme-dao-guild);
 }
 
 .badge-token-1 {
-  background: var(--color-info-light);
-  color: var(--color-info);
+  background: var(--secondary-color-2);
+  color: var(--theme-dao-token1);
+  border: 1px solid var(--theme-dao-token1);
 }
 
 .badge-token-2 {
-  background: var(--color-info-light);
-  color: var(--color-info);
+  background: var(--secondary-color-2);
+  color: var(--theme-dao-token2);
+  border: 1px solid var(--theme-dao-token2);
 }
 
 .status-active {
@@ -1530,6 +1586,17 @@ onMounted(() => {
   font-weight: var(--font-bold);
 }
 
+/* DAO weight colors for combined votes */
+.token-dao-card:first-child .dao-weight {
+  background: var(--theme-dao-token1);
+  color: var(--primary-color-0);
+}
+
+.token-dao-card:last-child .dao-weight {
+  background: var(--theme-dao-token2);
+  color: var(--primary-color-0);
+}
+
 .dao-voting-details {
   display: flex;
   flex-direction: column;
@@ -1603,15 +1670,15 @@ onMounted(() => {
 }
 
 .progress-fill.quorum-combined {
-  background: var(--secondary-color-0);
+  background: var(--theme-dao-guild);
 }
 
 .progress-fill.quorum-token-1 {
-  background: rgb(59, 130, 246);
+  background: var(--theme-dao-token1);
 }
 
 .progress-fill.quorum-token-2 {
-  background: rgb(168, 85, 247);
+  background: var(--theme-dao-token2);
 }
 
 /* Vote Summary Row */

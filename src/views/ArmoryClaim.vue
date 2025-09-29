@@ -2,7 +2,6 @@
   <BaseArmory
     description="Welcome to the Claim Center! Here you can claim your rewards, airdrops, and benefits based on your guild membership and token holdings. Claims are distributed based on snapshots taken at deployment."
     default-tab="claim"
-    @tab-change="handleTabChange"
   >
     <template #default="{ activeTab }">
       <!-- Claims Grid -->
@@ -203,15 +202,6 @@ const handleClaim = (claimData: { claimID: string, amount: number }) => {
   loadAvailableClaims()
 }
 
-const handleTabChange = (tab: string) => {
-  // Navigate to the appropriate armory page
-  if (tab === 'shop') {
-    window.location.href = '/armory/g2p'
-  } else if (tab === 'use') {
-    window.location.href = '/armory/gear'
-  }
-  // 'claim' tab is already active, no navigation needed
-}
 
 // Lifecycle
 onMounted(async () => {

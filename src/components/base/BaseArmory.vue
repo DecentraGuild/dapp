@@ -16,15 +16,15 @@
         <!-- Armory Navigation Tabs -->
         <div class="armory-navigation">
           <BaseButton
-            v-for="tab in armoryTabs"
+            v-for="tab in armoryStore.availableTabs"
             :key="tab.id"
-            :variant="activeTab === tab.id ? 'accent' : 'outline'"
+            :variant="currentTab?.id === tab.id ? 'accent' : 'outline'"
             :size="'md'"
             :icon="tab.icon"
-            @click="switchTab(tab.id)"
+            @click="handleTabClick(tab.id)"
             class="armory-tab"
           >
-            {{ tab.label }}
+            {{ tab.title }}
           </BaseButton>
         </div>
       </div>
@@ -36,14 +36,17 @@
       size="xl"
       class="armory-main-card"
     >
-      <slot :activeTab="activeTab" />
+      <slot :activeTab="currentTab?.id" />
     </BaseCard>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { BaseCard, BaseButton } from '@/components/base'
+import { useArmoryStore } from '@/stores/armoryStore'
+import { ARMORY_TABS } from '@/constants/armory'
 
 // Props
 interface Props {
@@ -56,41 +59,51 @@ const props = withDefaults(defineProps<Props>(), {
   defaultTab: 'claim'
 })
 
-// Emits
-const emit = defineEmits<{
-  'tab-change': [tab: string]
-}>()
+// Constants
+const DEFAULT_TAB = ARMORY_TABS.CLAIM
 
-// State
-const activeTab = ref(props.defaultTab)
+// Composables
+const router = useRouter()
+const route = useRoute()
+const armoryStore = useArmoryStore()
 
-// Armory tabs configuration
-const armoryTabs = [
-  {
-    id: 'claim' as const,
-    label: 'Claim',
-    icon: 'game-icons:gift',
-    description: 'Claim rewards and airdrops'
-  },
-  {
-    id: 'shop' as const,
-    label: 'Shop',
-    icon: 'game-icons:buy-card',
-    description: 'G2P trades and marketplace'
-  },
-  {
-    id: 'use' as const,
-    label: 'Use',
-    icon: 'game-icons:armor',
-    description: 'Borrow and return gear with collateral'
-  }
-]
+// Computed properties
+const currentTab = computed(() => armoryStore.currentTab)
 
 // Methods
-const switchTab = (tabId: 'claim' | 'shop' | 'use') => {
-  activeTab.value = tabId
-  emit('tab-change', tabId)
+const handleTabClick = (tabId: string) => {
+  armoryStore.setCurrentTab(tabId)
+  const tab = armoryStore.availableTabs.find(t => t.id === tabId)
+  if (tab) {
+    router.push(tab.route)
+    // Scroll to top after content loads
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
+  }
 }
+
+const updateTabFromRoute = (path: string) => {
+  const pathSegments = path.split('/')
+  const armoryTab = pathSegments[pathSegments.length - 1]
+  
+  if (armoryTab && armoryTab !== 'armory') {
+    armoryStore.setCurrentTab(armoryTab)
+    // Scroll to top after content loads
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
+  } else if (armoryTab === 'armory') {
+    armoryStore.setCurrentTab(DEFAULT_TAB)
+    // Scroll to top after content loads
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
+  }
+}
+
+// Watch for route changes to update current tab
+watch(() => route.path, updateTabFromRoute, { immediate: true })
 </script>
 
 <style scoped>

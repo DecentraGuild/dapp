@@ -59,6 +59,18 @@ export function useSkinTheme() {
     return currentTheme.value?.backgroundColor || 'rgba(0, 0, 0, 1)'
   }
 
+  const getDaoToken1Color = () => {
+    return currentTheme.value?.daoColors?.token1Color || 'rgba(0, 255, 255, 0.9)'
+  }
+
+  const getDaoToken2Color = () => {
+    return currentTheme.value?.daoColors?.token2Color || 'rgba(255, 165, 0, 0.9)'
+  }
+
+  const getDaoGuildColor = () => {
+    return currentTheme.value?.daoColors?.guildColor || 'rgba(138, 43, 226, 0.9)'
+  }
+
   const getImagePaths = () => {
     const images = currentTheme.value?.images || []
     return images.map(imagePath => getImagePath(imagePath))
@@ -78,6 +90,9 @@ export function useSkinTheme() {
     getThemeRadiusVars,
     getBorderWidth,
     getBackgroundColor,
+    getDaoToken1Color,
+    getDaoToken2Color,
+    getDaoGuildColor,
     getImagePaths
   }
 }

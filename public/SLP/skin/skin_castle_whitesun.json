@@ -41,6 +41,11 @@
   "textColor": ["rgba(31, 41, 55, 1)", "rgba(75, 85, 99, 1)", "rgba(107, 114, 128, 1)"],
   "backgroundColor": "rgba(209, 213, 219, 1)",
   "emergencyColor": "#ef4444",
+  "daoColors": {
+    "token1Color": "rgba(128, 0, 128, 0.9)",
+    "token2Color": "rgba(0, 100, 200, 0.9)",
+    "guildColor": "rgba(204, 85, 0, 0.9)"
+  },
   "borderRadius": {
     "sm": "4px",
     "md": "6px",

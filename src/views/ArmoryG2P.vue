@@ -2,7 +2,6 @@
   <BaseArmory
     description="Welcome to the Guild2Player trading floor! Here you can buy and sell resources, tokens, and other assets with fellow guild members. Browse available trades, execute transactions, and manage your trading portfolio."
     default-tab="shop"
-    @tab-change="handleTabChange"
   >
     <template #default="{ activeTab }">
       <!-- Trades Grid and Execute Trade -->
@@ -201,15 +200,6 @@ const handleTradeExecution = (executionData: { orderID: string, amount: number, 
   selectedTrade.value = null
 }
 
-const handleTabChange = (tab: string) => {
-  // Navigate to the appropriate armory page
-  if (tab === 'claim') {
-    window.location.href = '/armory/claim'
-  } else if (tab === 'use') {
-    window.location.href = '/armory/gear'
-  }
-  // 'shop' tab is already active, no navigation needed
-}
 
 // Lifecycle
 onMounted(async () => {

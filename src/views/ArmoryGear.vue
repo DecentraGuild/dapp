@@ -2,7 +2,6 @@
   <BaseArmory
     description="Welcome to the Gear Lending system! Here you can borrow powerful gear and equipment by depositing collateral. Return the gear safely to get your deposit back. Each member can hold one piece of each gear type."
     default-tab="use"
-    @tab-change="handleTabChange"
   >
     <template #default="{ activeTab }">
       <!-- Gear Grid and Execute Trade -->
@@ -186,15 +185,6 @@ const handleGearExecution = (executionData: { gearID: string, action: 'borrow' |
   selectedGear.value = null
 }
 
-const handleTabChange = (tab: string) => {
-  // Navigate to the appropriate armory page
-  if (tab === 'claim') {
-    window.location.href = '/armory/claim'
-  } else if (tab === 'shop') {
-    window.location.href = '/armory/g2p'
-  }
-  // 'use' tab is already active, no navigation needed
-}
 
 // Lifecycle
 onMounted(async () => {
