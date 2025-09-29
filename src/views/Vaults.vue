@@ -739,7 +739,8 @@ onMounted(async () => {
 
 /* Vault details section */
 .vault-details-container {
-  width: 70%;
+  width: 100%;
+  max-width: 80%;
 }
 
 .vault-details-header {

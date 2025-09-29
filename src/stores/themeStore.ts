@@ -22,11 +22,6 @@ export interface ThemeData {
   textColor: string[]
   backgroundColor: string
   emergencyColor: string
-  daoColors: {
-    token1Color: string
-    token2Color: string
-    guildColor: string
-  }
   borderRadius: {
     sm: string
     md: string
@@ -65,10 +60,11 @@ export const useThemeStore = defineStore('theme', () => {
   const textColors = computed(() => currentTheme.value?.textColor || ['rgba(229, 231, 235, 1)', 'rgba(156, 163, 175, 1)', 'rgba(107, 114, 128, 1)'])
   const backgroundColor = computed(() => currentTheme.value?.backgroundColor || 'rgba(0, 0, 0, 1)')
   const emergencyColor = computed(() => currentTheme.value?.emergencyColor || 'var(--color-error)')
-  const daoColors = computed(() => currentTheme.value?.daoColors || {
-    token1Color: 'rgba(0, 255, 255, 0.9)', // Cyan for Token 1
-    token2Color: 'rgba(255, 165, 0, 0.9)', // Orange for Token 2
-    guildColor: 'rgba(138, 43, 226, 0.9)'  // Purple for Guild/Combined
+  // Guild colors will be loaded from token files
+  const guildColors = ref({
+    token1Color: '#2C4FEC', // Default dark blue
+    token2Color: '#FF6B35', // Default orange
+    contributionColor: '#00FF00' // Default green
   })
   const borderRadius = computed(() => currentTheme.value?.borderRadius || {
     sm: '4px',
@@ -102,9 +98,9 @@ export const useThemeStore = defineStore('theme', () => {
       '--theme-text-3': textColors.value[2],
       '--theme-background': backgroundColor.value,
       '--theme-emergency': emergencyColor.value,
-      '--theme-dao-token1': daoColors.value.token1Color,
-      '--theme-dao-token2': daoColors.value.token2Color,
-      '--theme-dao-guild': daoColors.value.guildColor,
+      '--theme-dao-token1': guildColors.value.token1Color,
+      '--theme-dao-token2': guildColors.value.token2Color,
+      '--theme-dao-contribution': guildColors.value.contributionColor,
       '--theme-radius-sm': borderRadius.value.sm,
       '--theme-radius-md': borderRadius.value.md,
       '--theme-radius-lg': borderRadius.value.lg,
@@ -222,6 +218,10 @@ export const useThemeStore = defineStore('theme', () => {
       
       // Load theme based on guild theme setting
       await loadTheme(guild.theme)
+      
+      // Load guild colors from token files
+      await loadGuildColors(guildId)
+      
       isOverride.value = false // This is the guild's default theme
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to load guild theme'
@@ -229,6 +229,43 @@ export const useThemeStore = defineStore('theme', () => {
       // Could implement proper error handling/notification system here
     } finally {
       isLoading.value = false
+    }
+  }
+
+  const loadGuildColors = async (guildId: string) => {
+    try {
+      // Load token colors from guild token files
+      const [token1Response, token2Response, contributionResponse] = await Promise.all([
+        fetch(getSlpPath(`guildtoken/${guildId}_token1.json`)),
+        fetch(getSlpPath(`guildtoken/${guildId}_token2.json`)),
+        fetch(getSlpPath(`guildtoken/${guildId}_contribution.json`))
+      ])
+
+      if (token1Response.ok) {
+        const token1Data = await token1Response.json()
+        if (token1Data.color) {
+          guildColors.value.token1Color = token1Data.color
+        }
+      }
+
+      if (token2Response.ok) {
+        const token2Data = await token2Response.json()
+        if (token2Data.color) {
+          guildColors.value.token2Color = token2Data.color
+        }
+      }
+
+      if (contributionResponse.ok) {
+        const contributionData = await contributionResponse.json()
+        if (contributionData.color) {
+          guildColors.value.contributionColor = contributionData.color
+        }
+      }
+
+      // Apply updated colors to document
+      applyThemeToDocument()
+    } catch (err) {
+      // Handle error silently - use default colors
     }
   }
 
@@ -294,7 +331,7 @@ export const useThemeStore = defineStore('theme', () => {
     textColors,
     backgroundColor,
     emergencyColor,
-    daoColors,
+    guildColors,
     borderRadius,
     borderWidth,
     themeHeaders,
@@ -307,6 +344,7 @@ export const useThemeStore = defineStore('theme', () => {
     loadAvailableThemes,
     loadTheme,
     loadGuildTheme,
+    loadGuildColors,
     applyThemeToDocument,
     resetToGuildTheme,
     clearTheme,

@@ -512,6 +512,7 @@ import { Icon } from '@iconify/vue'
 import { BaseCard } from '@/components/base'
 import BaseSidebar from '@/components/base/BaseSidebar.vue'
 import { useSkinTheme } from '@/composables/useSkinTheme'
+import { useThemeStore } from '@/stores/themeStore'
 import { getSlpPath } from '@/utils/api'
 
 // Types
@@ -589,7 +590,8 @@ interface DAOSettings {
 }
 
 // Composables
-const { getPrimaryColor, getSecondaryColor, getTextColor, getBorderRadius, getDaoToken1Color, getDaoToken2Color, getDaoGuildColor } = useSkinTheme()
+const { getPrimaryColor, getSecondaryColor, getTextColor, getBorderRadius } = useSkinTheme()
+const themeStore = useThemeStore()
 
 // State
 const votes = ref<Vote[]>([])
@@ -678,21 +680,17 @@ const filteredVotes = computed(() => {
 // Get secondary color 3 (index 2) for active state - same as sidebar
 const getSecondaryColor3 = () => getSecondaryColor(2)
 
-// Get DAO color based on vote type
+// Get DAO color based on vote type - simplified
 const getDaoColor = (voteType: string) => {
-  switch (voteType) {
-    case 'token-1':
-      return getDaoToken1Color()
-    case 'token-2':
-      return getDaoToken2Color()
-    case 'combined':
-      return getDaoGuildColor()
-    default:
-      return getSecondaryColor(0)
+  const colors = {
+    'token-1': themeStore.guildColors.token1Color,
+    'token-2': themeStore.guildColors.token2Color,
+    'combined': themeStore.guildColors.contributionColor
   }
+  return colors[voteType as keyof typeof colors] || getSecondaryColor(0)
 }
 
-// Computed styles for token filter buttons
+// Computed styles for token filter buttons - simplified
 const tokenFilterStyles = computed(() => ({
   '--primary-color-0': getPrimaryColor(0),
   '--primary-color-1': getPrimaryColor(1),
@@ -704,9 +702,6 @@ const tokenFilterStyles = computed(() => ({
   '--text-color-0': getTextColor(0),
   '--text-color-1': getTextColor(1),
   '--text-color-2': getTextColor(2),
-  '--theme-dao-token1': getDaoToken1Color(),
-  '--theme-dao-token2': getDaoToken2Color(),
-  '--theme-dao-guild': getDaoGuildColor(),
   '--theme-radius-sm': getBorderRadius('sm'),
   '--theme-radius-md': getBorderRadius('md'),
   '--theme-radius-lg': getBorderRadius('lg'),
@@ -982,7 +977,9 @@ const handleVote = async (vote: Vote, tokenType: 'token-1' | 'token-2', voteChoi
 }
 
 // Lifecycle
-onMounted(() => {
+onMounted(async () => {
+  // Ensure guild colors are loaded with latest token colors
+  await themeStore.loadGuildColors('guild-1')
   loadVotes()
   loadDAOSettings()
   // Scroll to top when component mounts
@@ -1278,7 +1275,7 @@ onMounted(() => {
 
 /* Vote title colors using DAO colors */
 .vote-title.title-combined {
-  color: var(--theme-dao-guild);
+  color: var(--theme-dao-contribution);
 }
 
 .vote-title.title-token-1 {
@@ -1306,8 +1303,8 @@ onMounted(() => {
 
 .badge-combined {
   background: var(--secondary-color-2);
-  color: var(--theme-dao-guild);
-  border: 1px solid var(--theme-dao-guild);
+  color: var(--theme-dao-contribution);
+  border: 1px solid var(--theme-dao-contribution);
 }
 
 .badge-token-1 {
@@ -1670,7 +1667,7 @@ onMounted(() => {
 }
 
 .progress-fill.quorum-combined {
-  background: var(--theme-dao-guild);
+  background: var(--theme-dao-contribution);
 }
 
 .progress-fill.quorum-token-1 {

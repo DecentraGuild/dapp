@@ -3,27 +3,34 @@
     class="top-navbar"
     :style="navbarStyles"
   >
-    <!-- Left Section: Guild Logo + Dashboard Icon -->
+    <!-- Left Section: Guild Logo + Name + Dashboard Button -->
     <div class="left-section">
-      <!-- Guild Logo -->
-      <div v-if="guildStore.hasActiveGuild" class="guild-logo-container">
+      <!-- Guild Logo + Name (clickable) -->
+      <button 
+        v-if="guildStore.hasActiveGuild" 
+        class="guild-info-button"
+        @click="navigateToGuildProfile"
+        :style="buttonStyles"
+      >
         <img 
           :src="guildStore.guildLogo" 
           :alt="guildStore.guildName"
           class="guild-logo"
         />
-      </div>
-      <div v-else class="guild-logo-container">
+        <span class="guild-name">{{ guildStore.guildName }}</span>
+      </button>
+      <div v-else class="guild-info-container">
         <Icon icon="game-icons:castle" class="default-guild-icon" />
+        <span class="guild-name">No Guild</span>
       </div>
       
-      <!-- Dashboard Icon (clickable) -->
+      <!-- Dashboard Button (clickable) -->
       <button 
         class="dashboard-button"
         @click="navigateToDashboard"
         :style="buttonStyles"
       >
-        <Icon icon="game-icons:chart" class="dashboard-icon" />
+        <span class="dashboard-text">Dashboard</span>
       </button>
     </div>
 
@@ -31,12 +38,12 @@
     <div v-if="isLoggedIn" class="center-section">
       <div v-if="hasActiveGuild && hasTokenBalance" class="token-balances">
         <div class="token-balance-field">
-          <Icon icon="game-icons:coins" class="token-icon" />
-          <span class="token-text">{{ token1Name }}: {{ formatTokenAmount(token1Balance) }}</span>
+          <img :src="token1Icon" :alt="memberStore.token1Symbol" class="token-icon" />
+          <span class="token-text">{{ formatTokenAmount(token1Balance) }}</span>
         </div>
         <div class="token-balance-field">
-          <Icon icon="game-icons:gem" class="token-icon" />
-          <span class="token-text">{{ token2Name }}: {{ formatTokenAmount(token2Balance) }}</span>
+          <img :src="token2Icon" :alt="memberStore.token2Symbol" class="token-icon" />
+          <span class="token-text">{{ formatTokenAmount(token2Balance) }}</span>
         </div>
       </div>
       
@@ -92,21 +99,6 @@
         <span class="button-text">Member</span>
       </button>
 
-      <!-- Guild Display (Fixed to Guild-1) -->
-      <div 
-        v-if="selectedGuild"
-        class="guild-display nav-button"
-        :style="buttonStyles"
-      >
-        <img 
-          v-if="selectedGuild.logo" 
-          :src="selectedGuild.logo" 
-          :alt="selectedGuild.name"
-          class="guild-logo"
-        />
-        <Icon v-else icon="game-icons:castle" class="button-icon" />
-        <span class="button-text">{{ selectedGuild.name }}</span>
-      </div>
 
       <!-- Wallet Dropdown -->
       <BaseButtonDropdown
@@ -132,7 +124,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted, onUnmounted } from 'vue'
+import { computed, ref, onMounted, onUnmounted, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { Icon } from '@iconify/vue'
 import { useSkinTheme } from '../composables/useSkinTheme'
@@ -169,6 +161,8 @@ const token1Balance = computed(() => memberStore.token1Balance)
 const token2Balance = computed(() => memberStore.token2Balance)
 const token1Name = computed(() => memberStore.token1Name)
 const token2Name = computed(() => memberStore.token2Name)
+const token1Icon = computed(() => memberStore.token1Icon)
+const token2Icon = computed(() => memberStore.token2Icon)
 const isLoadingWallets = computed(() => userStore.isLoading)
 
 // Computed styles
@@ -248,6 +242,13 @@ const handleClickOutside = (event: MouseEvent) => {
   }
 }
 
+// Watch for guild changes and load guild colors
+watch(() => guildStore.guildId, async (newGuildId) => {
+  if (newGuildId) {
+    await themeStore.loadGuildColors(newGuildId)
+  }
+}, { immediate: true })
+
 onMounted(async () => {
   document.addEventListener('click', handleClickOutside)
   
@@ -260,6 +261,11 @@ onMounted(async () => {
   }
   if (themeStore.availableThemes.length === 0) {
     await themeStore.loadAvailableThemes()
+  }
+  
+  // Load member data if user is logged in and has an active guild
+  if (isLoggedIn.value && hasActiveGuild.value && selectedWallet.value) {
+    await memberStore.loadMemberProfile(selectedWallet.value.address, guildStore.activeGuild?.id || 'guild-1')
   }
 })
 
@@ -291,17 +297,51 @@ onUnmounted(() => {
   gap: 1rem;
 }
 
-.guild-logo-container {
+.guild-info-button {
+  background: none;
+  border: none;
+  border-radius: var(--theme-radius-md);
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.guild-info-button:hover {
+  background-color: var(--primary-color-2);
+  transform: translateX(4px);
+}
+
+.guild-info-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--primary-color-1);
+  border-radius: var(--theme-radius-md);
+  opacity: 0.8;
 }
 
 .guild-logo {
-  width: var(--space-2xl);
-  height: var(--space-2xl);
-  border-radius: var(--theme-radius-sm);
-  object-fit: cover;
-  border: var(--border-width-thin) solid var(--secondary-color-0);
+  height: var(--space-3xl);
+  width: auto;
+  object-fit: contain;
+}
+
+.guild-name {
+  font-size: 1rem;
+  color: var(--secondary-color-0);
+  font-weight: 600;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.guild-info-button:hover .guild-name {
+  color: var(--secondary-color-0);
 }
 
 .guild-display {
@@ -317,13 +357,10 @@ onUnmounted(() => {
 }
 
 .default-guild-icon {
-  width: var(--space-2xl);
   height: var(--space-2xl);
+  width: auto;
   color: var(--secondary-color-0);
-  background: var(--primary-color-1);
-  border-radius: var(--theme-radius-sm);
   padding: 0.5rem;
-  border: var(--border-width-thin) solid var(--secondary-color-0);
 }
 
 .dashboard-button {
@@ -343,15 +380,14 @@ onUnmounted(() => {
   transform: translateX(4px);
 }
 
-.dashboard-icon {
-  font-size: 1.5rem;
+.dashboard-text {
+  font-size: 1rem;
   color: var(--secondary-color-0);
-  margin-right: 0.75rem;
-  flex-shrink: 0;
+  font-weight: 600;
   transition: color 0.2s ease;
 }
 
-.dashboard-button:hover .dashboard-icon {
+.dashboard-button:hover .dashboard-text {
   color: var(--secondary-color-0);
 }
 
@@ -380,9 +416,10 @@ onUnmounted(() => {
 }
 
 .token-icon {
-  font-size: 1.25rem;
-  color: var(--secondary-color-0);
+  height: var(--space-2xl);
+  width: auto;
   flex-shrink: 0;
+  object-fit: contain;
 }
 
 .token-text {
@@ -630,10 +667,9 @@ onUnmounted(() => {
 }
 
 .guild-logo {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: var(--theme-radius-sm);
-  object-fit: cover;
+  height: var(--space-3xl);
+  width: auto;
+  object-fit: contain;
 }
 
 .wallet-connect {
@@ -654,8 +690,17 @@ onUnmounted(() => {
   }
   
   .guild-logo {
-    width: calc(var(--space-2xl) * 0.875);
-    height: calc(var(--space-2xl) * 0.875);
+    height: calc(var(--space-3xl) * 0.875);
+    width: auto;
+  }
+  
+  .guild-info-button {
+    padding: 0.6rem 0.75rem;
+    gap: 0.5rem;
+  }
+  
+  .guild-name {
+    font-size: 0.9rem;
   }
   
   .dashboard-button {
@@ -676,7 +721,8 @@ onUnmounted(() => {
   }
   
   .token-icon {
-    font-size: 1.1rem;
+    height: calc(var(--space-3xl) * 0.875);
+    width: auto;
   }
   
   .token-text {
@@ -724,6 +770,10 @@ onUnmounted(() => {
     display: none;
   }
   
+  .guild-name {
+    display: none;
+  }
+  
   .nav-button {
     padding: 0.6rem;
   }
@@ -746,7 +796,8 @@ onUnmounted(() => {
   }
   
   .token-icon {
-    font-size: 1rem;
+    height: calc(var(--space-3xl) * 0.75);
+    width: auto;
   }
   
   .token-text {

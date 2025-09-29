@@ -9,13 +9,11 @@
         class="token-info-card"
       >
         <div class="token-header">
-          <div class="token-icon">
-            <img 
-              :src="tokenData.image" 
-              :alt="tokenData.name"
-              class="token-image"
-            />
-          </div>
+          <img 
+            :src="tokenData.image" 
+            :alt="tokenData.name"
+            class="token-image"
+          />
           <div class="token-details">
             <h2 class="token-name">{{ tokenData.name }}</h2>
             <p class="token-description">{{ tokenData.description }}</p>
@@ -168,7 +166,7 @@ interface VaultAllocation {
 }
 
 // Composables
-const { getPrimaryColor, getSecondaryColor, getTextColor, getBorderRadius } = useSkinTheme()
+const { getPrimaryColor, getSecondaryColor, getTextColor, getBorderRadius, getDaoToken2Color } = useSkinTheme()
 const guildStore = useGuildStore()
 
 // State
@@ -233,7 +231,8 @@ const maxAssetBacking = computed(() => {
 const tokenAmount = computed(() => {
   if (!tokenData.value || !assetBackingAmount.value) return 0
   // Token2 mint: asset backing amount / exchange rate = tokens to receive
-  return assetBackingAmount.value / tokenData.value.exchangeRatio[0] * tokenData.value.exchangeRatio[1]
+  // 1 CGM = 1.327 POLIS, so 1 POLIS = 0.7535795 CGM
+  return assetBackingAmount.value / tokenData.value.exchangeRatio[1]
 })
 
 const canMint = computed(() => {
@@ -299,9 +298,15 @@ const handleMinting = () => {
 }
 
 // Lifecycle
-onMounted(() => {
-  loadTokenData()
-  loadGuildAllocations()
+onMounted(async () => {
+  await loadTokenData()
+  await loadGuildAllocations()
+  // Load guild colors to ensure they're available
+  const { useThemeStore } = await import('@/stores/themeStore')
+  const themeStore = useThemeStore()
+  if (guildStore.guildId) {
+    await themeStore.loadGuildColors(guildStore.guildId)
+  }
   // Scroll to top when component mounts
   window.scrollTo({ top: 0, behavior: 'smooth' })
 })
@@ -329,19 +334,11 @@ onMounted(() => {
   align-items: flex-start;
 }
 
-.token-icon {
+.token-image {
   flex-shrink: 0;
   width: var(--space-3xl);
   height: var(--space-3xl);
-  border-radius: var(--theme-radius-lg);
-  overflow: hidden;
-  border: var(--component-border-width-thick) solid var(--secondary-color-2);
-}
-
-.token-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .token-details {
@@ -411,7 +408,7 @@ onMounted(() => {
 
 .amount-input {
   padding: var(--space-sm) var(--space-md);
-  border: var(--component-border-width) solid var(--secondary-color-2);
+  border: var(--component-border-width) solid var(--theme-dao-token2);
   border-radius: var(--theme-radius-md);
   background: var(--primary-color-1);
   color: var(--text-color-0);
@@ -421,7 +418,7 @@ onMounted(() => {
 
 .amount-input:focus {
   outline: none;
-  border-color: var(--secondary-color-0);
+  border-color: var(--theme-dao-token2);
 }
 
 .balance-info {
@@ -431,7 +428,7 @@ onMounted(() => {
   padding: var(--space-xs) var(--space-sm);
   background: var(--theme-background);
   border-radius: var(--theme-radius-sm);
-  border: var(--component-border-width) solid var(--secondary-color-2);
+  border: var(--component-border-width) solid var(--theme-dao-token2);
 }
 
 .balance-label {
@@ -455,7 +452,7 @@ onMounted(() => {
 .quick-btn {
   padding: var(--space-xs) var(--space-sm);
   background: var(--theme-background);
-  border: var(--component-border-width) solid var(--secondary-color-2);
+  border: var(--component-border-width) solid var(--theme-dao-token2);
   border-radius: var(--theme-radius-sm);
   color: var(--text-color-1);
   font-size: var(--text-xs);
@@ -465,8 +462,8 @@ onMounted(() => {
 }
 
 .quick-btn:hover {
-  background: var(--secondary-color-0);
-  border-color: var(--secondary-color-0);
+  background: var(--theme-dao-token2);
+  border-color: var(--theme-dao-token2);
   color: var(--primary-color-0);
 }
 
@@ -544,7 +541,7 @@ onMounted(() => {
 
 .vault-percentage {
   font-size: var(--text-xs);
-  color: var(--secondary-color-0);
+  color: var(--theme-dao-token2);
   font-weight: var(--font-semibold);
 }
 
@@ -593,6 +590,46 @@ onMounted(() => {
     gap: var(--space-xs);
     text-align: center;
   }
+}
+
+/* Custom styling for token info card border only */
+.token-info-card {
+  border-color: var(--theme-dao-token2) !important;
+}
+
+/* Custom styling for stats cards - BaseListGrid */
+:deep(.base-list-grid .grid-item) {
+  border-color: var(--theme-dao-token2) !important;
+}
+
+:deep(.base-list-grid .grid-item-icon) {
+  background: var(--theme-dao-token2) !important;
+  border-color: var(--theme-dao-token2) !important;
+}
+
+:deep(.base-list-grid .icon) {
+  color: var(--primary-color-0) !important;
+}
+
+:deep(.base-list-grid .grid-item-subtitle) {
+  color: var(--theme-dao-token2) !important;
+}
+
+:deep(.base-list-grid .grid-item-value) {
+  color: var(--theme-dao-token2) !important;
+}
+
+/* Custom button styling for token2 colors - only for Mint button */
+.minting-card :deep(.button-accent) {
+  background: var(--theme-dao-token2) !important;
+  color: var(--text-color-2) !important;
+}
+
+.minting-card :deep(.button-accent:hover:not(.button-disabled)) {
+  background: var(--theme-dao-token2) !important;
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--theme-dao-token2);
 }
 
 /* Wide screen margin - matching armory pattern */

@@ -210,29 +210,9 @@ export const mainNavigationItems: NavigationItem[] = [
     path: 'vaults',
     icon: 'game-icons:bank',
     label: 'Vaults',
-    hasSubmenu: true,
-    isStandalone: false,
-    roomType: 'Vault',
-    submenuItems: [
-      {
-        id: 'vaults-v1',
-        name: 'vaults-v1',
-        path: 'vaults',
-        icon: 'game-icons:bank',
-        label: 'Version 1',
-        description: 'Original vault layout and design',
-        hasSubmenu: false
-      },
-      {
-        id: 'vaults-v2',
-        name: 'vaults-v2',
-        path: 'vaults/v2',
-        icon: 'game-icons:bank',
-        label: 'Version 2',
-        description: 'Alternative vault layout for comparison',
-        hasSubmenu: false
-      }
-    ]
+    hasSubmenu: false,
+    isStandalone: true,
+    roomType: 'Vault'
   },
   {
     id: 'observatory',

@@ -18,11 +18,6 @@ const router = createRouter({
       component: () => import('../views/ComponentShowcase.vue')
     },
     {
-      path: '/permissions',
-      name: 'PermissionTableDemo',
-      component: () => import('../views/PermissionTableDemo.vue')
-    },
-    {
       path: '/communityhub/guildprofile',
       name: 'GuildProfile',
       component: () => import('../views/GuildProfile.vue')
@@ -149,11 +144,6 @@ const router = createRouter({
       path: '/reports/financial',
       name: 'ObservatoryFinancial',
       component: () => import('../views/ObservatoryFinancial.vue')
-    },
-    {
-      path: '/demo/personal-observatory',
-      name: 'PersonalObservatoryDemo',
-      component: () => import('../views/PersonalObservatoryDemo.vue')
     },
     {
       path: '/commandcenter',

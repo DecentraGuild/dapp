@@ -2,7 +2,7 @@
   "id": "guild-1",
   "name": "Cyber Castle Guild",
   "description": "An elite guild focused on medieval-futuristic gameplay with cyber enhancements",
-  "logo": "https://api.dicebear.com/7.x/shapes/svg?seed=cybercastle",
+  "logo": "/SLP/guildassets/CC-logo-solo.png",
   "theme": "castle_cyber",
   "message": "Raiding Oni Sunday morning boys! we can keep them busy all day!",
   "settings": {

@@ -27,6 +27,8 @@ export interface MemberTokenBalance {
   token2Name: string
   token1Symbol: string
   token2Symbol: string
+  token1Icon: string
+  token2Icon: string
   lastUpdated: string
 }
 
@@ -84,6 +86,8 @@ export const useMemberStore = defineStore('member', () => {
   const token2Name = computed(() => memberTokenBalance.value?.token2Name || 'Token-2')
   const token1Symbol = computed(() => memberTokenBalance.value?.token1Symbol || 'T1')
   const token2Symbol = computed(() => memberTokenBalance.value?.token2Symbol || 'T2')
+  const token1Icon = computed(() => memberTokenBalance.value?.token1Icon || '')
+  const token2Icon = computed(() => memberTokenBalance.value?.token2Icon || '')
   const hasTokenBalance = computed(() => !!memberTokenBalance.value)
 
   // Actions
@@ -192,17 +196,21 @@ export const useMemberStore = defineStore('member', () => {
       let token2Name = 'Token-2'
       let token1Symbol = 'T1'
       let token2Symbol = 'T2'
+      let token1Icon = ''
+      let token2Icon = ''
       
       if (token1Response.ok) {
         const token1Data = await token1Response.json()
         token1Name = token1Data.name || 'Token-1'
         token1Symbol = token1Data.symbol || 'T1'
+        token1Icon = token1Data.image || ''
       }
       
       if (token2Response.ok) {
         const token2Data = await token2Response.json()
         token2Name = token2Data.name || 'Token-2'
         token2Symbol = token2Data.symbol || 'T2'
+        token2Icon = token2Data.image || ''
       }
       
       // Extract guild-specific token balances
@@ -220,6 +228,8 @@ export const useMemberStore = defineStore('member', () => {
         token2Name,
         token1Symbol,
         token2Symbol,
+        token1Icon,
+        token2Icon,
         lastUpdated: balanceData.lastUpdated || new Date().toISOString()
       }
       
@@ -233,6 +243,8 @@ export const useMemberStore = defineStore('member', () => {
         token2Name: 'Token-2',
         token1Symbol: 'T1',
         token2Symbol: 'T2',
+        token1Icon: '',
+        token2Icon: '',
         lastUpdated: new Date().toISOString()
       }
     }
@@ -297,6 +309,8 @@ export const useMemberStore = defineStore('member', () => {
     token2Name,
     token1Symbol,
     token2Symbol,
+    token1Icon,
+    token2Icon,
     hasTokenBalance,
     
     // Actions

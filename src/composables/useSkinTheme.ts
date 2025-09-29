@@ -60,15 +60,15 @@ export function useSkinTheme() {
   }
 
   const getDaoToken1Color = () => {
-    return currentTheme.value?.daoColors?.token1Color || 'rgba(0, 255, 255, 0.9)'
+    return themeStore.guildColors.token1Color || 'rgba(0, 255, 255, 0.9)'
   }
 
   const getDaoToken2Color = () => {
-    return currentTheme.value?.daoColors?.token2Color || 'rgba(255, 165, 0, 0.9)'
+    return themeStore.guildColors.token2Color || 'rgba(255, 165, 0, 0.9)'
   }
 
   const getDaoGuildColor = () => {
-    return currentTheme.value?.daoColors?.guildColor || 'rgba(138, 43, 226, 0.9)'
+    return themeStore.guildColors.contributionColor || 'rgba(138, 43, 226, 0.9)'
   }
 
   const getImagePaths = () => {
