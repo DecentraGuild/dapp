@@ -1,1 +1,0 @@
-{"vid":"guild-1_income_vault","gid":"guild-1","name":"Cyber Castle Income Vault","description":"Vault collecting monthly revenue to be processed and distributed","type":"income_vault","multisigWalletID":"0x4444444444444444444444444444444444444444","requiredSignatures":2,"signers":["g1_diana_council","g1_charlie_officer"],"created":"2024-01-01T00:00:00Z","isActive":true}
