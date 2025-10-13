@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { getSlpPath } from '@/utils/api'
+import { getSlpPath, loadMultipleSlpData, loadSlpData } from '@/utils/api'
 import { useUserStore } from './userStore'
 
 export interface GuildProfile {
@@ -55,6 +55,7 @@ export const useGuildStore = defineStore('guild', () => {
   const guildMembers = ref<GuildMember[]>([])
   const isLoading = ref(false)
   const error = ref<string | null>(null)
+  const isGuildsLoaded = ref(false)
 
   // Getters
   const hasActiveGuild = computed(() => !!activeGuild.value)
@@ -71,29 +72,25 @@ export const useGuildStore = defineStore('guild', () => {
 
   // Actions
   const loadAvailableGuilds = async () => {
+    // Skip if already loaded
+    if (isGuildsLoaded.value) {
+      return
+    }
+    
     try {
       isLoading.value = true
       error.value = null
       
-      // Load only guild-1 profile from SLP assets
+      // Load only guild-1 profile from SLP assets in parallel
       const guildFiles = ['guild-1_profile.json']
-      const guilds: GuildProfile[] = []
       
-      for (const file of guildFiles) {
-        try {
-          const response = await fetch(getSlpPath(`guildprofiles/${file}`))
-          if (response.ok) {
-            const guildData = await response.json()
-            guilds.push(guildData)
-          } else {
-            // Handle failed guild profile load silently
-          }
-        } catch (err) {
-          // Handle failed guild profile load silently
-        }
-      }
+      // Load all guilds in parallel
+      const guilds = await loadMultipleSlpData<GuildProfile>(
+        guildFiles.map(file => `guildprofiles/${file}`)
+      )
       
       availableGuilds.value = guilds
+      isGuildsLoaded.value = true
       
       // Auto-select guild-1 if available
       if (guilds.length > 0) {
@@ -115,13 +112,11 @@ export const useGuildStore = defineStore('guild', () => {
       
       // Load guild member list
       const memberListFile = guildId === 'guild-1' ? 'guild-1_memberlist.json' : 'guild-2_memberlist.json'
-      const response = await fetch(getSlpPath(`guildmemberlist/${memberListFile}`))
-      if (!response.ok) {
-        // Handle failed guild members load silently
+      const memberAddresses = await loadSlpData<string[]>(`guildmemberlist/${memberListFile}`)
+      
+      if (!memberAddresses) {
         throw new Error('Failed to load guild members')
       }
-      
-      const memberAddresses = await response.json()
       
       // Create a direct lookup map for wallet addresses to member files
       const walletToMemberMap: Record<string, string> = {
@@ -143,23 +138,16 @@ export const useGuildStore = defineStore('guild', () => {
         })
       }
       
-      const members: GuildMember[] = []
+      // Build list of member file paths for addresses in the guild
+      const memberPaths = memberAddresses
+        .map(walletAddress => {
+          const memberFile = walletToMemberMap[walletAddress]
+          return memberFile ? `memberprofiles/${memberFile}` : null
+        })
+        .filter((path): path is string => path !== null)
       
-      // Load only the specific member files for addresses in the guild
-      for (const walletAddress of memberAddresses) {
-        const memberFile = walletToMemberMap[walletAddress]
-        if (memberFile) {
-          try {
-            const memberResponse = await fetch(getSlpPath(`memberprofiles/${memberFile}`))
-            if (memberResponse.ok) {
-              const memberData = await memberResponse.json()
-              members.push(memberData)
-            }
-          } catch (err) {
-            // Silent fail for missing member files
-          }
-        }
-      }
+      // Load all members in parallel
+      const members = await loadMultipleSlpData<GuildMember>(memberPaths)
       
       guildMembers.value = members
     } catch (err) {

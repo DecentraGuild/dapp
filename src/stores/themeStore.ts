@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { getSlpPath } from '@/utils/api'
+import { getSlpPath, loadMultipleSlpData } from '@/utils/api'
 import { useGuildStore } from './guildStore'
 
 export interface ThemeData {
@@ -50,6 +50,8 @@ export const useThemeStore = defineStore('theme', () => {
   const isLoading = ref(false)
   const error = ref<string | null>(null)
   const isOverride = ref(false) // Whether user has manually overridden theme
+  const isThemesLoaded = ref(false)
+  const loadedGuildColors = ref<Set<string>>(new Set()) // Track which guild colors are loaded
 
   // Getters
   const hasTheme = computed(() => !!currentTheme.value)
@@ -113,39 +115,40 @@ export const useThemeStore = defineStore('theme', () => {
 
   // Actions
   const loadAvailableThemes = async () => {
+    // Skip if already loaded
+    if (isThemesLoaded.value) {
+      return
+    }
+    
     try {
       isLoading.value = true
       error.value = null
       
-      // Load available themes from SLP assets
+      // Load available themes from SLP assets in parallel
       const themeFiles = [
         'skin_castle_medieval.json',
         'skin_spacebase_yellow.json',
         'skin_castle_whitesun.json'
       ]
       
-      const themes: ThemeData[] = []
+      // Load all themes in parallel
+      const loadedThemes = await loadMultipleSlpData<ThemeData>(
+        themeFiles.map(file => `skin/${file}`)
+      )
       
-      for (const file of themeFiles) {
-        try {
-          const response = await fetch(getSlpPath(`skin/${file}`))
-          if (response.ok) {
-            const themeData = await response.json()
-            // Process hardcoded paths in theme data
-            themeData.images = themeData.images.map((img: string) => 
-              img.startsWith('/SLP/') ? getSlpPath(img.replace('/SLP/', '')) : img
-            )
-            themeData.svgFile = themeData.svgFile.startsWith('/SLP/') 
-              ? getSlpPath(themeData.svgFile.replace('/SLP/', '')) 
-              : themeData.svgFile
-            themes.push(themeData)
-          } else {
-          }
-        } catch (err) {
-        }
-      }
+      // Process hardcoded paths in theme data
+      const themes = loadedThemes.map(themeData => ({
+        ...themeData,
+        images: themeData.images.map((img: string) => 
+          img.startsWith('/SLP/') ? getSlpPath(img.replace('/SLP/', '')) : img
+        ),
+        svgFile: themeData.svgFile.startsWith('/SLP/') 
+          ? getSlpPath(themeData.svgFile.replace('/SLP/', '')) 
+          : themeData.svgFile
+      }))
       
       availableThemes.value = themes
+      isThemesLoaded.value = true
       
       // Initialize default theme if none is currently loaded
       await initializeDefaultTheme()
@@ -233,35 +236,33 @@ export const useThemeStore = defineStore('theme', () => {
   }
 
   const loadGuildColors = async (guildId: string) => {
+    // Skip if already loaded for this guild
+    if (loadedGuildColors.value.has(guildId)) {
+      return
+    }
+    
     try {
-      // Load token colors from guild token files
-      const [token1Response, token2Response, contributionResponse] = await Promise.all([
-        fetch(getSlpPath(`guildtoken/${guildId}_token1.json`)),
-        fetch(getSlpPath(`guildtoken/${guildId}_token2.json`)),
-        fetch(getSlpPath(`guildtoken/${guildId}_contribution.json`))
+      // Load token colors from guild token files in parallel
+      const tokenData = await loadMultipleSlpData<{ color?: string }>([
+        `guildtoken/${guildId}_token1.json`,
+        `guildtoken/${guildId}_token2.json`,
+        `guildtoken/${guildId}_contribution.json`
       ])
 
-      if (token1Response.ok) {
-        const token1Data = await token1Response.json()
-        if (token1Data.color) {
-          guildColors.value.token1Color = token1Data.color
-        }
+      if (tokenData[0]?.color) {
+        guildColors.value.token1Color = tokenData[0].color
+      }
+      
+      if (tokenData[1]?.color) {
+        guildColors.value.token2Color = tokenData[1].color
+      }
+      
+      if (tokenData[2]?.color) {
+        guildColors.value.contributionColor = tokenData[2].color
       }
 
-      if (token2Response.ok) {
-        const token2Data = await token2Response.json()
-        if (token2Data.color) {
-          guildColors.value.token2Color = token2Data.color
-        }
-      }
-
-      if (contributionResponse.ok) {
-        const contributionData = await contributionResponse.json()
-        if (contributionData.color) {
-          guildColors.value.contributionColor = contributionData.color
-        }
-      }
-
+      loadedGuildColors.value.add(guildId)
+      
       // Apply updated colors to document
       applyThemeToDocument()
     } catch (err) {

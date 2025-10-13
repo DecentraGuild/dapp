@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { QUEST_TABS, QUEST_ICONS, QUEST_TITLES, QUEST_DESCRIPTIONS, QUEST_FEATURES, QUEST_STATUS, QUEST_STATUS_ICONS, QUEST_STATUS_LABELS, QUEST_STATUS_COLORS } from '@/constants/quest'
-import { getSlpPath } from '@/utils/api'
+import { loadMultipleSlpData } from '@/utils/api'
 import type { Quest, QuestItem, QuestApplication, QuestVerification, QuestReward } from '@/constants/quest'
 
 export const useQuestStore = defineStore('quest', () => {
@@ -10,6 +10,7 @@ export const useQuestStore = defineStore('quest', () => {
   const quests = ref<Quest[]>([])
   const loading = ref<boolean>(false)
   const error = ref<string | null>(null)
+  const isLoaded = ref<boolean>(false)
 
   // Available tabs configuration
   const availableTabs = computed(() => [
@@ -36,8 +37,13 @@ export const useQuestStore = defineStore('quest', () => {
     availableTabs.value.find(tab => tab.id === currentTab.value)
   )
 
-  // Filtered quests by current tab
+  // Filtered quests by current tab (lazy loads data)
   const filteredQuests = computed(() => {
+    // Auto-load quests on first access
+    if (!isLoaded.value && !loading.value) {
+      loadQuests()
+    }
+    
     if (!currentTab.value) return []
     
     const questType = currentTab.value === QUEST_TABS.INGAME ? 'ingame' : 'guild'
@@ -98,7 +104,7 @@ export const useQuestStore = defineStore('quest', () => {
     error.value = null
 
     try {
-      // Load quest files from SLP directory
+      // Load quest files from SLP directory in parallel
       const questFiles = [
         'g1_q0001_ingame.json',
         'g1_q0002_ingame.json',
@@ -115,21 +121,13 @@ export const useQuestStore = defineStore('quest', () => {
         'g1_q0013_guild.json'
       ]
 
-      const loadedQuests: Quest[] = []
-
-      for (const file of questFiles) {
-        try {
-          const response = await fetch(getSlpPath(`quests/${file}`))
-          if (response.ok) {
-            const quest = await response.json()
-            loadedQuests.push(quest)
-          }
-        } catch (fileError) {
-          // Handle failed quest file load silently
-        }
-      }
+      // Load all quests in parallel using loadMultipleSlpData
+      const loadedQuests = await loadMultipleSlpData<Quest>(
+        questFiles.map(file => `quests/${file}`)
+      )
 
       quests.value = loadedQuests
+      isLoaded.value = true
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to load quests'
       // Handle error silently in production

@@ -39,11 +39,11 @@ export function getImagePath(imagePath: string): string {
 }
 
 /**
- * Simple cache for SLP data to improve loading performance
+ * Enhanced cache for SLP data with longer TTL and session persistence
  */
 class SlpDataCache {
   private cache = new Map<string, { data: any; timestamp: number }>()
-  private readonly TTL = 5 * 60 * 1000 // 5 minutes
+  private readonly TTL = 60 * 60 * 1000 // 1 hour (increased from 5 minutes)
 
   get(key: string): any | null {
     const cached = this.cache.get(key)
@@ -67,6 +67,18 @@ class SlpDataCache {
 
   clear(): void {
     this.cache.clear()
+  }
+  
+  // Get cache statistics for debugging
+  getStats(): { size: number; entries: number } {
+    let size = 0
+    this.cache.forEach((value) => {
+      size += JSON.stringify(value.data).length
+    })
+    return {
+      size: Math.round(size / 1024), // Size in KB
+      entries: this.cache.size
+    }
   }
 }
 
