@@ -129,7 +129,7 @@ export const useMemberStore = defineStore('member', () => {
   const loadMemberPermissions = async (roleId: string, guildId: string) => {
     try {
       // Load guild permission table
-      const permissionFile = guildId === 'guild-1' ? 'guild1_permissiontable.json' : 'guild2_permissiontable.json'
+      const permissionFile = guildId === 'guild-1' ? 'guild-1_permissiontable.json' : 'guild-2_permissiontable.json'
       const response = await fetch(getSlpPath(`guildpermission/${permissionFile}`))
       if (!response.ok) throw new Error('Failed to load permissions')
       
