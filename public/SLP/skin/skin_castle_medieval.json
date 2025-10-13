@@ -3,7 +3,7 @@
   "name": "Castle Cyber",
   "description": "A medieval-futuristic fusion with grey stone and neon cyan accents",
   "images": [
-    "/SLP/skin/skin_castle_medieval.png"
+    "/SLP/skin/skin_castle_medieval.webp"
   ],
   "svgFile": "/SLP/skin/skin_castle_.svg",
   "shapeCoordinates": {

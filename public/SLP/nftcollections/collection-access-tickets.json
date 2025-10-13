@@ -4,7 +4,7 @@
   "name": "Cyber Castle Access Tickets",
   "symbol": "CCAT",
   "description": "Entry tickets for guild events: poker tournaments, raids, IRL meetings, and other exclusive activities",
-  "image": "accestickets (1).png",
+  "image": "accestickets (1).webp",
   "type": "access_tickets",
   "rarity": "common",
   "totalSupply": 1000,
@@ -38,7 +38,7 @@
     {
       "tokenId": 1,
       "name": "Poker Tournament Ticket",
-      "image": "accestickets (1).png",
+      "image": "accestickets (1).webp",
       "traits": {
         "Event Type": "Poker Tournament",
         "Entry Fee": "100 Tokens",
@@ -49,7 +49,7 @@
     {
       "tokenId": 2,
       "name": "Raid Access Ticket",
-      "image": "accestickets (2).png",
+      "image": "accestickets (2).webp",
       "traits": {
         "Event Type": "Raid",
         "Entry Fee": "50 Tokens",
@@ -60,7 +60,7 @@
     {
       "tokenId": 3,
       "name": "Guild Meeting Ticket",
-      "image": "accestickets (3).png",
+      "image": "accestickets (3).webp",
       "traits": {
         "Event Type": "Meeting",
         "Entry Fee": "25 Tokens",
@@ -71,7 +71,7 @@
     {
       "tokenId": 4,
       "name": "Gaming Event Ticket",
-      "image": "accestickets (4).png",
+      "image": "accestickets (4).webp",
       "traits": {
         "Event Type": "Gaming",
         "Entry Fee": "75 Tokens",
@@ -82,7 +82,7 @@
     {
       "tokenId": 5,
       "name": "Tournament Access Ticket",
-      "image": "accestickets (5).png",
+      "image": "accestickets (5).webp",
       "traits": {
         "Event Type": "Tournament",
         "Entry Fee": "60 Tokens",

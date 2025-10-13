@@ -3,7 +3,7 @@
   "name": "Wrapped Bitcoin",
   "symbol": "WBTC",
   "description": "Wrapped Bitcoin token on Ethereum, backed 1:1 by Bitcoin",
-  "image": "/SLP/resources/wbtc.png",
+  "image": "/SLP/resources/wbtc.webp",
   "type": "wrapped_asset",
   "rarity": "epic",
   "blockchain": "Solana",

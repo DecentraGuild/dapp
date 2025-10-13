@@ -3,7 +3,7 @@
   "name": "USD Coin",
   "symbol": "USDC",
   "description": "Fully-backed US dollar stablecoin issued by Centre",
-  "image": "/SLP/resources/logo-usdc.png",
+  "image": "/SLP/resources/logo-usdc.webp",
   "type": "stablecoin",
   "rarity": "common",
   "blockchain": "Solana",

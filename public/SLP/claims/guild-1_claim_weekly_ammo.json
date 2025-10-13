@@ -3,7 +3,7 @@
   "guildID": "guild-1",
   "name": "Weekly Ammunition",
   "description": "Weekly ammunition supply for guild members to participate in raids and combat missions in the Star Atlas universe",
-  "image": "AMMO.png",
+  "image": "AMMO.webp",
   "resourceID": "ammo",
   "type": "role",
   "period": "weekly",

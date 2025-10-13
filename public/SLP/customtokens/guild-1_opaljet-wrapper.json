@@ -4,7 +4,7 @@
   "name": "Opal Jet Token Wrapper",
   "symbol": "OPALJET-WRAP",
   "description": "Supply Opal Jet for a fleet and keep track with it through representation token",
-  "image": "pearce D9.png",
+  "image": "pearce D9.webp",
   "type": "fleet",
   "decimals": 0,
   "circulatingSupply": 20,
@@ -23,7 +23,7 @@
   "backingAsset": {
     "resourceID": "opaljet",
     "name": "Opal Jet",
-    "image": "pearce D9.png",
+    "image": "pearce D9.webp",
     "type": "ship",
     "rarity": "rare"
   }

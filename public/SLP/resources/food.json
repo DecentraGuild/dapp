@@ -3,7 +3,7 @@
   "name": "Food Supplies",
   "symbol": "FOOD",
   "description": "Essential food supplies for crew survival and maintenance in space exploration",
-  "image": "FOOD.png",
+  "image": "FOOD.webp",
   "type": "resource",
   "rarity": "common",
   "circulatingSupply": 1000000,

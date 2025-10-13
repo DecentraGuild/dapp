@@ -3,7 +3,7 @@
   "guildID": "guild-1",
   "name": "Daily Food Supply",
   "description": "Daily food supplies for all guild members to maintain their energy and health in space exploration",
-  "image": "FOOD.png",
+  "image": "FOOD.webp",
   "resourceID": "food",
   "type": "role",
   "period": "daily",

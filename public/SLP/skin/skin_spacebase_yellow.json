@@ -3,7 +3,7 @@
   "name": "Spacebase Yellow",
   "description": "A futuristic spacebase design with dark hull and golden yellow accent lighting",
   "images": [
-    "/SLP/skin/skin_spacebase_yellow.png"
+    "/SLP/skin/skin_spacebase_yellow.webp"
   ],
   "svgFile": "/SLP/skin/skin_spacebase_.svg",
   "shapeCoordinates": {

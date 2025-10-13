@@ -7,7 +7,7 @@
       "name": "Tokenised",
       "description": "For example : Tokenized version of assets. Collect part-tokens to redeem for a full ship",
       "icon": "mdi:share-variant",
-      "image": "tokenised_assets.png",
+      "image": "tokenised_assets.webp",
       "isActive": true
     },
     {
@@ -15,7 +15,7 @@
       "name": "Fleet",
       "description": "For example : Supply assets for a fleet and keep track with it through representation token",
       "icon": "mdi:ship-wheel",
-      "image": "fleet_management.png",
+      "image": "fleet_management.webp",
       "isActive": true
     }
   ]

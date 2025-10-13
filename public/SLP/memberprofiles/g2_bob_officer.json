@@ -4,7 +4,7 @@
   "guild": "guild-2",
   "role": "g2-r3",
   "username": "Bob",
-  "avatar": "avatar2.png",
+  "avatar": "avatar2.webp",
   "email": "bob@example.com",
   "notification": [true, true, true],
   "lastActive": "2024-01-15T10:30:00Z",

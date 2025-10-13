@@ -3,7 +3,7 @@
   "name": "Tools",
   "symbol": "TOOL",
   "description": "Essential tools and equipment for maintenance, repair, and construction in space",
-  "image": "TOOL.png",
+  "image": "TOOL.webp",
   "type": "resource",
   "rarity": "common",
   "circulatingSupply": 1000000,

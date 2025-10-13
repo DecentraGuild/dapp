@@ -3,7 +3,7 @@
   "name": "Ammunition",
   "symbol": "AMMO",
   "description": "Essential ammunition for weapons and defense systems in the Star Atlas universe",
-  "image": "AMMO.png",
+  "image": "AMMO.webp",
   "type": "resource",
   "rarity": "common",
   "circulatingSupply": 1000000,

@@ -4,7 +4,7 @@
   "name": "Cyber Castle Tournament Rewards",
   "symbol": "CCTR",
   "description": "Exclusive tournament reward NFTs for top performers in Cyber Castle competitions",
-  "image": "tournament_trophy.png",
+  "image": "tournament_trophy.webp",
   "type": "trophy",
   "rarity": "rare",
   "totalSupply": 100,
@@ -38,7 +38,7 @@
     {
       "tokenId": 1,
       "name": "Poker Championship Winner",
-      "image": "Trophy (1).png",
+      "image": "Trophy (1).webp",
       "traits": {
         "Tournament": "Poker Championship",
         "Placement": "1st Place",
@@ -49,7 +49,7 @@
     {
       "tokenId": 2,
       "name": "Raid Master Runner-up",
-      "image": "Trophy (2).png",
+      "image": "Trophy (2).webp",
       "traits": {
         "Tournament": "Raid Master",
         "Placement": "2nd Place",
@@ -60,7 +60,7 @@
     {
       "tokenId": 3,
       "name": "Gaming Tournament Bronze",
-      "image": "Trophy (3).png",
+      "image": "Trophy (3).webp",
       "traits": {
         "Tournament": "Gaming Tournament",
         "Placement": "3rd Place",
@@ -71,7 +71,7 @@
     {
       "tokenId": 4,
       "name": "Code Challenge Top 10",
-      "image": "Trophy (4).png",
+      "image": "Trophy (4).webp",
       "traits": {
         "Tournament": "Code Challenge",
         "Placement": "Top 10",
@@ -82,7 +82,7 @@
     {
       "tokenId": 5,
       "name": "Strategy Battle Champion",
-      "image": "Trophy (5).png",
+      "image": "Trophy (5).webp",
       "traits": {
         "Tournament": "Strategy Battle",
         "Placement": "1st Place",

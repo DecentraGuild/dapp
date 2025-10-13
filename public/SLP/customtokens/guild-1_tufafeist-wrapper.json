@@ -4,7 +4,7 @@
   "name": "Tufa Feist Token Wrapper",
   "symbol": "TUFAFEIST-WRAP",
   "description": "Supply Tufa Feist for a fleet and keep track with it through representation token",
-  "image": "tufa feist png WIP .png",
+  "image": "tufa feist png WIP .webp",
   "type": "fleet",
   "decimals": 0,
   "circulatingSupply": 5,
@@ -23,7 +23,7 @@
   "backingAsset": {
     "resourceID": "tufafeist",
     "name": "Tufa Feist",
-    "image": "tufa feist png WIP .png",
+    "image": "tufa feist png WIP .webp",
     "type": "ship",
     "rarity": "common"
   }

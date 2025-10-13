@@ -3,7 +3,7 @@
   "guildID": "guild-1",
   "name": "Monthly token-2 Staking Rewards",
   "description": "Monthly staking rewards for token-2 holders based on their holding amount",
-  "image": "logo-polis.png",
+  "image": "logo-polis.webp",
   "resourceID": "token2",
   "type": "token",
   "period": "monthly",

@@ -4,7 +4,7 @@
   "name": "Rainbow Chi Tokenised",
   "symbol": "RAINBOWCHI-WRAP",
   "description": "Tokenized version of Rainbow Chi ship. Collect 150 tokens to redeem for a full ship",
-  "image": "Rainbow_Chi_Showroom.png",
+  "image": "Rainbow_Chi_Showroom.webp",
   "type": "tokenised",
   "decimals": 0,
   "circulatingSupply": 300,
@@ -23,7 +23,7 @@
   "backingAsset": {
     "resourceID": "rainbowchi",
     "name": "Rainbow Chi",
-    "image": "Rainbow_Chi_Showroom.png",
+    "image": "Rainbow_Chi_Showroom.webp",
     "type": "ship",
     "rarity": "epic"
   }

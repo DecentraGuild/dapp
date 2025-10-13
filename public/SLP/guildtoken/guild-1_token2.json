@@ -4,7 +4,7 @@
   "name": "Castle Gem",
   "symbol": "CGM",
   "description": "Rare gem tokens used for special guild events and premium features",
-  "image": "/SLP/guildassets/cgm.png",
+  "image": "/SLP/guildassets/cgm.webp",
   "decimals": 18,
   "circulatingSupply": 50000,
   "maxSupply": 100000,

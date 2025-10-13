@@ -4,7 +4,7 @@
   "name": "Cyber Castle Coin",
   "symbol": "CCC",
   "description": "The primary currency of Cyber Castle Guild, earned through quests and achievements",
-  "image": "/SLP/guildassets/ccc.png",
+  "image": "/SLP/guildassets/ccc.webp",
   "decimals": 18,
   "circulatingSupply": 10000,
   "assetbacking": "ATLAS",

@@ -4,7 +4,7 @@
   "name": "Pearce C9 Tokenised",
   "symbol": "C9-Tokenised",
   "description": "Tokenized version of C9 ship. Collect 5000 tokens to redeem for a full ship",
-  "image": "Pearce C9 capital ship.png",
+  "image": "Pearce C9 capital ship.webp",
   "type": "tokenised",
   "decimals": 0,
   "circulatingSupply": 10000,
@@ -23,7 +23,7 @@
   "backingAsset": {
     "resourceID": "pearcec9",
     "name": "Pearce C9",
-    "image": "Pearce C9 capital ship.png",
+    "image": "Pearce C9 capital ship.webp",
     "type": "ship",
     "rarity": "legendary"
   }

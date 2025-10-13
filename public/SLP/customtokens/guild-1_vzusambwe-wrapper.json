@@ -4,7 +4,7 @@
   "name": "VZUS Ambwe Token Wrapper",
   "symbol": "VZUSAMBWE-WRAP",
   "description": "Supply VZUS Ambwe for a fleet and keep track with it through representation token",
-  "image": "VZUS  ambwe.png",
+  "image": "VZUS  ambwe.webp",
   "type": "fleet",
   "decimals": 0,
   "circulatingSupply": 8,
@@ -23,7 +23,7 @@
   "backingAsset": {
     "resourceID": "vzusambwe",
     "name": "VZUS Ambwe",
-    "image": "VZUS  ambwe.png",
+    "image": "VZUS  ambwe.webp",
     "type": "ship",
     "rarity": "uncommon"
   }

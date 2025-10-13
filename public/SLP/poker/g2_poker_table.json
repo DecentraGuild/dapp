@@ -8,7 +8,7 @@
   "minEntry": 1000,
   "maxEntry": 10000,
   "tokenID": "g2-token1",
-  "themeImage": "poker.png",
+  "themeImage": "poker.webp",
   "maxPlayers": 6,
   "gameType": "Texas Hold'em",
   "isActive": true,

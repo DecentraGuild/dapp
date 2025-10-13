@@ -4,7 +4,7 @@
   "name": "Cyber Castle Contribution Score",
   "symbol": "CCCS",
   "description": "Contribution score token for Cyber Castle Guild members, earned through participation, quests, and guild activities",
-  "image": "/SLP/guildassets/cex.png",
+  "image": "/SLP/guildassets/cex.webp",
   "color": "#00FFFF",
   "decimals": 0,
   "circulatingSupply": 0,

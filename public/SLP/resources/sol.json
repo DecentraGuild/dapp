@@ -3,7 +3,7 @@
   "name": "Solana",
   "symbol": "SOL",
   "description": "Native token of the Solana blockchain, used for transaction fees and staking",
-  "image": "/SLP/resources/logo-solana.png",
+  "image": "/SLP/resources/logo-solana.webp",
   "type": "cryptocurrency",
   "rarity": "common",
   "blockchain": "Solana",

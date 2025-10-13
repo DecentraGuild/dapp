@@ -3,7 +3,7 @@
   "guildID": "guild-1",
   "name": "Opal Jet",
   "description": "A sleek and fast reconnaissance aircraft",
-  "image": "Opaljet.jpg",
+  "image": "Opaljet.webp",
   "type": "aircraft",
   "rarity": "Free",
   "depositRequired": 300,

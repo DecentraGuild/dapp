@@ -4,7 +4,7 @@
   "name": "Rainbow Om Token Wrapper",
   "symbol": "RAINBOWOM-WRAP",
   "description": "Tokenized version of Rainbow Om ship. Collect 200 tokens to redeem for a full ship",
-  "image": "Rainbow_Om_Showroom.png",
+  "image": "Rainbow_Om_Showroom.webp",
   "type": "tokenised",
   "decimals": 0,
   "circulatingSupply": 100,
@@ -23,7 +23,7 @@
   "backingAsset": {
     "resourceID": "rainbowom",
     "name": "Rainbow Om",
-    "image": "Rainbow_Om_Showroom.png",
+    "image": "Rainbow_Om_Showroom.webp",
     "type": "ship",
     "rarity": "legendary"
   }

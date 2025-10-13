@@ -3,7 +3,7 @@
   "name": "Cyber Nitro",
   "symbol": "NITRO",
   "description": "High-performance spaceship with enhanced speed and maneuverability",
-  "image": "nitro.png",
+  "image": "nitro.webp",
   "type": "spaceship",
   "rarity": "rare",
   "circulatingSupply": 50000,

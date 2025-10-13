@@ -3,7 +3,7 @@
   "name": "Star Atlas ATLAS",
   "symbol": "ATLAS",
   "description": "Primary utility token of the Star Atlas metaverse, used for in-game transactions and governance",
-  "image": "/SLP/resources/logo-atlas.png",
+  "image": "/SLP/resources/logo-atlas.webp",
   "type": "gaming_token",
   "rarity": "uncommon",
   "blockchain": "Solana",

@@ -3,7 +3,7 @@
   "name": "Star Atlas POLIS",
   "symbol": "POLIS",
   "description": "Governance token of the Star Atlas metaverse, used for DAO voting and staking",
-  "image": "/SLP/resources/logo-polis.png",
+  "image": "/SLP/resources/logo-polis.webp",
   "type": "governance_token",
   "rarity": "rare",
   "blockchain": "Solana",

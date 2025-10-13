@@ -3,7 +3,7 @@
   "guildID": "guild-1",
   "name": "Max Hog",
   "description": "A heavy-duty combat vehicle for ground operations",
-  "image": "maxhog.jpg",
+  "image": "maxhog.webp",
   "type": "vehicle",
   "rarity": "Free",
   "depositRequired": 500,

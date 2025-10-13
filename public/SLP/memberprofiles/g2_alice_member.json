@@ -4,7 +4,7 @@
   "guild": "guild-2",
   "role": "g2-r2",
   "username": "Alice",
-  "avatar": "avatar1.png",
+  "avatar": "avatar1.webp",
   "email": "alice@example.com",
   "notification": [true, true, true],
   "lastActive": "2024-01-15T12:00:00Z",

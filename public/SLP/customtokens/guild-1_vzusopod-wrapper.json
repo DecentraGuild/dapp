@@ -4,7 +4,7 @@
   "name": "VZUS Opod Token Wrapper",
   "symbol": "VZUSOPOD-WRAP",
   "description": "Supply VZUS Opod for a fleet and keep track with it through representation token",
-  "image": "vzus opod png.png",
+  "image": "vzus opod png.webp",
   "type": "fleet",
   "decimals": 0,
   "circulatingSupply": 10,
@@ -23,7 +23,7 @@
   "backingAsset": {
     "resourceID": "vzusopod",
     "name": "VZUS Opod",
-    "image": "vzus opod png.png",
+    "image": "vzus opod png.webp",
     "type": "ship",
     "rarity": "epic"
   }
