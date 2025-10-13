@@ -156,7 +156,7 @@ import BaseFoundry from '@/components/BaseFoundry.vue'
 import { BaseCard, BaseButton, BaseListGrid } from '@/components/base'
 import BaseSidebar from '@/components/base/BaseSidebar.vue'
 import { useSkinTheme } from '@/composables/useSkinTheme'
-import { getSlpPath } from '@/utils/api'
+import { getSlpPath, loadMultipleSlpData } from '@/utils/api'
 import type { SidebarItem } from '@/components/base/BaseSidebar'
 
 // Types
@@ -271,15 +271,10 @@ const loadCollections = async () => {
       'collection-access-tickets.json'
     ]
     
-    const loadedCollections: NFTCollection[] = []
-    
-    for (const file of collectionFiles) {
-      const response = await fetch(getSlpPath(`nftcollections/${file}`))
-      if (response.ok) {
-        const collection = await response.json()
-        loadedCollections.push(collection)
-      }
-    }
+    // Load all collections in parallel
+    const loadedCollections = await loadMultipleSlpData<NFTCollection>(
+      collectionFiles.map(file => `nftcollections/${file}`)
+    )
     
     collections.value = loadedCollections
     
@@ -306,11 +301,11 @@ const getCollectionIcon = (type: string): string => {
 const getCollectionImage = (collection: NFTCollection): string => {
   // Use appropriate collection images based on type
   if (collection.type === 'achievement') {
-    return getSlpPath('nfts/achievement (1).png')
+    return getSlpPath('nfts/achievement (1).webp')
   } else if (collection.type === 'trophy') {
-    return getSlpPath('nfts/Trophy (1).png')
+    return getSlpPath('nfts/Trophy (1).webp')
   } else {
-    return getSlpPath('nfts/avatar1.png')
+    return getSlpPath('nfts/avatar1.webp')
   }
 }
 
@@ -321,7 +316,7 @@ const getNFTImage = (nft: any): string => {
   }
   
   // Fallback to avatar images if no image specified
-  const avatarImages = ['avatar1.png', 'avatar2.png', 'avatar3.png', 'avatar4.png', 'avatar5.png']
+  const avatarImages = ['avatar1.webp', 'avatar2.webp', 'avatar3.webp', 'avatar4.webp', 'avatar5.webp']
   const imageIndex = (nft.tokenId - 1) % avatarImages.length
   return getSlpPath(`nfts/${avatarImages[imageIndex]}`)
 }

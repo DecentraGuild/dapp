@@ -90,7 +90,7 @@ const getRaffleImage = (raffle: Raffle) => {
   }
   
   // Fallback to default image
-  return getSlpPath('nfts/nft-legendary-ship.png')
+  return getSlpPath('nfts/nft-legendary-ship.webp')
 }
 
 const handleBuyTickets = (purchase: { raffleId: string; quantity: number; totalCost: number }) => {

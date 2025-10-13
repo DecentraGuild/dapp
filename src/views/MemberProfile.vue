@@ -41,7 +41,7 @@
         <div class="profile-header">
           <div class="avatar-container">
             <img 
-              :src="memberData.avatar || '/default-avatar.png'" 
+              :src="memberData.avatar || '/SLP/guildassets/dguild-logo.webp'" 
               :alt="memberData.name"
               class="member-avatar"
             />
@@ -251,7 +251,7 @@ const memberData = computed(() => ({
     year: 'numeric', 
     month: 'long' 
   }) : '',
-  avatar: memberStore.memberAvatar ? getSlpPath(`nfts/${memberStore.memberAvatar}`) : '/default-avatar.png',
+  avatar: memberStore.memberAvatar ? getSlpPath(`nfts/${memberStore.memberAvatar}`) : '/SLP/guildassets/dguild-logo.webp',
   contributionPoints: memberStore.memberContributionScore,
   nextLevelPoints: 1000, // This could be calculated based on level
   bio: memberStore.memberBio
