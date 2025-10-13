@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { getSlpPath, loadMultipleSlpData } from '@/utils/api'
+import { getSlpPath, loadMultipleSlpData, loadSlpData } from '@/utils/api'
 import { useGuildStore } from './guildStore'
 
 export interface ThemeData {
@@ -166,30 +166,40 @@ export const useThemeStore = defineStore('theme', () => {
       isLoading.value = true
       error.value = null
       
-      // Find theme in available themes
+      // Find theme in available themes (already loaded)
       let theme = availableThemes.value.find(t => t.id === themeId)
       
       if (!theme) {
-        // Try to load theme directly from file - handle both castle and spaceship themes
-        let fileName = `skin_castle_${themeId}.json`
-        if (themeId.includes('spaceship')) {
-          fileName = `skin_spaceship_${themeId}.json`
+        // Load available themes first if not loaded
+        if (!isThemesLoaded.value) {
+          await loadAvailableThemes()
+          theme = availableThemes.value.find(t => t.id === themeId)
         }
         
-        const response = await fetch(getSlpPath(`skin/${fileName}`))
-        if (response.ok) {
-          theme = await response.json()
-          // Process hardcoded paths in theme data
-          if (theme) {
-            theme.images = theme.images.map((img: string) => 
-              img.startsWith('/SLP/') ? getSlpPath(img.replace('/SLP/', '')) : img
-            )
-            theme.svgFile = theme.svgFile.startsWith('/SLP/') 
-              ? getSlpPath(theme.svgFile.replace('/SLP/', '')) 
-              : theme.svgFile
+        // If still not found, try to load directly
+        if (!theme) {
+          let fileName = `skin_castle_${themeId}.json`
+          if (themeId.includes('spaceship') || themeId.includes('spacebase')) {
+            fileName = `skin_spacebase_${themeId}.json`
           }
-        } else {
-          throw new Error('Theme not found')
+          
+          // Use cached loader instead of direct fetch
+          const themeData = await loadSlpData<ThemeData>(`skin/${fileName}`)
+          
+          if (themeData) {
+            // Process hardcoded paths in theme data
+            theme = {
+              ...themeData,
+              images: themeData.images.map((img: string) => 
+                img.startsWith('/SLP/') ? getSlpPath(img.replace('/SLP/', '')) : img
+              ),
+              svgFile: themeData.svgFile.startsWith('/SLP/') 
+                ? getSlpPath(themeData.svgFile.replace('/SLP/', '')) 
+                : themeData.svgFile
+            }
+          } else {
+            throw new Error('Theme not found')
+          }
         }
       }
       

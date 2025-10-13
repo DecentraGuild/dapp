@@ -1,0 +1,19 @@
+# Cache headers for better performance on Netlify/other platforms
+# (GitHub Pages doesn't support this file, but good to have for future migrations)
+
+# Cache SLP assets for 1 hour (they rarely change)
+/SLP/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Cache built assets forever (they have content hashes)
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Don't cache HTML (always get latest)
+/*.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# Cache service worker for short time
+/service-worker.js
+  Cache-Control: public, max-age=0, must-revalidate
+

@@ -1,29 +1,31 @@
 // Service Worker for dGuild dApp
-// Caches SLP assets, JS, CSS for better performance
+// Lightweight caching for better performance
 
-const CACHE_VERSION = 'dguild-v1.0.0'
+const CACHE_VERSION = 'dguild-v1.0.1'
 const CACHE_NAME = `dguild-cache-${CACHE_VERSION}`
 
-// Assets to cache on install
+// Assets to cache on install (minimal - just index)
 const PRECACHE_ASSETS = [
-  '/',
   '/index.html'
 ]
 
-// Cache strategy: Network first, fallback to cache
+// Cache strategy: Network first with cache fallback
 const NETWORK_FIRST_URLS = [
-  '/SLP/' // All SLP JSON and image assets
+  '/SLP/', // All SLP JSON and image assets
+  '.json'
 ]
 
-// Cache strategy: Cache first, fallback to network
+// Cache strategy: Cache first for static built assets only
 const CACHE_FIRST_URLS = [
-  '/assets/', // All built JS/CSS assets
-  '.js',
-  '.css',
-  '.png',
-  '.jpg',
-  '.svg',
-  '.webp'
+  '/assets/', // Only built JS/CSS assets from Vite
+]
+
+// Skip caching for these (let browser handle)
+const NO_CACHE_URLS = [
+  'chrome-extension',
+  'hot-update',
+  '/__vite',
+  '/node_modules'
 ]
 
 // Install event - precache essential assets
@@ -72,19 +74,26 @@ self.addEventListener('fetch', (event) => {
     return
   }
 
+  // Skip URLs that shouldn't be cached
+  if (NO_CACHE_URLS.some(pattern => url.href.includes(pattern))) {
+    return
+  }
+
   // Determine caching strategy based on URL
   const isCacheFirst = CACHE_FIRST_URLS.some(pattern => url.pathname.includes(pattern))
-  const isNetworkFirst = NETWORK_FIRST_URLS.some(pattern => url.pathname.includes(pattern))
+  const isNetworkFirst = NETWORK_FIRST_URLS.some(pattern => 
+    url.pathname.includes(pattern) || url.pathname.endsWith('.json')
+  )
 
   if (isCacheFirst) {
-    // Cache first strategy (for static assets)
+    // Cache first strategy (for static built assets only)
     event.respondWith(cacheFirstStrategy(request))
   } else if (isNetworkFirst) {
-    // Network first strategy (for SLP data)
+    // Network first strategy (for dynamic SLP data)
     event.respondWith(networkFirstStrategy(request))
   } else {
-    // Default: Network only
-    event.respondWith(fetch(request))
+    // Default: Network only (no caching for other resources)
+    return
   }
 })
 

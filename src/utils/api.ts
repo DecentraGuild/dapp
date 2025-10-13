@@ -117,17 +117,25 @@ export async function loadSlpData<T = any>(path: string): Promise<T | null> {
 }
 
 /**
- * Load multiple SLP files in parallel for better performance
+ * Load multiple SLP files in parallel with concurrency control
+ * Uses batching to prevent overwhelming GitHub Pages with too many simultaneous requests
  */
-export async function loadMultipleSlpData<T = any>(paths: string[]): Promise<T[]> {
-  const promises = paths.map(path => loadSlpData<T>(path))
-  const results = await Promise.allSettled(promises)
-  
+export async function loadMultipleSlpData<T = any>(
+  paths: string[], 
+  batchSize: number = 6 // GitHub Pages works best with 4-6 concurrent requests
+): Promise<T[]> {
   const loadedData: T[] = []
   
-  for (const result of results) {
-    if (result.status === 'fulfilled' && result.value !== null) {
-      loadedData.push(result.value)
+  // Process in batches to avoid overwhelming the server
+  for (let i = 0; i < paths.length; i += batchSize) {
+    const batch = paths.slice(i, i + batchSize)
+    const promises = batch.map(path => loadSlpData<T>(path))
+    const results = await Promise.allSettled(promises)
+    
+    for (const result of results) {
+      if (result.status === 'fulfilled' && result.value !== null) {
+        loadedData.push(result.value)
+      }
     }
   }
   
