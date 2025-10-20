@@ -245,7 +245,30 @@ interface Props {
   pokerEvent: PokerEvent
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  pokerEvent: () => ({
+    eventID: '',
+    guildID: '',
+    title: '',
+    description: '',
+    eventType: '',
+    status: '',
+    startingTime: '',
+    lateRegTime: '',
+    entryFee: 0,
+    entryCurrency: '',
+    startChips: 0,
+    pricePercent: 0,
+    bountyPercent: 0,
+    rakePercent: 0,
+    blindsTime: 0,
+    minRole: '',
+    maxParticipants: 0,
+    createdBy: '',
+    createdAt: '',
+    isActive: false
+  })
+})
 
 const { getPrimaryColor, getSecondaryColor, getTextColor } = useSkinTheme()
 

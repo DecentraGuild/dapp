@@ -2,7 +2,7 @@
   <div class="base-quest-board">
     <!-- Primary Card with Title and Navigation -->
     <BaseCard 
-      :title="QUEST_BOARD_TITLE" 
+      :title="questBoardTitle" 
       variant="primary" 
       size="lg"
       class="quest-board-header-card"
@@ -100,7 +100,7 @@ import type { Quest } from '@/constants/quest'
 
 // Constants
 const QUEST_BOARD_TITLE = 'Quest Board'
-const DEFAULT_TAB = QUEST_TABS.INGAME
+const DEFAULT_TAB = QUEST_TABS.SOLO
 
 // Composables
 const router = useRouter()
@@ -115,6 +115,11 @@ const questDetailsRef = ref<HTMLElement | null>(null)
 
 // Computed properties
 const currentTab = computed(() => questStore.currentTabInfo)
+
+// Dynamic title based on current tab
+const questBoardTitle = computed(() => {
+  return currentTab.value?.title || QUEST_BOARD_TITLE
+})
 
 // Filtered quests by status
 const questsByStatus = computed(() => {
@@ -148,8 +153,14 @@ const handleTabClick = (tabId: string) => {
 }
 
 const updateTabFromRoute = (path: string) => {
-  if (path === '/quest/game') {
-    questStore.setCurrentTab(QUEST_TABS.INGAME)
+  if (path === '/quest/solo') {
+    questStore.setCurrentTab(QUEST_TABS.SOLO)
+    // Scroll to top after content loads
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
+  } else if (path === '/quest/group') {
+    questStore.setCurrentTab(QUEST_TABS.GROUP)
     // Scroll to top after content loads
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -201,7 +212,6 @@ const handleQuestClick = async (quest: Quest) => {
 }
 
 const handleQuestAction = (quest: Quest, action: string) => {
-  console.log(`Quest action: ${action} for quest ${quest.questID}`)
   // TODO: Implement quest actions based on action type
   switch (action) {
     case 'sign_up':
@@ -220,10 +230,13 @@ const handleQuestAction = (quest: Quest, action: string) => {
       // TODO: Implement reward claiming
       break
   }
+  
+  // Close quest details after any action to force category navigation
+  selectedQuest.value = null
 }
 
 const scrollToQuestDetails = () => {
-  if (questDetailsRef.value) {
+  if (questDetailsRef.value && typeof questDetailsRef.value.scrollIntoView === 'function') {
     questDetailsRef.value.scrollIntoView({ 
       behavior: 'smooth', 
       block: 'start' 

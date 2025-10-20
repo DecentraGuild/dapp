@@ -55,8 +55,8 @@
         >
           <Icon icon="mdi:coin" class="token-button-icon" />
           <div class="token-button-content">
-            <span class="token-button-title">{{ daoSettings?.daoStructure?.token1DAO?.tokenSymbol || 'CCC' }} Token</span>
-            <span class="token-button-subtitle">{{ daoSettings?.daoStructure?.token1DAO?.name || 'Cyber Castle Coin DAO' }}</span>
+            <span class="token-button-title">{{ daoSettings?.daoStructure?.token1DAO?.tokenSymbol || guildStore.token1Symbol }} Token</span>
+            <span class="token-button-subtitle">{{ daoSettings?.daoStructure?.token1DAO?.name || guildStore.token1Name + ' DAO' }}</span>
           </div>
         </button>
         
@@ -68,8 +68,8 @@
         >
           <Icon icon="mdi:diamond-stone" class="token-button-icon" />
           <div class="token-button-content">
-            <span class="token-button-title">{{ daoSettings?.daoStructure?.token2DAO?.tokenSymbol || 'CGM' }} Token</span>
-            <span class="token-button-subtitle">{{ daoSettings?.daoStructure?.token2DAO?.name || 'Castle Gem DAO' }}</span>
+            <span class="token-button-title">{{ daoSettings?.daoStructure?.token2DAO?.tokenSymbol || guildStore.token2Symbol }} Token</span>
+            <span class="token-button-subtitle">{{ daoSettings?.daoStructure?.token2DAO?.name || guildStore.token2Name + ' DAO' }}</span>
           </div>
         </button>
       </div>
@@ -93,7 +93,12 @@
             v-for="vote in filteredVotes" 
             :key="vote.voteID"
             class="vote-item"
-            :class="{ 'vote-expanded': expandedVote === vote.voteID }"
+              :class="{ 
+              'vote-expanded': expandedVote === vote.voteID,
+              'vote-active': vote.status === 'active',
+              'vote-passed': vote.status === 'completed' && vote.result === 'passed',
+              'vote-cancelled': vote.status === 'cancelled'
+            }"
           >
             <!-- Main Vote Row -->
             <div 
@@ -212,7 +217,7 @@
                     <Icon icon="mdi:coin" class="token-icon" />
                     <div class="dao-info">
                       <h4 class="dao-name">{{ daoSettings?.daoStructure?.token1DAO?.name || 'Token 1 DAO' }}</h4>
-                      <p class="dao-symbol">{{ daoSettings?.daoStructure?.token1DAO?.tokenSymbol || 'CCC' }}</p>
+                      <p class="dao-symbol">{{ daoSettings?.daoStructure?.token1DAO?.tokenSymbol || guildStore.token1Symbol }}</p>
                     </div>
                     <div class="dao-weight" v-if="vote.votetype === 'combined'">
                       {{ Math.round((vote.token1Weight || 0.6) * 100) }}%
@@ -265,11 +270,11 @@
                     <div class="user-token-status">
                       <div class="token-status-item">
                         <span class="status-label">Voted:</span>
-                        <span class="status-value">{{ getUserToken1Voted() }} CCC</span>
+                        <span class="status-value">{{ getUserToken1Voted() }} {{ guildStore.token1Symbol }}</span>
                       </div>
                       <div class="token-status-item">
                         <span class="status-label">Unvoted:</span>
-                        <span class="status-value">{{ getUserToken1Unvoted() }} CCC</span>
+                        <span class="status-value">{{ getUserToken1Unvoted() }} {{ guildStore.token1Symbol }}</span>
                       </div>
                     </div>
 
@@ -324,6 +329,7 @@
                         class="vote-button vote-yes"
                         @click="handleVote(vote, 'token-1', 'yes')"
                         :disabled="isVoting"
+                        :data-tutorial="vote.voteID === 'g1_vote_014' ? 'vote-yes-skin' : undefined"
                       >
                         <Icon icon="mdi:thumb-up" class="vote-icon" />
                         Vote Yes
@@ -356,7 +362,7 @@
                     <Icon icon="mdi:diamond-stone" class="token-icon" />
                     <div class="dao-info">
                       <h4 class="dao-name">{{ daoSettings?.daoStructure?.token2DAO?.name || 'Token 2 DAO' }}</h4>
-                      <p class="dao-symbol">{{ daoSettings?.daoStructure?.token2DAO?.tokenSymbol || 'CGM' }}</p>
+                      <p class="dao-symbol">{{ daoSettings?.daoStructure?.token2DAO?.tokenSymbol || guildStore.token2Symbol }}</p>
                     </div>
                     <div class="dao-weight" v-if="vote.votetype === 'combined'">
                       {{ Math.round((vote.token2Weight || 0.4) * 100) }}%
@@ -409,11 +415,11 @@
                     <div class="user-token-status">
                       <div class="token-status-item">
                         <span class="status-label">Voted:</span>
-                        <span class="status-value">{{ getUserToken2Voted() }} CGM</span>
+                        <span class="status-value">{{ getUserToken2Voted() }} {{ guildStore.token2Symbol }}</span>
                       </div>
                       <div class="token-status-item">
                         <span class="status-label">Unvoted:</span>
-                        <span class="status-value">{{ getUserToken2Unvoted() }} CGM</span>
+                        <span class="status-value">{{ getUserToken2Unvoted() }} {{ guildStore.token2Symbol }}</span>
                       </div>
                     </div>
 
@@ -513,6 +519,7 @@ import { BaseCard } from '@/components/base'
 import BaseSidebar from '@/components/base/BaseSidebar.vue'
 import { useSkinTheme } from '@/composables/useSkinTheme'
 import { useThemeStore } from '@/stores/themeStore'
+import { useGuildStore } from '@/stores/guildStore'
 import { getSlpPath } from '@/utils/api'
 
 // Types
@@ -592,6 +599,7 @@ interface DAOSettings {
 // Composables
 const { getPrimaryColor, getSecondaryColor, getTextColor, getBorderRadius } = useSkinTheme()
 const themeStore = useThemeStore()
+const guildStore = useGuildStore()
 
 // State
 const votes = ref<Vote[]>([])
@@ -603,10 +611,10 @@ const showToken2 = ref<boolean>(true)
 const isVoting = ref<boolean>(false)
 
 // Mock user token balances (in real app, would come from wallet/API)
-const userToken1Balance = ref<number>(1500) // CCC tokens
-const userToken2Balance = ref<number>(250)  // CGM tokens
-const userToken1Voted = ref<number>(500)    // Already voted CCC tokens
-const userToken2Voted = ref<number>(100)    // Already voted CGM tokens
+const userToken1Balance = ref<number>(1500) // Token1 tokens
+const userToken2Balance = ref<number>(250)  // Token2 tokens
+const userToken1Voted = ref<number>(500)    // Already voted Token1 tokens
+const userToken2Voted = ref<number>(100)    // Already voted Token2 tokens
 
 // Sidebar items for status filtering
 const sidebarItems = computed(() => [
@@ -680,17 +688,9 @@ const filteredVotes = computed(() => {
 // Get secondary color 3 (index 2) for active state - same as sidebar
 const getSecondaryColor3 = () => getSecondaryColor(2)
 
-// Get DAO color based on vote type - simplified
-const getDaoColor = (voteType: string) => {
-  const colors = {
-    'token-1': themeStore.guildColors.token1Color,
-    'token-2': themeStore.guildColors.token2Color,
-    'combined': themeStore.guildColors.contributionColor
-  }
-  return colors[voteType as keyof typeof colors] || getSecondaryColor(0)
-}
+// Removed getDaoColor (unused)
 
-// Computed styles for token filter buttons - simplified
+// Computed styles for token filter buttons
 const tokenFilterStyles = computed(() => ({
   '--primary-color-0': getPrimaryColor(0),
   '--primary-color-1': getPrimaryColor(1),
@@ -724,7 +724,8 @@ const loadVotes = async () => {
       'g1_vote_010_token2.json',
       'g1_vote_011_combined.json',
       'g1_vote_012_token1.json',
-      'g1_vote_013_combined.json'
+      'g1_vote_013_combined.json',
+      'g1_vote_014_skin_purchase.json'
     ]
 
     const votePromises = voteFiles.map(async (filename) => {
@@ -743,8 +744,15 @@ const loadVotes = async () => {
     const loadedVotes = await Promise.all(votePromises)
     votes.value = loadedVotes.filter(vote => vote !== null)
     
-    // Sort by voting start date (newest first)
-    votes.value.sort((a, b) => new Date(b.votingStarts).getTime() - new Date(a.votingStarts).getTime())
+    // Sort by status (active first), then by voting start date (newest first)
+    votes.value.sort((a, b) => {
+      // Active votes first
+      if (a.isActive && !b.isActive) return -1
+      if (!a.isActive && b.isActive) return 1
+      
+      // If both have same active status, sort by date (newest first)
+      return new Date(b.votingStarts).getTime() - new Date(a.votingStarts).getTime()
+    })
   } catch (error) {
     // Handle error silently in production
     // Could implement proper error handling/notification system here
@@ -789,8 +797,8 @@ const getFilterTitle = () => {
 const getVoteTypeLabel = (votetype: string) => {
   switch (votetype) {
     case 'combined': return 'Combined'
-    case 'token-1': return 'CCC Only'
-    case 'token-2': return 'CGM Only'
+    case 'token-1': return `${guildStore.token1Symbol} Only`
+    case 'token-2': return `${guildStore.token2Symbol} Only`
     default: return votetype
   }
 }
@@ -953,7 +961,7 @@ const handleVote = async (vote: Vote, tokenType: 'token-1' | 'token-2', voteChoi
     await new Promise(resolve => setTimeout(resolve, 1000))
     
     // For demo purposes, just show an alert
-    const tokenSymbol = tokenType === 'token-1' ? 'CCC' : 'CGM'
+    const tokenSymbol = tokenType === 'token-1' ? guildStore.token1Symbol : guildStore.token2Symbol
     const unvoted = tokenType === 'token-1' ? getUserToken1Unvoted() : getUserToken2Unvoted()
     
     // TODO: Show success notification
@@ -964,6 +972,16 @@ const handleVote = async (vote: Vote, tokenType: 'token-1' | 'token-2', voteChoi
       userToken1Voted.value = userToken1Balance.value
     } else {
       userToken2Voted.value = userToken2Balance.value
+    }
+    
+    // Auto-advance tutorial if this is the skin purchase vote and user voted yes
+    if (vote.voteID === 'g1_vote_014' && voteChoice === 'yes') {
+      import('@/stores/tutorialStore').then(({ useTutorialStore }) => {
+        const tutorialStore = useTutorialStore()
+        if (tutorialStore.isActive) {
+          tutorialStore.handleButtonAction('vote-yes-skin')
+        }
+      })
     }
     
   } catch (error) {
@@ -1238,6 +1256,58 @@ onMounted(async () => {
   box-shadow: var(--shadow-md);
 }
 
+/* Active vote styling - highlighted with accent color */
+.vote-active {
+  border-color: var(--color-success);
+  background: linear-gradient(135deg, var(--primary-color-0) 0%, rgba(34, 197, 94, 0.05) 100%);
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.2), var(--shadow-sm);
+}
+
+.vote-active:hover {
+  border-color: var(--color-success);
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.3), var(--shadow-md);
+}
+
+.vote-active .vote-main-row:hover {
+  background: rgba(34, 197, 94, 0.08);
+}
+
+/* Passed vote styling - faded appearance */
+.vote-passed {
+  opacity: 0.6;
+  background: var(--primary-color-1);
+  border-color: var(--secondary-color-1);
+  filter: grayscale(0.1);
+}
+
+.vote-passed:hover {
+  opacity: 0.8;
+  border-color: var(--secondary-color-0);
+  filter: grayscale(0);
+}
+
+.vote-passed .vote-main-row:hover {
+  background: var(--primary-color-2);
+}
+
+/* Cancelled vote styling - muted appearance */
+.vote-cancelled {
+  opacity: 0.5;
+  background: var(--primary-color-1);
+  border-color: var(--color-error-light);
+  filter: grayscale(0.3);
+}
+
+.vote-cancelled:hover {
+  opacity: 0.7;
+  border-color: var(--color-error);
+  filter: grayscale(0.1);
+}
+
+.vote-cancelled .vote-main-row:hover {
+  background: rgba(239, 68, 68, 0.05);
+}
+
 .vote-main-row {
   display: flex;
   align-items: flex-start;
@@ -1322,6 +1392,8 @@ onMounted(async () => {
 .status-active {
   background: var(--color-success-light);
   color: var(--color-success);
+  font-weight: var(--font-semibold);
+  animation: pulse-glow 2s ease-in-out infinite;
 }
 
 .status-completed {
@@ -1332,6 +1404,16 @@ onMounted(async () => {
 .status-cancelled {
   background: var(--color-error-light);
   color: var(--color-error);
+}
+
+/* Pulse animation for active status badge */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+  }
 }
 
 .vote-description {

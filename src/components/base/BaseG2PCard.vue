@@ -4,44 +4,46 @@
     :style="cardStyles"
     @click="handleClick"
   >
-    <!-- Trade Type Badge -->
-    <div class="trade-type-badge" :class="`badge-${tradeType}`">
-      {{ tradeType.toUpperCase() }}
-    </div>
-
-    <!-- Trade Pair -->
-    <div class="trade-pair">
-      {{ tradePair }}
-    </div>
-
-    <!-- Item Image and Details -->
-    <div class="item-section">
-      <div class="item-image-container">
-        <img 
-          :src="itemImage" 
-          :alt="itemName"
-          class="item-image"
-        />
+    <!-- Trade Header -->
+    <div class="trade-header">
+      <div class="trade-type-badge" :class="`badge-${tradeType}`">
+        {{ tradeType.toUpperCase() }}
       </div>
-      <div class="item-details">
+      <div class="trade-pair">
+        {{ tradePair }}
+      </div>
+    </div>
+
+    <!-- Item Image -->
+    <div class="item-image-container">
+      <img 
+        :src="itemImage" 
+        :alt="itemName"
+        class="item-image"
+      />
+    </div>
+
+    <!-- Item Content -->
+    <div class="item-content">
+      <div class="item-info">
         <h3 class="item-name">{{ itemName }}</h3>
         <p class="item-id">{{ itemId }}</p>
       </div>
-    </div>
 
-    <!-- Trade Details -->
-    <div class="trade-details">
-      <div class="detail-row">
-        <span class="detail-label">Amount:</span>
-        <span class="detail-value">{{ itemAmount }}</span>
-      </div>
-      <div class="detail-row">
-        <span class="detail-label">Unit Price:</span>
-        <span class="detail-value">{{ unitPrice }} {{ currencyToken }}</span>
-      </div>
-      <div class="detail-row">
-        <span class="detail-label">Total:</span>
-        <span class="detail-value">{{ totalPrice }} {{ currencyToken }}</span>
+      <!-- Trade Details -->
+      <div class="trade-details">
+        <div class="detail-row">
+          <span class="detail-label">Amount:</span>
+          <span class="detail-value">{{ itemAmount }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Unit Price:</span>
+          <span class="detail-value">{{ unitPrice }} {{ currencyToken }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Total:</span>
+          <span class="detail-value">{{ totalPrice }} {{ currencyToken }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -85,7 +87,8 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   size: 'md',
   hover: true,
-  clickable: true
+  clickable: true,
+  guildID: ''
 })
 
 const emit = defineEmits<{
@@ -207,13 +210,16 @@ const handleClick = () => {
 <style scoped>
 .base-g2p-card {
   position: relative;
-  background: var(--primary-color-0);
+  background: var(--primary-color-1);
   border: var(--border-width-thin) solid var(--secondary-color-2);
   border-radius: var(--theme-radius);
   padding: var(--padding);
   transition: all var(--transition-normal);
   cursor: pointer;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .card-buy {
@@ -241,16 +247,26 @@ const handleClick = () => {
   box-shadow: var(--shadow-lg);
 }
 
-/* Trade Type Badge */
+/* Trade Header */
+.trade-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--primary-color-2);
+  border-bottom: var(--component-border-width) solid var(--secondary-color-2);
+}
+
 .trade-type-badge {
-  position: absolute;
-  top: var(--space-sm);
-  left: var(--space-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
   padding: var(--space-xs) var(--space-sm);
-  color: white;
-  font-size: var(--text-xs);
-  font-weight: var(--font-bold);
+  background: var(--secondary-color-1);
   border-radius: var(--theme-radius-sm);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  color: var(--text-color-0);
   text-transform: uppercase;
   letter-spacing: var(--letter-spacing-tight);
 }
@@ -263,31 +279,18 @@ const handleClick = () => {
   background: var(--color-error);
 }
 
-/* Trade Pair */
 .trade-pair {
-  position: absolute;
-  top: var(--space-sm);
-  right: var(--space-sm);
   font-size: var(--text-sm);
   color: var(--text-color-1);
   font-weight: var(--font-medium);
 }
 
-/* Item Section */
-.item-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-sm);
-  margin: var(--space-xl) 0 var(--space-lg) 0;
-}
-
+/* Item Image */
 .item-image-container {
-  width: calc(var(--space-3xl) * 1.2);
-  height: calc(var(--space-3xl) * 1.2);
-  border-radius: 50%;
+  width: 100%;
+  height: var(--state-height-loading);
   overflow: hidden;
-  border: var(--border-width-medium) solid var(--secondary-color-2);
+  border-bottom: var(--border-width-thin) solid var(--secondary-color-2);
   background: var(--primary-color-1);
 }
 
@@ -295,24 +298,42 @@ const handleClick = () => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform var(--transition-normal);
 }
 
-.item-details {
-  text-align: center;
+.base-g2p-card:hover .item-image {
+  transform: scale(1.05);
+}
+
+/* Item Content */
+.item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-md);
+  gap: var(--space-md);
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex: 1;
 }
 
 .item-name {
   font-size: var(--text-lg);
   font-weight: var(--font-bold);
   color: var(--text-color-0);
-  margin: 0 0 var(--space-xs) 0;
+  margin: 0;
+  line-height: 1.3;
 }
 
 .item-id {
-  font-size: var(--text-xs);
-  color: var(--text-color-2);
+  font-size: var(--text-sm);
+  color: var(--text-color-1);
   margin: 0;
-  font-family: monospace;
+  line-height: 1.4;
 }
 
 /* Trade Details */

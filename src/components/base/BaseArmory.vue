@@ -21,6 +21,7 @@
             :variant="currentTab?.id === tab.id ? 'accent' : 'outline'"
             :size="'md'"
             :icon="tab.icon"
+            :data-tutorial="tab.id === 'claim' ? 'armory-claim' : tab.id === 'use' ? 'armory-use' : undefined"
             @click="handleTabClick(tab.id)"
             class="armory-tab"
           >

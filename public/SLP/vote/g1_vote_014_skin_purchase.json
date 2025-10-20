@@ -1,0 +1,43 @@
+{
+  "voteID": "g1_vote_014",
+  "daoID": "g1_dao_totalvote",
+  "votetype": "combined",
+  "gid": "guild-1",
+  "title": "Custom dApp Skin Purchase",
+  "description": "Proposal to purchase a custom-made skin for the dApp at 5 SOL. This exclusive skin will give our guild a unique visual identity and enhance the user experience for all members.",
+  "proposer": "g1_eve_founder",
+  "status": "active",
+  "votingStarts": "2024-01-20T12:00:00Z",
+  "votingEnds": "2024-01-30T12:00:00Z",
+  "quorum": 2000,
+  "currentVotes": 1850,
+  "yesVotes": 1400,
+  "noVotes": 350,
+  "abstainVotes": 100,
+  "voters": ["g1_eve_founder", "g1_diana_council", "g1_charlie_officer", "g1_bob_member", "g1_alice_prospect"],
+  "isActive": true,
+  "token1Weight": 0.6,
+  "token2Weight": 0.4,
+  "token1Results": {
+    "yesVotes": 840,
+    "noVotes": 210,
+    "abstainVotes": 60
+  },
+  "token2Results": {
+    "yesVotes": 560,
+    "noVotes": 140,
+    "abstainVotes": 40
+  },
+  "proposalDetails": {
+    "cost": 5,
+    "currency": "SOL",
+    "skinName": "Spacebase Yellow",
+    "skinId": "spacebase_yellow",
+    "benefits": [
+      "Unique visual identity for the guild",
+      "Enhanced user experience",
+      "Exclusive design not available to other guilds",
+      "Professional appearance for community events"
+    ]
+  }
+}

@@ -38,15 +38,24 @@ export interface SkinTheme {
       height: number
     }
   }
+  navigationHeaders?: string[] // Theme-specific names for main navigation items (e.g., "Shield Generator" instead of "Gatekeeping")
+  headers?: string[] // Legacy/additional headers for other UI elements
+  icons?: string[] // Icon names for various UI elements
   primaryColor: string[]
   secondaryColor: string[]
   textColor: string[]
+  backgroundColor?: string
   emergencyColor?: string
   borderRadius?: {
     sm: string
     md: string
     lg: string
     xl: string
+  }
+  borderWidth?: {
+    thin: string
+    medium: string
+    thick: string
   }
   metadata: {
     rarity: string

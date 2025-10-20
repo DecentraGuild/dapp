@@ -24,7 +24,9 @@
             :snapshotEnd="claim.snapshotEnd"
             :isActive="claim.isActive"
             :userClaimAmount="getUserClaimAmount(claim)"
-            :canClaim="canUserClaim(claim)"
+            :canClaim="canUserClaim(claim) && !claimedItems.has(claim.claimID)"
+            :data-tutorial="claim.claimID === 'g1_claim_tutorial' ? 'tutorial-claim' : claim.claimID === 'g1-claim-tutorial-resources' ? 'tutorial-claim-resources' : undefined"
+            :class="{ 'claim-faded': claimedItems.has(claim.claimID) }"
             @claim="handleClaim"
           />
         </div>
@@ -39,20 +41,40 @@
       </div>
     </template>
   </BaseArmory>
+
+  <!-- Claim Success Popup -->
+  <BaseSuccessPopup
+    v-if="claimSuccessData"
+    :is-visible="showClaimSuccessPopup"
+    :title="claimSuccessData.title"
+    :message="claimSuccessData.message"
+    :details="claimSuccessData.details"
+    icon="mdi:gift"
+    button-text="Awesome!"
+    :auto-close="true"
+    :auto-close-delay="4000"
+    @close="closeClaimSuccessPopup"
+  />
 </template>
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { Icon } from '@iconify/vue'
 import { BaseCard, BaseClaim } from '@/components/base'
+import BaseSuccessPopup from '@/components/base/BaseSuccessPopup.vue'
 import BaseArmory from '@/components/base/BaseArmory.vue'
 import { useDesignTokens } from '@/composables/useDesignTokens'
 import { useGuildStore } from '@/stores/guildStore'
+import { useTutorialStore } from '@/stores/tutorialStore'
+import { useQuestStore } from '@/stores/questStore'
+import { triggerTutorialAction, TUTORIAL_ACTIONS } from '@/utils/tutorialActions'
 import { getSlpPath } from '@/utils/api'
 
 // Composables
 const { colors, spacing, typography, borderRadius } = useDesignTokens()
 const guildStore = useGuildStore()
+const tutorialStore = useTutorialStore()
+const questStore = useQuestStore()
 
 // Types
 interface ClaimItem {
@@ -62,10 +84,17 @@ interface ClaimItem {
   description: string
   image: string
   resourceID: string
-  type: 'role' | 'token'
-  period: 'daily' | 'weekly' | 'monthly' | 'onetime'
+  type: 'role' | 'token' | 'quest_completion' | 'quest_supplies'
+  period: 'daily' | 'weekly' | 'monthly' | 'onetime' | 'one_time'
   requiredRoleID?: string
   requiredTokenID?: string
+  questRequirement?: string
+  questStatusRequired?: string
+  tutorialClaim?: boolean
+  resources?: {
+    ammo?: number
+    questMaxhogToken?: number
+  }
   snapshotBegin: string
   snapshotEnd: string
   claimPeriod: {
@@ -89,6 +118,17 @@ interface ClaimItem {
 const availableClaims = ref<ClaimItem[]>([])
 const loading = ref(false)
 
+// Claim success popup state
+const showClaimSuccessPopup = ref(false)
+const claimSuccessData = ref<{
+  title: string
+  message: string
+  details: Record<string, string | number>
+} | null>(null)
+
+// Fade out state for claimed items
+const claimedItems = ref<Set<string>>(new Set())
+
 // Mock user data (in a real app, this would come from a store or API)
 const mockUserRole = ref('member')
 const mockUserTokens = ref<Record<string, number>>({
@@ -111,9 +151,11 @@ const loadAvailableClaims = async () => {
     // Load all claim files for this guild
     const claimFiles = [
       'guild-1_claim_daily_food.json',
-      'guild-1_claim_weekly_ammo.json',
+      'guild-1_claim_weekly_fuel.json',
       'guild-1_claim_monthly_token2_staking.json',
-      'guild-1_claim_onetime_pearcex4.json'
+      'guild-1_claim_onetime_pearcex4.json',
+      'guild-1_claim_tutorial_quest.json',
+      'guild-1_claim_tutorial_resources.json'
     ]
 
     const claims: ClaimItem[] = []
@@ -124,7 +166,32 @@ const loadAvailableClaims = async () => {
         
         if (response.ok) {
           const claimData = await response.json()
-          claims.push(claimData)
+          // Map the data properties to match component expectations
+          const mappedClaimData: ClaimItem = {
+            claimID: claimData.claimID,
+            guildID: claimData.gid || claimData.guildID || guildId,
+            name: claimData.name,
+            description: claimData.description,
+            image: claimData.image,
+            resourceID: claimData.resourceID,
+            type: claimData.type,
+            period: claimData.period,
+            claimAmount: claimData.claimAmount,
+            claimPeriod: claimData.claimPeriod,
+            snapshotBegin: claimData.snapshotBegin,
+            snapshotEnd: claimData.snapshotEnd,
+            isActive: claimData.isActive,
+            requiredRoleID: claimData.requiredRoleID,
+            requiredTokenID: claimData.requiredTokenID,
+            questRequirement: claimData.questRequirement,
+            questStatusRequired: claimData.questStatusRequired,
+            memberList: claimData.memberList || {},
+            rewardPool: claimData.rewardPool || { totalAmount: 0, remainingAmount: 0, claimedAmount: 0 },
+            claimHistory: claimData.claimHistory || [],
+            createdAt: claimData.created || claimData.createdAt || new Date().toISOString(),
+            contractAddress: claimData.contractAddress
+          }
+          claims.push(mappedClaimData)
         }
       } catch (error) {
         // Silent fail for missing files
@@ -135,7 +202,8 @@ const loadAvailableClaims = async () => {
     availableClaims.value = claims.filter(claim => 
       claim.isActive && 
       isUserEligible(claim) &&
-      isClaimPeriodActive(claim)
+      isClaimPeriodActive(claim) &&
+      shouldShowClaim(claim)
     )
   } catch (error) {
     // Silent fail
@@ -157,6 +225,14 @@ const isUserEligible = (claim: ClaimItem): boolean => {
   } else if (claim.type === 'token') {
     // Check if user has the required token
     return claim.requiredTokenID ? (mockUserTokens.value[claim.requiredTokenID] || 0) > 0 : true
+  } else if (claim.type === 'quest_completion' || claim.type === 'quest_supplies') {
+    // Check quest status requirements
+    if (!claim.questRequirement || !claim.questStatusRequired) return true
+    
+    const quest = questStore.getQuestById(claim.questRequirement)
+    if (!quest) return false
+    
+    return quest.status === claim.questStatusRequired
   }
   return false
 }
@@ -166,6 +242,23 @@ const isClaimPeriodActive = (claim: ClaimItem): boolean => {
   const start = new Date(claim.claimPeriod.start)
   const end = new Date(claim.claimPeriod.end)
   return now >= start && now <= end
+}
+
+const shouldShowClaim = (claim: ClaimItem): boolean => {
+  // Hide Tutorial Quest Resources claim if tutorial quest is completed
+  if (claim.claimID === 'g1-claim-tutorial-resources') {
+    const tutorialQuest = questStore.getQuestById('g1_q_tutorial')
+    return !tutorialQuest || tutorialQuest.status !== 'completed'
+  }
+  
+  // Hide Tutorial Quest Reward claim if tutorial quest is completed
+  if (claim.claimID === 'g1_claim_tutorial') {
+    const tutorialQuest = questStore.getQuestById('g1_q_tutorial')
+    return !tutorialQuest || tutorialQuest.status !== 'completed'
+  }
+  
+  // Show all other claims
+  return true
 }
 
 const getUserClaimAmount = (claim: ClaimItem): number => {
@@ -184,6 +277,17 @@ const getUserClaimAmount = (claim: ClaimItem): number => {
 
 const canUserClaim = (claim: ClaimItem): boolean => {
   const userAmount = getUserClaimAmount(claim)
+  
+  // Special case for tutorial quest claim - disable until quest is completed
+  if (claim.claimID === 'g1_claim_tutorial') {
+    const tutorialQuest = questStore.getQuestById('g1_q_tutorial')
+    if (!tutorialQuest) return false
+    
+    // Only enable if quest is completed (delivered, rewarded, or completed)
+    const isQuestCompleted = ['delivered', 'rewarded', 'completed'].includes(tutorialQuest.status)
+    return isQuestCompleted && userAmount > 0 && claim.rewardPool.remainingAmount > 0
+  }
+  
   return userAmount > 0 && claim.rewardPool.remainingAmount > 0
 }
 
@@ -195,13 +299,46 @@ const handleClaim = (claimData: { claimID: string, amount: number }) => {
   // 4. Update claim status
   // 5. Refresh the claims list
   
-  // TODO: Show success notification
-  // This should use a proper notification system instead of alert
+  // Find the claim details
+  const claim = availableClaims.value.find(c => c.claimID === claimData.claimID)
+  if (!claim) return
   
-  // Refresh claims
-  loadAvailableClaims()
+  // Add to claimed items for fade-out effect
+  claimedItems.value.add(claimData.claimID)
+  
+  // Show success popup
+  claimSuccessData.value = {
+    title: 'Claim Successful!',
+    message: `You have successfully claimed ${claim.name}. ${claim.claimID === 'g1-claim-tutorial-resources' ? 'You now have the resources needed for your quest!' : 'Your rewards have been added to your account!'}`,
+    details: {
+      'Claim': claim.name,
+      'Amount': claimData.amount,
+      'Resource': claim.resourceID,
+      'Transaction ID': `TX-${Date.now().toString(36).toUpperCase()}`
+    }
+  }
+  
+  showClaimSuccessPopup.value = true
+  
+  // Handle tutorial claims with button action system
+  if (claimData.claimID === 'g1_claim_tutorial') {
+    triggerTutorialAction(TUTORIAL_ACTIONS.CLAIM_REWARD)
+    // Also update quest status to completed when claiming from armory
+    questStore.handleTutorialQuestAction('claim_rewards', 'tutorial_user')
+  } else if (claimData.claimID === 'g1-claim-tutorial-resources') {
+    triggerTutorialAction(TUTORIAL_ACTIONS.CLAIM_RESOURCES)
+  }
+  
+  // Refresh claims after a delay to show the fade effect
+  setTimeout(() => {
+    loadAvailableClaims()
+  }, 2000)
 }
 
+const closeClaimSuccessPopup = () => {
+  showClaimSuccessPopup.value = false
+  claimSuccessData.value = null
+}
 
 // Lifecycle
 onMounted(async () => {
@@ -261,6 +398,14 @@ onMounted(async () => {
   font-size: 0.875rem;
   opacity: 0.8;
   margin-top: var(--space-xs);
+}
+
+/* Claim Fade Effect */
+.claim-faded {
+  opacity: 0.3;
+  transform: scale(0.95);
+  transition: all 0.5s ease;
+  pointer-events: none;
 }
 
 /* Responsive Design */

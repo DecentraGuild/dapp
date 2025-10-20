@@ -1,0 +1,121 @@
+{
+  "id": "quest-tutorial",
+  "name": "Quest Tutorial",
+  "description": "Learn how to complete quests",
+  "isActive": false,
+  "isCompleted": false,
+  "steps": [
+    {
+      "id": "signup-tutorial-quest",
+      "title": "Sign Up for Tutorial Quest",
+      "description": "Find the \"Tutorial Quest: Ammo Delivery\" and click the sign-up button to join your first quest! This quest will teach you the basics of quest completion.",
+      "target": "[data-tutorial=\"tutorial-quest\"]",
+      "action": "Sign up for Tutorial Quest",
+      "position": "right",
+      "autoAdvance": false
+    },
+    {
+      "id": "quest-assigned",
+      "title": "Quest Assigned!",
+      "description": "Great! Your quest has been assigned. You need to deliver 5,000 ammo units to the next startbase. First, you need to claim the required resources from the Armory.",
+      "position": "center",
+      "autoAdvance": false
+    },
+    {
+      "id": "navigate-to-armory-claim",
+      "title": "Go to Armory > Claim",
+      "description": "Click on the \"Armory\" in the Castle, then select \"Claim\" to access the quest resources you need.",
+      "target": "[data-tutorial=\"armory\"]",
+      "action": "Navigate to Armory > Claim",
+      "position": "right",
+      "targetRoute": "/armory/claim",
+      "autoAdvance": true
+    },
+    {
+      "id": "claim-quest-resources",
+      "title": "Claim Quest Resources",
+      "description": "Find the \"Tutorial Quest Resources\" claim and click \"Claim\" to get your 5,000 ammo units and QuestMaxhog token needed for the quest.",
+      "target": "[data-tutorial=\"tutorial-claim-resources\"]",
+      "action": "Claim Quest Resources",
+      "position": "right",
+      "autoAdvance": true
+    },
+    {
+      "id": "navigate-to-armory-use",
+      "title": "Go to Armory > Use",
+      "description": "Now that you have the resources, go to the \"Use\" tab in the Armory to borrow the Maxhog vehicle for your quest.",
+      "target": "[data-tutorial=\"armory-use\"]",
+      "action": "Navigate to Armory > Use",
+      "position": "right",
+      "targetRoute": "/armory/gear",
+      "autoAdvance": true
+    },
+    {
+      "id": "borrow-maxhog",
+      "title": "View Maxhog Vehicle",
+      "description": "In the Armory, you can see the Maxhog vehicle available for borrowing. This is just for demonstration - in a real quest, you would borrow it using the QuestMaxhog token as collateral.",
+      "target": "[data-tutorial=\"maxhog-vehicle\"]",
+      "action": "View Maxhog Vehicle",
+      "position": "right",
+      "autoAdvance": true
+    },
+    {
+      "id": "deliver-ammo",
+      "title": "Deliver the Ammo",
+      "description": "Now that you have the required resources and a ship you can complete the quest delivery. In a real scenario, you would use the Maxhog to transport the ammo. and then come back here to return the ship for the token to be able to deliver",
+      "target": "[data-tutorial=\"complete-quest\"]",
+      "action": "Complete Quest Delivery",
+      "position": "center",
+      "autoAdvance": false
+    },
+    {
+      "id": "navigate-to-quest-board-delivery",
+      "title": "Go Back to Quest Board",
+      "description": "Now you need to go back to the Quest Board to officially deliver your completed quest and notify that it's ready for verification.",
+      "target": "[data-tutorial=\"quest-board\"]",
+      "action": "Navigate to Quest Board",
+      "position": "right",
+      "targetRoute": "/quest/solo",
+      "autoAdvance": true
+    },
+    {
+      "id": "submit-quest-delivery",
+      "title": "Submit Quest Delivery",
+      "description": "Find your Tutorial Quest in the Assigned category (left sidebar) and click \"Deliver\" to submit your completed quest for verification. This officially marks your quest as complete.",
+      "target": "[data-tutorial=\"tutorial-quest-deliver\"]",
+      "action": "Submit Quest Delivery",
+      "position": "right",
+      "autoAdvance": false
+    },
+    {
+      "id": "quest-delivered",
+      "title": "Quest Delivered!",
+      "description": "Excellent! You've successfully delivered the ammo. Your quest is now pending verification. You'll be notified when it's approved and you can claim your rewards.",
+      "position": "center",
+      "autoAdvance": true
+    },
+    {
+      "id": "quest-verified",
+      "title": "Quest Verified!",
+      "description": "Your quest has been verified and approved! You've earned 1 Token-1 and a \"First Quest Complete\" badge. Now let's claim your rewards.",
+      "position": "center",
+      "autoAdvance": false
+    },
+    {
+      "id": "claim-rewards",
+      "title": "Claim Your Rewards",
+      "description": "Find your Tutorial Quest in the \"Rewarded\" category (left sidebar) and click \"Claim Rewards\" to receive your 1 Token-1 and the first step to your first badge.",
+      "target": "[data-tutorial=\"tutorial-quest-reward\"]",
+      "action": "Claim Tutorial Quest Reward",
+      "position": "right",
+      "autoAdvance": true
+    },
+    {
+      "id": "tutorial-complete",
+      "title": "Tutorial Complete!",
+      "description": "Congratulations! You've successfully completed your first quest and learned the basics of the dGuild system. You now understand how to sign up for quests, use the Armory, and claim rewards. Check out \"Guild Quest\" to explore more functionality that powers a dGuild",
+      "position": "center",
+      "autoAdvance": false
+    }
+  ]
+}

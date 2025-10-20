@@ -1,0 +1,150 @@
+{
+  "id": "guild-quest-tutorial",
+  "name": "Guild Quest Tutorial",
+  "description": "Learn essential guild functionality and community features",
+  "isActive": false,
+  "isCompleted": false,
+  "steps": [
+    {
+      "id": "quest-assigned",
+      "title": "Quest Assigned!",
+      "description": "Great! Your tutorial quest has been assigned. Follow the steps to learn guild functionality. Click Next to continue.",
+      "position": "center",
+      "autoAdvance": false
+    },
+    {
+      "id": "welcome-guild-tutorial",
+      "title": "Welcome to Guild Functionality!",
+      "description": "Welcome to the Guild Quest tutorial! You'll learn about governance, treasury management, community features, and how your actions can shape the guild's future. Let's start by exploring the Trophy Room to see your tutorial progress.",
+      "position": "center",
+      "autoAdvance": false
+    },
+    {
+      "id": "navigate-to-trophy-room",
+      "title": "Visit the Trophy Room",
+      "description": "Click on \"Trophy Room\" in the Castle to see your achievements and progress. You'll find a special tutorial achievement with 3 stages representing the 3 tutorial quests you can complete.",
+      "target": "[data-tutorial=\"trophy-room\"]",
+      "action": "Navigate to Trophy Room",
+      "position": "right",
+      "targetRoute": "/trophy-room",
+      "autoAdvance": true
+    },
+    {
+      "id": "view-tutorial-achievement",
+      "title": "View Tutorial Achievement",
+      "description": "Great! You can see the \"Tutorial Master\" achievement with 3 levels. The first stage (Common) is already unlocked from completing the Solo Quest tutorial. Complete this Guild Quest to unlock the Epic level!",
+      "target": "[data-tutorial=\"tutorial-achievement\"]",
+      "action": "View Tutorial Achievement",
+      "position": "right",
+      "autoAdvance": true
+    },
+    {
+      "id": "navigate-to-dao",
+      "title": "Go to DAO Voting",
+      "description": "Now let's explore governance! Click on \"DAO\" in the Castle to see active proposals. There's currently a vote about purchasing a custom skin for the dApp at 5 SOL.",
+      "target": "[data-tutorial=\"dao\"]",
+      "action": "Navigate to DAO",
+      "position": "right",
+      "targetRoute": "/dao-voting",
+      "autoAdvance": true
+    },
+    {
+      "id": "check-vault-funds",
+      "title": "Check Vault Funds First",
+      "description": "Before voting, let's check if we have enough funds! Click on \"Vaults\" in your castle navigation to see the guild's treasury balance. We need to verify we have at least 5 SOL for the skin purchase.",
+      "target": "[data-tutorial=\"vaults\"]",
+      "action": "Check Vault Funds",
+      "position": "right",
+      "targetRoute": "/vaults",
+      "autoAdvance": true
+    },
+    {
+      "id": "filter-guild-vault",
+      "title": "Filter to Guild Vault",
+      "description": "Click on the Guild Vault card to see the detailed balance. This will show you exactly how much SOL is available for the skin purchase.",
+      "target": "[data-tutorial=\"vault-balance\"]",
+      "action": "Click Guild Vault Card",
+      "position": "right",
+      "autoAdvance": true
+    },
+    {
+      "id": "return-to-dao-vote",
+      "title": "Return to DAO and Vote",
+      "description": "Now let's go back to the DAO and vote yes on the skin purchase proposal. This will help the guild get a unique visual identity!",
+      "target": "[data-tutorial=\"dao-vote\"]",
+      "action": "Return to DAO and Vote Yes",
+      "position": "right",
+      "targetRoute": "/dao-voting",
+      "autoAdvance": true
+    },
+    {
+      "id": "vote-yes-skin",
+      "title": "Vote Yes for Skin Purchase",
+      "description": "Click \"Vote Yes\" on the custom skin purchase proposal. This will help the guild get the exclusive Spacebase Yellow skin for a unique visual identity!",
+      "target": "[data-tutorial=\"vote-yes-skin\"]",
+      "action": "Vote Yes for Skin Purchase",
+      "position": "right",
+      "autoAdvance": true
+    },
+    {
+      "id": "vote-successful",
+      "title": "You Successfully Voted!",
+      "description": "Excellent! You've successfully voted for the skin purchase. Wait till the vote passes! In the meantime, head over to the Member Profile to complete your profile.",
+      "position": "center",
+      "autoAdvance": true
+    },
+    {
+      "id": "navigate-to-member-profile",
+      "title": "Navigate to Member Profile",
+      "description": "Now let's go to your Member Profile! You can access it by clicking on 'Member Profile' in the top navigation bar, or by going to Castle > Community Hub > Member Profile.",
+      "target": "[data-tutorial=\"member-profile\"]",
+      "action": "Navigate to Member Profile",
+      "position": "right",
+      "targetRoute": "/communityhub/memberprofile",
+      "autoAdvance": true
+    },
+    {
+      "id": "discord-interaction",
+      "title": "Join Our Discord Community",
+      "description": "This is your Member Profile! Join our Discord by clicking the Discord link in the name field, or move to the next step if you prefer to skip this.",
+      "target": "[data-tutorial=\"discord-info\"]",
+      "action": "Click Discord Link or Skip",
+      "position": "right",
+      "autoAdvance": true
+    },
+    {
+      "id": "press-community-hub",
+      "title": "Press Community Hub",
+      "description": "Press Community Hub in your Castle, select Guild Profile. This will show you the guild's updated visual identity with the new skin.",
+      "target": "[data-tutorial=\"guild-profile\"]",
+      "action": "Navigate to Guild Profile",
+      "position": "right",
+      "targetRoute": "/communityhub/guildprofile",
+      "autoAdvance": true
+    },
+    {
+      "id": "vote-has-passed",
+      "title": "The Vote Has Passed!",
+      "description": "The vote has passed and your guild will now update and implement a new skin. Click Next to load the Spacebase Yellow skin and see the transformation!",
+      "position": "center",
+      "autoAdvance": false
+    },
+    {
+      "id": "complete-guild-quest",
+      "title": "Complete Guild Quest",
+      "description": "Perfect! You've experienced some of the guild functionality. Now go to \"Guild Quest\" in Mission Control and complete the \"Tutorial Guild Functionality\" quest to finish this tutorial. (in the assigned category)",
+      "target": "[data-tutorial=\"guild-quest\"]",
+      "action": "Complete Guild Quest",
+      "position": "right",
+      "targetRoute": "/quest/guild",
+      "autoAdvance": false
+    },
+    {
+      "id": "guild-tutorial-complete",
+      "title": "Guild Tutorial Complete!",
+      "description": "Congratulations! You've mastered guild functionality including governance, treasury management, community features, and visual customization. You're now ready to explore Group Quests to learn about collaborative gameplay!",
+      "position": "center",
+      "autoAdvance": false
+    }
+  ]
+}

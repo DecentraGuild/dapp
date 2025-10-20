@@ -60,7 +60,7 @@
                 />
                 <div class="balance-info">
                   <span class="balance-label">Wallet Balance:</span>
-                  <span class="balance-value">{{ walletBalance }} {{ tokenData?.symbol || 'CCC' }}</span>
+                  <span class="balance-value">{{ walletBalance }} {{ tokenData?.symbol || guildStore.token1Symbol }}</span>
                 </div>
                 <div class="quick-amounts">
                   <button 
@@ -100,7 +100,7 @@
             <div class="calculation-results">
               <div class="calculation-item">
                 <span class="calc-label">Amount Input:</span>
-                <span class="calc-value">{{ redemptionAmount || 0 }} {{ tokenData?.symbol || 'CCC' }}</span>
+                <span class="calc-value">{{ redemptionAmount || 0 }} {{ tokenData?.symbol || guildStore.token1Symbol }}</span>
               </div>
               <div class="calculation-item">
                 <span class="calc-label">Exchange Rate:</span>
@@ -124,22 +124,25 @@ import BaseFoundry from '@/components/BaseFoundry.vue'
 import { BaseCard, BaseButton, BaseListGrid } from '@/components/base'
 import { useSkinTheme } from '@/composables/useSkinTheme'
 import { useGuildStore } from '@/stores/guildStore'
+import { useThemeStore } from '@/stores/themeStore'
 import { getSlpPath } from '@/utils/api'
 
 // Types
 interface TokenData {
   tokenID: string
-  guildID: string
+  gid: string
   name: string
   symbol: string
   description: string
   image: string
   decimals: number
   circulatingSupply: number
-  assetbacking: string
+  maxSupply?: number
   vaultHolding: number
+  assetbacking: string
   exchangeRatio: [number, number]
-  createdAt: string
+  color: string
+  created: string
   isActive: boolean
   contractAddress: string
 }
@@ -202,7 +205,7 @@ const exchangeRate = computed(() => {
 const assetBackingAmount = computed(() => {
   if (!tokenData.value || !redemptionAmount.value) return 0
   // Token1 redemption: amount input * exchange rate = total amount of asset backing to receive
-  // 1 CCC = 100 ATLAS, so 10 CCC = 1000 ATLAS
+  // 1 CGM = 1.327 POLIS, so 10 CGM = 13.27 POLIS
   return redemptionAmount.value * tokenData.value.exchangeRatio[1]
 })
 
@@ -215,9 +218,14 @@ const canRedeem = computed(() => {
 // Methods
 const loadTokenData = async () => {
   try {
-    const response = await fetch(getSlpPath('guildtoken/guild-1_token1.json'))
-    if (response.ok) {
-      tokenData.value = await response.json()
+    // Use guildStore token data if available, otherwise fallback to direct fetch
+    if (guildStore.token1) {
+      tokenData.value = guildStore.token1
+    } else {
+      const response = await fetch(getSlpPath('guildtoken/guild-1_token1.json'))
+      if (response.ok) {
+        tokenData.value = await response.json()
+      }
     }
   } catch (error) {
     // Handle error silently in production
@@ -249,7 +257,6 @@ const handleRedemption = () => {
 onMounted(async () => {
   await loadTokenData()
   // Load guild colors to ensure they're available
-  const { useThemeStore } = await import('@/stores/themeStore')
   const themeStore = useThemeStore()
   if (guildStore.guildId) {
     await themeStore.loadGuildColors(guildStore.guildId)

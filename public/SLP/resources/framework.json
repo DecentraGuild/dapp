@@ -1,0 +1,2 @@
+{"resourceID":"framework","name":"Framework","symbol":"FRMWRK","description":"Structural framework components used in ship construction. Essential materials for building and repairing vessels. Commonly obtained from raids and salvage operations.","image":"FRMWRK.png","type":"material","rarity":"common","category":"construction","stackable":true,"tradeable":true,"craftable":false,"baseValue":10,"weight":5,"isActive":true}
+

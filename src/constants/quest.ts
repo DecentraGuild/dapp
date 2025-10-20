@@ -1,21 +1,25 @@
 // Quest Constants
 export const QUEST_TABS = {
-  INGAME: 'ingame',
+  SOLO: 'solo',
+  GROUP: 'group',
   GUILD: 'guild'
 } as const
 
 export const QUEST_ICONS = {
-  INGAME: 'game-icons:target-dummy',
+  SOLO: 'game-icons:target-dummy',
+  GROUP: 'game-icons:team-idea',
   GUILD: 'game-icons:heart-tower'
 } as const
 
 export const QUEST_TITLES = {
-  INGAME: 'In-Game Quests',
+  SOLO: 'Solo Quests',
+  GROUP: 'Group Quests',
   GUILD: 'Guild Quests'
 } as const
 
 export const QUEST_DESCRIPTIONS = {
-  INGAME: 'Complete in-game challenges and earn rewards',
+  SOLO: 'Complete solo challenges and earn rewards',
+  GROUP: 'Team up with other members for group challenges',
   GUILD: 'Participate in guild activities and community tasks'
 } as const
 
@@ -68,11 +72,17 @@ export const QUEST_STATUS_COLORS = {
 } as const
 
 export const QUEST_FEATURES = {
-  INGAME: [
+  SOLO: [
     'Combat challenges',
     'Exploration missions',
     'PvP competitions',
     'Skill-based tasks'
+  ],
+  GROUP: [
+    'Cooperative missions',
+    'Team dungeons',
+    'Group raids',
+    'Multi-player challenges'
   ],
   GUILD: [
     'Treasury management',
@@ -90,7 +100,7 @@ export interface Quest {
   description: string
   role: string
   roleRequirement: string
-  type: 'guild' | 'ingame'
+  type: 'guild' | 'solo' | 'group'
   status: 'new' | 'pending' | 'assigned' | 'delivered' | 'rewarded' | 'completed'
   phase: 'create' | 'apply' | 'assign' | 'execute' | 'verify' | 'reward' | 'complete'
   goal: string

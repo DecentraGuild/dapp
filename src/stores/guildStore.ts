@@ -48,14 +48,35 @@ export interface GuildMember {
   bio: string
 }
 
+export interface TokenData {
+  tokenID: string
+  gid: string
+  name: string
+  symbol: string
+  description: string
+  image: string
+  decimals: number
+  circulatingSupply: number
+  maxSupply?: number
+  vaultHolding: number
+  assetbacking: string
+  exchangeRatio: [number, number]
+  color: string
+  created: string
+  isActive: boolean
+  contractAddress: string
+}
+
 export const useGuildStore = defineStore('guild', () => {
   // State
   const activeGuild = ref<GuildProfile | null>(null)
   const availableGuilds = ref<GuildProfile[]>([])
   const guildMembers = ref<GuildMember[]>([])
+  const guildTokens = ref<TokenData[]>([])
   const isLoading = ref(false)
   const error = ref<string | null>(null)
   const isGuildsLoaded = ref(false)
+  const areTokensLoaded = ref(false)
 
   // Getters
   const hasActiveGuild = computed(() => !!activeGuild.value)
@@ -69,6 +90,18 @@ export const useGuildStore = defineStore('guild', () => {
   const guildDaos = computed(() => activeGuild.value?.daos || { token1: '', token2: '', totalvote: '' })
   const memberCount = computed(() => guildMembers.value.length)
   const activeMembers = computed(() => guildMembers.value.filter(member => member.isActive))
+  
+  // Token getters
+  const token1 = computed(() => guildTokens.value.find(token => token.tokenID.includes('token1')) || null)
+  const token2 = computed(() => guildTokens.value.find(token => token.tokenID.includes('token2')) || null)
+  const token1Name = computed(() => token1.value?.name || 'Token 1')
+  const token2Name = computed(() => token2.value?.name || 'Token 2')
+  const token1Symbol = computed(() => token1.value?.symbol || 'T1')
+  const token2Symbol = computed(() => token2.value?.symbol || 'T2')
+  const token1Image = computed(() => token1.value?.image || '')
+  const token2Image = computed(() => token2.value?.image || '')
+  const token1Color = computed(() => token1.value?.color || '#2C4FEC')
+  const token2Color = computed(() => token2.value?.color || '#FF6B35')
 
   // Actions
   const loadAvailableGuilds = async () => {
@@ -159,6 +192,33 @@ export const useGuildStore = defineStore('guild', () => {
     }
   }
 
+  const loadGuildTokens = async (guildId: string) => {
+    // Skip if already loaded
+    if (areTokensLoaded.value) {
+      return
+    }
+    
+    try {
+      isLoading.value = true
+      error.value = null
+      
+      // Load token files for the guild
+      const tokenFiles = [
+        `guildtoken/${guildId}_token1.json`,
+        `guildtoken/${guildId}_token2.json`
+      ]
+      
+      const tokens = await loadMultipleSlpData<TokenData>(tokenFiles)
+      guildTokens.value = tokens
+      areTokensLoaded.value = true
+    } catch (err) {
+      error.value = err instanceof Error ? err.message : 'Failed to load guild tokens'
+      // Handle error silently in production
+    } finally {
+      isLoading.value = false
+    }
+  }
+
   const selectGuild = async (guildId: string) => {
     try {
       isLoading.value = true
@@ -170,8 +230,11 @@ export const useGuildStore = defineStore('guild', () => {
       
       activeGuild.value = guild
       
-      // Load guild members
-      await loadGuildMembers(guildId)
+      // Load guild members and tokens in parallel
+      await Promise.all([
+        loadGuildMembers(guildId),
+        loadGuildTokens(guildId)
+      ])
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to select guild'
       // Handle error silently in production
@@ -184,6 +247,8 @@ export const useGuildStore = defineStore('guild', () => {
   const clearGuild = () => {
     activeGuild.value = null
     guildMembers.value = []
+    guildTokens.value = []
+    areTokensLoaded.value = false
     error.value = null
   }
 
@@ -270,6 +335,7 @@ export const useGuildStore = defineStore('guild', () => {
     activeGuild,
     availableGuilds,
     guildMembers,
+    guildTokens,
     isLoading,
     error,
     
@@ -286,9 +352,22 @@ export const useGuildStore = defineStore('guild', () => {
     memberCount,
     activeMembers,
     
+    // Token getters
+    token1,
+    token2,
+    token1Name,
+    token2Name,
+    token1Symbol,
+    token2Symbol,
+    token1Image,
+    token2Image,
+    token1Color,
+    token2Color,
+    
     // Actions
     loadAvailableGuilds,
     loadGuildMembers,
+    loadGuildTokens,
     selectGuild,
     clearGuild,
     getMemberByWallet,

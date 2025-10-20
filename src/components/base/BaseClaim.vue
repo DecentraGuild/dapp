@@ -113,8 +113,8 @@ interface Props {
   description: string
   image: string
   resourceID: string
-  type: 'role' | 'token'
-  period: 'daily' | 'weekly' | 'monthly' | 'onetime'
+  type: 'role' | 'token' | 'quest_completion' | 'quest_supplies'
+  period: 'daily' | 'weekly' | 'monthly' | 'onetime' | 'one_time'
   claimAmount: number
   claimPeriod: {
     start: string
@@ -133,7 +133,9 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   clickable: false,
   selected: false,
-  size: 'md'
+  size: 'md',
+  guildID: '',
+  createdAt: ''
 })
 
 // Emits
@@ -149,6 +151,10 @@ const getTypeIcon = (type: string) => {
       return 'game-icons:badge'
     case 'token':
       return 'game-icons:coins'
+    case 'quest_completion':
+      return 'game-icons:trophy'
+    case 'quest_supplies':
+      return 'game-icons:backpack'
     default:
       return 'game-icons:gift'
   }

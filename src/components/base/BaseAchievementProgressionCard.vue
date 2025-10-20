@@ -6,6 +6,7 @@
     :clickable="clickable"
     class="achievement-progression-card"
     :class="achievementClasses"
+    :data-tutorial="achievement.id === 'tutorial_001' ? 'tutorial-achievement' : undefined"
   >
     <!-- Achievement Header -->
     <div class="achievement-header">

@@ -36,6 +36,7 @@
             :clickable="true"
             @click="selectTrade"
             :class="{ 'selected-trade': selectedTrade?.orderID === trade.orderID }"
+            :data-tutorial="trade.orderID === 'g1_g2p_0006' ? 'trade-framework' : trade.orderID === 'g1_g2p_0007' ? 'trade-electromagnet' : undefined"
           />
         </div>
 
@@ -78,6 +79,15 @@
       </div>
     </template>
   </BaseArmory>
+
+  <!-- Success Popup -->
+  <BaseSuccessPopup
+    :is-visible="showSuccessPopup"
+    :title="successPopupData.title"
+    :message="successPopupData.message"
+    :details="successPopupData.details"
+    @close="closeSuccessPopup"
+  />
 </template>
 
 <script setup lang="ts">
@@ -85,14 +95,17 @@ import { ref, computed, onMounted } from 'vue'
 import { Icon } from '@iconify/vue'
 import { BaseCard, BaseG2PCard } from '@/components/base'
 import BaseArmory from '@/components/base/BaseArmory.vue'
+import BaseSuccessPopup from '@/components/base/BaseSuccessPopup.vue'
 import ExecuteTrade from '@/components/ExecuteTrade.vue'
 import { useDesignTokens } from '@/composables/useDesignTokens'
 import { useGuildStore } from '@/stores/guildStore'
+import { useTutorialStore } from '@/stores/tutorialStore'
 import { getSlpPath } from '@/utils/api'
 
 // Composables
 const { colors, spacing, typography, borderRadius } = useDesignTokens()
 const guildStore = useGuildStore()
+const tutorialStore = useTutorialStore()
 
 // Types
 interface G2PTrade {
@@ -124,8 +137,16 @@ const selectedTrade = ref<G2PTrade | null>(null)
 const loading = ref(false)
 
 // Mock wallet balances (in a real app, these would come from a store or API)
-const mockWalletBalanceOffered = ref(1000)
-const mockWalletBalanceAsked = ref(100)
+const mockWalletBalanceOffered = ref(140) // Updated for tutorial
+const mockWalletBalanceAsked = ref(2500) // Updated for tutorial - user has frameworks
+
+// Success popup state
+const showSuccessPopup = ref(false)
+const successPopupData = ref({
+  title: '',
+  message: '',
+  details: {} as Record<string, string | number>
+})
 
 // Computed
 const currentGuildId = computed(() => guildStore.guildId || 'guild-1') // Fallback to guild-1 for testing
@@ -149,7 +170,9 @@ const loadGuildTrades = async () => {
       `${guildPrefix}_g2p_0002_sell.json`,
       `${guildPrefix}_g2p_0003_buy.json`,
       `${guildPrefix}_g2p_0004_sell.json`,
-      `${guildPrefix}_g2p_0005_buy.json`
+      `${guildPrefix}_g2p_0005_buy.json`,
+      `${guildPrefix}_g2p_0006_buy.json`,
+      `${guildPrefix}_g2p_0007_buy.json`
     ]
 
     const trades: G2PTrade[] = []
@@ -160,7 +183,30 @@ const loadGuildTrades = async () => {
         
         if (response.ok) {
           const tradeData = await response.json()
-          trades.push(tradeData)
+          // Map the data properties to match component expectations
+          const mappedTradeData: G2PTrade = {
+            orderID: tradeData.orderID,
+            guildID: tradeData.gid || tradeData.guildID || guildId,
+            role: tradeData.role,
+            type: tradeData.type,
+            amountOffered: tradeData.amountOffered,
+            tokenIDOffered: tradeData.tokenIDOffered,
+            resourceIDOffered: tradeData.resourceIDOffered,
+            tokenImageOffered: tradeData.tokenImageOffered,
+            amountAsked: tradeData.amountAsked,
+            resourceIDAsked: tradeData.resourceIDAsked,
+            tokenIDAsked: tradeData.tokenIDAsked,
+            tokenImageAsked: tradeData.tokenImageAsked,
+            status: tradeData.status,
+            created: tradeData.created || tradeData.createdAt || new Date().toISOString(),
+            creator: tradeData.creator,
+            expiresAt: tradeData.expiresAt,
+            isActive: tradeData.isActive,
+            description: tradeData.description,
+            filledAt: tradeData.filledAt,
+            filledBy: tradeData.filledBy
+          }
+          trades.push(mappedTradeData)
         }
       } catch (error) {
         // Silent fail for missing files
@@ -181,23 +227,52 @@ const selectTrade = (trade: any) => {
   const fullTrade = guildTrades.value.find(t => t.orderID === trade.orderID)
   if (fullTrade) {
     selectedTrade.value = fullTrade
+    // Scroll to bottom to show the details section
+    setTimeout(() => {
+      window.scrollTo({ 
+        top: document.documentElement.scrollHeight, 
+        behavior: 'smooth' 
+      })
+    }, 100)
   }
 }
 
 const handleTradeExecution = (executionData: { orderID: string, amount: number, totalCost: number }) => {
-  // In a real app, this would:
-  // 1. Validate the trade
-  // 2. Check permissions
-  // 3. Execute the blockchain transaction
-  // 4. Update balances
-  // 5. Refresh the trade list
+  if (!selectedTrade.value) return
   
-  // For now, just show a success message
-  // TODO: Show success notification
-  // This should use a proper notification system instead of alert
+  // Show success popup
+  const tradeName = selectedTrade.value.type === 'buy' ? selectedTrade.value.resourceIDAsked : selectedTrade.value.resourceIDOffered
+  const tokenName = selectedTrade.value.type === 'buy' ? selectedTrade.value.tokenIDOffered : selectedTrade.value.tokenIDAsked
+  
+  successPopupData.value = {
+    title: 'Trade Executed Successfully!',
+    message: `You have successfully ${selectedTrade.value.type === 'buy' ? 'bought' : 'sold'} ${tradeName}!`,
+    details: {
+      'Amount': executionData.amount,
+      'Item': tradeName || 'Unknown',
+      'Total Cost': `${executionData.totalCost} ${tokenName}`,
+      'Order ID': executionData.orderID
+    }
+  }
+  showSuccessPopup.value = true
+  
+  // Auto-advance tutorial if trading frameworks or electromagnets
+  if (tutorialStore.isActive) {
+    if (selectedTrade.value.orderID === 'g1_g2p_0006' && tutorialStore.currentStep?.id === 'trade-frameworks') {
+      tutorialStore.handleButtonAction('trade-framework')
+    } else if (selectedTrade.value.orderID === 'g1_g2p_0007' && tutorialStore.currentStep?.id === 'trade-electromagnets') {
+      tutorialStore.handleButtonAction('trade-electromagnet')
+    }
+  }
   
   // Reset selection
-  selectedTrade.value = null
+  setTimeout(() => {
+    selectedTrade.value = null
+  }, 2000)
+}
+
+const closeSuccessPopup = () => {
+  showSuccessPopup.value = false
 }
 
 
@@ -231,7 +306,7 @@ onMounted(async () => {
 /* Trades Grid */
 .trades-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(21.875rem, 1fr));
   gap: var(--space-lg);
   height: auto;
 }

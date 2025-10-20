@@ -5,6 +5,7 @@
       variant="primary" 
       size="xl" 
       class="guild-primary-card"
+      data-tutorial="skin-implementation"
     >
       <div class="guild-header">
         <!-- Logo and Basic Info -->

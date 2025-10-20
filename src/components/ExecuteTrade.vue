@@ -51,7 +51,7 @@
       <div class="wallet-info">
         <div class="wallet-balance-row">
           <span class="balance-label">Wallet Balance:</span>
-          <span class="balance-value">{{ walletBalance }} {{ tokenNameOffered }}</span>
+          <span class="balance-value">{{ walletBalance }} {{ tradeType === 'buy' ? tokenNameOffered : tokenNameAsked }}</span>
         </div>
       </div>
 
@@ -150,9 +150,11 @@ const tradeType = computed(() => props.type)
 
 const tokenNameOffered = computed(() => {
   if (props.type === 'buy') {
+    // For buying, user pays with offered token
     return props.tokenIDOffered
   } else {
-    return props.tokenIDAsked
+    // For selling, user receives offered token
+    return props.tokenIDOffered
   }
 })
 
@@ -164,7 +166,16 @@ const tokenNameAsked = computed(() => {
   }
 })
 
-const walletBalance = computed(() => props.walletBalanceOffered)
+const walletBalance = computed(() => {
+  if (props.type === 'buy') {
+    // For buying, user pays with offered token, so show offered token balance
+    return props.walletBalanceOffered
+  } else {
+    // For selling, user needs to have asked resource/token, so show asked balance
+    return props.walletBalanceAsked
+  }
+})
+
 const tokenBalanceAsked = computed(() => props.walletBalanceAsked)
 
 const unitPrice = computed(() => {

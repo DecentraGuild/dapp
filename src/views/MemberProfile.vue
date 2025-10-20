@@ -107,7 +107,9 @@
               v-model="profileForm.discordName"
               type="text"
               class="form-input"
-              placeholder="Your Discord username"
+              placeholder="https://discord.gg/MFVnuaRQ5J"
+              data-tutorial="discord-info"
+              @click="handleDiscordLinkClick"
             />
           </div>
           
@@ -227,7 +229,7 @@ const memberStore = useMemberStore()
 const profileForm = reactive({
   username: '',
   bio: '',
-  discordName: '',
+  discordName: 'https://discord.gg/MFVnuaRQ5J',
   notifications: {
     quests: true,
     events: true,
@@ -324,7 +326,7 @@ const loadMemberProfile = async () => {
     // Update form data with member store data
     profileForm.username = memberStore.memberUsername
     profileForm.bio = memberStore.memberBio
-    profileForm.discordName = memberStore.memberEmail // Using email as placeholder for discord
+    // Keep Discord link as the value, don't overwrite with email
     profileForm.notifications = {
       quests: memberStore.notifications[0] || false,
       events: memberStore.notifications[1] || false,
@@ -368,6 +370,19 @@ const mintAchievement = (achievement: any) => {
   // TODO: Implement actual achievement minting logic
   // This should integrate with the achievement system
   // Demo: Show minting calculation
+}
+
+const handleDiscordLinkClick = () => {
+  // Open Discord link
+  window.open('https://discord.gg/MFVnuaRQ5J', '_blank', 'noopener,noreferrer')
+  
+  // Auto-advance tutorial when Discord link is clicked
+  import('@/stores/tutorialStore').then(({ useTutorialStore }) => {
+    const tutorialStore = useTutorialStore()
+    if (tutorialStore.isActive) {
+      tutorialStore.handleButtonAction('discord-interaction')
+    }
+  })
 }
 
 // Watch for changes in wallet or guild selection
@@ -630,6 +645,7 @@ onMounted(() => {
     height: 60px;
   }
 }
+
 
 /* Wide screen margin - matching armory pattern */
 @media (min-width: 1400px) {

@@ -30,7 +30,7 @@
         @click="navigateToDashboard"
         :style="buttonStyles"
       >
-        <span class="dashboard-text">Dashboard</span>
+        <span class="dashboard-text">{{ getNavigationHeader('dashboard') }}</span>
       </button>
     </div>
 
@@ -54,8 +54,19 @@
       </div>
     </div>
 
-    <!-- Right Section: Theme, Member, Guild, Wallet Connect -->
+    <!-- Right Section: Tutorial, Theme, Member, Guild, Wallet Connect -->
     <div class="right-section">
+      <!-- Reset Button -->
+      <button 
+        class="nav-button tutorial-button"
+        @click="startTutorial"
+        :style="buttonStyles"
+        title="Reset & Start Tutorial"
+      >
+        <Icon icon="mdi:refresh" class="button-icon" />
+        <span class="button-text">Reset</span>
+      </button>
+
       <!-- Theme Selector -->
       <div class="theme-selector">
         <button 
@@ -132,16 +143,18 @@ import { useUserStore } from '@/stores/userStore'
 import { useGuildStore } from '@/stores/guildStore'
 import { useMemberStore } from '@/stores/memberStore'
 import { useThemeStore } from '@/stores/themeStore'
+import { useTutorialStore } from '@/stores/tutorialStore'
 import BaseButtonDropdown from './base/BaseButtonDropdown.vue'
 
 // Composables
 const router = useRouter()
 const route = useRoute()
-const { getPrimaryColor, getSecondaryColor } = useSkinTheme()
+const { getPrimaryColor, getSecondaryColor, getNavigationHeader } = useSkinTheme()
 const userStore = useUserStore()
 const guildStore = useGuildStore()
 const memberStore = useMemberStore()
 const themeStore = useThemeStore()
+const tutorialStore = useTutorialStore()
 
 // Theme-related computed properties
 const currentTheme = computed(() => themeStore.currentTheme)
@@ -234,6 +247,14 @@ const selectTheme = async (themeId: string) => {
   showThemeDropdown.value = false
 }
 
+// Tutorial methods
+const startTutorial = () => {
+  // Reset tutorial completely (wipes localStorage and starts fresh)
+  tutorialStore.reset()
+  // Start fresh tutorial
+  tutorialStore.startTutorial()
+}
+
 // Close dropdown when clicking outside
 const handleClickOutside = (event: MouseEvent) => {
   const target = event.target as HTMLElement
@@ -262,6 +283,9 @@ onMounted(async () => {
   if (themeStore.availableThemes.length === 0) {
     await themeStore.loadAvailableThemes()
   }
+  
+  // Theme will be automatically restored by themeStore.initializeDefaultTheme()
+  // which is called during loadAvailableThemes() and will restore from localStorage
   
   // Load member data if user is logged in and has an active guild
   if (isLoggedIn.value && hasActiveGuild.value && selectedWallet.value) {

@@ -94,48 +94,39 @@ const personalData = ref(personalDataJson)
 
 // Methods
 const handleQuestAction = (item: any) => {
-  console.log('Quest action:', item)
   // Handle quest-specific actions
 }
 
 const handleFoundryAction = (item: any) => {
-  console.log('Foundry action:', item)
   // Handle foundry-specific actions
 }
 
 const handleTrophyAction = (item: any) => {
-  console.log('Trophy action:', item)
   // Handle trophy-specific actions
 }
 
 const handleEventAction = (item: any) => {
-  console.log('Event action:', item)
   // Handle event-specific actions
 }
 
 const handleMinigameAction = (item: any) => {
-  console.log('Minigame action:', item)
   // Handle minigame-specific actions
 }
 
 const handleVotingAction = (item: any) => {
-  console.log('Voting action:', item)
   // Handle voting-specific actions
 }
 
 const handleTokenAction = (item: any) => {
-  console.log('Token action:', item)
   // Handle token-specific actions
 }
 
 const handleTimeFilterChange = (filter: string) => {
-  console.log('Time filter changed:', filter)
   // Handle time filter changes if needed
 }
 
 // Lifecycle
 onMounted(() => {
-  console.log('Personal Observatory loaded with data:', personalData.value)
 })
 </script>
 

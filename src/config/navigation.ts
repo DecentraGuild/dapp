@@ -1,6 +1,24 @@
 import type { NavigationItem, RoomType } from '../types'
 import { FOUNDRY_ICONS } from '../constants/foundry'
 
+// Maps navigation item IDs to their index in skin.navigationHeaders
+// This defines the order of navigation headers in all skin JSON files
+export const NAVIGATION_HEADER_INDEX: Record<string, number> = {
+  'dashboard': 0,
+  'gatekeeping': 1,
+  'commandcenter': 2,
+  'trophy-room': 3,
+  'questboard': 4,
+  'dao-voting': 5,
+  'armory': 6,
+  'community-hub': 7,
+  'tavern': 8,
+  'foundry': 9,
+  'integrations': 10,
+  'vaults': 11,
+  'observatory': 12
+}
+
 // Main navigation items mapping to the castle shapes
 export const mainNavigationItems: NavigationItem[] = [
   {
@@ -33,12 +51,21 @@ export const mainNavigationItems: NavigationItem[] = [
     roomType: 'QuestBoard',
     submenuItems: [
       {
-        id: 'ingamequests',
-        name: 'gamequests',
-        path: 'quest/game',
+        id: 'soloquests',
+        name: 'soloquests',
+        path: 'quest/solo',
         icon: 'game-icons:target-dummy',
-        label: 'In-Game Quests',
-        description: 'Ingame quests for members',
+        label: 'Solo Quests',
+        description: 'Solo quests for individual members',
+        hasSubmenu: false
+      },
+      {
+        id: 'groupquests',
+        name: 'groupquests',
+        path: 'quest/group',
+        icon: 'game-icons:team-idea',
+        label: 'Group Quests',
+        description: 'Team up with other members',
         hasSubmenu: false
       },
       {

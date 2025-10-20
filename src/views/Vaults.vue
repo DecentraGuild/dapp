@@ -45,9 +45,10 @@
           title="Guild Vault"
           variant="default"
           size="md"
-          :clickable="false"
+          :clickable="true"
           class="vault-card vault-card-hover"
           :class="{ 'vault-card-selected': selectedVault === 'guild' }"
+          data-tutorial="vault-balance"
           @click="selectVault('guild')"
         />
 
@@ -407,6 +408,16 @@ const getNFTPrice = (nftName: string): number => {
 // Methods
 const selectVault = (vaultType: string) => {
   selectedVault.value = selectedVault.value === vaultType ? null : vaultType
+  
+  // Auto-advance tutorial when Guild Vault is clicked
+  if (vaultType === 'guild') {
+    import('@/stores/tutorialStore').then(({ useTutorialStore }) => {
+      const tutorialStore = useTutorialStore()
+      if (tutorialStore.isActive) {
+        tutorialStore.handleButtonAction('filter-guild-vault')
+      }
+    })
+  }
 }
 
 const setActiveTab = (tabId: 'balance' | 'nft' | 'transactions') => {

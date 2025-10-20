@@ -13,6 +13,18 @@
     ]"
     @click="handleClick"
   >
+    <!-- Gear Header -->
+    <div class="gear-header">
+      <div class="gear-type-badge">
+        <Icon :icon="getTypeIcon(type)" class="type-icon" />
+        <span class="type-text">{{ type.toUpperCase() }}</span>
+      </div>
+      <div class="gear-rarity-badge">
+        <Icon :icon="getRarityIcon(rarity)" class="rarity-icon" />
+        <span class="rarity-text">{{ rarity.toUpperCase() }}</span>
+      </div>
+    </div>
+
     <!-- Gear Image -->
     <div class="gear-image-container">
       <img 
@@ -21,25 +33,15 @@
         class="gear-image"
         @error="handleImageError"
       />
-      <div class="gear-rarity-badge">
-        <Icon :icon="getRarityIcon(rarity)" class="rarity-icon" />
-        <span class="rarity-text">{{ rarity.toUpperCase() }}</span>
-      </div>
     </div>
 
-    <!-- Gear Info -->
-    <div class="gear-info">
-      <div class="gear-header">
+    <!-- Gear Content -->
+    <div class="gear-content">
+      <div class="gear-info">
         <h3 class="gear-name">{{ name }}</h3>
-        <div class="gear-type">
-          <Icon :icon="getTypeIcon(type)" class="type-icon" />
-          <span class="type-text">{{ type.toUpperCase() }}</span>
-        </div>
-      </div>
+        <p class="gear-description">{{ description }}</p>
 
-      <p class="gear-description">{{ description }}</p>
-
-      <!-- Deposit Requirements -->
+        <!-- Deposit Requirements -->
       <div class="deposit-info">
         <div class="deposit-required">
           <Icon icon="mdi:bank" class="deposit-icon" />
@@ -87,12 +89,15 @@
           </span>
         </div>
       </div>
+      </div>
 
       <!-- Action Button -->
       <div class="gear-actions">
         <button 
           class="gear-action-btn"
           :disabled="amountAvailable === 0"
+          :data-tutorial="name.toLowerCase().includes('maxhog') ? 'maxhog-vehicle' : undefined"
+          @click="handleBorrowGear"
         >
           <Icon icon="mdi:handshake" class="action-icon" />
           <span>{{ amountAvailable > 0 ? 'Borrow Gear' : 'Unavailable' }}</span>
@@ -106,6 +111,7 @@
 import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
 import { getSlpPath } from '@/utils/api'
+import { triggerTutorialAction, TUTORIAL_ACTIONS } from '@/utils/tutorialActions'
 
 // Props
 interface Props {
@@ -135,7 +141,9 @@ const props = withDefaults(defineProps<Props>(), {
   size: 'md',
   hover: false,
   clickable: false,
-  selected: false
+  selected: false,
+  guildID: '',
+  createdAt: ''
 })
 
 // Emits
@@ -185,11 +193,19 @@ const handleImageError = (event: Event) => {
   const img = event.target as HTMLImageElement
   img.src = getSlpPath('resources/placeholder-gear.png')
 }
+
+const handleBorrowGear = () => {
+  // Trigger tutorial action for gear borrowing
+  triggerTutorialAction(TUTORIAL_ACTIONS.BORROW_GEAR)
+  
+  // Emit click event to parent component for actual gear borrowing logic
+  emit('click', props)
+}
 </script>
 
 <style scoped>
 .base-gear {
-  background: var(--card-background);
+  background: var(--primary-color-1);
   border: var(--border-width-medium) solid var(--secondary-color-2);
   border-radius: var(--theme-radius-lg);
   overflow: hidden;
@@ -197,19 +213,20 @@ const handleImageError = (event: Event) => {
   position: relative;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
-/* Size variants */
+/* Size variants - removed max-width to allow cards to fill grid space consistently */
 .base-gear--sm {
-  max-width: 15.625rem;
+  /* No max-width constraint */
 }
 
 .base-gear--md {
-  max-width: 18.75rem;
+  /* No max-width constraint */
 }
 
 .base-gear--lg {
-  max-width: 21.875rem;
+  /* No max-width constraint */
 }
 
 /* Rarity variants */
@@ -259,9 +276,37 @@ const handleImageError = (event: Event) => {
   box-shadow: 0 0 0 2px rgba(var(--secondary-color-0-rgb), 0.2);
 }
 
+/* Gear Header */
+.gear-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--primary-color-2);
+  border-bottom: var(--component-border-width) solid var(--secondary-color-2);
+}
+
+.gear-type-badge,
+.gear-rarity-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--secondary-color-1);
+  border-radius: var(--theme-radius-sm);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  color: var(--text-color-0);
+}
+
+.type-icon,
+.rarity-icon {
+  width: var(--space-sm);
+  height: var(--space-sm);
+}
+
 /* Gear Image */
 .gear-image-container {
-  position: relative;
   width: 100%;
   height: var(--state-height-loading);
   overflow: hidden;
@@ -279,72 +324,35 @@ const handleImageError = (event: Event) => {
   transform: scale(1.05);
 }
 
-.gear-rarity-badge {
-  position: absolute;
-  top: var(--space-sm);
-  right: var(--space-sm);
-  background: var(--color-black);
-  color: white;
-  padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--theme-radius-sm);
+/* Gear Content */
+.gear-content {
+  flex: 1;
   display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.rarity-icon {
-  width: var(--space-sm);
-  height: var(--space-sm);
-}
-
-/* Gear Info */
-.gear-info {
+  flex-direction: column;
   padding: var(--space-md);
+  gap: var(--space-md);
+}
+
+.gear-info {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
   flex: 1;
 }
 
-.gear-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: var(--space-sm);
-}
-
 .gear-name {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--text-color-1);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--text-color-0);
   margin: 0;
   line-height: 1.3;
 }
 
-.gear-type {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  background: var(--background-2);
-  padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--theme-radius-sm);
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--text-color-2);
-}
-
-.type-icon {
-  width: var(--space-sm);
-  height: var(--space-sm);
-}
-
 .gear-description {
-  color: var(--text-color-2);
-  font-size: 0.875rem;
-  line-height: 1.4;
+  font-size: var(--text-sm);
+  color: var(--text-color-1);
   margin: 0;
+  line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

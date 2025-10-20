@@ -13,8 +13,8 @@
               <span>{{ statusLabel }}</span>
             </div>
             <div class="quest-details__type">
-              <Icon :icon="quest.type === 'ingame' ? 'game-icons:target-dummy' : 'game-icons:heart-tower'" />
-              <span>{{ quest.type === 'ingame' ? 'In-Game Quest' : 'Guild Quest' }}</span>
+              <Icon :icon="getTypeIcon(quest.type)" />
+              <span>{{ getTypeLabel(quest.type) }}</span>
             </div>
           </div>
         </div>
@@ -23,6 +23,7 @@
             v-if="actionButton"
             :variant="actionButton.variant"
             :icon="actionButton.icon"
+            :data-tutorial="getTutorialDataAttribute()"
             size="lg"
             @click="handleAction"
           >
@@ -178,12 +179,27 @@
       <p>Select a quest from the grid above to view its details.</p>
     </div>
   </div>
+
+  <!-- Reward Success Popup -->
+  <BaseSuccessPopup
+    v-if="rewardPopupData"
+    :is-visible="showRewardPopup"
+    :title="rewardPopupData.title"
+    :message="rewardPopupData.message"
+    :details="rewardPopupData.details"
+    icon="mdi:trophy"
+    button-text="Awesome!"
+    :auto-close="true"
+    :auto-close-delay="4000"
+    @close="closeRewardPopup"
+  />
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { BaseButton } from '@/components/base'
+import BaseSuccessPopup from '@/components/base/BaseSuccessPopup.vue'
 import { useQuestStore } from '@/stores/questStore'
 import { QUEST_STATUS_ICONS, QUEST_STATUS_LABELS } from '@/constants/quest'
 import type { Quest } from '@/constants/quest'
@@ -200,6 +216,14 @@ const props = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
 const questStore = useQuestStore()
+
+// Reward popup state
+const showRewardPopup = ref(false)
+const rewardPopupData = ref<{
+  title: string
+  message: string
+  details: Record<string, string | number>
+} | null>(null)
 
 // Computed properties
 const questIcon = computed(() => {
@@ -264,7 +288,39 @@ const actionButton = computed(() => {
 // Methods
 const handleAction = () => {
   if (props.quest && actionButton.value) {
-    emit('action', props.quest, actionButton.value.text.toLowerCase().replace(' ', '_'))
+    const action = actionButton.value.text.toLowerCase().replace(' ', '_')
+    
+    // Handle tutorial quest actions specially
+    if (props.quest.questID === 'g1_q_tutorial' || props.quest.questID === 'g1_q_tutorial_guild' || props.quest.questID === 'g1_q_tutorial_group') {
+      questStore.handleTutorialQuestAction(action, 'tutorial_user', props.quest.questID)
+      
+      // Show reward popup for claim_rewards action
+      if (action === 'claim_rewards') {
+        showRewardPopup.value = true
+        const isGuildTutorial = props.quest.questID === 'g1_q_tutorial_guild'
+        const isGroupTutorial = props.quest.questID === 'g1_q_tutorial_group'
+        const tutorialType = isGroupTutorial ? 'group' : isGuildTutorial ? 'guild' : 'solo'
+        rewardPopupData.value = {
+          title: 'Rewards Claimed!',
+          message: `You have successfully claimed your ${tutorialType} tutorial quest rewards!`,
+          details: isGroupTutorial ? {
+            'Token-1': '50',
+            'Badge': 'Group Quest Master',
+            'Experience': '3000 XP'
+          } : isGuildTutorial ? {
+            'Token-1': '2',
+            'Badge': 'Guild Explorer',
+            'Experience': '150 XP'
+          } : {
+            'Token-1': '1',
+            'Badge': 'First Quest Complete',
+            'Experience': '100 XP'
+          }
+        }
+      }
+    }
+    
+    emit('action', props.quest, action)
   }
 }
 
@@ -274,6 +330,11 @@ const applicationDate = (dateString: string) => {
 
 const verificationDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString()
+}
+
+const closeRewardPopup = () => {
+  showRewardPopup.value = false
+  rewardPopupData.value = null
 }
 
 // Helper methods for reward display
@@ -305,6 +366,57 @@ const getRewardText = (reward: any): string => {
     default:
       return reward.type
   }
+}
+
+// Helper methods for quest type display
+const getTypeIcon = (type: string): string => {
+  switch (type) {
+    case 'solo':
+      return 'game-icons:target-dummy'
+    case 'group':
+      return 'game-icons:team-idea'
+    case 'guild':
+      return 'game-icons:heart-tower'
+    default:
+      return 'game-icons:target-dummy'
+  }
+}
+
+const getTypeLabel = (type: string): string => {
+  switch (type) {
+    case 'solo':
+      return 'Solo Quest'
+    case 'group':
+      return 'Group Quest'
+    case 'guild':
+      return 'Guild Quest'
+    default:
+      return 'Quest'
+  }
+}
+
+const getTutorialDataAttribute = (): string | undefined => {
+  if (!props.quest) return undefined
+  
+  // Solo tutorial quest
+  if (props.quest.questID === 'g1_q_tutorial') {
+    if (props.quest.status === 'assigned') return 'tutorial-quest-deliver'
+    if (props.quest.status === 'rewarded') return 'tutorial-quest-reward'
+  }
+  
+  // Guild tutorial quest
+  if (props.quest.questID === 'g1_q_tutorial_guild') {
+    if (props.quest.status === 'assigned') return 'guild-quest'
+    if (props.quest.status === 'rewarded') return 'guild-quest-reward'
+  }
+  
+  // Group tutorial quest
+  if (props.quest.questID === 'g1_q_tutorial_group') {
+    if (props.quest.status === 'assigned') return 'deliver-group-quest'
+    if (props.quest.status === 'rewarded') return 'group-quest-reward'
+  }
+  
+  return undefined
 }
 </script>
 

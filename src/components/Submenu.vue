@@ -5,7 +5,7 @@
     @click.stop
   >
     <div class="submenu-header">
-      <h3 class="submenu-title">{{ item.label }}</h3>
+      <h3 class="submenu-title">{{ getNavigationHeader(item.id) }}</h3>
       <button 
         class="submenu-close"
         @click="$emit('close')"
@@ -20,6 +20,7 @@
         v-for="subItem in item.submenuItems"
         :key="subItem.id"
         class="submenu-item"
+        :data-tutorial="subItem.id === 'guildquests' ? 'guild-quests' : subItem.id === 'groupquests' ? 'group-quests' : undefined"
         @click="handleSubItemClick(subItem)"
         :style="submenuItemStyles"
       >
@@ -59,7 +60,7 @@ const emit = defineEmits<{
 }>()
 
 // Composables
-const { getPrimaryColor, getSecondaryColor } = useSkinTheme()
+const { getPrimaryColor, getSecondaryColor, getNavigationHeader } = useSkinTheme()
 
 // Computed styles
 const submenuStyles = computed(() => {

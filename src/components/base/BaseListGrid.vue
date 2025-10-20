@@ -6,8 +6,10 @@
     <div 
       v-for="(item, index) in items" 
       :key="item.id || index"
-      :class="itemClasses"
+      :class="[...itemClasses, { 'item-selected': item.isSelected }]"
       :style="itemStyles"
+      :data-tutorial="item.dataTutorial"
+      :data-selected="item.isSelected"
       @click="handleItemClick(item, index)"
     >
       <!-- Icon or Image -->
@@ -55,6 +57,8 @@ interface GridItem {
   status?: 'active' | 'inactive' | 'pending' | 'error'
   action?: () => void
   actionIcon?: string
+  dataTutorial?: string
+  isSelected?: boolean
 }
 
 interface Props {
@@ -232,6 +236,14 @@ const isImageUrl = (url: string): boolean => {
 .item-clickable:hover {
   transform: translateY(-0.0625rem);
   box-shadow: var(--shadow-lg);
+}
+
+/* Selected state */
+.item-selected {
+  transform: translateY(-0.0625rem);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--secondary-color-0) !important;
+  background: var(--secondary-color-2) !important;
 }
 
 /* Icon */

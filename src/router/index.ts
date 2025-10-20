@@ -97,9 +97,14 @@ const router = createRouter({
       component: () => import('../views/Gatekeeping.vue')
     },
     {
-      path: '/quest/game',
-      name: 'QuestBoardInGame',
-      component: () => import('../views/QuestBoardInGame.vue')
+      path: '/quest/solo',
+      name: 'QuestBoardSolo',
+      component: () => import('../views/QuestBoardSolo.vue')
+    },
+    {
+      path: '/quest/group',
+      name: 'QuestBoardGroup',
+      component: () => import('../views/QuestBoardGroup.vue')
     },
     {
       path: '/quest/guild',

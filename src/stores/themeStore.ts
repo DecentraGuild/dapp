@@ -15,6 +15,7 @@ export interface ThemeData {
       height: number
     }
   }
+  navigationHeaders: string[]
   headers: string[]
   icons: string[]
   primaryColor: string[]
@@ -52,6 +53,39 @@ export const useThemeStore = defineStore('theme', () => {
   const isOverride = ref(false) // Whether user has manually overridden theme
   const isThemesLoaded = ref(false)
   const loadedGuildColors = ref<Set<string>>(new Set()) // Track which guild colors are loaded
+
+  // Local storage keys
+  const STORAGE_KEYS = {
+    SELECTED_THEME: 'dguild_selected_theme',
+    THEME_OVERRIDE: 'dguild_theme_override'
+  }
+
+  // Theme persistence
+  const saveSelectedTheme = (themeId: string, isOverride: boolean = true) => {
+    const themeData = {
+      themeId,
+      isOverride,
+      timestamp: Date.now()
+    }
+    localStorage.setItem(STORAGE_KEYS.SELECTED_THEME, JSON.stringify(themeData))
+  }
+
+  const loadSelectedTheme = () => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEYS.SELECTED_THEME)
+      if (saved) {
+        const themeData = JSON.parse(saved)
+        return themeData
+      }
+    } catch (error) {
+      console.warn('Failed to load selected theme from localStorage:', error)
+    }
+    return null
+  }
+
+  const clearSelectedTheme = () => {
+    localStorage.removeItem(STORAGE_KEYS.SELECTED_THEME)
+  }
 
   // Getters
   const hasTheme = computed(() => !!currentTheme.value)
@@ -206,6 +240,9 @@ export const useThemeStore = defineStore('theme', () => {
       currentTheme.value = theme || null
       isOverride.value = true
       
+      // Save selected theme to localStorage
+      saveSelectedTheme(themeId, true)
+      
       // Apply CSS variables to document
       applyThemeToDocument()
     } catch (err) {
@@ -236,6 +273,9 @@ export const useThemeStore = defineStore('theme', () => {
       await loadGuildColors(guildId)
       
       isOverride.value = false // This is the guild's default theme
+      
+      // Save guild theme selection (not an override)
+      saveSelectedTheme(guild.theme, false)
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to load guild theme'
       // Handle error silently in production
@@ -302,13 +342,33 @@ export const useThemeStore = defineStore('theme', () => {
     error.value = null
   }
 
+  const restoreSavedTheme = async () => {
+    const savedTheme = loadSelectedTheme()
+    if (savedTheme && savedTheme.themeId) {
+      try {
+        await loadTheme(savedTheme.themeId)
+        isOverride.value = savedTheme.isOverride || false
+        return true
+      } catch (error) {
+        console.warn('Failed to restore saved theme:', error)
+        return false
+      }
+    }
+    return false
+  }
+
   const initializeDefaultTheme = async () => {
-    // If no theme is loaded and we have available themes, load castle_medieval as default
-    if (!currentTheme.value && availableThemes.value.length > 0) {
+    // Try to restore saved theme first
+    const restored = await restoreSavedTheme()
+    
+    // If no saved theme or restoration failed, load default
+    if (!restored && !currentTheme.value && availableThemes.value.length > 0) {
       const defaultTheme = availableThemes.value.find(t => t.id === 'castle_medieval')
       if (defaultTheme) {
         currentTheme.value = defaultTheme
         applyThemeToDocument()
+        // Save default theme selection
+        saveSelectedTheme('castle_medieval', false)
       }
     }
   }
@@ -362,6 +422,12 @@ export const useThemeStore = defineStore('theme', () => {
     initializeDefaultTheme,
     getHeaderText,
     getIconName,
-    getThemeImage
+    getThemeImage,
+
+    // Persistence
+    saveSelectedTheme,
+    loadSelectedTheme,
+    clearSelectedTheme,
+    restoreSavedTheme
   }
 })

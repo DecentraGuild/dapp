@@ -148,3 +148,80 @@ export async function loadMultipleSlpData<T = any>(
 export function clearSlpCache(): void {
   slpCache.clear()
 }
+
+/**
+ * Parse relative date strings like "TODAY+2 19:00:00", "TODAY-7 19:00:00", or "TODAY 19:00:00"
+ * Returns ISO date string based on current system time
+ */
+export function parseRelativeDate(dateStr: string): string {
+  if (!dateStr || typeof dateStr !== 'string') {
+    return dateStr
+  }
+
+  // Check if it's a relative date format (with or without offset)
+  const relativeDatePattern = /^TODAY([+-]\d+)?\s+(.+)$/i
+  const match = dateStr.match(relativeDatePattern)
+  
+  if (!match) {
+    // Not a relative date, return as-is
+    return dateStr
+  }
+
+  const [, offsetStr, timeStr] = match
+  const offset = offsetStr ? parseInt(offsetStr, 10) : 0  // Default to 0 if no offset
+  
+  // Get current date
+  const now = new Date()
+  
+  // Add offset days
+  now.setDate(now.getDate() + offset)
+  
+  // Parse time (HH:MM:SS)
+  const [hours, minutes, seconds] = timeStr.split(':').map(Number)
+  now.setHours(hours || 0, minutes || 0, seconds || 0, 0)
+  
+  // Return ISO string
+  return now.toISOString()
+}
+
+/**
+ * Process event data and convert all relative dates to actual dates
+ */
+export function processEventDates<T extends Record<string, any>>(event: T): T {
+  const processed: any = { ...event }
+  
+  // Fields that might contain dates
+  const dateFields = ['date', 'startingTime', 'lateRegTime', 'created', 'entryTime', 'eliminationTime']
+  
+  // Process top-level date fields
+  for (const field of dateFields) {
+    if (processed[field]) {
+      processed[field] = parseRelativeDate(processed[field])
+    }
+  }
+  
+  // Process leaderboard dates if present
+  if (Array.isArray(processed.leaderboard)) {
+    processed.leaderboard = processed.leaderboard.map((entry: any) => {
+      const processedEntry = { ...entry }
+      for (const field of dateFields) {
+        if (processedEntry[field]) {
+          processedEntry[field] = parseRelativeDate(processedEntry[field])
+        }
+      }
+      return processedEntry
+    })
+  }
+  
+  return processed as T
+}
+
+/**
+ * Load SLP event data with automatic date processing
+ */
+export async function loadSlpEventData<T = any>(path: string): Promise<T | null> {
+  const data = await loadSlpData<T>(path)
+  if (!data) return null
+  
+  return processEventDates(data)
+}

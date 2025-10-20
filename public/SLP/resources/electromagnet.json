@@ -1,0 +1,2 @@
+{"resourceID":"electromagnet","name":"Electromagnet","symbol":"ELECMAG","description":"Advanced electromagnetic components critical for ship propulsion systems and energy management. Highly valued in ship construction and upgrades. Obtained from high-level raids.","image":"ELECMAG.png","type":"component","rarity":"uncommon","category":"electronics","stackable":true,"tradeable":true,"craftable":false,"baseValue":50,"weight":2,"isActive":true}
+

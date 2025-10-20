@@ -2,17 +2,20 @@
 import { computed, watch, onMounted } from 'vue'
 import FooterNavbar from './components/FooterNavbar.vue'
 import TopNavbar from './components/TopNavbar.vue'
+import TutorialOverlay from './components/TutorialOverlay.vue'
 import { useSkinTheme } from './composables/useSkinTheme'
 import { useFooterState } from './composables/useFooterState'
 import { useThemeStore } from './stores/themeStore'
 import { useUserStore } from './stores/userStore'
 import { useGuildStore } from './stores/guildStore'
+import { useTutorialStore } from './stores/tutorialStore'
 
-const { currentTheme, getTextColor, getPrimaryColor, getSecondaryColor, getBackgroundColor } = useSkinTheme()
+const { currentTheme, getTextColor, getPrimaryColor, getSecondaryColor } = useSkinTheme()
 const { isFooterExpanded, isDashboardMode } = useFooterState()
 const themeStore = useThemeStore()
 const userStore = useUserStore()
 const guildStore = useGuildStore()
+const tutorialStore = useTutorialStore()
 
 const appClasses = computed(() => [
   'app',
@@ -59,6 +62,13 @@ onMounted(async () => {
   if (!guildStore.hasActiveGuild) {
     await guildStore.loadAvailableGuilds()
   }
+
+  // Start tutorial if not seen before
+  if (!tutorialStore.hasSeenWelcome) {
+    setTimeout(() => {
+      tutorialStore.startTutorial()
+    }, 1000) // Small delay to let everything load
+  }
 })
 </script>
 
@@ -74,6 +84,9 @@ onMounted(async () => {
     
     <!-- Footer Navbar -->
     <FooterNavbar />
+
+    <!-- Tutorial Overlay -->
+    <TutorialOverlay />
   </div>
 </template>
 

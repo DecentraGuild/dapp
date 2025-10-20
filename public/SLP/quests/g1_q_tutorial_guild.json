@@ -1,0 +1,49 @@
+{
+  "qid": "g1_q_tutorial_guild",
+  "gid": "guild-1",
+  "title": "Tutorial Guild Functionality",
+  "description": "Learn the essential guild features by exploring the Trophy Room, participating in DAO governance, checking vault funds, updating your profile, and experiencing the guild's visual identity system.",
+  "type": "guild",
+  "status": "new",
+  "phase": "create",
+  "role": "guild1_r1",
+  "roleRequirement": "prospect",
+  "goal": "Complete a comprehensive tour of guild functionality including governance, treasury, and community features",
+  "requirements": [
+    "Visit Trophy Room to see tutorial achievements",
+    "Check DAO for active governance proposals",
+    "Review vault balance and treasury funds",
+    "Update member profile with Discord information",
+    "Experience guild skin changes after vote passes"
+  ],
+  "gear": [],
+  "guildSupplies": [
+    "Tutorial Achievement System",
+    "DAO Voting Interface",
+    "Treasury Management Tools",
+    "Member Profile System",
+    "Guild Skin Customization"
+  ],
+  "rewards": {
+    "tokens": {
+      "token1": 2,
+      "token2": 0
+    },
+    "badges": [
+      "guild_explorer"
+    ],
+    "nfts": [],
+    "experience": 150
+  },
+  "contributors": [],
+  "assignedTo": null,
+  "creator": "guild1_founder",
+  "created": "2024-01-20T10:00:00Z",
+  "deadline": "2024-01-27T23:59:59Z",
+  "completedAt": null,
+  "isActive": true,
+  "applications": [],
+  "verification": null,
+  "tutorialQuest": true,
+  "amountToken1": 2
+}

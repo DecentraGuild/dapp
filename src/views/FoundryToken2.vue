@@ -108,7 +108,7 @@
               </div>
               <div class="calculation-item">
                 <span class="calc-label">Tokens to Receive:</span>
-                <span class="calc-value">{{ tokenAmount.toFixed(2) }} {{ tokenData?.symbol || 'CGM' }}</span>
+                <span class="calc-value">{{ tokenAmount.toFixed(2) }} {{ tokenData?.symbol || guildStore.token2Symbol }}</span>
               </div>
             </div>
             
@@ -140,23 +140,25 @@ import BaseFoundry from '@/components/BaseFoundry.vue'
 import { BaseCard, BaseButton, BaseListGrid } from '@/components/base'
 import { useSkinTheme } from '@/composables/useSkinTheme'
 import { useGuildStore } from '@/stores/guildStore'
+import { useThemeStore } from '@/stores/themeStore'
 import { getSlpPath } from '@/utils/api'
 
 // Types
 interface TokenData {
   tokenID: string
-  guildID: string
+  gid: string
   name: string
   symbol: string
   description: string
   image: string
   decimals: number
   circulatingSupply: number
-  maxSupply: number
+  maxSupply?: number
   vaultHolding: number
   assetbacking: string
   exchangeRatio: [number, number]
-  createdAt: string
+  color: string
+  created: string
   isActive: boolean
   contractAddress: string
 }
@@ -212,7 +214,7 @@ const tokenStatsItems = computed(() => {
       id: 'circulating-supply',
       icon: 'mdi:currency-usd',
       title: 'Circulating Supply',
-      subtitle: `${tokenData.value.circulatingSupply.toLocaleString()} / ${tokenData.value.maxSupply.toLocaleString()}`,
+      subtitle: `${tokenData.value.circulatingSupply.toLocaleString()} / ${tokenData.value.maxSupply?.toLocaleString() || 'N/A'}`,
       value: '',
       description: 'Current vs Max supply'
     }
@@ -231,7 +233,7 @@ const maxAssetBacking = computed(() => {
 const tokenAmount = computed(() => {
   if (!tokenData.value || !assetBackingAmount.value) return 0
   // Token2 mint: asset backing amount / exchange rate = tokens to receive
-  // 1 CGM = 1.327 POLIS, so 1 POLIS = 0.7535795 CGM
+  // 1 CCC = 100 ATLAS, so 1 ATLAS = 0.01 CCC
   return assetBackingAmount.value / tokenData.value.exchangeRatio[1]
 })
 
@@ -244,9 +246,14 @@ const canMint = computed(() => {
 // Methods
 const loadTokenData = async () => {
   try {
-    const response = await fetch(getSlpPath('guildtoken/guild-1_token2.json'))
-    if (response.ok) {
-      tokenData.value = await response.json()
+    // Use guildStore token data if available, otherwise fallback to direct fetch
+    if (guildStore.token2) {
+      tokenData.value = guildStore.token2
+    } else {
+      const response = await fetch(getSlpPath('guildtoken/guild-1_token2.json'))
+      if (response.ok) {
+        tokenData.value = await response.json()
+      }
     }
   } catch (error) {
     // Handle error silently in production
@@ -302,7 +309,6 @@ onMounted(async () => {
   await loadTokenData()
   await loadGuildAllocations()
   // Load guild colors to ensure they're available
-  const { useThemeStore } = await import('@/stores/themeStore')
   const themeStore = useThemeStore()
   if (guildStore.guildId) {
     await themeStore.loadGuildColors(guildStore.guildId)

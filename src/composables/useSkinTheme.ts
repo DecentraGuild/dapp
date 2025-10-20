@@ -1,6 +1,7 @@
 import { computed } from 'vue'
 import { useThemeStore } from '@/stores/themeStore'
 import { getImagePath } from '@/utils/api'
+import { NAVIGATION_HEADER_INDEX, mainNavigationItems } from '@/config/navigation'
 
 export function useSkinTheme() {
   const themeStore = useThemeStore()
@@ -76,6 +77,38 @@ export function useSkinTheme() {
     return images.map(imagePath => getImagePath(imagePath))
   }
 
+  const getNavigationHeader = (itemId: string): string => {
+    const index = NAVIGATION_HEADER_INDEX[itemId]
+    
+    if (index === undefined) {
+      // If no mapping exists, fallback to the hardcoded label
+      const navItem = mainNavigationItems.find(item => item.id === itemId)
+      return navItem?.label || itemId
+    }
+    
+    // Use the navigationHeaders array from the theme (not the headers array)
+    const navigationHeaders = currentTheme.value?.navigationHeaders
+    
+    // Three-tier fallback strategy:
+    // 1. Skin's navigationHeaders[index]
+    // 2. Navigation item's hardcoded label
+    // 3. Humanized version of the id
+    if (navigationHeaders && navigationHeaders[index]) {
+      return navigationHeaders[index]
+    }
+    
+    const navItem = mainNavigationItems.find(item => item.id === itemId)
+    if (navItem?.label) {
+      return navItem.label
+    }
+    
+    // Last resort: humanize the id (e.g., "community-hub" -> "Community Hub")
+    return itemId
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ')
+  }
+
   return {
     currentTheme,
     currentThemeId,
@@ -93,6 +126,7 @@ export function useSkinTheme() {
     getDaoToken1Color,
     getDaoToken2Color,
     getDaoGuildColor,
-    getImagePaths
+    getImagePaths,
+    getNavigationHeader
   }
 }

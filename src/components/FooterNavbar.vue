@@ -60,19 +60,20 @@
              preserveAspectRatio="xMidYMid slice"
            />
            <!-- Render all navigation shapes - they will automatically scale with the SVG viewBox -->
-           <g v-for="item in navigationItems" :key="item.id">
-             <path
-               :id="getShapeId(item.name)"
-               :d="getShapePathData(item.name)"
-               :fill="isHovered(item.id) ? getSecondaryColor(2) : 'transparent'"
-               :stroke="isHovered(item.id) ? getSecondaryColor(1) : 'transparent'"
-               :stroke-width="isHovered(item.id) ? '2' : '0'"
-               class="nav-shape"
-               @click="handleShapeClick(item, $event)"
-               @mouseenter="handleShapeHover(item, $event)"
-               @mouseleave="handleShapeLeave"
-             />
-           </g>
+          <g v-for="item in navigationItems" :key="item.id">
+            <path
+              :id="getShapeId(item.name)"
+              :d="getShapePathData(item.name)"
+              :fill="isHovered(item.id) ? getSecondaryColor(2) : 'transparent'"
+              :stroke="isHovered(item.id) ? getSecondaryColor(1) : 'transparent'"
+              :stroke-width="isHovered(item.id) ? '2' : '0'"
+              :data-tutorial="getTutorialDataAttribute(item.id)"
+              class="nav-shape"
+              @click="handleShapeClick(item, $event)"
+              @mouseenter="handleShapeHover(item, $event)"
+              @mouseleave="handleShapeLeave"
+            />
+          </g>
          </svg>
        </div>
 
@@ -97,7 +98,7 @@
       class="shape-tooltip"
       :style="tooltipStyles"
     >
-      {{ navigationItems.find(item => item.id === hoveredShape)?.label }}
+      {{ getNavigationHeader(hoveredShape) }}
     </div>
   </Teleport>
 </template>
@@ -125,7 +126,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 // Composables
 const router = useRouter()
-const { currentTheme, getPrimaryColor, getSecondaryColor } = useSkinTheme()
+const { currentTheme, getPrimaryColor, getSecondaryColor, getNavigationHeader } = useSkinTheme()
 const { isFooterExpanded, setFooterExpanded } = useFooterState()
 
 // State
@@ -267,6 +268,29 @@ const handleNavigation = (item: NavigationItem) => {
   router.push(`/${item.path}`)
   setHoveredItem(null)
   isExpanded.value = false
+}
+
+const getTutorialDataAttribute = (itemId: string): string | undefined => {
+  switch (itemId) {
+    case 'questboard':
+      return 'quest-board'
+    case 'armory':
+      return 'armory'
+    case 'trophyroom':
+      return 'trophy-room'
+    case 'dao':
+      return 'dao'
+    case 'vaults':
+      return 'vaults'
+    case 'memberprofile':
+      return 'member-profile'
+    case 'guildprofile':
+      return 'guild-profile'
+    case 'commandcenter':
+      return 'command-center'
+    default:
+      return undefined
+  }
 }
 
 // Load SVG dimensions from the actual SVG file

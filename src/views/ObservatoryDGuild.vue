@@ -579,28 +579,23 @@ const votingRecentActivity = computed(() => [
 
 // Methods
 const handleTimeFilterChange = (filter: string) => {
-  console.log('Time filter changed:', filter)
   // Handle time filter changes
 }
 
 const handleMetricClick = (metric: any) => {
-  console.log('Metric clicked:', metric)
   // Handle metric clicks
 }
 
 const handleGoalClick = (goal: any) => {
-  console.log('Goal clicked:', goal)
   // Handle goal clicks
 }
 
 const handleActivityClick = (activity: any) => {
-  console.log('Activity clicked:', activity)
   // Handle activity clicks
 }
 
 // Lifecycle
 onMounted(() => {
-  console.log('dGuild Observatory loaded with data:', dguildData.value)
 })
 </script>
 

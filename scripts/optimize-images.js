@@ -16,7 +16,7 @@
  * 4. Generate a report of space savings
  */
 
-import { readdir, stat, readFile, writeFile, mkdir } from 'fs/promises'
+import { readdir, stat, readFile, writeFile } from 'fs/promises'
 import { join, extname, basename, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'

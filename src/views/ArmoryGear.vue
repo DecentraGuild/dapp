@@ -27,6 +27,7 @@
             :currentlyHeldBy="gear.currentlyHeldBy"
             :isActive="gear.isActive"
             :createdAt="gear.createdAt"
+            :data-tutorial="gear.name.toLowerCase().includes('maxhog') ? 'maxhog-vehicle' : undefined"
             size="md"
             :hover="true"
             :clickable="true"
@@ -69,20 +70,38 @@
       </div>
     </template>
   </BaseArmory>
+
+  <!-- Success Popup -->
+  <BaseSuccessPopup
+    v-if="successPopupData"
+    :is-visible="showSuccessPopup"
+    :title="successPopupData.title"
+    :message="successPopupData.message"
+    :details="successPopupData.details"
+    icon="mdi:check-circle"
+    button-text="Got it!"
+    :auto-close="true"
+    :auto-close-delay="5000"
+    @close="closeSuccessPopup"
+  />
 </template>
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { Icon } from '@iconify/vue'
 import { BaseCard, BaseGear, BaseGearExecution } from '@/components/base'
+import BaseSuccessPopup from '@/components/base/BaseSuccessPopup.vue'
 import BaseArmory from '@/components/base/BaseArmory.vue'
 import { useDesignTokens } from '@/composables/useDesignTokens'
 import { useGuildStore } from '@/stores/guildStore'
+import { useTutorialStore } from '@/stores/tutorialStore'
+import { triggerTutorialAction, TUTORIAL_ACTIONS } from '@/utils/tutorialActions'
 import { getSlpPath } from '@/utils/api'
 
 // Composables
 const { colors, spacing, typography, borderRadius } = useDesignTokens()
 const guildStore = useGuildStore()
+const tutorialStore = useTutorialStore()
 
 // Types
 interface GearItem {
@@ -110,6 +129,14 @@ const guildGear = ref<GearItem[]>([])
 const selectedGear = ref<GearItem | null>(null)
 const loading = ref(false)
 
+// Success popup state
+const showSuccessPopup = ref(false)
+const successPopupData = ref<{
+  title: string
+  message: string
+  details: Record<string, string | number>
+} | null>(null)
+
 // Mock wallet balance (in a real app, this would come from a store or API)
 const mockWalletBalance = ref(5000)
 
@@ -132,9 +159,9 @@ const loadGuildGear = async () => {
     // Load all gear files for this guild
     const gearFiles = [
       `guild-1_gear_pearcex4.json`,
+      `guild-1_gear_maxhog.json`,
       `guild-1_gear_pearcex5.json`,
       `guild-1_gear_pearcex6.json`,
-      `guild-1_gear_maxhog.json`,
       `guild-1_gear_opaljet.json`
     ]
 
@@ -146,7 +173,27 @@ const loadGuildGear = async () => {
         
         if (response.ok) {
           const gearData = await response.json()
-          gear.push(gearData)
+          // Map the data properties to match component expectations
+          const mappedGearData: GearItem = {
+            gearID: gearData.gearID,
+            guildID: gearData.gid || gearData.guildID || guildId,
+            name: gearData.name,
+            description: gearData.description,
+            image: gearData.image,
+            type: gearData.type,
+            rarity: gearData.rarity,
+            depositRequired: gearData.depositRequired,
+            depositToken: gearData.depositToken,
+            rentalFee: gearData.rentalFee,
+            rentalFeeToken: gearData.rentalFeeToken,
+            amountAvailable: gearData.amountAvailable,
+            maxPerMember: gearData.maxPerMember,
+            currentlyHeldBy: gearData.currentlyHeldBy || [],
+            isActive: gearData.isActive,
+            createdAt: gearData.created || gearData.createdAt || new Date().toISOString(),
+            contractAddress: gearData.contractAddress
+          }
+          gear.push(mappedGearData)
         }
       } catch (error) {
         // Silent fail for missing files
@@ -165,6 +212,13 @@ const selectGear = (gear: any) => {
   const fullGear = guildGear.value.find(g => g.gearID === gear.gearID)
   if (fullGear) {
     selectedGear.value = fullGear
+    // Scroll to bottom to show the details section
+    setTimeout(() => {
+      window.scrollTo({ 
+        top: document.documentElement.scrollHeight, 
+        behavior: 'smooth' 
+      })
+    }, 100)
   }
 }
 
@@ -176,15 +230,37 @@ const handleGearExecution = (executionData: { gearID: string, action: 'borrow' |
   // 4. Update balances and gear availability
   // 5. Refresh the gear list
   
-  // For now, just show a success message
+  // Find the gear details for the popup
+  const gear = guildGear.value.find(g => g.gearID === executionData.gearID)
   const actionText = executionData.action === 'borrow' ? 'borrowed' : 'returned'
-  // TODO: Show success notification
-  // This should use a proper notification system instead of alert
+  
+  // Show success popup
+  successPopupData.value = {
+    title: `Gear ${actionText.charAt(0).toUpperCase() + actionText.slice(1)} Successfully!`,
+    message: `You have successfully ${actionText} the ${gear?.name || 'gear'}. ${executionData.action === 'borrow' ? 'Remember to return it when you\'re done!' : 'Thank you for returning the gear!'}`,
+    details: {
+      'Gear Name': gear?.name || 'Unknown',
+      'Action': actionText.charAt(0).toUpperCase() + actionText.slice(1),
+      'Deposit': `${executionData.totalCost} ${gear?.depositToken || 'tokens'}`,
+      'Transaction ID': `TX-${Date.now().toString(36).toUpperCase()}`
+    }
+  }
+  
+  showSuccessPopup.value = true
+  
+  // Handle tutorial auto-advance for gear borrowing
+  if (executionData.action === 'borrow') {
+    triggerTutorialAction(TUTORIAL_ACTIONS.BORROW_GEAR)
+  }
   
   // Reset selection
   selectedGear.value = null
 }
 
+const closeSuccessPopup = () => {
+  showSuccessPopup.value = false
+  successPopupData.value = null
+}
 
 // Lifecycle
 onMounted(async () => {
@@ -216,7 +292,7 @@ onMounted(async () => {
 /* Gear Grid */
 .gear-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(21.875rem, 1fr));
   gap: var(--space-lg);
   height: auto;
 }

@@ -67,6 +67,7 @@
             :large-icons="true"
             size="lg"
             variant="primary"
+            :class="{ 'asset-grid--has-selection': selectedAsset }"
             @item-click="handleAssetClick"
           />
         </BaseCard>
@@ -74,6 +75,7 @@
         <!-- Selected Asset Details Card -->
         <BaseCard 
           v-if="selectedAsset"
+          ref="assetDetailsCardRef"
           variant="primary" 
           size="lg"
           class="asset-details-card"
@@ -131,8 +133,9 @@
                   :icon="exchangeAmount < 0 ? 'mdi:arrow-down' : 'mdi:arrow-up'"
                   @click="handleExchange"
                   :disabled="!canExchange"
+                  :data-tutorial="selectedAsset?.wrapperID === 'g1-rainbowchi-wrapper' && exchangeAmount > 0 ? 'redeem-chi' : undefined"
                 >
-                  {{ exchangeAmount < 0 ? 'Redeem' : 'Mint' }}
+                  {{ exchangeAmount < 0 ? 'Create Parts' : 'Redeem' }}
                 </BaseButton>
               </div>
             </div>
@@ -140,16 +143,27 @@
         </BaseCard>
       </div>
     </div>
+
+    <!-- Success Popup -->
+    <BaseSuccessPopup
+      :is-visible="showSuccessPopup"
+      :title="successPopupData.title"
+      :message="successPopupData.message"
+      :details="successPopupData.details"
+      @close="closeSuccessPopup"
+    />
   </BaseFoundry>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import { Icon } from '@iconify/vue'
 import BaseFoundry from '@/components/BaseFoundry.vue'
 import { BaseCard, BaseButton, BaseListGrid, BaseList } from '@/components/base'
 import BaseSidebar from '@/components/base/BaseSidebar.vue'
+import BaseSuccessPopup from '@/components/base/BaseSuccessPopup.vue'
 import { useSkinTheme } from '@/composables/useSkinTheme'
+import { useTutorialStore } from '@/stores/tutorialStore'
 import { getSlpPath } from '@/utils/api'
 import type { SidebarItem } from '@/components/base/BaseSidebar'
 
@@ -202,10 +216,12 @@ interface AssetItem {
   value: string
   description: string
   assetData: CustomAsset
+  isSelected?: boolean
 }
 
 // Composables
 const { getPrimaryColor, getSecondaryColor, getTextColor, getBorderRadius } = useSkinTheme()
+const tutorialStore = useTutorialStore()
 
 // State
 const selectedCustomType = ref<CustomType | null>(null)
@@ -215,6 +231,15 @@ const customAssets = ref<CustomAsset[]>([])
 const gridView = ref<'grid' | 'list'>('grid')
 const exchangeAmount = ref<number>(0)
 const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1200)
+const assetDetailsCardRef = ref<InstanceType<typeof BaseCard> | null>(null)
+
+// Success popup state
+const showSuccessPopup = ref(false)
+const successPopupData = ref({
+  title: '',
+  message: '',
+  details: {} as Record<string, string | number>
+})
 
 // Computed
 const customTypeItems = computed((): SidebarItem[] => {
@@ -244,7 +269,8 @@ const customAssetItems = computed((): AssetItem[] => {
     subtitle: '',
     value: '',
     description: '',
-    assetData: asset
+    assetData: asset,
+    isSelected: selectedAsset.value?.wrapperID === asset.wrapperID
   }))
 })
 
@@ -336,14 +362,14 @@ const getInputPlaceholder = () => {
   if (!selectedAsset.value) return "Enter amount"
   
   const assetName = selectedAsset.value.backingAsset.name
-  return `Enter ${assetName} amount (+mint, -redeem)`
+  return `Enter ${assetName} amount (+redeem, -create)`
 }
 
 const getHelpText = () => {
-  if (!selectedAsset.value) return "(Positive = Mint, Negative = Redeem)"
+  if (!selectedAsset.value) return "(Positive = Redeem, Negative = Create)"
   
   const assetName = selectedAsset.value.backingAsset.name
-  return `(Positive = Mint ${assetName}, Negative = Redeem ${assetName})`
+  return `(Positive = Redeem ${assetName}, Negative = Create ${assetName} parts)`
 }
 
 const loadCustomTypes = async () => {
@@ -410,9 +436,26 @@ const handleCustomTypeClick = (item: SidebarItem) => {
   }
 }
 
-const handleAssetClick = (item: any) => {
+const handleAssetClick = async (item: any) => {
   selectedAsset.value = item.assetData
   exchangeAmount.value = 0 // Reset exchange amount
+  
+  // Scroll to asset details after DOM update
+  await nextTick()
+  scrollToAssetDetails()
+}
+
+const scrollToAssetDetails = () => {
+  if (assetDetailsCardRef.value && assetDetailsCardRef.value.$el) {
+    assetDetailsCardRef.value.$el.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'start' 
+    })
+  }
+}
+
+const closeSuccessPopup = () => {
+  showSuccessPopup.value = false
 }
 
 const setGridView = (view: 'grid' | 'list') => {
@@ -430,16 +473,59 @@ const handleExchange = () => {
   const tokenName = selectedAsset.value.symbol
   
   if (isRedeeming) {
-    // Redeeming: tokens -> assets
+    // Redeeming: tokens -> assets (e.g., 150 Chi parts -> 1 Chi ship)
     // TODO: Implement actual redemption logic
     // This should integrate with the blockchain redemption system
-    // For now, this is a placeholder for the redemption functionality
+    
+    
+    // Show success popup for redemption
+    successPopupData.value = {
+      title: 'Assets Redeemed Successfully!',
+      message: `You have successfully redeemed ${absAmount} ${tokenName} for ${absAmount} ${assetName}!`,
+      details: {
+        'Asset Name': assetName,
+        'Token Redeemed': tokenName,
+        'Amount': absAmount,
+        'Exchange Rate': `${selectedAsset.value.exchangeRatio[1]} : ${selectedAsset.value.exchangeRatio[0]}`,
+        'Minting Fee': `${mintingFee.value.toFixed(4)} SOL`
+      }
+    }
   } else {
-    // Minting: assets -> tokens + SOL fee
-    // TODO: Implement actual minting logic
-    // This should integrate with the blockchain minting system
-    // For now, this is a placeholder for the minting functionality
+    // Creating: assets -> tokens (e.g., 1 Chi ship -> 150 Chi parts)
+    // TODO: Implement actual creation logic
+    // This should integrate with the blockchain creation system
+    
+    
+    // Show success popup for creation
+    successPopupData.value = {
+      title: 'Parts Created Successfully!',
+      message: `You have successfully created ${absAmount} ${tokenName} from ${absAmount} ${assetName}!`,
+      details: {
+        'Token Name': tokenName,
+        'Asset Used': assetName,
+        'Amount': absAmount,
+        'Exchange Rate': `${selectedAsset.value.exchangeRatio[1]} : ${selectedAsset.value.exchangeRatio[0]}`,
+        'Creation Fee': `${mintingFee.value.toFixed(4)} SOL`
+      }
+    }
   }
+  
+  // Show the success popup
+  showSuccessPopup.value = true
+  
+  // Trigger tutorial action if this is the Chi redemption step
+  if (selectedAsset.value?.wrapperID === 'g1-rainbowchi-wrapper' && !isRedeeming) {
+    if (tutorialStore.isActive && tutorialStore.currentStep?.id === 'redeem-chi') {
+      setTimeout(() => {
+        tutorialStore.handleButtonAction('redeem-chi')
+      }, 500)
+    }
+  }
+  
+  // Reset form after exchange
+  setTimeout(() => {
+    exchangeAmount.value = 0
+  }, 600)
 }
 
 // Window resize handler
@@ -740,41 +826,46 @@ onUnmounted(() => {
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-md);
   width: 100%;
   max-width: 100%;
 }
 
 .input-with-help {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
   gap: var(--space-sm);
   width: 100%;
 }
 
 .input-help-text {
-  font-size: var(--text-xs);
-  color: var(--text-color-2);
+  font-size: var(--text-sm);
+  color: var(--text-color-1);
   font-style: italic;
+  margin-bottom: var(--space-xs);
 }
 
 .input-label {
-  font-size: var(--text-sm);
-  color: var(--text-color-2);
-  font-weight: var(--font-medium);
+  font-size: var(--text-base);
+  color: var(--text-color-0);
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--space-xs);
 }
 
 .amount-input {
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-md) var(--space-lg);
   border: var(--component-border-width) solid var(--secondary-color-2);
   border-radius: var(--theme-radius-md);
   background: var(--primary-color-1);
   color: var(--text-color-0);
-  font-size: var(--text-base);
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  height: 3rem;
+  min-height: 3rem;
   transition: border-color var(--transition-normal);
   flex: 1;
   min-width: 0;
+  width: 100%;
 }
 
 .amount-input:focus {

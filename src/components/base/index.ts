@@ -19,6 +19,7 @@ export { default as BaseClaim } from './BaseClaim.vue'
 export { default as BaseGear } from './BaseGear.vue'
 export { default as BaseGearExecution } from './BaseGearExecution.vue'
 export { default as BaseArmory } from './BaseArmory.vue'
+export { default as BaseSuccessPopup } from './BaseSuccessPopup.vue'
 export { default as BasePersonalObservatory } from '../BasePersonalObservatory.vue'
 export { default as BaseSummaryObservatory } from '../BaseSummaryObservatory.vue'
 

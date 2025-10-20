@@ -7,6 +7,7 @@
       variant="primary" 
       size="lg"
       class="trophy-header-card"
+      data-tutorial="trophy-room"
     >
       <div class="trophy-header-content">
         <div class="trophy-description">
@@ -233,12 +234,17 @@ const loadMemberAchievementStatus = async () => {
       return
     }
     
+    // Convert object to array and map mid to memberID
+    const membersArray = Object.values(data).map((member: any) => ({
+      ...member,
+      memberID: member.mid
+    }))
+    
     // Find current user's status
-    const userStatus = data.find((member: MemberAchievementStatus) => member.memberID === currentUserId)
+    const userStatus = membersArray.find((member: MemberAchievementStatus) => member.memberID === currentUserId)
     if (userStatus) {
       memberAchievementStatus.value = userStatus
     } else {
-      // No achievement status found for user
     }
   } catch (error) {
     // Handle error silently in production
@@ -269,7 +275,7 @@ const loadAllAchievements = async () => {
           const memberLevel = memberStatus?.level || 'Common'
           const memberCompleted = memberStatus?.completed || false
           
-          // Processing achievement
+          
           
           // Create achievement with all levels and current progress
           const achievementData: Achievement = {
@@ -284,24 +290,24 @@ const loadAllAchievements = async () => {
                 contributionPoints: achievement.levels[0]?.contributionPoints || 0,
                 tokenReward: achievement.levels[0]?.tokenReward || 0,
                 mintable: achievement.levels[0]?.mintable || false,
-                completed: memberLevel === 'Common' && memberCompleted,
-                completedAt: memberLevel === 'Common' && memberCompleted ? memberStatus?.completedAt || undefined : undefined
+                completed: memberCompleted && (memberLevel === 'Common' || memberLevel === 'Epic' || memberLevel === 'Legendary'),
+                completedAt: memberCompleted && (memberLevel === 'Common' || memberLevel === 'Epic' || memberLevel === 'Legendary') ? memberStatus?.completedAt || undefined : undefined
               },
               Epic: {
                 requirement: achievement.levels[1]?.requirement || '',
                 contributionPoints: achievement.levels[1]?.contributionPoints || 0,
                 tokenReward: achievement.levels[1]?.tokenReward || 0,
                 mintable: achievement.levels[1]?.mintable || false,
-                completed: memberLevel === 'Epic' && memberCompleted,
-                completedAt: memberLevel === 'Epic' && memberCompleted ? memberStatus?.completedAt || undefined : undefined
+                completed: memberCompleted && (memberLevel === 'Epic' || memberLevel === 'Legendary'),
+                completedAt: memberCompleted && (memberLevel === 'Epic' || memberLevel === 'Legendary') ? memberStatus?.completedAt || undefined : undefined
               },
               Legendary: {
                 requirement: achievement.levels[2]?.requirement || '',
                 contributionPoints: achievement.levels[2]?.contributionPoints || 0,
                 tokenReward: achievement.levels[2]?.tokenReward || 0,
                 mintable: achievement.levels[2]?.mintable || false,
-                completed: memberLevel === 'Legendary' && memberCompleted,
-                completedAt: memberLevel === 'Legendary' && memberCompleted ? memberStatus?.completedAt || undefined : undefined
+                completed: memberCompleted && memberLevel === 'Legendary',
+                completedAt: memberCompleted && memberLevel === 'Legendary' ? memberStatus?.completedAt || undefined : undefined
               }
             },
             currentLevel: memberLevel,

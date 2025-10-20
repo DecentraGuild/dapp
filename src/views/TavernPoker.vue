@@ -176,7 +176,7 @@ import { Icon } from '@iconify/vue'
 import { BaseCard, BasePoker, BaseButton } from '@/components/base'
 import { useGuildStore } from '@/stores/guildStore'
 import { useSkinTheme } from '@/composables/useSkinTheme'
-import { getSlpPath } from '@/utils/api'
+import { getSlpPath, processEventDates } from '@/utils/api'
 
 interface PokerEvent {
   eventID: string
@@ -313,9 +313,13 @@ const loadPokerEvents = async () => {
         const response = await fetch(getSlpPath(`events/${filename}`))
         if (response.ok) {
           const event = await response.json()
+          
+          // Process all relative dates (TODAY+N or TODAY-N) to actual dates
+          const processedEvent = processEventDates(event)
+          
           // Only show poker tournament events that are active
-          if (event.eventType === 'poker_tournament' && event.isActive) {
-            return event
+          if (processedEvent.eventType === 'poker_tournament' && processedEvent.isActive) {
+            return processedEvent
           }
         }
       } catch (error) {

@@ -85,6 +85,7 @@
           :large-icons="true"
           size="lg"
           variant="primary"
+          :class="{ 'nft-grid--has-selection': selectedNFT }"
           @item-click="handleNFTClick"
         />
         </BaseCard>
@@ -92,6 +93,7 @@
         <!-- Selected NFT Details Card -->
         <BaseCard 
           v-if="selectedNFT"
+          ref="nftDetailsCardRef"
           variant="primary" 
           size="lg"
           class="nft-details-card"
@@ -133,7 +135,7 @@
           <div class="minting-section">
             <div class="minting-fee">
               <span class="fee-label">Minting Fee:</span>
-              <span class="fee-value">{{ selectedCollection?.mintPrice || 0 }} {{ selectedCollection?.mintCurrency || 'CCC' }}</span>
+              <span class="fee-value">{{ selectedCollection?.mintPrice || 0 }} {{ selectedCollection?.mintCurrency || guildStore.token2Symbol }}</span>
             </div>
             <BaseButton
               variant="accent"
@@ -147,15 +149,27 @@
         </BaseCard>
       </div>
     </div>
+
+    <!-- Success Popup -->
+    <BaseSuccessPopup
+      :is-visible="showSuccessPopup"
+      :title="successPopupData.title"
+      :message="successPopupData.message"
+      :details="successPopupData.details"
+      @close="closeSuccessPopup"
+    />
   </BaseFoundry>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import BaseFoundry from '@/components/BaseFoundry.vue'
 import { BaseCard, BaseButton, BaseListGrid } from '@/components/base'
 import BaseSidebar from '@/components/base/BaseSidebar.vue'
+import BaseSuccessPopup from '@/components/base/BaseSuccessPopup.vue'
 import { useSkinTheme } from '@/composables/useSkinTheme'
+import { useGuildStore } from '@/stores/guildStore'
+import { useTutorialStore } from '@/stores/tutorialStore'
 import { getSlpPath, loadMultipleSlpData } from '@/utils/api'
 import type { SidebarItem } from '@/components/base/BaseSidebar'
 
@@ -198,10 +212,14 @@ interface NFTItem {
   value: string
   description: string
   nftData: any
+  dataTutorial?: string
+  isSelected?: boolean
 }
 
 // Composables
 const { getPrimaryColor, getSecondaryColor, getTextColor, getBorderRadius } = useSkinTheme()
+const guildStore = useGuildStore()
+const tutorialStore = useTutorialStore()
 
 // State
 const selectedCollection = ref<NFTCollection | null>(null)
@@ -209,6 +227,15 @@ const selectedNFT = ref<any>(null)
 const collections = ref<NFTCollection[]>([])
 const gridView = ref<'grid' | 'list'>('grid')
 const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1200)
+const nftDetailsCardRef = ref<InstanceType<typeof BaseCard> | null>(null)
+
+// Success popup state
+const showSuccessPopup = ref(false)
+const successPopupData = ref({
+  title: '',
+  message: '',
+  details: {} as Record<string, string | number>
+})
 
 // Computed
 const collectionItems = computed((): SidebarItem[] => {
@@ -228,11 +255,13 @@ const nftGridItems = computed((): NFTItem[] => {
   return selectedCollection.value.sampleNFTs.map(nft => ({
     id: `nft-${nft.tokenId}`,
     icon: getNFTImage(nft),
-    title: `#${nft.tokenId}`,
+    title: nft.name,
     subtitle: '',
     value: '',
     description: '',
-    nftData: nft
+    nftData: nft,
+    dataTutorial: nft.traits?.['Event Type'] === 'Raid' ? 'raid-ticket' : undefined,
+    isSelected: selectedNFT.value?.tokenId === nft.tokenId
   }))
 })
 
@@ -329,8 +358,21 @@ const handleCollectionClick = (item: SidebarItem) => {
   }
 }
 
-const handleNFTClick = (item: any) => {
+const handleNFTClick = async (item: any) => {
   selectedNFT.value = item.nftData
+  
+  // Scroll to NFT details after DOM update
+  await nextTick()
+  scrollToNFTDetails()
+}
+
+const scrollToNFTDetails = () => {
+  if (nftDetailsCardRef.value && nftDetailsCardRef.value.$el) {
+    nftDetailsCardRef.value.$el.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'start' 
+    })
+  }
 }
 
 const setGridView = (view: 'grid' | 'list') => {
@@ -342,9 +384,27 @@ const handleMint = () => {
     return
   }
   
-  // TODO: Implement actual minting logic
-  // This should integrate with the blockchain minting system
-  // For now, this is a placeholder for the minting functionality
+  // Show success popup
+  successPopupData.value = {
+    title: 'NFT Minted Successfully!',
+    message: `You have successfully minted ${selectedNFT.value.name}!`,
+    details: {
+      'NFT Name': selectedNFT.value.name,
+      'Token ID': selectedNFT.value.tokenId,
+      'Collection': selectedCollection.value.name,
+      'Minting Fee': `${selectedCollection.value.mintPrice} ${selectedCollection.value.mintCurrency}`
+    }
+  }
+  showSuccessPopup.value = true
+  
+  // Auto-advance tutorial if this is the raid ticket
+  if (selectedNFT.value.traits?.['Event Type'] === 'Raid' && tutorialStore.isActive) {
+    tutorialStore.handleButtonAction('raid-ticket')
+  }
+}
+
+const closeSuccessPopup = () => {
+  showSuccessPopup.value = false
 }
 
 // Window resize handler
@@ -696,6 +756,18 @@ onUnmounted(() => {
   .nft-image-container {
     max-width: 15rem;
   }
+}
+
+/* Selected state styling */
+.nft-grid--has-selection .grid-item {
+  transition: all 0.2s ease;
+}
+
+.nft-grid--has-selection .grid-item[data-selected="true"] {
+  transform: translateY(-0.0625rem);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--secondary-color-0);
+  background: var(--secondary-color-2);
 }
 
 /* Wide screen margin - matching armory pattern */

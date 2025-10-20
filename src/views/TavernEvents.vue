@@ -56,7 +56,11 @@
           :is-first="index === 0"
           :is-last="index === filteredEvents.length - 1"
         >
-          <div class="event-card-container" :data-event-id="event.eventID">
+          <div 
+            class="event-card-container" 
+            :data-event-id="event.eventID"
+            :data-tutorial="event.eventID === 'g1_event_012' ? 'raid-event' : undefined"
+          >
             <!-- Main Event Card -->
             <BaseCard 
               variant="primary" 
@@ -198,6 +202,7 @@
                             @click="toggleSignup(event)"
                             :disabled="!canSignUp(event)"
                             class="signup-button"
+                            :data-tutorial="event.eventID === 'g1_event_012' ? 'raid-signup' : undefined"
                           >
                             {{ getSignupButtonText(event) }}
                           </BaseButton>
@@ -252,16 +257,26 @@
         </div>
       </div>
     </BaseCard>
+
+    <!-- Success Popup -->
+    <BaseSuccessPopup
+      :isVisible="showSuccessPopup"
+      :title="successPopupData.title"
+      :message="successPopupData.message"
+      :details="successPopupData.details"
+      @close="showSuccessPopup = false"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, nextTick } from 'vue'
+import { ref, computed, onMounted, nextTick, watch } from 'vue'
 import { Icon } from '@iconify/vue'
-import { BaseCard, BaseTimeline, BaseButton, BaseCalendar } from '@/components/base'
+import { BaseCard, BaseTimeline, BaseButton, BaseCalendar, BaseSuccessPopup } from '@/components/base'
 import BaseSidebar from '@/components/base/BaseSidebar.vue'
 import { EVENT_TYPE_ICONS, EVENT_TYPE_TITLES, EVENT_TYPE_SIDEBAR, EVENT_TYPE_COLORS } from '@/constants/eventTypes'
-import { getSlpPath } from '@/utils/api'
+import { getSlpPath, processEventDates } from '@/utils/api'
+import { useTutorialStore } from '@/stores/tutorialStore'
 
 interface Event {
   eventID: string
@@ -288,6 +303,15 @@ interface Event {
 const upcomingEvents = ref<Event[]>([])
 const selectedFilter = ref<string>('all')
 const expandedEvent = ref<string | null>(null)
+const tutorialStore = useTutorialStore()
+
+// Success popup state (mirrors other fake flows)
+const showSuccessPopup = ref(false)
+const successPopupData = ref({
+  title: '',
+  message: '',
+  details: {} as Record<string, string | number>
+})
 
 // Filter items for sidebar
 const filterItems = computed(() => [
@@ -400,6 +424,22 @@ const toggleSignup = (event: Event) => {
     // Add user to signup
     if (targetEvent.marked.length < targetEvent.maxParticipants) {
       targetEvent.marked.push(currentUser.value)
+      
+      // Show success popup consistently
+      successPopupData.value = {
+        title: 'Signed Up Successfully!',
+        message: `You have signed up for: ${targetEvent.title}`,
+        details: {
+          'Event ID': targetEvent.eid,
+          'Participants': `${targetEvent.marked.length} / ${targetEvent.maxParticipants}`
+        }
+      }
+      showSuccessPopup.value = true
+      
+      // Auto-advance tutorial if signing up for the raid tutorial event
+      if (targetEvent.eid === 'g1_event_012' && tutorialStore.isActive && tutorialStore.currentStep?.id === 'signup-raid-event') {
+        tutorialStore.handleButtonAction('raid-signup')
+      }
     }
   }
   
@@ -423,6 +463,7 @@ const loadEvents = async () => {
       'g1_event_009_chill_session.json',
       'g1_event_010_gaming.json',
       'g1_event_011_poker_tournament.json',
+      'g1_event_012_raid_tutorial.json',
       'g2_event_001_poker_tournament.json',
       'g2_event_002_poker_tournament_past.json'
     ]
@@ -432,9 +473,13 @@ const loadEvents = async () => {
         const response = await fetch(getSlpPath(`events/${filename}`))
         if (response.ok) {
           const event = await response.json()
+          
+          // Process all relative dates (TODAY+N or TODAY-N) to actual dates
+          const processedEvent = processEventDates(event)
+          
           // Only show upcoming events
-          if (event.status === 'upcoming' && event.isActive) {
-            return event
+          if (processedEvent.status === 'upcoming' && processedEvent.isActive) {
+            return processedEvent
           }
         }
       } catch (error) {
@@ -450,11 +495,27 @@ const loadEvents = async () => {
     upcomingEvents.value = validEvents.sort((a, b) => 
       new Date(a.date).getTime() - new Date(b.date).getTime()
     )
+    
+    // Auto-expand raid event if tutorial is on signup step
+    if (tutorialStore.isActive && tutorialStore.currentStep?.id === 'signup-raid-event') {
+      setTimeout(() => {
+        expandedEvent.value = 'g1_event_012'
+      }, 500)
+    }
   } catch (error) {
     // Handle error silently in production
     // Could implement proper error handling/notification system here
   }
 }
+
+// Watch for tutorial step changes to auto-expand raid event
+watch(() => tutorialStore.currentStep?.id, (newStepId) => {
+  if (newStepId === 'signup-raid-event') {
+    setTimeout(() => {
+      expandedEvent.value = 'g1_event_012'
+    }, 500)
+  }
+})
 
 onMounted(() => {
   loadEvents()

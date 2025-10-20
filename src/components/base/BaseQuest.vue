@@ -5,6 +5,7 @@
       `base-quest--${quest.status}`,
       { 'base-quest--selected': isSelected }
     ]"
+    :data-tutorial="quest.questID === 'g1_q_tutorial' ? 'tutorial-quest' : quest.questID === 'g1_q_tutorial_group' ? 'tutorial-group-quest' : undefined"
     @click="handleClick"
   >
     <!-- Quest Header -->
@@ -83,8 +84,8 @@
         <span>{{ deadlineText }}</span>
       </div>
       <div class="base-quest__type">
-        <Icon :icon="quest.type === 'ingame' ? 'game-icons:target-dummy' : 'game-icons:heart-tower'" />
-        <span>{{ quest.type === 'ingame' ? 'In-Game' : 'Guild' }}</span>
+        <Icon :icon="getTypeIcon(quest.type)" />
+        <span>{{ getTypeLabel(quest.type) }}</span>
       </div>
     </div>
   </div>
@@ -166,6 +167,33 @@ const deadlineText = computed(() => {
     return deadline.toLocaleDateString()
   }
 })
+
+// Helper functions for quest type display
+const getTypeIcon = (type: string): string => {
+  switch (type) {
+    case 'solo':
+      return 'game-icons:target-dummy'
+    case 'group':
+      return 'game-icons:team-idea'
+    case 'guild':
+      return 'game-icons:heart-tower'
+    default:
+      return 'game-icons:target-dummy'
+  }
+}
+
+const getTypeLabel = (type: string): string => {
+  switch (type) {
+    case 'solo':
+      return 'Solo'
+    case 'group':
+      return 'Group'
+    case 'guild':
+      return 'Guild'
+    default:
+      return 'Quest'
+  }
+}
 
 // Methods
 const handleClick = () => {

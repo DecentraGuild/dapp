@@ -1,0 +1,39 @@
+{
+  "category": "tutorial",
+  "description": "Achievements for completing tutorial quests and learning the dGuild platform",
+  "achievements": [
+    {
+      "id": "tutorial_001",
+      "title": "Tutorial Master",
+      "description": "Complete all tutorial quests and master the dGuild platform",
+      "icon": "game-icons:graduation-cap",
+      "levels": [
+        {
+          "level": "Common",
+          "requirement": "Complete Solo Quest Tutorial",
+          "contributionPoints": 50,
+          "tokenReward": 1,
+          "mintable": false,
+          "description": "You've learned the basics of quest completion and resource management!"
+        },
+        {
+          "level": "Epic", 
+          "requirement": "Complete Guild Quest Tutorial",
+          "contributionPoints": 100,
+          "tokenReward": 2,
+          "mintable": false,
+          "description": "You've mastered guild functionality and community participation!"
+        },
+        {
+          "level": "Legendary",
+          "requirement": "Complete Group Quest Tutorial",
+          "contributionPoints": 200,
+          "tokenReward": 5,
+          "mintable": true,
+          "nftTitle": "Tutorial Master",
+          "description": "You've become a true dGuild expert and are ready to lead others!"
+        }
+      ]
+    }
+  ]
+}
