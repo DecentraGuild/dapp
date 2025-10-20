@@ -430,14 +430,14 @@ const toggleSignup = (event: Event) => {
         title: 'Signed Up Successfully!',
         message: `You have signed up for: ${targetEvent.title}`,
         details: {
-          'Event ID': targetEvent.eid,
+          'Event ID': targetEvent.eventID,
           'Participants': `${targetEvent.marked.length} / ${targetEvent.maxParticipants}`
         }
       }
       showSuccessPopup.value = true
       
       // Auto-advance tutorial if signing up for the raid tutorial event
-      if (targetEvent.eid === 'g1_event_012' && tutorialStore.isActive && tutorialStore.currentStep?.id === 'signup-raid-event') {
+      if (targetEvent.eventID === 'g1_event_012' && tutorialStore.isActive && tutorialStore.currentStep?.id === 'signup-raid-event') {
         tutorialStore.handleButtonAction('raid-signup')
       }
     }
