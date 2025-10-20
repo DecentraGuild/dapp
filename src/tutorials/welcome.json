@@ -8,14 +8,14 @@
     {
       "id": "welcome",
       "title": "Welcome to Your dGuild Castle!",
-      "description": "Welcome to your dGuild castle! You're about to experience a dGuild in operation and explore what the platform has to offer. This tutorial will guide you through the basics of navigating your guild and completing your first quest.",
+      "description": "Welcome to your dGuild castle! This tutorial will guide you through the basics of navigating your guild and completing your first quest.",
       "position": "center",
       "autoAdvance": false
     },
     {
       "id": "navigate-to-solo-quests",
       "title": "Navigate to Solo Quests",
-      "description": "Click on the \"Quest Board\" in the Castle, then select \"Solo Quests\" from the sub-menu to jump right into it.",
+      "description": "Click \"Quest Board\" in the Castle, then select \"Solo Quests\" to begin.",
       "target": "[data-tutorial=\"quest-board\"]",
       "action": "Navigate to Quest Board > Solo Quests",
       "position": "right",

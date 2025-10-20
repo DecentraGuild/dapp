@@ -8,7 +8,7 @@
     {
       "id": "quest-assigned-prepare",
       "title": "Quest Assigned - Prepare for Raid!",
-      "description": "Excellent! You're now signed up for a group activity. To participate in the upcoming raid, you'll need to purchase a Raid Access Ticket from the Foundry. The ticket payment covers the base costs of the raid like potions, scrolls, meds, and ammo.",
+      "description": "Excellent! You're now signed up for a group activity. To participate in the upcoming raid, you'll need to purchase a Raid Access Ticket from the Foundry. This covers raid operational costs.",
       "position": "center",
       "autoAdvance": false
     },
@@ -25,7 +25,7 @@
     {
       "id": "buy-raid-ticket",
       "title": "Purchase Raid Access Ticket",
-      "description": "Find the Raid Access Ticket and purchase it. Use the Sidebar on the left to go to the Access tickets and this will be your payment that helps cover the operational costs like potions, scrolls, meds or ammunition needed for the mission.",
+      "description": "Find the Raid Access Ticket and purchase it. Use the left sidebar to navigate to Access tickets.",
       "target": "[data-tutorial=\"raid-ticket\"]",
       "action": "Buy Raid Access Ticket",
       "position": "right",
@@ -34,7 +34,7 @@
     {
       "id": "navigate-to-tavern-events",
       "title": "Check Tavern Events",
-      "description": "Now that you have your ticket, head to the Tavern and check the Events section to see when the next raid is scheduled. Look for \"Raiding The Suns of Tufa\" - an epic raid mission!",
+      "description": "Now that you have your ticket, head to the Tavern and check the Events section to see when the next raid is scheduled. Look for \"Raiding The Suns of Tufa\"!",
       "target": "[data-tutorial=\"tavern\"]",
       "action": "Navigate to Tavern > Events",
       "position": "right",
@@ -44,7 +44,7 @@
     {
       "id": "signup-raid-event",
       "title": "Sign Up for the Raid",
-      "description": "Perfect! You can see the \"Raiding The Suns of Tufa\" event. This raid requires your Raid Access Ticket to participate. Click the Sign Up button to join the raid. Once the raid completes, you'll receive your share of the loot as a reward.",
+      "description": "Perfect! You can see the \"Raiding The Suns of Tufa\" event. Click the Sign Up button to join the raid using your Raid Access Ticket.",
       "target": "[data-tutorial=\"raid-signup\"]",
       "action": "Sign Up for Raid",
       "position": "right",
@@ -53,14 +53,14 @@
     {
       "id": "raid-complete-loot",
       "title": "Raid Complete - Loot Received!",
-      "description": "Congratulations! The raid was a success! You've received your share of the loot: 2,500 Frameworks and 500 Electromagnets. Now let's trade these materials for something valuable - Chi ship parts!",
+      "description": "Congratulations! The raid was a success! You've received your share of the loot: 2,500 Frameworks and 500 Electromagnets. Now let's trade these for Chi ship parts!",
       "position": "center",
       "autoAdvance": false
     },
     {
       "id": "navigate-to-armory-g2p",
       "title": "Go to Armory > Shop (G2P)",
-      "description": "Navigate to the Armory and select the \"Shop\" tab to access the Guild-to-Player marketplace. Here you can trade your raid loot for tokenized Chi parts.",
+      "description": "Navigate to the Armory and select the \"Shop\" tab to access the Guild-to-Player marketplace.",
       "target": "[data-tutorial=\"armory\"]",
       "action": "Navigate to Armory > Shop",
       "position": "right",
@@ -70,7 +70,7 @@
     {
       "id": "trade-frameworks",
       "title": "Trade Frameworks for Chi Parts",
-      "description": "Find the buy order where the guild is purchasing Frameworks in exchange for Chi parts. Trade 500 Frameworks to receive 1 Chi part. You have enough for 5 parts!",
+      "description": "Find the buy order where the guild is purchasing Frameworks in exchange for Chi parts. Trade 500 Frameworks to receive 1 Chi part.",
       "target": "[data-tutorial=\"trade-framework\"]",
       "action": "Trade 500 Frameworks for Chi Parts",
       "position": "right",
@@ -79,7 +79,7 @@
     {
       "id": "trade-electromagnets",
       "title": "Trade Electromagnets for Chi Parts",
-      "description": "Now trade your Electromagnets! Find the buy order for Electromagnets. Trade 100 Electromagnets to receive 1 Chi part. You have enough for 5 more parts, bringing your total to 10 Chi parts!",
+      "description": "Now trade your Electromagnets! Find the buy order for Electromagnets. Trade 100 Electromagnets to receive 1 Chi part.",
       "target": "[data-tutorial=\"trade-electromagnet\"]",
       "action": "Trade 100 Electromagnets for Chi Parts",
       "position": "right",
@@ -88,7 +88,7 @@
     {
       "id": "navigate-to-custom-tokenised",
       "title": "Go to Foundry > Custom > Tokenised",
-      "description": "Excellent! You now have 150 Chi parts. Navigate to the Foundry, select \"Custom\", then \"Tokenised\" to redeem your parts for a complete Chi ship!",
+      "description": "Navigate to the Foundry, select \"Custom\", then \"Tokenised\" to redeem your parts for a complete Chi ship!",
       "target": "[data-tutorial=\"foundry\"]",
       "action": "Navigate to Foundry > Custom > Tokenised",
       "position": "right",
@@ -98,7 +98,7 @@
     {
       "id": "redeem-chi",
       "title": "Redeem Chi Parts for Chi Ship",
-      "description": "Find the Rainbow Chi redemption option and exchange your 150 Chi parts for 1 complete Rainbow Chi ship! Enter 1 (positive one) in the amount field to redeem 1 ship using your 150 parts, then click Redeem.",
+      "description": "Find the Rainbow Chi redemption option and exchange your 150 Chi parts for 1 complete Rainbow Chi ship! Enter 1 in the amount field and click Redeem.",
       "target": "[data-tutorial=\"redeem-chi\"]",
       "action": "Enter 1 and click Redeem",
       "position": "right",
@@ -107,7 +107,7 @@
     {
       "id": "return-to-group-quest",
       "title": "Return to Quest Board",
-      "description": "Perfect! You've successfully obtained the Chi ship. Now return to the Quest Board > Group Quests to deliver your completed quest and claim your final rewards.",
+      "description": "Now return to the Quest Board > Group Quests to deliver your completed quest and claim your final rewards.",
       "target": "[data-tutorial=\"quest-board\"]",
       "action": "Navigate to Quest Board > Group Quests",
       "position": "right",
@@ -126,7 +126,7 @@
     {
       "id": "tutorial-complete-final",
       "title": "Thank You for Exploring dGuild!",
-      "description": "Congratulations! You've completed all tutorial paths and experienced the core features of dGuild. This is pure concept art - a vision of what we're working toward. We provide the foundation, but you build your story.\n\nFeel free to explore more of the platform. Consider the technology and possibilities, not just the current content. The future of guild management is collaborative, decentralized, and community-driven. Thank you for your time!We'd love to hear your thoughts! \n\n  Join our Discord or Follow us on X to stay up-to-date ",
+      "description": "Congratulations! You've completed all tutorial paths and experienced the core features of dGuild. This is concept art - a vision of what we're working toward. We provide the foundation, but you build your story.\n\nFeel free to explore more of the platform. The future of guild management is collaborative, decentralized, and community-driven. Thank you for your time!\n\nJoin our Discord or follow us on X to stay updated!",
       "position": "center",
       "autoAdvance": false
     }

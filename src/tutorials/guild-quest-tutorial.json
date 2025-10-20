@@ -15,7 +15,7 @@
     {
       "id": "welcome-guild-tutorial",
       "title": "Welcome to Guild Functionality!",
-      "description": "Welcome to the Guild Quest tutorial! You'll learn about governance, treasury management, community features, and how your actions can shape the guild's future. Let's start by exploring the Trophy Room to see your tutorial progress.",
+      "description": "Welcome to the Guild Quest tutorial! You'll learn about governance, treasury management, and community features. Let's start by exploring the Trophy Room to see your tutorial progress.",
       "position": "center",
       "autoAdvance": false
     },
@@ -32,7 +32,7 @@
     {
       "id": "view-tutorial-achievement",
       "title": "View Tutorial Achievement",
-      "description": "Great! You can see the \"Tutorial Master\" achievement with 3 levels. The first stage (Common) is already unlocked from completing the Solo Quest tutorial. Complete this Guild Quest to unlock the Epic level!",
+      "description": "Great! You can see the \"Tutorial Master\" achievement with 3 levels. The first stage is already unlocked from completing the Solo Quest tutorial. Complete this Guild Quest to unlock the Epic level!",
       "target": "[data-tutorial=\"tutorial-achievement\"]",
       "action": "View Tutorial Achievement",
       "position": "right",
@@ -51,7 +51,7 @@
     {
       "id": "check-vault-funds",
       "title": "Check Vault Funds First",
-      "description": "Before voting, let's check if we have enough funds! Click on \"Vaults\" in your castle navigation to see the guild's treasury balance. We need to verify we have at least 5 SOL for the skin purchase.",
+      "description": "Before voting, let's check if we have enough funds. Click on \"Vaults\" in your castle navigation to see the guild's treasury balance. We need to verify we have at least 5 SOL for the skin purchase.",
       "target": "[data-tutorial=\"vaults\"]",
       "action": "Check Vault Funds",
       "position": "right",

@@ -40,7 +40,7 @@
       <h4>Levels</h4>
       
       <!-- Common -->
-      <div class="simple-level">
+      <div class="simple-level" :class="{ 'level-completed': achievement.levels.Common.completed }">
         <Icon 
           :icon="getIconName(achievement.icon)" 
           width="32" 
@@ -59,7 +59,7 @@
       </div>
 
       <!-- Epic -->
-      <div class="simple-level">
+      <div class="simple-level" :class="{ 'level-completed': achievement.levels.Epic.completed }">
         <Icon 
           :icon="getIconName(achievement.icon)" 
           width="32" 
@@ -78,7 +78,7 @@
       </div>
 
       <!-- Legendary -->
-      <div class="simple-level">
+      <div class="simple-level" :class="{ 'level-completed': achievement.levels.Legendary.completed }">
         <Icon 
           :icon="getIconName(achievement.icon)" 
           width="32" 
@@ -274,10 +274,37 @@ const getIconName = (icon: string) => {
   transition: all 0.3s ease;
 }
 
-.simple-level:hover {
+.simple-level.level-completed {
   background: var(--primary-color-2);
   border-color: var(--secondary-color-1);
+  opacity: 0.8;
+  position: relative;
 }
+
+.simple-level.level-completed::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+  border-radius: var(--theme-radius-lg);
+  pointer-events: none;
+}
+
+.simple-level.level-completed .level-content strong {
+  color: var(--color-success);
+  position: relative;
+}
+
+.simple-level.level-completed .level-content strong::after {
+  content: ' ✓';
+  color: var(--color-success);
+  font-weight: bold;
+  margin-left: var(--space-xs);
+}
+
 
 .simple-level .level-icon {
   flex-shrink: 0;

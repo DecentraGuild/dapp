@@ -17,7 +17,7 @@
     {
       "id": "quest-assigned",
       "title": "Quest Assigned!",
-      "description": "Great! Your quest has been assigned. You need to deliver 5,000 ammo units to the next startbase. First, you need to claim the required resources from the Armory.",
+      "description": "Great! Your quest has been assigned. You need to deliver 5,000 ammo units. First, claim the required resources from the Armory.",
       "position": "center",
       "autoAdvance": false
     },
@@ -53,7 +53,7 @@
     {
       "id": "borrow-maxhog",
       "title": "View Maxhog Vehicle",
-      "description": "In the Armory, you can see the Maxhog vehicle available for borrowing. This is just for demonstration - in a real quest, you would borrow it using the QuestMaxhog token as collateral.",
+      "description": "In the Armory, you can see the Maxhog vehicle available for borrowing using the QuestMaxhog token as collateral.",
       "target": "[data-tutorial=\"maxhog-vehicle\"]",
       "action": "View Maxhog Vehicle",
       "position": "right",
@@ -62,7 +62,7 @@
     {
       "id": "deliver-ammo",
       "title": "Deliver the Ammo",
-      "description": "Now that you have the required resources and a ship you can complete the quest delivery. In a real scenario, you would use the Maxhog to transport the ammo. and then come back here to return the ship for the token to be able to deliver",
+      "description": "Now that you have the required resources and vehicle, you can complete the quest delivery. In a real scenario, you would use the Maxhog to transport the ammo and return it afterward.",
       "target": "[data-tutorial=\"complete-quest\"]",
       "action": "Complete Quest Delivery",
       "position": "center",
@@ -81,7 +81,7 @@
     {
       "id": "submit-quest-delivery",
       "title": "Submit Quest Delivery",
-      "description": "Find your Tutorial Quest in the Assigned category (left sidebar) and click \"Deliver\" to submit your completed quest for verification. This officially marks your quest as complete.",
+      "description": "Find your Tutorial Quest in the Assigned category and click \"Deliver\" to submit your completed quest for verification. This officially marks your quest as complete.",
       "target": "[data-tutorial=\"tutorial-quest-deliver\"]",
       "action": "Submit Quest Delivery",
       "position": "right",
@@ -113,7 +113,7 @@
     {
       "id": "tutorial-complete",
       "title": "Tutorial Complete!",
-      "description": "Congratulations! You've successfully completed your first quest and learned the basics of the dGuild system. You now understand how to sign up for quests, use the Armory, and claim rewards. Check out \"Guild Quest\" to explore more functionality that powers a dGuild",
+      "description": "Congratulations! You've successfully completed your first quest and learned the basics of the dGuild system. You now understand how to sign up for quests, use the Armory, and claim rewards. Check out \"Guild Quest\" to explore more functionality that powers a dGuild.",
       "position": "center",
       "autoAdvance": false
     }

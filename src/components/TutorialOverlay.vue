@@ -3,12 +3,14 @@ import { computed, watch, ref, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTutorialStore } from '@/stores/tutorialStore'
 import { useSkinTheme } from '@/composables/useSkinTheme'
+import { useFooterState } from '@/composables/useFooterState'
 import { replaceTutorialNavigationText } from '@/utils/tutorialTextProcessor'
 import { Icon } from '@iconify/vue'
 
 const route = useRoute()
 const tutorialStore = useTutorialStore()
 const { currentTheme } = useSkinTheme()
+const { isFooterExpanded } = useFooterState()
 const showSuccess = ref(false)
 
 // Computed properties for skin-aware tutorial text
@@ -37,6 +39,7 @@ const overlayClasses = computed(() => ({
   'left': tutorialStore.currentStep?.position === 'left',
   'top': tutorialStore.currentStep?.position === 'top',
   'bottom': tutorialStore.currentStep?.position === 'bottom',
+  'footer-expanded': isFooterExpanded.value,
 }))
 
 const handleNext = () => {
@@ -203,14 +206,9 @@ onUnmounted(() => {
               {{ processedDescription }}
             </p>
 
-            <!-- Action hint -->
-            <div v-if="processedAction" class="tutorial-action">
-              <Icon icon="mdi:arrow-right-circle" width="20" height="20" />
-              <span>{{ processedAction }}</span>
-            </div>
 
-            <!-- Social links shown on final step (under text, large logos) -->
-            <div v-if="isLastStep" class="social-links social-links--body">
+            <!-- Social links shown only on final step of group quest tutorial -->
+            <div v-if="isLastStep && tutorialStore.currentTutorialId === 'group-quest-tutorial'" class="social-links social-links--body">
               <a
                 href="https://x.com/DecentraGuild"
                 target="_blank"
@@ -280,34 +278,53 @@ onUnmounted(() => {
 }
 
 .tutorial-overlay.right {
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
+  bottom: calc(var(--space-3xl) * 1.5 + 10px);
+  right: 10px;
+  transform: none;
 }
 
 .tutorial-overlay.left {
-  top: 50%;
-  left: 20px;
-  transform: translateY(-50%);
+  bottom: calc(var(--space-3xl) * 1.5 + 10px);
+  left: 10px;
+  transform: none;
+}
+
+/* When footer is expanded, move side positions up */
+.tutorial-overlay.footer-expanded.right {
+  bottom: calc(85vh + 10px);
+}
+
+.tutorial-overlay.footer-expanded.left {
+  bottom: calc(85vh + 10px);
 }
 
 .tutorial-overlay.top {
-  top: 80px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: calc(var(--space-3xl, 4rem) + 40px) !important;
+  left: 10px;
+  right: 10px;
+  transform: none;
+  /* Ensure it never goes above the topbar */
+  position: fixed !important;
+  z-index: 9999 !important;
 }
 
 .tutorial-overlay.bottom {
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: calc(var(--space-3xl) * 1.5 + 10px);
+  left: 10px;
+  right: 10px;
+  transform: none;
+}
+
+/* When footer is expanded, move tutorial up */
+.tutorial-overlay.footer-expanded.bottom {
+  bottom: calc(85vh + 10px);
 }
 
 /* Minimized state */
 .tutorial-overlay.minimized {
-  top: 50%;
+  top: calc(var(--space-3xl) + 10px);
   right: 0;
-  transform: translateY(-50%);
+  transform: none;
 }
 
 .tutorial-minimized {
@@ -383,7 +400,8 @@ onUnmounted(() => {
   border: 2px solid var(--global-border, #3d3d5c);
   border-radius: 16px;
   padding: 0;
-  max-width: 500px;
+  width: 400px;
+  max-width: 400px;
   min-width: 400px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   overflow: hidden;
@@ -391,8 +409,24 @@ onUnmounted(() => {
 }
 
 .tutorial-card.large {
-  max-width: 780px;
-  min-width: 520px;
+  width: 500px;
+  max-width: 500px;
+  min-width: 500px;
+}
+
+/* Responsive width adjustments */
+@media (max-width: 768px) {
+  .tutorial-card {
+    width: calc(100vw - 20px);
+    max-width: calc(100vw - 20px);
+    min-width: calc(100vw - 20px);
+  }
+  
+  .tutorial-card.large {
+    width: calc(100vw - 20px);
+    max-width: calc(100vw - 20px);
+    min-width: calc(100vw - 20px);
+  }
 }
 
 .tutorial-card.success {
@@ -550,19 +584,6 @@ onUnmounted(() => {
   margin: 0 0 16px 0;
 }
 
-.tutorial-action {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
-  background: rgba(102, 126, 234, 0.15);
-  border-left: 3px solid #667eea;
-  border-radius: 6px;
-  color: #667eea;
-  font-weight: 600;
-  font-size: 14px;
-  margin-top: 16px;
-}
 
 /* Footer */
 .tutorial-footer {
@@ -677,7 +698,7 @@ onUnmounted(() => {
 /* Responsive */
 @media (max-width: 768px) {
   .tutorial-card {
-    min-width: 320px;
+    min-width: 280px;
     max-width: calc(100vw - 40px);
   }
 
