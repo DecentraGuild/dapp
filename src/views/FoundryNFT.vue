@@ -12,13 +12,8 @@
 
       <!-- Main Content Area -->
       <div class="main-content">
-        <!-- Collection Info Card -->
-        <BaseCard 
-          v-if="selectedCollection"
-          variant="primary" 
-          size="lg"
-          class="collection-info-card"
-        >
+        <!-- Collection Info Card - FULL WIDTH -->
+        <div v-if="selectedCollection" class="collection-info-card">
           <div class="collection-header">
             <div class="collection-icon">
               <img 
@@ -46,15 +41,16 @@
               </div>
             </div>
           </div>
-        </BaseCard>
+        </div>
 
-        <!-- NFT Grid -->
+        <!-- NFT Grid Container -->
         <BaseCard 
           v-if="selectedCollection"
           variant="neutral" 
           size="xl"
-          class="nft-grid-card"
+          class="nft-grid-container"
         >
+          <!-- NFT Grid Header -->
           <div class="nft-grid-header">
             <h3 class="grid-title">Available NFTs</h3>
             <div class="grid-controls">
@@ -77,17 +73,30 @@
             </div>
           </div>
           
-        <BaseListGrid
-          :items="nftGridItems"
-          :columns="gridColumns"
-          :hover="true"
-          :clickable="true"
-          :large-icons="true"
-          size="lg"
-          variant="primary"
-          :class="{ 'nft-grid--has-selection': selectedNFT }"
-          @item-click="handleNFTClick"
-        />
+          <!-- NFT Grid -->
+          <div class="nft-grid">
+            <div 
+              v-for="(item, index) in nftGridItems" 
+              :key="item.id || index"
+              :class="['nft-card', { 'nft-card--selected': item.isSelected }]"
+              :data-tutorial="item.dataTutorial"
+              @click="handleNFTClick(item)"
+            >
+              <!-- NFT Image -->
+              <div class="nft-card-image">
+                <img 
+                  :src="item.icon" 
+                  :alt="item.title"
+                  class="nft-image"
+                />
+              </div>
+              
+              <!-- NFT Content -->
+              <div class="nft-card-content">
+                <div class="nft-card-title">{{ item.title }}</div>
+              </div>
+            </div>
+          </div>
         </BaseCard>
 
         <!-- Selected NFT Details Card -->
@@ -226,7 +235,6 @@ const selectedCollection = ref<NFTCollection | null>(null)
 const selectedNFT = ref<any>(null)
 const collections = ref<NFTCollection[]>([])
 const gridView = ref<'grid' | 'list'>('grid')
-const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1200)
 const nftDetailsCardRef = ref<InstanceType<typeof BaseCard> | null>(null)
 
 // Success popup state
@@ -265,17 +273,6 @@ const nftGridItems = computed((): NFTItem[] => {
   }))
 })
 
-const gridColumns = computed(() => {
-  if (gridView.value === 'list') return 1
-  
-  // Responsive grid columns based on screen size
-  const width = windowWidth.value
-  if (width <= 360) return 1      // Very small screens: 1 column
-  if (width <= 480) return 2      // Mobile: 2 columns  
-  if (width <= 640) return 2      // Small tablets: 2 columns
-  if (width <= 768) return 2      // Tablets: 2 columns
-  return 4                        // Desktop: 4 columns
-})
 
 const traitItems = computed(() => {
   if (!selectedNFT.value) return []
@@ -407,10 +404,6 @@ const closeSuccessPopup = () => {
   showSuccessPopup.value = false
 }
 
-// Window resize handler
-const handleResize = () => {
-  windowWidth.value = window.innerWidth
-}
 
 // Lifecycle
 onMounted(() => {
@@ -418,18 +411,8 @@ onMounted(() => {
   // Scroll to top when component mounts
   window.scrollTo({ top: 0, behavior: 'smooth' })
   
-  // Add resize listener
-  if (typeof window !== 'undefined') {
-    window.addEventListener('resize', handleResize)
-  }
 })
 
-onUnmounted(() => {
-  // Remove resize listener
-  if (typeof window !== 'undefined') {
-    window.removeEventListener('resize', handleResize)
-  }
-})
 </script>
 
 <style scoped>
@@ -452,32 +435,15 @@ onUnmounted(() => {
   min-width: 0; /* Allow flex item to shrink below content size */
 }
 
-/* Responsive Layout */
-@media (max-width: 1200px) {
-  .foundry-nft-content {
-    flex-direction: column;
-    gap: var(--space-md);
-  }
-  
-  .main-content {
-    gap: var(--space-md);
-  }
-}
 
-@media (max-width: 768px) {
-  .foundry-nft-content {
-    gap: var(--space-sm);
-  }
-  
-  .main-content {
-    gap: var(--space-sm);
-  }
-}
-
-/* Collection Info Card */
+/* Collection Info Card - FULL WIDTH */
 .collection-info-card {
   width: 100%;
-  max-width: 100%;
+  background: var(--primary-color-0);
+  border: var(--component-border-width) solid var(--secondary-color-2);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-lg);
 }
 
 .collection-header {
@@ -486,27 +452,10 @@ onUnmounted(() => {
   align-items: flex-start;
 }
 
-/* Responsive collection header layout */
-@media (max-width: 768px) {
-  .collection-header {
-    flex-direction: column;
-    gap: var(--space-md);
-    text-align: center;
-  }
-  
-  .collection-icon {
-    align-self: center;
-  }
-  
-  .collection-stats {
-    justify-content: center;
-  }
-}
-
 .collection-icon {
   flex-shrink: 0;
-  width: var(--space-3xl);
-  height: var(--space-3xl);
+  width: 6rem;
+  height: 6rem;
   border-radius: var(--theme-radius-lg);
   overflow: hidden;
   border: var(--component-border-width-thick) solid var(--secondary-color-2);
@@ -523,16 +472,16 @@ onUnmounted(() => {
 }
 
 .collection-name {
-  font-size: var(--text-2xl);
+  font-size: var(--text-3xl);
   font-weight: var(--font-bold);
   color: var(--text-color-0);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
 }
 
 .collection-description {
-  font-size: var(--text-base);
+  font-size: var(--text-lg);
   color: var(--text-color-1);
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
   line-height: var(--leading-relaxed);
 }
 
@@ -560,17 +509,91 @@ onUnmounted(() => {
   font-weight: var(--font-semibold);
 }
 
-/* NFT Grid Card */
-.nft-grid-card {
+/* NFT Grid Container */
+.nft-grid-container {
   width: 100%;
   max-width: 100%;
 }
 
+/* NFT Grid Header */
 .nft-grid-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--space-lg);
+  padding: 0;
+}
+
+/* NFT Grid - EXACT ARMORY PATTERN */
+.nft-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(21.875rem, 1fr));
+  gap: var(--space-lg);
+  height: auto;
+  padding: 0;
+}
+
+/* NFT Card */
+.nft-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-lg);
+  background: var(--primary-color-0);
+  border: var(--component-border-width) solid var(--secondary-color-2);
+  border-radius: var(--border-radius-md);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  min-height: 25rem;
+}
+
+.nft-card:hover {
+  transform: translateY(-0.0625rem);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--secondary-color-0);
+}
+
+.nft-card--selected {
+  transform: translateY(-0.0625rem);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--secondary-color-0);
+  background: var(--secondary-color-2);
+}
+
+/* NFT Card Image */
+.nft-card-image {
+  width: 100%;
+  max-width: 18.75rem;
+  height: 18.75rem;
+  aspect-ratio: 1;
+  border-radius: var(--border-radius-md);
+  margin: var(--space-md) auto 0 auto;
+  overflow: hidden;
+  border: var(--component-border-width) solid var(--secondary-color-2);
+}
+
+.nft-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* NFT Card Content */
+.nft-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-top: var(--space-md);
+}
+
+.nft-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color-0);
+  margin-bottom: var(--space-xs);
 }
 
 .grid-title {
@@ -688,63 +711,10 @@ onUnmounted(() => {
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
-  .nft-image-container {
-    max-width: calc(var(--space-3xl) * 0.8);
-  }
-}
-
-@media (max-width: 1024px) {
-  .main-content {
-    margin-left: var(--layout-content-margin);
-  }
-  
-  .nft-image-container {
-    max-width: calc(var(--space-3xl) * 0.6);
-  }
-}
-
 @media (max-width: 768px) {
-  .main-content {
-    margin-left: var(--layout-content-margin-md);
-    padding: var(--space-md);
-  }
-  
-  .collection-header {
-    flex-direction: column;
+  .nft-grid {
+    grid-template-columns: 1fr;
     gap: var(--space-md);
-  }
-  
-  .nft-details-header {
-    flex-direction: column;
-    gap: var(--space-lg);
-  }
-  
-  .nft-image-container {
-    max-width: calc(var(--space-3xl) * 0.5);
-    align-self: center;
-  }
-  
-  .minting-section {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-md);
-  }
-  
-  .minting-section .base-button {
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-content {
-    margin-left: 4.375rem;
-    padding: var(--space-sm);
-  }
-  
-  .collection-stats {
-    flex-direction: column;
-    gap: var(--space-sm);
   }
   
   .nft-grid-header {
@@ -752,22 +722,6 @@ onUnmounted(() => {
     gap: var(--space-sm);
     align-items: flex-start;
   }
-  
-  .nft-image-container {
-    max-width: 15rem;
-  }
-}
-
-/* Selected state styling */
-.nft-grid--has-selection .grid-item {
-  transition: all 0.2s ease;
-}
-
-.nft-grid--has-selection .grid-item[data-selected="true"] {
-  transform: translateY(-0.0625rem);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--secondary-color-0);
-  background: var(--secondary-color-2);
 }
 
 /* Wide screen margin - matching armory pattern */

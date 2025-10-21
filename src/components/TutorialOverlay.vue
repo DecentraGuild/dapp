@@ -39,7 +39,6 @@ const overlayClasses = computed(() => ({
   'left': tutorialStore.currentStep?.position === 'left',
   'top': tutorialStore.currentStep?.position === 'top',
   'bottom': tutorialStore.currentStep?.position === 'bottom',
-  'footer-expanded': isFooterExpanded.value,
 }))
 
 const handleNext = () => {
@@ -266,7 +265,7 @@ onUnmounted(() => {
   transition: all 0.3s ease;
 }
 
-/* Positioning classes */
+/* Center position - keep original centered behavior */
 .tutorial-overlay.center {
   top: 0;
   left: 0;
@@ -277,54 +276,25 @@ onUnmounted(() => {
   justify-content: center;
 }
 
-.tutorial-overlay.right {
-  bottom: calc(var(--space-3xl) * 1.5 + 10px);
-  right: 10px;
-  transform: none;
-}
-
-.tutorial-overlay.left {
-  bottom: calc(var(--space-3xl) * 1.5 + 10px);
-  left: 10px;
-  transform: none;
-}
-
-/* When footer is expanded, move side positions up */
-.tutorial-overlay.footer-expanded.right {
-  bottom: calc(85vh + 10px);
-}
-
-.tutorial-overlay.footer-expanded.left {
-  bottom: calc(85vh + 10px);
-}
-
-.tutorial-overlay.top {
-  top: calc(var(--space-3xl, 4rem) + 40px) !important;
-  left: 10px;
-  right: 10px;
-  transform: none;
-  /* Ensure it never goes above the topbar */
-  position: fixed !important;
-  z-index: 9999 !important;
-}
-
+/* All other positions fixed in bottom-right corner */
+.tutorial-overlay.right,
+.tutorial-overlay.left,
+.tutorial-overlay.top,
 .tutorial-overlay.bottom {
-  bottom: calc(var(--space-3xl) * 1.5 + 10px);
-  left: 10px;
-  right: 10px;
-  transform: none;
+  bottom: 20px !important;
+  right: 20px !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
 }
 
-/* When footer is expanded, move tutorial up */
-.tutorial-overlay.footer-expanded.bottom {
-  bottom: calc(85vh + 10px);
-}
-
-/* Minimized state */
+/* Minimized state - also in bottom-right */
 .tutorial-overlay.minimized {
-  top: calc(var(--space-3xl) + 10px);
-  right: 0;
-  transform: none;
+  bottom: 20px !important;
+  right: 0 !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
 }
 
 .tutorial-minimized {

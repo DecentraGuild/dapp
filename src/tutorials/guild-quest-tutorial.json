@@ -51,7 +51,7 @@
     {
       "id": "check-vault-funds",
       "title": "Check Vault Funds First",
-      "description": "Before voting, let's check if we have enough funds. Click on \"Vaults\" in your castle navigation to see the guild's treasury balance. We need to verify we have at least 5 SOL for the skin purchase.",
+      "description": "Look there is a active vote, but before voting, let's check if we have enough funds. Click on \"Vaults\" in your castle navigation to see the guild's treasury balance.",
       "target": "[data-tutorial=\"vaults\"]",
       "action": "Check Vault Funds",
       "position": "right",

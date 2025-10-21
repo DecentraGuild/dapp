@@ -190,6 +190,17 @@ export function parseRelativeDate(dateStr: string): string {
 export function processEventDates<T extends Record<string, any>>(event: T): T {
   const processed: any = { ...event }
   
+  // Map field names from SLP format to component format
+  if (processed.eid) {
+    processed.eventID = processed.eid
+  }
+  if (processed.gid) {
+    processed.guildID = processed.gid
+  }
+  if (processed.created) {
+    processed.createdAt = processed.created
+  }
+  
   // Fields that might contain dates
   const dateFields = ['date', 'startingTime', 'lateRegTime', 'created', 'entryTime', 'eliminationTime']
   

@@ -382,6 +382,19 @@ const handleJumpToList = (eventID: string) => {
 
 const toggleEventExpansion = (eventID: string) => {
   expandedEvent.value = expandedEvent.value === eventID ? null : eventID
+  
+  // If expanding the event, scroll to it after a short delay to allow DOM update
+  if (expandedEvent.value === eventID) {
+    nextTick(() => {
+      const eventElement = document.querySelector(`[data-event-id="${eventID}"]`)
+      if (eventElement) {
+        eventElement.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        })
+      }
+    })
+  }
 }
 
 // Mock current user - in real app this would come from auth store

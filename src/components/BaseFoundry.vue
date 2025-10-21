@@ -125,21 +125,18 @@ watch(() => route.path, updateTabFromRoute, { immediate: true })
   min-height: 90vh;
 }
 
-/* Wide screen margin */
+/* Wide screen margin - matching armory pattern */
 @media (min-width: 1400px) {
-  .base-foundry {
-    max-width: 87.5rem;
-    margin: 0 auto;
-  }
-  
   .foundry-header-card {
-    width: 100%;
-    max-width: 100%;
+    margin: 0% 10%;
+    width: 80%;
+    max-width: 80%;
   }
   
   .foundry-main-card {
-    width: 100%;
-    max-width: 100%;
+    margin: 0 10%;
+    width: 80%;
+    max-width: 80%;
   }
 }
 

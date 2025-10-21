@@ -21,28 +21,25 @@
         </div>
       </BaseCard>
 
-      <!-- Token Stats Grid -->
+      <!-- Token Stats and Redemption Container -->
       <BaseCard 
-        v-if="tokenData"
         variant="neutral" 
-        size="lg"
-        class="token-stats-card"
+        size="xl"
+        class="token-content-container"
       >
-        <BaseListGrid
-          :items="tokenStatsItems"
-          :columns="4"
-          :hover="true"
-          size="md"
-          variant="primary"
-        />
-      </BaseCard>
+        <!-- Token Stats Grid -->
+        <div v-if="tokenData" class="token-stats-section">
+          <BaseListGrid
+            :items="tokenStatsItems"
+            :columns="4"
+            :hover="true"
+            size="md"
+            variant="primary"
+          />
+        </div>
 
-      <!-- Redemption Section -->
-      <BaseCard 
-        variant="neutral" 
-        size="lg"
-        class="redemption-card"
-      >
+        <!-- Redemption Section -->
+        <div class="redemption-section">
         <h3 class="section-title">Token1 Redemption</h3>
         
         <div class="redemption-content">
@@ -112,6 +109,7 @@
               </div>
             </div>
           </div>
+        </div>
         </div>
       </BaseCard>
     </div>
@@ -313,14 +311,19 @@ onMounted(async () => {
   line-height: var(--leading-relaxed);
 }
 
-/* Token Stats Card */
-.token-stats-card {
+/* Token Content Container */
+.token-content-container {
   width: 100%;
   max-width: 100%;
 }
 
-/* Redemption Card */
-.redemption-card {
+/* Token Stats Section */
+.token-stats-section {
+  margin-bottom: var(--space-xl);
+}
+
+/* Redemption Section */
+.redemption-section {
   width: 100%;
   max-width: 100%;
 }
@@ -466,12 +469,6 @@ onMounted(async () => {
     gap: var(--space-md);
   }
   
-  .token-info-card,
-  .token-stats-card,
-  .redemption-card {
-    width: 100%;
-  }
-  
   .token-header {
     flex-direction: column;
     gap: var(--space-md);
@@ -480,17 +477,6 @@ onMounted(async () => {
   .redemption-content {
     grid-template-columns: 1fr;
     gap: var(--space-lg);
-  }
-  
-  .quick-amounts {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .foundry-token1-content {
-    padding: var(--space-sm);
-    gap: var(--space-sm);
   }
 }
 
@@ -524,7 +510,7 @@ onMounted(async () => {
 /* Custom button styling for token1 colors - only for Redeem button */
 .redemption-card :deep(.button-accent) {
   background: var(--theme-dao-token1) !important;
-  color: var(--text-color-2) !important;
+  color: var(--text-color-0) !important;
 }
 
 .redemption-card :deep(.button-accent:hover:not(.button-disabled)) {

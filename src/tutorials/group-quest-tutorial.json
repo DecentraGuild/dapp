@@ -53,14 +53,14 @@
     {
       "id": "raid-complete-loot",
       "title": "Raid Complete - Loot Received!",
-      "description": "Congratulations! The raid was a success! You've received your share of the loot: 2,500 Frameworks and 500 Electromagnets. Now let's trade these for Chi ship parts!",
+      "description": "Congratulations! The raid was a success! You've received your share of the loot: 2,500 Frameworks and 500 Electromagnets. ",
       "position": "center",
       "autoAdvance": false
     },
     {
       "id": "navigate-to-armory-g2p",
       "title": "Go to Armory > Shop (G2P)",
-      "description": "Navigate to the Armory and select the \"Shop\" tab to access the Guild-to-Player marketplace.",
+      "description": "Now let's trade these for something else. Navigate to the Armory and select the \"Shop\" tab to access the Guild-to-Player marketplace.",
       "target": "[data-tutorial=\"armory\"]",
       "action": "Navigate to Armory > Shop",
       "position": "right",

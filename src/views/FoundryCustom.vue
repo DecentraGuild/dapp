@@ -12,13 +12,8 @@
 
       <!-- Main Content Area -->
       <div class="main-content">
-        <!-- Custom Type Info Card -->
-        <BaseCard 
-          v-if="selectedCustomType"
-          variant="primary" 
-          size="lg"
-          class="custom-type-info-card"
-        >
+        <!-- Custom Type Info Card - FULL WIDTH -->
+        <div v-if="selectedCustomType" class="custom-type-info-card">
           <div class="custom-type-header">
             <div class="custom-type-icon">
               <Icon :icon="selectedCustomType.icon" class="type-icon" />
@@ -28,15 +23,16 @@
               <p class="custom-type-description">{{ selectedCustomType.description }}</p>
             </div>
           </div>
-        </BaseCard>
+        </div>
 
-        <!-- Custom Assets Grid -->
+        <!-- Custom Assets Grid Container -->
         <BaseCard 
           v-if="selectedCustomType"
           variant="neutral" 
           size="xl"
-          class="custom-assets-grid-card"
+          class="custom-assets-container"
         >
+          <!-- Custom Assets Grid Header -->
           <div class="custom-assets-header">
             <h3 class="grid-title">Available Assets</h3>
             <div class="grid-controls">
@@ -59,17 +55,29 @@
             </div>
           </div>
           
-          <BaseListGrid
-            :items="customAssetItems"
-            :columns="gridColumns"
-            :hover="true"
-            :clickable="true"
-            :large-icons="true"
-            size="lg"
-            variant="primary"
-            :class="{ 'asset-grid--has-selection': selectedAsset }"
-            @item-click="handleAssetClick"
-          />
+          <!-- Custom Assets Grid -->
+          <div class="custom-assets-grid">
+            <div 
+              v-for="(item, index) in customAssetItems" 
+              :key="item.id || index"
+              :class="['custom-asset-card', { 'custom-asset-card--selected': item.isSelected }]"
+              @click="handleAssetClick(item)"
+            >
+              <!-- Asset Image -->
+              <div class="custom-asset-card-image">
+                <img 
+                  :src="item.icon" 
+                  :alt="item.title"
+                  class="custom-asset-image"
+                />
+              </div>
+              
+              <!-- Asset Content -->
+              <div class="custom-asset-card-content">
+                <div class="custom-asset-card-title">{{ item.title }}</div>
+              </div>
+            </div>
+          </div>
         </BaseCard>
 
         <!-- Selected Asset Details Card -->
@@ -230,7 +238,6 @@ const customTypes = ref<CustomType[]>([])
 const customAssets = ref<CustomAsset[]>([])
 const gridView = ref<'grid' | 'list'>('grid')
 const exchangeAmount = ref<number>(0)
-const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1200)
 const assetDetailsCardRef = ref<InstanceType<typeof BaseCard> | null>(null)
 
 // Success popup state
@@ -274,17 +281,6 @@ const customAssetItems = computed((): AssetItem[] => {
   }))
 })
 
-const gridColumns = computed(() => {
-  if (gridView.value === 'list') return 1
-  
-  // Responsive grid columns based on screen size
-  const width = windowWidth.value
-  if (width <= 360) return 1      // Very small screens: 1 column
-  if (width <= 480) return 2      // Mobile: 2 columns  
-  if (width <= 640) return 2      // Small tablets: 2 columns
-  if (width <= 768) return 2      // Tablets: 2 columns
-  return 4                        // Desktop: 4 columns
-})
 
 const calculationItems = computed(() => {
   if (!selectedAsset.value) return []
@@ -528,10 +524,6 @@ const handleExchange = () => {
   }, 600)
 }
 
-// Window resize handler
-const handleResize = () => {
-  windowWidth.value = window.innerWidth
-}
 
 // Lifecycle
 onMounted(() => {
@@ -540,18 +532,8 @@ onMounted(() => {
   // Scroll to top when component mounts
   window.scrollTo({ top: 0, behavior: 'smooth' })
   
-  // Add resize listener
-  if (typeof window !== 'undefined') {
-    window.addEventListener('resize', handleResize)
-  }
 })
 
-onUnmounted(() => {
-  // Remove resize listener
-  if (typeof window !== 'undefined') {
-    window.removeEventListener('resize', handleResize)
-  }
-})
 </script>
 
 <style scoped>
@@ -583,32 +565,15 @@ onUnmounted(() => {
   }
 }
 
-/* Responsive Layout */
-@media (max-width: 1200px) {
-  .foundry-custom-content {
-    flex-direction: column;
-    gap: var(--space-md);
-  }
-  
-  .main-content {
-    gap: var(--space-md);
-  }
-}
 
-@media (max-width: 768px) {
-  .foundry-custom-content {
-    gap: var(--space-sm);
-  }
-  
-  .main-content {
-    gap: var(--space-sm);
-  }
-}
-
-/* Custom Type Info Card */
+/* Custom Type Info Card - FULL WIDTH */
 .custom-type-info-card {
   width: 100%;
-  max-width: 100%;
+  background: var(--primary-color-0);
+  border: var(--component-border-width) solid var(--secondary-color-2);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-lg);
 }
 
 .custom-type-header {
@@ -617,23 +582,10 @@ onUnmounted(() => {
   align-items: flex-start;
 }
 
-/* Responsive header layout */
-@media (max-width: 768px) {
-  .custom-type-header {
-    flex-direction: column;
-    gap: var(--space-md);
-    text-align: center;
-  }
-  
-  .custom-type-icon {
-    align-self: center;
-  }
-}
-
 .custom-type-icon {
   flex-shrink: 0;
-  width: var(--space-3xl);
-  height: var(--space-3xl);
+  width: 6rem;
+  height: 6rem;
   border-radius: var(--theme-radius-lg);
   overflow: hidden;
   border: var(--component-border-width-thick) solid var(--secondary-color-2);
@@ -653,30 +605,104 @@ onUnmounted(() => {
 }
 
 .custom-type-name {
-  font-size: var(--text-2xl);
+  font-size: var(--text-3xl);
   font-weight: var(--font-bold);
   color: var(--text-color-0);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
 }
 
 .custom-type-description {
-  font-size: var(--text-base);
+  font-size: var(--text-lg);
   color: var(--text-color-1);
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
   line-height: var(--leading-relaxed);
 }
 
-/* Custom Assets Grid Card */
-.custom-assets-grid-card {
+/* Custom Assets Container */
+.custom-assets-container {
   width: 100%;
   max-width: 100%;
 }
 
+/* Custom Assets Grid Header */
 .custom-assets-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--space-lg);
+  padding: 0;
+}
+
+/* Custom Assets Grid - EXACT ARMORY PATTERN */
+.custom-assets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(21.875rem, 1fr));
+  gap: var(--space-lg);
+  height: auto;
+  padding: 0;
+}
+
+/* Custom Asset Card */
+.custom-asset-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-lg);
+  background: var(--primary-color-0);
+  border: var(--component-border-width) solid var(--secondary-color-2);
+  border-radius: var(--border-radius-md);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  min-height: 25rem;
+}
+
+.custom-asset-card:hover {
+  transform: translateY(-0.0625rem);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--secondary-color-0);
+}
+
+.custom-asset-card--selected {
+  transform: translateY(-0.0625rem);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--secondary-color-0);
+  background: var(--secondary-color-2);
+}
+
+/* Custom Asset Card Image */
+.custom-asset-card-image {
+  width: 100%;
+  max-width: 18.75rem;
+  height: 18.75rem;
+  aspect-ratio: 1;
+  border-radius: var(--border-radius-md);
+  margin: var(--space-md) auto 0 auto;
+  overflow: hidden;
+  border: var(--component-border-width) solid var(--secondary-color-2);
+}
+
+.custom-asset-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Custom Asset Card Content */
+.custom-asset-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-top: var(--space-md);
+}
+
+.custom-asset-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color-0);
+  margin-bottom: var(--space-xs);
 }
 
 .grid-title {
@@ -874,68 +900,16 @@ onUnmounted(() => {
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
-  .asset-image-container {
-    max-width: 25rem;
-  }
-}
-
-@media (max-width: 1024px) {
-  .main-content {
-    margin-left: 6.25rem;
-  }
-  
-  .asset-image-container {
-    max-width: 20rem;
-  }
-}
-
 @media (max-width: 768px) {
-  .main-content {
-    margin-left: 5rem;
-    padding: var(--space-md);
-  }
-  
-  .custom-type-header {
-    flex-direction: column;
+  .custom-assets-grid {
+    grid-template-columns: 1fr;
     gap: var(--space-md);
-  }
-  
-  .asset-details-header {
-    flex-direction: column;
-    gap: var(--space-lg);
-  }
-  
-  .asset-image-container {
-    max-width: 18.75rem;
-    align-self: center;
-  }
-  
-  .exchange-section {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-md);
-  }
-}
-
-@media (max-width: 480px) {
-  .main-content {
-    margin-left: 4.375rem;
-    padding: var(--space-sm);
   }
   
   .custom-assets-header {
     flex-direction: column;
     gap: var(--space-sm);
     align-items: flex-start;
-  }
-  
-  .asset-image-container {
-    max-width: 15rem;
-  }
-  
-  .input-group {
-    max-width: 100%;
   }
 }
 </style>
