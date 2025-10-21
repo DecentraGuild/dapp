@@ -461,9 +461,11 @@ export const useQuestStore = defineStore('quest', () => {
               tutorialStore.startQuestTutorial()
             }
             
-            // Auto-advance from signup step to quest assigned step
+            // Auto-advance from signup step to quest assigned step only if current step allows it
             setTimeout(() => {
-              tutorialStore.nextStep()
+              if (tutorialStore.currentStep?.autoAdvance !== false) {
+                tutorialStore.nextStep()
+              }
             }, 300)
           }
           break

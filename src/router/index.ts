@@ -164,4 +164,12 @@ const router = createRouter({
   ],
 })
 
+// Scroll to top on every route change
+router.afterEach((to, from) => {
+  // Use nextTick to ensure the DOM has updated
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, 100)
+})
+
 export default router

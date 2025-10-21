@@ -41,6 +41,21 @@ const overlayClasses = computed(() => ({
   'bottom': tutorialStore.currentStep?.position === 'bottom',
 }))
 
+// Convert theme colors to solid versions for tutorial card
+const solidThemeColors = computed(() => {
+  const bgSecondary = currentTheme.value?.primaryColor?.[1] || 'rgba(74, 85, 104, 0.45)'
+  const border = currentTheme.value?.secondaryColor?.[2] || 'rgba(0, 204, 204, 0.2)'
+  
+  // Convert rgba to solid rgb by removing alpha and making it opaque
+  const solidBg = bgSecondary.replace(/rgba?\(([^)]+),\s*[\d.]+\)/, 'rgb($1)')
+  const solidBorder = border.replace(/rgba?\(([^)]+),\s*[\d.]+\)/, 'rgb($1)')
+  
+  return {
+    background: solidBg,
+    border: solidBorder
+  }
+})
+
 const handleNext = () => {
   // Show success indicator for all step completions
   showSuccess.value = true
@@ -160,7 +175,14 @@ onUnmounted(() => {
         />
 
         <!-- Tutorial card -->
-        <div class="tutorial-card" :class="{ 'success': showSuccess, 'large': isLastStep }">
+        <div 
+          class="tutorial-card" 
+          :class="{ 'success': showSuccess, 'large': isLastStep }"
+          :style="{
+            background: solidThemeColors.background,
+            borderColor: solidThemeColors.border
+          }"
+        >
           <!-- Success Overlay -->
           <div v-if="showSuccess" class="success-overlay">
             <Icon icon="mdi:check-circle" width="64" height="64" class="success-icon" />
@@ -376,7 +398,9 @@ onUnmounted(() => {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  opacity: 1;
 }
+
 
 .tutorial-card.large {
   width: 500px;
