@@ -8,6 +8,7 @@ import { useFooterState } from './composables/useFooterState'
 import { useThemeStore } from './stores/themeStore'
 import { useUserStore } from './stores/userStore'
 import { useGuildStore } from './stores/guildStore'
+import { TUTORIAL_ENABLED } from '@/config/features'
 import { useTutorialStore } from './stores/tutorialStore'
 
 const { currentTheme, getTextColor, getPrimaryColor, getSecondaryColor } = useSkinTheme()
@@ -63,8 +64,8 @@ onMounted(async () => {
     await guildStore.loadAvailableGuilds()
   }
 
-  // Start tutorial if not seen before
-  if (!tutorialStore.hasSeenWelcome) {
+  // Start tutorial if enabled and not seen before
+  if (TUTORIAL_ENABLED && !tutorialStore.hasSeenWelcome) {
     setTimeout(() => {
       tutorialStore.startTutorial()
     }, 1000) // Small delay to let everything load
@@ -86,7 +87,7 @@ onMounted(async () => {
     <FooterNavbar />
 
     <!-- Tutorial Overlay -->
-    <TutorialOverlay />
+    <TutorialOverlay v-if="TUTORIAL_ENABLED" />
   </div>
 </template>
 

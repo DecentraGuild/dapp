@@ -56,8 +56,9 @@
 
     <!-- Right Section: Tutorial, Theme, Member, Guild, Wallet Connect -->
     <div class="right-section">
-      <!-- Reset Button -->
+      <!-- Reset Button (hidden when tutorials are disabled) -->
       <button 
+        v-if="TUTORIAL_ENABLED"
         class="nav-button tutorial-button"
         @click="startTutorial"
         :style="buttonStyles"
@@ -143,6 +144,7 @@ import { useUserStore } from '@/stores/userStore'
 import { useGuildStore } from '@/stores/guildStore'
 import { useMemberStore } from '@/stores/memberStore'
 import { useThemeStore } from '@/stores/themeStore'
+import { TUTORIAL_ENABLED } from '@/config/features'
 import { useTutorialStore } from '@/stores/tutorialStore'
 import BaseButtonDropdown from './base/BaseButtonDropdown.vue'
 

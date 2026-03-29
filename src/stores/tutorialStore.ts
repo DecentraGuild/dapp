@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { TUTORIAL_ENABLED } from '@/config/features'
 import { useThemeStore } from './themeStore'
 import { ref, computed } from 'vue'
 
@@ -127,6 +128,7 @@ export const useTutorialStore = defineStore('tutorial', () => {
 
   // Actions
   const startTutorial = (tutorialId?: string) => {
+    if (!TUTORIAL_ENABLED) return
     if (tutorialId) {
       currentTutorialId.value = tutorialId
       const tutorial = tutorials.value.find(t => t.id === tutorialId)
@@ -176,6 +178,7 @@ export const useTutorialStore = defineStore('tutorial', () => {
   }
 
   const nextStep = () => {
+    if (!TUTORIAL_ENABLED) return
     // Special handling for skin loading step
     if (currentStep.value?.id === 'vote-has-passed') {
       loadSpacebaseYellowSkin()
@@ -196,6 +199,7 @@ export const useTutorialStore = defineStore('tutorial', () => {
   }
 
   const previousStep = () => {
+    if (!TUTORIAL_ENABLED) return
     if (currentStepIndex.value > 0) {
       currentStepIndex.value--
       // Save progress
@@ -204,6 +208,7 @@ export const useTutorialStore = defineStore('tutorial', () => {
   }
 
   const goToStep = (index: number) => {
+    if (!TUTORIAL_ENABLED) return
     if (index >= 0 && index < currentSteps.value.length) {
       currentStepIndex.value = index
       // Save progress
@@ -284,7 +289,7 @@ export const useTutorialStore = defineStore('tutorial', () => {
   }
 
   const checkRouteAndAdvance = (currentRoute: string) => {
-    if (!isActive.value || !currentStep.value) return
+    if (!TUTORIAL_ENABLED || !isActive.value || !currentStep.value) return
 
     const step = currentStep.value
     if (step.autoAdvance && step.targetRoute && currentRoute === step.targetRoute) {
@@ -367,7 +372,7 @@ export const useTutorialStore = defineStore('tutorial', () => {
 
   // Generic method to handle button-based auto-advance
   const handleButtonAction = (actionId: string) => {
-    if (!isActive.value || !currentStep.value) return
+    if (!TUTORIAL_ENABLED || !isActive.value || !currentStep.value) return
     
     // Map action IDs to step IDs for auto-advance
     const actionToStepMap: Record<string, string> = {
@@ -409,6 +414,9 @@ export const useTutorialStore = defineStore('tutorial', () => {
 
   // Initialize tutorial progress from localStorage
   loadTutorialProgress()
+  if (!TUTORIAL_ENABLED) {
+    isActive.value = false
+  }
 
   return {
     // State
